@@ -1,0 +1,106 @@
+/* =========================================
+   GLOBAL STYLES — Selvia Landing
+   ========================================= */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body {
+  margin: 0;
+  font-family: 'Lexend', system-ui, -apple-system, sans-serif;
+  color: #0D423F;
+  background: #FFFFFF;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+img, svg { max-width: 100%; display: block; }
+button { font-family: inherit; cursor: pointer; }
+a { color: inherit; text-decoration: none; }
+
+:root {
+  --c-green-dark: #0D423F;
+  --c-green-light: #69E470;
+  --c-green-light-soft: #C4F5C8;
+  --c-green-medium: #2A6862;
+  --c-offwhite: #F9F9F9;
+  --c-yellow-light: #F1FDC1;
+  --c-beige: #E2E7C7;
+  --c-yellow: #FFD15C;
+  --c-orange: #F4933B;
+  --c-blue: #84A0FF;
+  --c-pink: #F2B8F4;
+
+  --container-max: 1200px;
+  --container-padding: 24px;
+}
+
+.container {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 var(--container-padding);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 20px;
+  border-radius: 100px;
+  font-weight: 500;
+  font-size: 14px;
+  border: 1px solid transparent;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: transform 0.15s ease, opacity 0.15s ease;
+}
+.btn:hover { transform: translateY(-1px); }
+.btn:active { transform: translateY(0); }
+
+.btn-primary {
+  background: var(--c-green-light);
+  color: var(--c-green-dark);
+}
+.btn-primary:hover { opacity: 0.92; }
+
+.btn-secondary {
+  background: transparent;
+  color: var(--c-green-dark);
+  border-color: var(--c-green-dark);
+}
+.btn-secondary.is-dark {
+  color: #fff;
+  border-color: rgba(255,255,255,0.4);
+}
+
+.section-pill {
+  display: inline-block;
+  padding: 6px 16px;
+  border: 1px solid rgba(13,66,63,0.15);
+  border-radius: 100px;
+  font-size: 13px;
+  margin-bottom: 24px;
+  background: rgba(13,66,63,0.04);
+}
+.section-pill-light {
+  border-color: rgba(255,255,255,0.25);
+  background: rgba(255,255,255,0.04);
+  color: #fff;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
