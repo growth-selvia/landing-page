@@ -1,0 +1,515 @@
+---
+// Preços — sétima seção da home
+// 1:1 com _legacy/index.html (CSS 1155-1357, HTML 2406-2495)
+//
+// DECISÃO DE ARQUITETURA (atualizada):
+// - Tab "Médicos" mostra os 3 cards de preço inline (ICP principal)
+// - Outras 5 tabs (Devs, Advogados, Criadores, Saúde, Outras PJ) quando
+//   clicadas mostram um BLOCO COM CTA "Planos especiais para X" + botão
+//   "Ver planos →" que linka pra LP da vertical
+// - Não é redirect direto: o usuário vê visualmente que tem opção e
+//   clica ativamente no CTA pra ir pra LP
+//
+// Estrutura:
+// - Background verde escuro com 3 glows decorativos
+// - Pill light + h2 light + subheadline light
+// - Linha de 6 tabs (todas <button>, troca via JS)
+// - Pane "médicos": grid de 3 cards
+// - Panes das outras: bloco CTA verde claro com botão pra LP
+// - Curva decorativa via <Curve variant="precos" />
+
+import Curve from '../ui/Curve.astro';
+import { VERTICAIS, getVertical } from '../../data/verticais.ts';
+
+const medicos = getVertical('medicos');
+if (!medicos) {
+  throw new Error('Vertical "medicos" não encontrada em src/data/verticais.ts');
+}
+
+// Pré-calcula classes pra evitar expressão complexa inline (bug do esbuild)
+const planCards = medicos.plans.map((p) => {
+  const classes = ['price-card'];
+  if (p.featured) classes.push('featured');
+  if (p.isMei) classes.push('price-card-mei');
+  if (p.status === 'unavailable') classes.push('price-card-disabled');
+  return {
+    ...p,
+    cardClass: classes.join(' '),
+  };
+});
+
+const WHATSAPP_BASE = 'https://api.whatsapp.com/send?phone=5511936220451&text=';
+const whatsappLink = (context: string) =>
+  WHATSAPP_BASE + encodeURIComponent(`Olá! Quero saber sobre o plano ${context}`);
+
+// Verticais que NÃO são médicos (pra renderizar os panes CTA)
+const verticaisCta = VERTICAIS.filter((v) => v.slug !== 'medicos');
+---
+
+<section id="precos" class="precos-bg scroll-animate" data-parallax>
+  <Curve variant="precos" />
+
+  <div class="container">
+    <span class="pill pill-light">Preços</span>
+    <h2 class="h2 h2-light">Planos transparentes por profissão.</h2>
+    <p class="section-sub section-sub-light">Sem fidelidade. Abertura de CNPJ grátis. Cancele quando quiser.</p>
+
+    <div class="price-tabs" role="tablist">
+      {VERTICAIS.map((v, idx) => (
+        <button
+          type="button"
+          class={idx === 0 ? 'price-tab active' : 'price-tab'}
+          data-vertical={v.slug}
+          aria-selected={idx === 0 ? 'true' : 'false'}
+        >
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"
+               set:html={v.iconPath} />
+          {v.shortName || v.name}
+        </button>
+      ))}
+    </div>
+
+    {/* === Pane Médicos: grid de 3 cards de plano === */}
+    <div class="price-pane active" data-vertical="medicos">
+      <div class="price-grid">
+        {planCards.map((plan) => (
+          <div class={plan.cardClass}>
+            <p class="price-modalidade">{plan.modalidade}</p>
+            <p class="price-plano">{plan.plano}</p>
+
+            {plan.price && (
+              <p class="price-value">{plan.price}<span class="price-value-sub">{plan.priceSuffix}</span></p>
+            )}
+
+            {plan.features && (
+              <ul class="price-features">
+                {plan.features.map((feat) => (
+                  <li>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                         stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M5 12l5 5l10 -10" />
+                    </svg>
+                    {feat}
+                  </li>
+                ))}
+              </ul>
+            )}
+
+            {plan.disclaimer && plan.disclaimer.map((d, i) => (
+              <p class="price-disclaimer" style={i === plan.disclaimer.length - 1 ? 'margin-top: auto;' : ''}>
+                {d}
+              </p>
+            ))}
+
+            {plan.status === 'available' && (
+              <a href={whatsappLink(plan.whatsappContext)} target="_blank" rel="noopener" class="price-btn">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                     stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M3 21l1.65 -3.8a9 9 0 1 1 3.4 2.9l-5.05 .9" />
+                </svg>
+                Falar no WhatsApp
+              </a>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+
+    {/* === Panes CTA das outras verticais (escondidos por default) === */}
+    {verticaisCta.map((v) => (
+      <div class="price-pane price-pane-cta" data-vertical={v.slug} aria-hidden="true">
+        <div class="price-cta-block">
+          <p class="price-cta-eyebrow">{v.description}</p>
+          <h3 class="price-cta-title">Planos especiais para {v.name}</h3>
+          <p class="price-cta-sub">
+            Cada profissão tem suas regras — Receita Saúde, recebimento exterior, conselho de classe,
+            multi-receita. Por isso temos uma página dedicada com os planos que fazem sentido pro seu caso.
+          </p>
+          <a href={v.futurePage} class="price-cta-btn" data-future-page={v.slug}>
+            Ver planos para {v.shortName || v.name}
+            <span class="price-cta-arrow">→</span>
+          </a>
+        </div>
+      </div>
+    ))}
+  </div>
+</section>
+
+<style>
+  /* === PREÇOS — verde escuro com glows ricos === */
+  .precos-bg {
+    background: var(--c-green-dark);
+    color: var(--c-offwhite);
+    position: relative;
+    overflow: hidden;
+  }
+  .precos-bg::before {
+    content: '';
+    position: absolute;
+    top: -100px; right: -100px;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(105,228,112,0.18) 0%, transparent 65%);
+    pointer-events: none;
+  }
+  .precos-bg::after {
+    content: '';
+    position: absolute;
+    bottom: -150px; left: -100px;
+    width: 450px; height: 450px;
+    background: radial-gradient(circle, rgba(132,160,255,0.14) 0%, transparent 65%);
+    pointer-events: none;
+  }
+  .precos-bg :global(.container) {
+    position: relative;
+    z-index: 1;
+  }
+  .precos-bg :global(.container)::after {
+    content: '';
+    position: absolute;
+    top: 50%; right: 30%;
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(105,228,112,0.08) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  /* === Tabs === */
+  .price-tabs {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 32px;
+    margin-top: 16px;
+  }
+  .price-tab {
+    padding: 10px 16px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 100px;
+    font-size: 13px;
+    cursor: pointer;
+    color: var(--c-offwhite);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.15s;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    font-family: inherit;
+  }
+  .price-tab:hover {
+    border-color: var(--c-green-light);
+    background: rgba(105,228,112,0.1);
+  }
+  .price-tab.active {
+    background: var(--c-green-light);
+    color: var(--c-green-dark);
+    border-color: var(--c-green-light);
+    font-weight: 500;
+    box-shadow: 0 4px 12px rgba(105,228,112,0.3);
+  }
+
+  /* === Panes (apenas o ativo é visível) === */
+  .price-pane {
+    display: none;
+  }
+  .price-pane.active {
+    display: block;
+  }
+
+  /* === Grid de cards (apenas no pane do médico) === */
+  .price-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  .price-grid > * { min-width: 0; }
+
+  /* === Card padrão === */
+  .price-card {
+    background: #FFFFFF;
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 14px;
+    padding: 28px 24px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    color: var(--c-green-dark);
+    box-shadow: 0 16px 32px -12px rgba(0,0,0,0.25);
+  }
+  .price-card.featured {
+    border: 2px solid var(--c-green-light);
+    box-shadow:
+      0 24px 60px -8px rgba(105,228,112,0.35),
+      0 12px 24px -8px rgba(0,0,0,0.3);
+    transform: translateY(-4px);
+  }
+  .price-card.featured::before {
+    content: 'Mais escolhido';
+    position: absolute;
+    top: -12px;
+    left: 20px;
+    background: var(--c-green-light);
+    color: var(--c-green-dark);
+    padding: 4px 12px;
+    border-radius: 100px;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    box-shadow: 0 4px 12px rgba(105,228,112,0.4);
+  }
+  .price-card-mei {
+    background: #FFFFFF;
+    border: 2px solid var(--c-green-light);
+    position: relative;
+  }
+  .price-card-mei::before {
+    content: 'MEI · Pra começar';
+    position: absolute;
+    top: -12px;
+    left: 20px;
+    background: linear-gradient(135deg, #69E470 0%, #5FD466 100%);
+    color: var(--c-green-dark);
+    padding: 4px 12px;
+    border-radius: 100px;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    box-shadow: 0 4px 12px rgba(105,228,112,0.3);
+  }
+  .price-card-disabled {
+    background: rgba(255,255,255,0.85);
+    opacity: 0.7;
+    box-shadow: none;
+  }
+
+  /* Tipografia do card */
+  .price-modalidade {
+    font-size: 10px;
+    color: #0F6E56;
+    font-weight: 500;
+    letter-spacing: 0.8px;
+    margin: 0;
+  }
+  .price-card-disabled .price-modalidade { color: #888; }
+  .price-plano {
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--c-green-dark);
+    margin: 6px 0 14px;
+  }
+  .price-value {
+    font-size: 36px;
+    font-weight: 500;
+    color: var(--c-green-dark);
+    margin: 0;
+    line-height: 1;
+  }
+  .price-value-sub {
+    font-size: 14px;
+    color: var(--c-text-muted);
+    font-weight: 400;
+  }
+
+  .price-features {
+    margin: 20px 0;
+    padding: 0;
+    list-style: none;
+    flex-grow: 1;
+  }
+  .price-features li {
+    font-size: 13px;
+    color: var(--c-text-muted-strong);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    line-height: 1.5;
+  }
+  .price-features li svg {
+    color: var(--c-green-whatsapp);
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .price-btn {
+    width: 100%;
+    padding: 12px;
+    background: var(--c-green-dark);
+    color: var(--c-green-light);
+    border: none;
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.15s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    text-decoration: none;
+    font-family: inherit;
+  }
+  .price-btn:hover {
+    background: #082c2a;
+    box-shadow: 0 6px 16px rgba(13,66,63,0.25);
+  }
+  .price-card-mei .price-btn {
+    background: var(--c-green-light);
+    color: var(--c-green-dark);
+  }
+  .price-card-mei .price-btn:hover {
+    background: #4dd055;
+    box-shadow: 0 6px 16px rgba(105,228,112,0.35);
+  }
+
+  .price-disclaimer {
+    font-size: 13px;
+    color: var(--c-text-muted);
+    line-height: 1.6;
+    margin: 12px 0;
+  }
+
+  /* === Pane CTA (Devs, Advogados, Criadores, Saúde, Outras PJ) === */
+  .price-pane-cta {
+    /* Mantém altura visualmente similar ao grid de 3 cards */
+  }
+  .price-cta-block {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(105,228,112,0.25);
+    border-radius: 16px;
+    padding: 64px 48px;
+    text-align: center;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    position: relative;
+    overflow: hidden;
+  }
+  /* Glow verde sutil no fundo do bloco CTA */
+  .price-cta-block::before {
+    content: '';
+    position: absolute;
+    top: -80px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 400px;
+    height: 200px;
+    background: radial-gradient(ellipse, rgba(105,228,112,0.18) 0%, transparent 65%);
+    pointer-events: none;
+  }
+  .price-cta-eyebrow {
+    font-size: 12px;
+    color: var(--c-green-light);
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    font-weight: 500;
+    margin: 0 0 12px;
+    position: relative;
+  }
+  .price-cta-title {
+    font-size: 28px;
+    color: var(--c-offwhite);
+    font-weight: 500;
+    margin: 0 0 16px;
+    line-height: 1.2;
+    letter-spacing: -0.5px;
+    position: relative;
+  }
+  .price-cta-sub {
+    font-size: 15px;
+    color: rgba(249,249,249,0.78);
+    line-height: 1.6;
+    max-width: 560px;
+    margin: 0 auto 32px;
+    position: relative;
+  }
+  .price-cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 28px;
+    background: var(--c-green-light);
+    color: var(--c-green-dark);
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 15px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    box-shadow: 0 8px 24px rgba(105,228,112,0.25);
+    position: relative;
+  }
+  .price-cta-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px rgba(105,228,112,0.4);
+    background: #7BEE82;
+  }
+  .price-cta-arrow {
+    display: inline-block;
+    transition: transform 0.2s ease;
+  }
+  .price-cta-btn:hover .price-cta-arrow {
+    transform: translateX(4px);
+  }
+
+  /* === Mobile === */
+  @media (max-width: 900px) {
+    .price-grid {
+      grid-template-columns: 1fr;
+    }
+    .price-card.featured {
+      transform: none;
+    }
+    .price-tabs {
+      gap: 6px;
+    }
+    .price-tab {
+      padding: 8px 12px;
+      font-size: 12px;
+    }
+    .price-cta-block {
+      padding: 40px 24px;
+    }
+    .price-cta-title {
+      font-size: 22px;
+    }
+    .price-cta-sub {
+      font-size: 14px;
+    }
+  }
+</style>
+
+<script>
+  // ===== TABS DE PREÇOS =====
+  // Tab "Médicos" mostra os cards inline.
+  // Outras tabs mostram um bloco CTA "Planos especiais para X".
+  // Tudo client-side — sem navegação até o usuário clicar no botão do CTA.
+  (function() {
+    const section = document.getElementById('precos');
+    if (!section) return;
+
+    const tabs = section.querySelectorAll<HTMLButtonElement>('.price-tab');
+    const panes = section.querySelectorAll<HTMLElement>('.price-pane');
+    if (!tabs.length || !panes.length) return;
+
+    const activate = (slug: string) => {
+      tabs.forEach((tab) => {
+        const isActive = tab.dataset.vertical === slug;
+        tab.classList.toggle('active', isActive);
+        tab.setAttribute('aria-selected', isActive ? 'true' : 'false');
+      });
+      panes.forEach((pane) => {
+        const isActive = pane.dataset.vertical === slug;
+        pane.classList.toggle('active', isActive);
+        pane.setAttribute('aria-hidden', isActive ? 'false' : 'true');
+      });
+    };
+
+    tabs.forEach((tab) => {
+      tab.addEventListener('click', () => {
+        const slug = tab.dataset.vertical;
+        if (slug) activate(slug);
+      });
+    });
+  })();
+</script>
