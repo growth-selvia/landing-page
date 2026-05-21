@@ -1,0 +1,112 @@
+---
+// CTA Final — penúltima seção antes de Mídia + Footer
+// 1:1 com _legacy/index.html (CSS 1671-1715, HTML 2891-2913)
+//
+// Estrutura:
+// - Wrapper .container externo (consistência de largura) 
+// - Bloco verde escuro com border-radius 24px e sombra grande
+// - 2 glows decorativos (verde claro topo-direita + azul base-esquerda)
+// - Curva decorativa branca via <Curve variant="cta-final" />
+// - Headline + sub + botão WhatsApp grande
+//
+// Animação:
+// - scroll-animate (fade-in do bloco inteiro ao entrar no viewport)
+
+import Curve from '../ui/Curve.astro';
+
+const WHATSAPP_URL = 'https://api.whatsapp.com/send?phone=5511936220451&text=Ol%C3%A1!%20Vim%20do%20site%20e%20gostaria%20de%20saber%20mais%20sobre%20os%20servi%C3%A7os!';
+---
+
+<div class="container">
+  <div class="cta-final scroll-animate">
+    <Curve variant="cta-final" />
+
+    <h2>Pronto pra parar de se estressar com contabilidade?</h2>
+    <p>Sem cadastro. Sem fidelidade. Atendimento humano em até 1 minuto.</p>
+    <a href={WHATSAPP_URL} target="_blank" rel="noopener" class="btn btn-primary cta-final-btn">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M3 21l1.65 -3.8a9 9 0 1 1 3.4 2.9l-5.05 .9" />
+        <path d="M9 10a.5 .5 0 0 0 1 0v-1a.5 .5 0 0 0 -1 0v1a5 5 0 0 0 5 5h1a.5 .5 0 0 0 0 -1h-1a.5 .5 0 0 0 0 1" />
+      </svg>
+      Falar com a Selvia agora
+    </a>
+  </div>
+</div>
+
+<style>
+  /* === CTA FINAL — bloco verde escuro de destaque === */
+  .cta-final {
+    background: var(--c-green-dark);
+    color: var(--c-offwhite);
+    padding: 80px 0;
+    text-align: center;
+    border-radius: 24px;
+    margin: 80px 0;
+    position: relative;
+    overflow: hidden;
+    box-shadow:
+      0 32px 64px -16px rgba(13,66,63,0.4),
+      0 16px 32px -8px rgba(0,0,0,0.15);
+  }
+  /* Glow verde claro topo-direita */
+  .cta-final::before {
+    content: '';
+    position: absolute;
+    top: -100px; right: -100px;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(105,228,112,0.22) 0%, transparent 65%);
+    pointer-events: none;
+  }
+  /* Glow azul base-esquerda */
+  .cta-final::after {
+    content: '';
+    position: absolute;
+    bottom: -150px; left: -100px;
+    width: 350px;
+    height: 350px;
+    background: radial-gradient(circle, rgba(132,160,255,0.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .cta-final h2 {
+    font-size: 40px;
+    line-height: 1.15;
+    color: var(--c-offwhite);
+    margin: 0 0 16px;
+    letter-spacing: -1px;
+    position: relative;
+    z-index: 1;
+    font-weight: 500;
+  }
+  .cta-final p {
+    font-size: 16px;
+    color: rgba(249,249,249,0.8);
+    margin: 0 0 32px;
+    position: relative;
+    z-index: 1;
+  }
+  .cta-final-btn {
+    font-size: 16px;
+    padding: 16px 32px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* === Mobile === */
+  @media (max-width: 900px) {
+    .cta-final {
+      padding: 56px 24px;
+      margin: 56px 0;
+      border-radius: 20px;
+    }
+    .cta-final h2 {
+      font-size: 28px;
+      letter-spacing: -0.5px;
+    }
+    .cta-final p {
+      font-size: 15px;
+      margin-bottom: 24px;
+    }
+  }
+</style>

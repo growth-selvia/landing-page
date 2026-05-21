@@ -1,0 +1,113 @@
+---
+// Mídia — última seção antes do Footer
+// 1:1 com _legacy/index.html (CSS 1490-1523, HTML 2915-2930)
+//
+// Estrutura:
+// - Background laranja gradient (#F8A85B → #F4933B → #E68228)
+// - Pill light + h2 light + subheadline light
+// - 1 card verde claro linkando pro artigo da Startups.com.br
+//   (mesmo artigo do banner Announcement no topo, fechando o loop)
+// - Ícone de external-link à direita
+// - Glow verde claro decorativo no canto inferior-esquerdo
+//
+// Animação:
+// - scroll-animate (fade-in da seção ao entrar no viewport)
+
+const ARTIGO_URL = 'https://startups.com.br/negocios/fintech/depois-de-captar-r-25m-selvia-lanca-conta-pj-para-medicos/';
+---
+
+<section class="midia-bg scroll-animate" data-parallax>
+  <div class="container">
+    <span class="pill pill-light">Imprensa</span>
+    <h2 class="h2 h2-light">Selvia na mídia.</h2>
+    <p class="section-sub section-sub-light">O que estão dizendo sobre a gente.</p>
+
+    <a href={ARTIGO_URL} target="_blank" rel="noopener" class="midia-card">
+      <div>
+        <p class="midia-label">STARTUPS.COM.BR · 25 JUN 2025</p>
+        <p class="midia-title">Depois de captar R$ 2,5M, Selvia lança conta PJ para médicos</p>
+      </div>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M12 6h-6a2 2 0 0 0 -2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-6" />
+        <path d="M11 13l9 -9" />
+        <path d="M15 4h5v5" />
+      </svg>
+    </a>
+  </div>
+</section>
+
+<style>
+  /* === MÍDIA — laranja gradient === */
+  .midia-bg {
+    background: radial-gradient(ellipse at top right, #F8A85B 0%, #F4933B 50%, #E68228 100%);
+    position: relative;
+    overflow: hidden;
+  }
+  /* Glow verde sutil base-esquerda (cria contraste sem brigar com o laranja) */
+  .midia-bg::before {
+    content: '';
+    position: absolute;
+    bottom: -100px; left: -100px;
+    width: 350px; height: 350px;
+    background: radial-gradient(circle, rgba(105,228,112,0.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .midia-bg :global(.container) {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* === Card de mídia (verde claro destaca contra fundo laranja) === */
+  .midia-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    padding: 20px 24px;
+    background: var(--c-green-light);
+    border-radius: 12px;
+    border: 1px solid rgba(13,66,63,0.15);
+    transition: all 0.2s;
+    text-decoration: none;
+    color: var(--c-green-dark);
+    box-shadow:
+      0 16px 32px -8px rgba(244,147,59,0.4),
+      0 4px 12px rgba(13,66,63,0.1);
+  }
+  .midia-card:hover {
+    border-color: var(--c-green-dark);
+    transform: translateY(-3px);
+    box-shadow:
+      0 24px 40px -8px rgba(244,147,59,0.5),
+      0 8px 16px rgba(13,66,63,0.15);
+  }
+  .midia-label {
+    font-size: 11px;
+    color: var(--c-green-dark);
+    letter-spacing: 0.8px;
+    font-weight: 500;
+    margin: 0;
+    opacity: 0.7;
+  }
+  .midia-title {
+    font-size: 14px;
+    color: var(--c-green-dark);
+    font-weight: 500;
+    line-height: 1.4;
+    margin: 6px 0 0;
+  }
+  .midia-card svg {
+    flex-shrink: 0;
+    color: var(--c-green-dark);
+  }
+
+  /* === Mobile === */
+  @media (max-width: 560px) {
+    .midia-card {
+      padding: 16px 18px;
+    }
+    .midia-title {
+      font-size: 13px;
+    }
+  }
+</style>
