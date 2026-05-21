@@ -41,5 +41,10 @@ const { title, description, image, noindex, jsonLd } = Astro.props;
   </head>
   <body>
     <slot />
+
+    <!-- Scroll animations (fade-in das seções + parallax sutil) -->
+    <script>
+      import '../scripts/scroll-animate.ts';
+    </script>
   </body>
 </html>
