@@ -30,6 +30,7 @@ a { color: inherit; text-decoration: none; }
   --c-green-light: #69E470;
   --c-green-light-soft: #C4F5C8;
   --c-green-medium: #2A6862;
+  --c-green-whatsapp: #1D9E75;
   --c-offwhite: #F9F9F9;
   --c-yellow-light: #F1FDC1;
   --c-beige: #E2E7C7;
@@ -53,6 +54,27 @@ a { color: inherit; text-decoration: none; }
   margin: 0 auto;
   padding: 0 var(--container-padding);
 }
+
+/* === SECTIONS === */
+section { padding: 80px 0; }
+.h2 { font-size: 36px; line-height: 1.15; margin-bottom: 12px; }
+.section-sub { font-size: 15px; color: var(--c-text-muted); margin-bottom: 40px; max-width: 560px; line-height: 1.6; }
+.h2-light { color: var(--c-offwhite); }
+.section-sub-light { color: rgba(249,249,249,0.75); }
+
+/* === PILLS === */
+.pill {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 100px;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+  margin-bottom: 16px;
+}
+.pill-green { background: rgba(105,228,112,0.18); color: var(--c-green-light); }
+.pill-dark { background: rgba(13,66,63,0.08); color: var(--c-green-dark); border: 1px solid rgba(13,66,63,0.12); }
+.pill-light { background: rgba(255,255,255,0.12); color: var(--c-offwhite); border: 1px solid rgba(105,228,112,0.4); }
 
 /* === BOTÕES (espelhando legacy) ===
    No legacy os botões usam border-radius 8px (não pill). */
@@ -92,6 +114,15 @@ a { color: inherit; text-decoration: none; }
 .btn-secondary:hover { background: rgba(105,228,112,0.12); }
 
 .btn-small { padding: 8px 14px; font-size: 13px; }
+
+@media (max-width: 900px) {
+  section { padding: 56px 0; }
+  .h2 { font-size: 28px; }
+}
+
+@media (max-width: 560px) {
+  .container { padding: 0 20px; }
+}
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
