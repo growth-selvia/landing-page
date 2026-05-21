@@ -1,0 +1,437 @@
+---
+// Calculadora — penúltima seção (entre Preços e FAQ)
+// 1:1 com _legacy/index.html (CSS 1359-1488, HTML 2762-2804, JS 3441-3531)
+//
+// Calcula impostos mensais comparando:
+//   - Simples Nacional (Anexo III via Fator R, folha 28%)
+//   - Lucro Presumido (IRPJ + CSLL + PIS + COFINS + ISS + INSS)
+// E indica qual é mais econômico + diferença anual.
+//
+// Estrutura:
+// - Background off-white com dots + 2 glow blobs
+// - Pill + h2 + subheadline
+// - Card verde claro vibrante com input + botão + área de resultados
+// - Input com formatação automática em BRL ("R$ 18.000,00") enquanto digita
+// - Resultados aparecem após clicar em "Calcular"
+---
+
+<section id="calculadora" class="calc-bg scroll-animate" data-parallax>
+  <div class="container">
+    <span class="pill pill-dark">Calculadora</span>
+    <h2 class="h2">Quanto você economiza com a Selvia?</h2>
+    <p class="section-sub">Compare Simples Nacional via Fator R com Lucro Presumido em segundos. Sem cadastro.</p>
+
+    <div class="calc-wrap">
+      <label class="calc-label" for="calc-fat">Faturamento do mês</label>
+      <input
+        type="text"
+        inputmode="decimal"
+        id="calc-fat"
+        class="calc-input"
+        placeholder="R$ 18.000,00"
+        autocomplete="off"
+      />
+      <button id="calc-btn" class="calc-btn" disabled type="button">Calcular minha economia</button>
+
+      <div id="calc-results" class="calc-results">
+        <div class="calc-summary">
+          <div class="calc-summary-card">
+            <p class="calc-summary-label">SIMPLES NACIONAL</p>
+            <p class="calc-summary-value" id="calc-sn">—</p>
+            <p class="calc-summary-extra" id="calc-sn-aliq">—</p>
+          </div>
+          <div class="calc-summary-card">
+            <p class="calc-summary-label">LUCRO PRESUMIDO</p>
+            <p class="calc-summary-value" id="calc-lp">—</p>
+            <p class="calc-summary-extra" id="calc-lp-aliq">—</p>
+          </div>
+        </div>
+
+        <div class="calc-best">
+          <p class="calc-best-label">MELHOR REGIME PARA VOCÊ</p>
+          <p class="calc-best-name" id="calc-best">—</p>
+          <p class="calc-best-saving">Sua economia anual: <strong id="calc-saving">—</strong></p>
+          <button class="calc-cta-btn" id="calc-cta-btn" type="button">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M3 21l1.65 -3.8a9 9 0 1 1 3.4 2.9l-5.05 .9" />
+            </svg>
+            <span id="calc-cta-text">Quero economizar — falar no WhatsApp</span>
+          </button>
+        </div>
+
+        <p class="calc-disclaimer">
+          Simulação ilustrativa baseada em Anexo III via Fator R (folha de 28%) e ISS de 2%.
+          Valores reais variam por CNAE, município e composição da folha.
+          Para cálculo personalizado, <a href="#" id="calc-link-pers">fale com a Selvia</a>.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* === CALCULADORA — background + decorativos === */
+  .calc-bg {
+    background:
+      radial-gradient(circle, rgba(13,66,63,0.05) 1px, transparent 1.5px) 0 0 / 28px 28px,
+      linear-gradient(180deg, #FFFFFF 0%, #F9F9F9 100%);
+    border-top: 1px solid rgba(13,66,63,0.06);
+    position: relative;
+    overflow: hidden;
+  }
+  .calc-bg::before {
+    content: '';
+    position: absolute;
+    top: 20%; right: -100px;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(105,228,112,0.20) 0%, transparent 65%);
+    filter: blur(70px);
+    pointer-events: none;
+  }
+  .calc-bg::after {
+    content: '';
+    position: absolute;
+    bottom: -80px; left: 10%;
+    width: 280px; height: 280px;
+    background: radial-gradient(circle, rgba(132,160,255,0.14) 0%, transparent 65%);
+    filter: blur(70px);
+    pointer-events: none;
+  }
+  .calc-bg :global(.container) {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* === Card principal === */
+  .calc-wrap {
+    background: radial-gradient(ellipse at top right, #7DEC83 0%, #69E470 60%, #5FD466 100%);
+    border-radius: 16px;
+    padding: 32px;
+    max-width: 560px;
+    box-shadow:
+      0 24px 60px -12px rgba(105,228,112,0.4),
+      0 12px 24px -8px rgba(13,66,63,0.15);
+    position: relative;
+    overflow: hidden;
+  }
+  .calc-wrap::before {
+    content: '';
+    position: absolute;
+    bottom: -80px; left: -80px;
+    width: 280px; height: 280px;
+    background: radial-gradient(circle, rgba(13,66,63,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .calc-wrap > * { position: relative; z-index: 1; }
+
+  /* === Input === */
+  .calc-label {
+    display: block;
+    font-size: 14px;
+    color: var(--c-green-dark);
+    font-weight: 500;
+    margin-bottom: 10px;
+  }
+  .calc-input {
+    width: 100%;
+    padding: 14px 16px;
+    border: 1px solid rgba(13,66,63,0.25);
+    border-radius: 8px;
+    font-size: 16px;
+    font-family: 'Lexend', sans-serif;
+    background: var(--c-offwhite);
+    margin-bottom: 16px;
+    color: var(--c-green-dark);
+    box-sizing: border-box;
+    /* Tabular nums: dígitos com a mesma largura — não "dança" enquanto digita */
+    font-variant-numeric: tabular-nums;
+  }
+  .calc-input:focus {
+    outline: none;
+    border-color: var(--c-green-dark);
+    box-shadow: 0 0 0 3px rgba(13,66,63,0.1);
+  }
+
+  /* === Botão calcular === */
+  .calc-btn {
+    width: 100%;
+    padding: 14px;
+    background: var(--c-green-dark);
+    color: var(--c-green-light);
+    border: none;
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 15px;
+    cursor: pointer;
+    font-family: 'Lexend', sans-serif;
+    transition: background 0.15s;
+  }
+  .calc-btn:hover:not(:disabled) { background: #082c2a; }
+  .calc-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+  /* === Resultados === */
+  .calc-results { display: none; margin-top: 24px; }
+  .calc-results.show { display: block; }
+
+  .calc-summary {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+  .calc-summary-card {
+    background: rgba(249,249,249,0.85);
+    padding: 14px;
+    border-radius: 8px;
+  }
+  .calc-summary-card p { margin: 0; }
+  .calc-summary-label {
+    font-size: 11px;
+    color: var(--c-text-muted-strong);
+    letter-spacing: 0.5px;
+  }
+  .calc-summary-value {
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--c-green-dark);
+    margin-top: 4px !important;
+    font-variant-numeric: tabular-nums;
+  }
+  .calc-summary-extra {
+    font-size: 12px;
+    color: var(--c-text-muted);
+    margin-top: 2px !important;
+  }
+
+  .calc-best {
+    background: var(--c-green-dark);
+    color: var(--c-offwhite);
+    padding: 20px;
+    border-radius: 12px;
+    text-align: center;
+  }
+  .calc-best p { margin: 0; }
+  .calc-best-label {
+    font-size: 11px;
+    opacity: 0.7;
+    letter-spacing: 0.5px;
+  }
+  .calc-best-name {
+    font-size: 20px;
+    font-weight: 500;
+    margin-top: 6px !important;
+    margin-bottom: 10px !important;
+  }
+  .calc-best-saving {
+    font-size: 14px;
+    opacity: 0.9;
+    margin-bottom: 16px !important;
+  }
+  .calc-best-saving strong {
+    color: var(--c-green-light);
+    font-weight: 500;
+    font-size: 18px;
+  }
+
+  .calc-cta-btn {
+    width: 100%;
+    padding: 14px;
+    background: var(--c-green-light);
+    color: var(--c-green-dark);
+    border: none;
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 14px;
+    cursor: pointer;
+    font-family: 'Lexend', sans-serif;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: all 0.15s;
+  }
+  .calc-cta-btn:hover {
+    background: #4dd055;
+    box-shadow: 0 6px 16px rgba(105,228,112,0.35);
+  }
+
+  .calc-disclaimer {
+    font-size: 11px;
+    color: var(--c-text-muted-strong);
+    margin-top: 14px;
+    line-height: 1.5;
+  }
+  .calc-disclaimer a {
+    text-decoration: underline;
+    color: var(--c-green-dark);
+  }
+
+  @media (max-width: 560px) {
+    .calc-wrap { padding: 24px 20px; }
+    .calc-summary { grid-template-columns: 1fr; }
+  }
+</style>
+
+<script>
+  // ===== CALCULADORA DE IMPOSTOS =====
+  // Compara Simples Nacional (Anexo III via Fator R) com Lucro Presumido.
+  //
+  // Input formatado em BRL:
+  // - Usuário digita só números; sanitizamos a cada keypress
+  // - Formatador mostra "R$ 18.000,00" sempre, com 2 casas decimais
+  // - Internamente o valor real é guardado em centavos (number),
+  //   então não tem problema de float (digitar "180" vira R$ 1,80)
+  (function() {
+    interface FaixaSN { limite: number; aliquota: number; deducao: number; }
+    interface FaixaIRRF { limite: number; aliquota: number; deducao: number; }
+
+    const fatInput = document.getElementById('calc-fat') as HTMLInputElement | null;
+    const btn = document.getElementById('calc-btn') as HTMLButtonElement | null;
+    const results = document.getElementById('calc-results') as HTMLElement | null;
+    const ctaBtn = document.getElementById('calc-cta-btn') as HTMLButtonElement | null;
+    const linkPers = document.getElementById('calc-link-pers') as HTMLAnchorElement | null;
+    if (!fatInput || !btn || !results || !ctaBtn) return;
+
+    let calcEconomiaAtual = 0;
+    let calcMelhorRegime = '';
+
+    // === FORMATAÇÃO BRL DO INPUT ===
+    // Estratégia: a cada input, extrai só dígitos, trata como centavos,
+    // e formata com Intl.NumberFormat. Funciona pra qualquer ordem de digitação.
+    const formatBRL = (valorEmCentavos: number): string => {
+      const reais = valorEmCentavos / 100;
+      return reais.toLocaleString('pt-BR', {
+        style: 'currency',
+        currency: 'BRL',
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+      });
+    };
+
+    // Pega só os dígitos do valor digitado (descarta R$, espaços, pontos, vírgulas)
+    const apenasDigitos = (s: string): string => s.replace(/\D/g, '');
+
+    // Valor atual em REAIS (não centavos) — usado pelo cálculo
+    const getValorEmReais = (): number => {
+      const digitos = apenasDigitos(fatInput.value);
+      if (!digitos) return 0;
+      return parseInt(digitos, 10) / 100;
+    };
+
+    // Atualiza o input com a versão formatada e habilita/desabilita o botão
+    const reformat = () => {
+      const digitos = apenasDigitos(fatInput.value);
+      if (!digitos) {
+        fatInput.value = '';
+        btn.disabled = true;
+        return;
+      }
+      const centavos = parseInt(digitos, 10);
+      fatInput.value = formatBRL(centavos);
+      btn.disabled = centavos <= 0;
+    };
+
+    fatInput.addEventListener('input', reformat);
+
+    // Enter calcula
+    fatInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' && !btn.disabled) {
+        e.preventDefault();
+        btn.click();
+      }
+    });
+
+    // === CÁLCULO ===
+    btn.addEventListener('click', () => {
+      const faturamentoMes = getValorEmReais();
+      if (faturamentoMes <= 0) return;
+
+      const faturamentoAnual = faturamentoMes * 12;
+      const folhaSalarial = faturamentoMes * 0.28;
+
+      // SIMPLES NACIONAL (Anexo III via Fator R)
+      const faixasSN: FaixaSN[] = [
+        { limite: 180000,  aliquota: 0.06,  deducao: 0      },
+        { limite: 360000,  aliquota: 0.112, deducao: 9360   },
+        { limite: 720000,  aliquota: 0.135, deducao: 17640  },
+        { limite: 1800000, aliquota: 0.16,  deducao: 35640  },
+        { limite: 3600000, aliquota: 0.21,  deducao: 125640 },
+        { limite: 4800000, aliquota: 0.33,  deducao: 648000 },
+      ];
+      const faixaSN = faixasSN.find((f) => faturamentoAnual <= f.limite) || faixasSN[faixasSN.length - 1];
+      const dasMensal = Math.max(0, faturamentoAnual * faixaSN.aliquota - faixaSN.deducao) / 12;
+
+      const tabelaIRRF: FaixaIRRF[] = [
+        { limite: 2259.20,  aliquota: 0,     deducao: 0      },
+        { limite: 2826.65,  aliquota: 0.075, deducao: 169.44 },
+        { limite: 3751.05,  aliquota: 0.15,  deducao: 381.44 },
+        { limite: 4664.68,  aliquota: 0.225, deducao: 662.77 },
+        { limite: Infinity, aliquota: 0.275, deducao: 896.00 },
+      ];
+      const faixaIRRF = tabelaIRRF.find((f) => folhaSalarial <= f.limite) || tabelaIRRF[tabelaIRRF.length - 1];
+      const irrf = Math.max(0, folhaSalarial * faixaIRRF.aliquota - faixaIRRF.deducao);
+
+      const tetoINSS = 8157.41;
+      const baseInss = Math.min(folhaSalarial, tetoINSS);
+      const inssSocioSN = baseInss * 0.11;
+      const totalSN = dasMensal + inssSocioSN + irrf;
+
+      // LUCRO PRESUMIDO
+      const lucroPresumidoAnual = faturamentoAnual * 0.32;
+      let irpjAnual = lucroPresumidoAnual * 0.15;
+      if (lucroPresumidoAnual > 240000) {
+        irpjAnual += (lucroPresumidoAnual - 240000) * 0.10;
+      }
+      const csllAnual = lucroPresumidoAnual * 0.09;
+      const pisAnual = faturamentoAnual * 0.0065;
+      const cofinsAnual = faturamentoAnual * 0.03;
+      const issAnual = faturamentoAnual * 0.02;
+      const inssSocioLP = baseInss * 0.11 * 12;
+      const inssPatronalLP = baseInss * 0.20 * 12;
+      const totalLP = (irpjAnual + csllAnual + pisAnual + cofinsAnual + issAnual + inssSocioLP + inssPatronalLP) / 12;
+
+      calcMelhorRegime = totalSN < totalLP ? 'Simples Nacional' : 'Lucro Presumido';
+      calcEconomiaAtual = Math.abs(totalSN - totalLP) * 12;
+      const aliqSN = totalSN / faturamentoMes;
+      const aliqLP = totalLP / faturamentoMes;
+
+      const fmt = (v: number) => v.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+      const pct = (v: number) => (v * 100).toFixed(2) + '%';
+      const fmtRound = (v: number) => 'R$ ' + Math.round(v).toLocaleString('pt-BR');
+
+      const set = (id: string, val: string) => {
+        const el = document.getElementById(id);
+        if (el) el.textContent = val;
+      };
+      set('calc-sn', fmt(totalSN));
+      set('calc-sn-aliq', pct(aliqSN) + ' efetiva');
+      set('calc-lp', fmt(totalLP));
+      set('calc-lp-aliq', pct(aliqLP) + ' efetiva');
+      set('calc-best', calcMelhorRegime);
+      set('calc-saving', fmt(calcEconomiaAtual));
+      set('calc-cta-text', 'Quero economizar ' + fmtRound(calcEconomiaAtual) + ' — falar agora');
+
+      results.classList.add('show');
+    });
+
+    // CTA WhatsApp do resultado
+    const openWhatsAppCalc = () => {
+      const fmtRound = (v: number) => 'R$ ' + Math.round(v).toLocaleString('pt-BR');
+      const msg = 'Olá! Vim do site, usei a calculadora e quero economizar ' +
+        fmtRound(calcEconomiaAtual) + ' por ano com o regime ' + calcMelhorRegime +
+        '. Pode me ajudar?';
+      const url = 'https://api.whatsapp.com/send?phone=5511936220451&text=' + encodeURIComponent(msg);
+      window.open(url, '_blank', 'noopener');
+    };
+    ctaBtn.addEventListener('click', openWhatsAppCalc);
+
+    if (linkPers) {
+      linkPers.addEventListener('click', (e) => {
+        e.preventDefault();
+        const msg = 'Olá! Vim do site e gostaria de um cálculo personalizado de impostos.';
+        const url = 'https://api.whatsapp.com/send?phone=5511936220451&text=' + encodeURIComponent(msg);
+        window.open(url, '_blank', 'noopener');
+      });
+    }
+  })();
+</script>
