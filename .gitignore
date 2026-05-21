@@ -24,3 +24,18 @@ dist/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# Astro
+.astro/
+dist/
+
+# Logs Node
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Lock files de outros gerenciadores (deixamos só package-lock)
+yarn.lock
+pnpm-lock.yaml
+bun.lockb

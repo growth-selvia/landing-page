@@ -1,0 +1,34 @@
+# Selvia
+
+> Contabilidade no WhatsApp para profissionais PJ no Brasil. Atende médicos, devs, advogados, criadores de conteúdo, profissionais da saúde e outras PJs com gente humana e suporte em menos de 1 minuto, sem app e sem login.
+
+## Sobre a Selvia
+
+A Selvia é uma fintech-contábil brasileira que entrega contabilidade completa, emissão de NF-e, pagamento automático de DAS, IRPF, banco PJ e assessoria financeira pelo WhatsApp. Mais de 1.000 clientes ativos em 22 estados.
+
+## Empresas
+- SELVIA TECNOLOGIA LTDA (CNPJ 55.044.108/0001-78) — Alameda Rio Negro, 503, Alphaville, Barueri-SP
+- SELVIA CONTABILIDADE LTDA (CNPJ 37.888.114/0001-20) — Goiânia-GO, CRC GO-018845/O-3
+
+## Páginas principais
+- /: home com visão geral dos serviços e preços
+- /medicos: contabilidade especializada para médicos (a partir de R$ 347)
+- /devs: contabilidade para devs e profissionais de TI (a partir de R$ 9,90 MEI)
+- /advogados: contabilidade para advogados (a partir de R$ 189,90)
+- /criadores: contabilidade para criadores de conteúdo (a partir de R$ 9,90 MEI)
+- /saude: contabilidade para profissionais da saúde (a partir de R$ 99,90)
+- /outras-pj: contabilidade para outras PJs (a partir de R$ 9,90 MEI)
+- /contabilidades: parcerias B2B para escritórios contábeis
+- /blog: conteúdo educacional sobre contabilidade, impostos e finanças PJ
+- /calculadoras/impostos: calculadora gratuita comparando Simples Nacional e Lucro Presumido
+
+## Diferenciais
+- Atendimento em <1 min por gente real (não bot)
+- Migração gratuita em 15-30 dias
+- Abertura de CNPJ grátis
+- Sem fidelidade
+- IRPF anual incluso no plano Basic dos médicos
+- Suporte a recebimento do exterior (devs)
+
+## Investidores
+Levantou R$ 2,5M em rodada coberta pelo Startups.com.br.
