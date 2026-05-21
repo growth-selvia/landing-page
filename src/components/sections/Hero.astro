@@ -1,0 +1,620 @@
+---
+// Hero — primeira seção da home
+// 1:1 com _legacy/index.html (CSS linhas 271-585, HTML 2012-2148, JS 2979-3084)
+//
+// Estrutura:
+// - Lado esquerdo: pill + h1 + subheadline + 2 CTAs + social proof
+// - Lado direito: mock chat animado em 6 etapas (~14s total)
+// - Curva decorativa no fundo (componente <Curve variant="hero" />)
+// - Dois glow blobs decorativos (::before verde, ::after azul)
+//
+// Animação do mock chat:
+// - Inicia quando o chat entra no viewport (IntersectionObserver, threshold 0.3)
+// - Mensagens aparecem com fade-in + scroll automático ao final do container
+// - Respeita prefers-reduced-motion (mostra tudo estático)
+
+import Curve from '../ui/Curve.astro';
+
+const WHATSAPP_URL = 'https://api.whatsapp.com/send?phone=5511936220451&text=Ol%C3%A1!%20Vim%20do%20site%20e%20gostaria%20de%20saber%20mais%20sobre%20os%20servi%C3%A7os!';
+---
+
+<section class="hero">
+  <Curve variant="hero" />
+
+  <div class="container hero-grid">
+    <div>
+      <span class="pill pill-green">Para profissionais PJ no Brasil</span>
+      <h1>Sua equipe financeira no WhatsApp.</h1>
+      <p class="hero-sub">
+        Contabilidade, impostos, banco PJ e assessoria — tudo em um só chat.
+        Com gente humana por trás, atendendo médicos, devs, advogados e mais.
+      </p>
+      <div class="hero-ctas">
+        <a href={WHATSAPP_URL} target="_blank" rel="noopener" class="btn-primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M3 21l1.65 -3.8a9 9 0 1 1 3.4 2.9l-5.05 .9"></path>
+            <path d="M9 10a.5 .5 0 0 0 1 0v-1a.5 .5 0 0 0 -1 0v1a5 5 0 0 0 5 5h1a.5 .5 0 0 0 0 -1h-1a.5 .5 0 0 0 0 1"></path>
+          </svg>
+          Falar com a Selvia
+        </a>
+        <a href="#precos" class="btn-secondary">Ver preços →</a>
+      </div>
+      <p class="hero-social-proof">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M9 7m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"></path>
+          <path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path>
+          <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+          <path d="M21 21v-2a4 4 0 0 0 -3 -3.85"></path>
+        </svg>
+        +1.000 médicos, devs e profissionais já contam com a Selvia
+      </p>
+    </div>
+
+    <div class="mock-chat" id="mock-chat">
+      <div class="mock-header">
+        <div class="mock-avatar">S</div>
+        <div class="mock-status">
+          <p class="mock-name">Selvia</p>
+          <p class="mock-online">● online</p>
+        </div>
+      </div>
+
+      <div class="mock-scroll" id="mock-scroll">
+
+        <!-- ETAPA 1: Selvia oferece o botão de emissão -->
+        <div class="mock-typing" id="typing-1">
+          <span></span><span></span><span></span>
+        </div>
+        <div class="mock-msg-them has-buttons" id="msg-1">
+          <p class="mock-sender">Selvia</p>
+          Clique aqui para emitir sua nota fiscal!
+          <div class="mock-time">17:40</div>
+        </div>
+        <div class="mock-buttons" id="msg-1-buttons">
+          <div class="mock-button">Emitir Nota Fiscal</div>
+        </div>
+
+        <!-- ETAPA 2: Cliente clica no botão -->
+        <div class="mock-msg-action" id="msg-2">
+          <div class="mock-msg-action-icon">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M14 3v4a1 1 0 0 0 1 1h4"></path>
+              <path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z"></path>
+            </svg>
+          </div>
+          <div class="mock-msg-action-text">
+            <strong>Emitir Nota Fiscal</strong>
+            <span>Resposta enviada.</span>
+            <div class="mock-time" style="text-align: left; margin-top: 4px;">17:42 ✓✓</div>
+          </div>
+        </div>
+
+        <!-- ETAPA 3: Selvia confirma e oferece 2 opções -->
+        <div class="mock-typing" id="typing-2">
+          <span></span><span></span><span></span>
+        </div>
+        <div class="mock-msg-them has-buttons" id="msg-3">
+          <p class="mock-sender">Selvia</p>
+          <strong style="font-weight: 500;">Sua nota fiscal está pronta para prosseguir com a emissão!</strong><br /><br />
+          Escolha como deseja emitir:<br /><br />
+          • Emitir agora (automático)<br />
+          • Solicitar revisão humana (1 dia útil)
+          <div class="mock-time">17:42</div>
+        </div>
+        <div class="mock-buttons" id="msg-3-buttons">
+          <div class="mock-button">Emitir agora</div>
+          <div class="mock-button">Solicitar revisão (1 dia)</div>
+        </div>
+
+        <!-- ETAPA 4: Cliente escolhe "Emitir agora" com quote -->
+        <div class="mock-typing mock-typing-us" id="typing-3">
+          <span></span><span></span><span></span>
+        </div>
+        <div class="mock-msg-us" id="msg-4">
+          <div class="mock-quote">
+            <p class="mock-quote-sender">Selvia</p>
+            <p class="mock-quote-text">Sua nota fiscal está pronta para prosseguir com a emissão!...</p>
+          </div>
+          Emitir agora
+          <div class="mock-time">17:42 ✓✓</div>
+        </div>
+
+        <!-- ETAPA 5: Selvia processa -->
+        <div class="mock-typing" id="typing-4">
+          <span></span><span></span><span></span>
+        </div>
+        <div class="mock-msg-them" id="msg-5">
+          <p class="mock-sender">Selvia</p>
+          <strong style="font-weight: 500;">Sua nota fiscal está sendo processada. ⏳</strong><br /><br />
+          Assim que a emissão for concluída, você receberá a nota fiscal pelo seu WhatsApp e poderá solicitar o XML.
+          <div class="mock-time">17:42</div>
+        </div>
+
+        <!-- ETAPA 6: Selvia entrega PDF + mensagem final -->
+        <div class="mock-typing" id="typing-5">
+          <span></span><span></span><span></span>
+        </div>
+        <div class="mock-file" id="msg-6-file">
+          <div class="mock-file-icon">PDF</div>
+          <div class="mock-file-info">
+            <p class="mock-file-name">NFSe Gilson - Nº 40.pdf</p>
+            <p class="mock-file-meta">182 KB · PDF</p>
+          </div>
+        </div>
+        <div class="mock-msg-them has-buttons" id="msg-6">
+          <p class="mock-sender">Selvia</p>
+          Olá <strong style="font-weight: 500;">Gilson</strong>,<br /><br />
+          Sua Nota Fiscal foi emitida!<br />
+          • R$ 1.580,00 para <strong style="font-weight: 500;">Feern</strong><br />
+          • Nº 40<br /><br />
+          Aqui está o documento!
+          <div class="mock-time">17:43</div>
+        </div>
+        <div class="mock-buttons" id="msg-6-buttons">
+          <div class="mock-button">Avaliar experiência</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* === HERO === */
+  .hero {
+    background: var(--c-green-dark);
+    color: var(--c-offwhite);
+    padding: 80px 0 100px;
+    position: relative;
+    overflow: hidden;
+  }
+  /* Glow radial decorativo (verde claro - canto superior direito) */
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -150px; right: -100px;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(105,228,112,0.15) 0%, transparent 65%);
+    pointer-events: none;
+    z-index: 0;
+  }
+  /* Glow radial decorativo (azul - canto inferior esquerdo) */
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -200px; left: -150px;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(132,160,255,0.12) 0%, transparent 60%);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .hero :global(.container) { position: relative; z-index: 1; }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 48px;
+    align-items: center;
+  }
+  /* CSS Grid bug fix: itens do grid têm min-width:auto por padrão e não encolhem.
+     Sem isso, conteúdo com width fixo (como mock-chat 420px) estoura o grid em mobile. */
+  .hero-grid > * { min-width: 0; }
+
+  .hero h1 {
+    font-size: 56px;
+    line-height: 1.05;
+    color: var(--c-offwhite);
+    margin-bottom: 18px;
+    letter-spacing: -1.5px;
+  }
+  .hero-sub {
+    font-size: 17px;
+    line-height: 1.6;
+    color: rgba(249,249,249,0.85);
+    margin-bottom: 30px;
+    max-width: 480px;
+  }
+  .hero-ctas {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 24px;
+  }
+  .hero-social-proof {
+    font-size: 13px;
+    color: rgba(249,249,249,0.7);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  /* === MOCK CHAT (WhatsApp simulado) === */
+  .mock-chat {
+    background: var(--c-offwhite);
+    border-radius: 16px;
+    padding: 16px;
+    width: 420px;
+    max-width: 100%;
+    margin-left: auto;
+    box-shadow: 0 24px 70px rgba(0,0,0,0.35);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  .mock-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid rgba(13,66,63,0.12);
+    margin-bottom: 0;
+    flex-shrink: 0;
+  }
+  .mock-scroll {
+    height: 480px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-top: 16px;
+    padding-bottom: 4px;
+    position: relative;
+    scroll-behavior: smooth;
+    /* Esconder scrollbar visualmente em todos os browsers */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE/Edge legado */
+  }
+  .mock-scroll::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 0;
+  }
+  .mock-avatar {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: var(--c-green-dark);
+    color: var(--c-green-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 500;
+    font-size: 14px;
+  }
+  .mock-status p { margin: 0; }
+  .mock-name { font-size: 14px; font-weight: 500; color: var(--c-green-dark); }
+  .mock-online { font-size: 12px; color: var(--c-green-whatsapp); }
+
+  .mock-msg-them, .mock-msg-us {
+    padding: 10px 13px;
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--c-green-dark);
+    margin-bottom: 8px;
+    max-width: 88%;
+    width: fit-content;
+  }
+  .mock-msg-them {
+    background: #FFFFFF;
+    border-radius: 12px 12px 12px 4px;
+    border: 1px solid rgba(13,66,63,0.1);
+  }
+  .mock-msg-us {
+    background: #DCF8C6;
+    border-radius: 12px 12px 4px 12px;
+    margin-left: auto;
+  }
+  .mock-time { font-size: 10px; color: #888; margin-top: 4px; text-align: right; }
+  .mock-sender { font-size: 11px; font-weight: 500; color: var(--c-green-whatsapp); margin: 0 0 2px; }
+
+  /* Botões interativos do WhatsApp (texto verde claro) */
+  .mock-buttons {
+    background: #FFFFFF;
+    border-radius: 0 0 12px 12px;
+    border: 1px solid rgba(13,66,63,0.1);
+    border-top: none;
+    margin-top: -8px;
+    margin-bottom: 8px;
+    max-width: 88%;
+    width: fit-content;
+    min-width: 60%;
+    overflow: hidden;
+  }
+  .mock-button {
+    padding: 10px 13px;
+    font-size: 13px;
+    color: var(--c-green-whatsapp);
+    font-weight: 500;
+    text-align: center;
+    border-top: 1px solid rgba(13,66,63,0.08);
+    cursor: default;
+  }
+  .mock-msg-them.has-buttons { border-radius: 12px 12px 0 0; margin-bottom: 0; }
+
+  /* Mensagem do cliente com botão único (etapa 2 do print) */
+  .mock-msg-action {
+    background: rgba(105,228,112,0.18);
+    border-radius: 12px 12px 4px 12px;
+    margin-left: auto;
+    margin-bottom: 8px;
+    padding: 10px 13px;
+    max-width: 88%;
+    width: fit-content;
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+  }
+  .mock-msg-action-icon {
+    width: 28px;
+    height: 28px;
+    background: rgba(105,228,112,0.4);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--c-green-whatsapp);
+    flex-shrink: 0;
+  }
+  .mock-msg-action-text { font-size: 13px; color: var(--c-green-dark); line-height: 1.4; }
+  .mock-msg-action-text strong { font-weight: 500; display: block; }
+  .mock-msg-action-text span { font-size: 11px; color: var(--c-text-muted); }
+
+  /* Quote (resposta a mensagem) - etapa 4 */
+  .mock-quote {
+    border-left: 3px solid var(--c-green-whatsapp);
+    padding: 6px 10px;
+    background: rgba(29,158,117,0.08);
+    border-radius: 6px;
+    margin-bottom: 6px;
+  }
+  .mock-quote-sender { font-size: 11px; font-weight: 500; color: var(--c-green-whatsapp); margin: 0 0 2px; }
+  .mock-quote-text {
+    font-size: 12px;
+    color: var(--c-text-muted-strong);
+    margin: 0;
+    line-height: 1.4;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+  }
+
+  /* Card de arquivo (PDF) - etapa 6 */
+  .mock-file {
+    background: #FFFFFF;
+    border-radius: 12px 12px 12px 4px;
+    border: 1px solid rgba(13,66,63,0.1);
+    padding: 12px;
+    margin-bottom: 4px;
+    max-width: 88%;
+    width: fit-content;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .mock-file-icon {
+    width: 40px;
+    height: 40px;
+    background: rgba(105,228,112,0.18);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--c-green-whatsapp);
+    flex-shrink: 0;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+  }
+  .mock-file-info p { margin: 0; }
+  .mock-file-name { font-size: 13px; color: var(--c-green-dark); font-weight: 500; }
+  .mock-file-meta { font-size: 11px; color: var(--c-text-muted); margin-top: 2px; }
+
+  /* === ANIMAÇÃO DO MOCK CHAT ===
+     Estratégia: elementos começam com display:none (não ocupam espaço no layout).
+     Quando ganham classe .visible, viram display:block/flex/inline-flex com fade-in. */
+
+  /* Estado inicial: invisível e sem ocupar espaço */
+  .mock-chat .mock-msg-them,
+  .mock-chat .mock-msg-us,
+  .mock-chat .mock-msg-action,
+  .mock-chat .mock-buttons,
+  .mock-chat .mock-file,
+  .mock-chat .mock-typing {
+    display: none;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 0.35s ease-out, transform 0.35s ease-out;
+  }
+
+  /* Quando .visible é adicionado: mostra com display correto pra cada tipo */
+  .mock-chat .mock-msg-them.visible { display: block; opacity: 1; transform: translateY(0); }
+  .mock-chat .mock-msg-us.visible { display: block; opacity: 1; transform: translateY(0); }
+  .mock-chat .mock-buttons.visible { display: block; opacity: 1; transform: translateY(0); }
+  .mock-chat .mock-msg-action.visible { display: flex; opacity: 1; transform: translateY(0); }
+  .mock-chat .mock-file.visible { display: flex; opacity: 1; transform: translateY(0); }
+  .mock-chat .mock-typing.visible { display: inline-flex; opacity: 1; transform: translateY(0); }
+
+  /* Fallback estático (prefers-reduced-motion) - mostra tudo direto */
+  .mock-chat.is-static .mock-msg-them { display: block; opacity: 1; transform: translateY(0); }
+  .mock-chat.is-static .mock-msg-us { display: block; opacity: 1; transform: translateY(0); }
+  .mock-chat.is-static .mock-buttons { display: block; opacity: 1; transform: translateY(0); }
+  .mock-chat.is-static .mock-msg-action { display: flex; opacity: 1; transform: translateY(0); }
+  .mock-chat.is-static .mock-file { display: flex; opacity: 1; transform: translateY(0); }
+  .mock-chat.is-static .mock-typing { display: none; }
+
+  /* Indicador "digitando..." */
+  .mock-typing {
+    background: #FFFFFF;
+    border-radius: 12px 12px 12px 4px;
+    border: 1px solid rgba(13,66,63,0.1);
+    padding: 14px 16px;
+    margin-bottom: 8px;
+    align-items: center;
+    gap: 4px;
+    width: fit-content;
+  }
+  .mock-typing-us {
+    background: #DCF8C6;
+    border-radius: 12px 12px 4px 12px;
+    margin-left: auto;
+    border: none;
+  }
+  .mock-typing span {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--c-green-whatsapp);
+    opacity: 0.5;
+    animation: typing-bounce 1.4s infinite;
+  }
+  .mock-typing span:nth-child(2) { animation-delay: 0.2s; }
+  .mock-typing span:nth-child(3) { animation-delay: 0.4s; }
+  @keyframes typing-bounce {
+    0%, 60%, 100% { transform: translateY(0); opacity: 0.5; }
+    30% { transform: translateY(-4px); opacity: 1; }
+  }
+
+  /* Respeitar quem prefere menos animação */
+  @media (prefers-reduced-motion: reduce) {
+    .mock-chat .mock-msg-them,
+    .mock-chat .mock-msg-us,
+    .mock-chat .mock-msg-action,
+    .mock-chat .mock-buttons,
+    .mock-chat .mock-file {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+    .mock-chat .mock-msg-them { display: block; }
+    .mock-chat .mock-msg-us { display: block; }
+    .mock-chat .mock-buttons { display: block; }
+    .mock-chat .mock-msg-action { display: flex; }
+    .mock-chat .mock-file { display: flex; }
+    .mock-chat .mock-typing { display: none !important; }
+  }
+
+  /* === RESPONSIVE === */
+  @media (max-width: 900px) {
+    .hero h1 { font-size: 40px; }
+    .hero-grid { grid-template-columns: 1fr; gap: 32px; }
+    .mock-chat {
+      width: 100%;
+      max-width: 420px;
+      margin: 0 auto;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .hero { padding: 56px 0 64px; }
+  }
+</style>
+
+<script>
+  // ===== ANIMAÇÃO DO MOCK CHAT (hero) =====
+  // Sequência de 6 etapas do fluxo de emissão de NF — tempo total: ~14 segundos
+  // Inicia quando o chat entra no viewport (IntersectionObserver, threshold 0.3)
+  (function() {
+    const chat = document.getElementById('mock-chat');
+    const scroll = document.getElementById('mock-scroll');
+    if (!chat || !scroll) return;
+
+    // Se o usuário prefere movimento reduzido, mostra tudo estático
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) {
+      chat.classList.add('is-static');
+      scroll.scrollTop = scroll.scrollHeight;
+      return;
+    }
+
+    let animationStarted = false;
+
+    function startAnimation() {
+      if (animationStarted) return;
+      animationStarted = true;
+
+      const show = (id: string) => {
+        const el = document.getElementById(id);
+        if (el) {
+          el.classList.add('visible');
+          // Espera a animação de fade-in terminar (350ms) antes de scrollar
+          setTimeout(() => scrollToBottom(), 380);
+        }
+      };
+      const hideTyping = (id: string) => {
+        const el = document.getElementById(id);
+        if (el) { el.classList.remove('visible'); }
+      };
+      const showTyping = (id: string) => {
+        const el = document.getElementById(id);
+        if (el) {
+          el.classList.add('visible');
+          setTimeout(() => scrollToBottom(), 380);
+        }
+      };
+      const scrollToBottom = () => {
+        scroll!.scrollTo({ top: scroll!.scrollHeight, behavior: 'smooth' });
+      };
+
+      // ETAPA 1: Selvia oferece o botão (t=0.5s → 2s)
+      setTimeout(() => showTyping('typing-1'), 500);
+      setTimeout(() => {
+        hideTyping('typing-1');
+        show('msg-1');
+        setTimeout(() => show('msg-1-buttons'), 250);
+      }, 2000);
+
+      // ETAPA 2: Cliente clica no botão (t=3.5s)
+      setTimeout(() => show('msg-2'), 3500);
+
+      // ETAPA 3: Selvia confirma e oferece 2 opções (t=4.5s → 6s)
+      setTimeout(() => showTyping('typing-2'), 4500);
+      setTimeout(() => {
+        hideTyping('typing-2');
+        show('msg-3');
+        setTimeout(() => show('msg-3-buttons'), 250);
+      }, 6000);
+
+      // ETAPA 4: Cliente responde "Emitir agora" com quote (t=7.5s → 8.5s)
+      setTimeout(() => showTyping('typing-3'), 7500);
+      setTimeout(() => {
+        hideTyping('typing-3');
+        show('msg-4');
+      }, 8500);
+
+      // ETAPA 5: Selvia processando (t=9.5s → 10.5s)
+      setTimeout(() => showTyping('typing-4'), 9500);
+      setTimeout(() => {
+        hideTyping('typing-4');
+        show('msg-5');
+      }, 10500);
+
+      // ETAPA 6: Selvia entrega PDF + mensagem final + botão avaliar (t=12s → 14s)
+      setTimeout(() => showTyping('typing-5'), 12000);
+      setTimeout(() => {
+        hideTyping('typing-5');
+        show('msg-6-file');
+        setTimeout(() => show('msg-6'), 350);
+        setTimeout(() => show('msg-6-buttons'), 700);
+      }, 13000);
+    }
+
+    // Inicia quando o chat fica visível na tela
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            startAnimation();
+            observer.disconnect();
+          }
+        });
+      }, { threshold: 0.3 });
+      observer.observe(chat);
+    } else {
+      // Fallback pra browsers antigos
+      startAnimation();
+    }
+  })();
+</script>

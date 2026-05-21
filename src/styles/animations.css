@@ -1,0 +1,87 @@
+/* =========================================
+   ANIMATIONS — Selvia Landing
+   Fade-in escalonado, parallax sutil, e counter.
+   Espelha o legacy (linhas 1746-1826).
+   ========================================= */
+
+/* === SCROLL ANIMATIONS ===
+   Aplicado em seções via class="scroll-animate".
+   Quando a seção entra no viewport, JS adiciona .is-visible
+   e os filhos diretos animam com fade-in escalonado. */
+
+/* Estado inicial: filhos diretos do container invisíveis e levemente abaixo */
+.scroll-animate > .container > *,
+.scroll-animate > .container > * > h2,
+.scroll-animate > .container > * > p,
+.scroll-animate > .container > * > .pill {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.75s cubic-bezier(0.22, 0.61, 0.36, 1),
+    transform 0.75s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+/* Quando .is-visible é adicionado: anima os filhos com stagger automático */
+.scroll-animate.is-visible > .container > * {
+  opacity: 1;
+  transform: translateY(0);
+}
+.scroll-animate.is-visible > .container > *:nth-child(1) { transition-delay: 0s; }
+.scroll-animate.is-visible > .container > *:nth-child(2) { transition-delay: 0.08s; }
+.scroll-animate.is-visible > .container > *:nth-child(3) { transition-delay: 0.16s; }
+.scroll-animate.is-visible > .container > *:nth-child(4) { transition-delay: 0.24s; }
+.scroll-animate.is-visible > .container > *:nth-child(5) { transition-delay: 0.32s; }
+.scroll-animate.is-visible > .container > *:nth-child(6) { transition-delay: 0.4s; }
+.scroll-animate.is-visible > .container > *:nth-child(7) { transition-delay: 0.48s; }
+
+/* Stagger interno: filhos de grids/listas tambem animam em cadeia */
+.scroll-animate .stagger-children > * {
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity 0.6s cubic-bezier(0.22, 0.61, 0.36, 1),
+    transform 0.6s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+.scroll-animate.is-visible .stagger-children > * {
+  opacity: 1;
+  transform: translateY(0);
+}
+.scroll-animate.is-visible .stagger-children > *:nth-child(1) { transition-delay: 0.35s; }
+.scroll-animate.is-visible .stagger-children > *:nth-child(2) { transition-delay: 0.42s; }
+.scroll-animate.is-visible .stagger-children > *:nth-child(3) { transition-delay: 0.49s; }
+.scroll-animate.is-visible .stagger-children > *:nth-child(4) { transition-delay: 0.56s; }
+.scroll-animate.is-visible .stagger-children > *:nth-child(5) { transition-delay: 0.63s; }
+.scroll-animate.is-visible .stagger-children > *:nth-child(6) { transition-delay: 0.7s; }
+.scroll-animate.is-visible .stagger-children > *:nth-child(7) { transition-delay: 0.77s; }
+.scroll-animate.is-visible .stagger-children > *:nth-child(8) { transition-delay: 0.84s; }
+
+/* === PARALLAX DOS BLOBS DECORATIVOS ===
+   Usa CSS variable --parallax-y setada via JS no scroll.
+   Aplicado nos pseudo-elementos ::before/::after de algumas seções. */
+[data-parallax]::before,
+[data-parallax]::after {
+  transform: translateY(var(--parallax-y, 0));
+}
+/* Como Funciona tem position diferente nos blobs - override específico */
+.como-funciona-bg[data-parallax]::before {
+  transform: translateY(var(--parallax-y, 0)) translateZ(0);
+}
+
+/* Counter dos stats - número com tabular-nums pra não pular largura */
+.stat-num[data-counter] {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Respeitar preferência de redução de movimento */
+@media (prefers-reduced-motion: reduce) {
+  .scroll-animate > .container > *,
+  .scroll-animate .stagger-children > * {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  [data-parallax]::before,
+  [data-parallax]::after {
+    transform: none !important;
+  }
+}

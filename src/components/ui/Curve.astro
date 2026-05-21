@@ -1,0 +1,295 @@
+
+---
+
+/**
+
+ * Curve - componente decorativo de fundo
+
+ *
+
+ * Renderiza SVG inline simulando o estilo das curvas oficiais da Selvia.
+
+ * A animação clip-path "desenha" a curva da esquerda pra direita
+
+ * quando a section pai recebe a classe .is-visible.
+
+ *
+
+ * ------------------------------------------------------------------
+
+ * TODO: SUBSTITUIR SVG INLINE PELOS PNGs OFICIAIS DA SELVIA
+
+ * ------------------------------------------------------------------
+
+ * Quando os PNGs estiverem em /public/curves/, remover o <svg> e usar:
+
+ *
+
+ *   <div class={`curve curve-${variant}`}
+
+ *        style={`background-image: url('/curves/${variant}.png')`}>
+
+ *   </div>
+
+ *
+
+ * Mapping de PNGs por variant (sugestão de nomenclatura):
+
+ *   - hero        -> curva verde claro sobre verde escuro
+
+ *   - verticais   -> curva verde escuro sobre off-white
+
+ *   - como        -> curva verde escuro sobre verde claro
+
+ *   - stats       -> curva verde claro sobre verde escuro
+
+ *   - depoimentos -> curva verde escuro sobre off-white
+
+ *   - precos      -> curva verde claro sobre verde escuro
+
+ *   - cta         -> curva branca sobre verde escuro
+
+ * ------------------------------------------------------------------
+
+ */
+
+interface Props {
+
+  variant:
+
+    | 'hero'
+
+    | 'verticais'
+
+    | 'como'
+
+    | 'stats'
+
+    | 'depoimentos'
+
+    | 'precos'
+
+    | 'cta';
+
+}
+
+const { variant } = Astro.props;
+
+const configs = {
+
+  hero:        { body: '#69E470', highlight: '#C4F5C8', shadowOpacity: 0.55 },
+
+  verticais:   { body: '#0D423F', highlight: '#2A6862', shadowOpacity: 0.30 },
+
+  como:        { body: '#0D423F', highlight: '#2A6862', shadowOpacity: 0.20 },
+
+  stats:       { body: '#69E470', highlight: '#C4F5C8', shadowOpacity: 0.55 },
+
+  depoimentos: { body: '#0D423F', highlight: '#2A6862', shadowOpacity: 0.30 },
+
+  precos:      { body: '#69E470', highlight: '#C4F5C8', shadowOpacity: 0.55 },
+
+  cta:         { body: '#ffffff', highlight: '#ffffff', shadowOpacity: 0.55 },
+
+};
+
+const c = configs[variant];
+
+const filterId = `shadow-${variant}`;
+
+const curvePath =
+
+  'M -30 130 C 200 40, 380 200, 560 110 C 700 40, 820 80, 880 150 C 920 200, 870 230, 820 200 C 770 170, 810 100, 920 120 C 1080 150, 1220 90, 1430 50';
+
+---
+
+<div class={`curve curve-${variant}`} aria-hidden="true">
+
+  <svg
+
+    viewBox="0 -50 1400 320"
+
+    xmlns="http://www.w3.org/2000/svg"
+
+    preserveAspectRatio="none"
+
+  >
+
+    <defs>
+
+      <filter id={filterId} x="-15%" y="-30%" width="130%" height="180%">
+
+        <feGaussianBlur stdDeviation="12" />
+
+      </filter>
+
+    </defs>
+
+    <path
+
+      d={curvePath}
+
+      stroke="#000000"
+
+      stroke-width="34"
+
+      stroke-linecap="round"
+
+      fill="none"
+
+      opacity={c.shadowOpacity}
+
+      filter={`url(#${filterId})`}
+
+      transform="translate(8, 20)"
+
+    />
+
+    <path
+
+      d={curvePath}
+
+      stroke={c.body}
+
+      stroke-width="26"
+
+      stroke-linecap="round"
+
+      fill="none"
+
+    />
+
+    <path
+
+      d={curvePath}
+
+      stroke={c.highlight}
+
+      stroke-width="7"
+
+      stroke-linecap="round"
+
+      fill="none"
+
+      opacity="0.7"
+
+      transform="translate(-1, -3)"
+
+    />
+
+  </svg>
+
+</div>
+
+<style>
+
+  .curve {
+
+    position: absolute;
+
+    pointer-events: none;
+
+    z-index: 0;
+
+    width: 120vw;
+
+    height: 320px;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    clip-path: polygon(0% 0%, 0% 0%, -3% 100%, -3% 100%);
+
+    transition: clip-path 3.2s cubic-bezier(0.65, 0, 0.35, 1);
+
+    filter: blur(4px);
+
+  }
+
+  .curve svg {
+
+    width: 100%;
+
+    height: 100%;
+
+    display: block;
+
+  }
+
+  :global(.is-visible) .curve {
+
+    clip-path: polygon(0% 0%, 110% 0%, 105% 100%, -3% 100%);
+
+    transition-delay: 0.3s;
+
+  }
+
+  :global(.hero.is-visible) .curve-hero {
+
+    clip-path: polygon(0% 0%, 110% 0%, 105% 100%, -3% 100%);
+
+    transition-delay: 0.3s;
+
+  }
+
+  .curve-hero        { bottom: 8%;  opacity: 0.30; }
+
+  .curve-verticais   { top: 58%;    opacity: 0.20; }
+
+  .curve-como        { top: 22%;    opacity: 0.10; }
+
+  .curve-stats       { top: 28%;    opacity: 0.22; }
+
+  .curve-depoimentos { top: 52%;    opacity: 0.20; }
+
+  .curve-precos      { top: 18%;    opacity: 0.22; }
+
+  .curve-cta {
+
+    top: 50%;
+
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    width: 120%;
+
+    height: 220px;
+
+    opacity: 0.18;
+
+  }
+
+  @media (max-width: 900px) {
+
+    .curve {
+
+      filter: blur(2px);
+
+      height: 180px;
+
+      width: 110vw;
+
+      opacity: 0.12;
+
+    }
+
+    .curve-hero { bottom: 4%; opacity: 0.25; }
+
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+
+    .curve {
+
+      clip-path: polygon(0% 0%, 110% 0%, 105% 100%, -3% 100%);
+
+      transition: none;
+
+    }
+
+  }
+
+</style>
+
