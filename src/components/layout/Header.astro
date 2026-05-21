@@ -1,34 +1,42 @@
 ---
 // Header sticky com nav e CTA WhatsApp
-// TODO: trocar o texto "selvia" pelo SVG oficial da logo quando estiver pronto
-// O arquivo SVG vai morar em /public/logo.svg ou ser importado de src/assets
+// 1:1 com _legacy/index.html (linhas 167-212, 1994-2010)
+//
+// ESPAÇO DA LOGO:
+// O <a class="nav-logo"> reserva 28px de altura e tem display:inline-flex pra centralizar.
+// Enquanto a logo PNG não estiver disponível, mostra o fallback textual "selvia".
+//
+// Quando a logo PNG estiver pronta:
+//   1. Salvar em /public/logo.png (e idealmente /public/logo@2x.png pra retina)
+//   2. Trocar o <span class="nav-logo-fallback">selvia</span> por:
+//      <img src="/logo.png" srcset="/logo.png 1x, /logo@2x.png 2x"
+//           alt="Selvia" width="100" height="28" />
+//   3. Remover a classe .nav-logo-fallback e o <style> dela (se quiser limpar)
 ---
 
-<header class="header">
-  <div class="container header-inner">
-    <a href="/" class="header-logo" aria-label="Selvia">
-      <!-- TODO: substituir por <img src="/logo.svg" alt="Selvia" /> -->
-      <span class="header-logo-text">selvia</span>
+<header>
+  <div class="container nav">
+    <a href="/" class="nav-logo" aria-label="Selvia">
+      <!-- TODO: substituir pelo <img src="/logo.png" ...> quando a logo estiver pronta -->
+      <span class="nav-logo-fallback">selvia</span>
     </a>
 
-    <nav class="header-nav" aria-label="Navegação principal">
-      <a href="#verticais" class="nav-link">Para você</a>
-      <a href="#precos" class="nav-link">Preços</a>
-      <a href="#calculadora" class="nav-link">Calculadora</a>
-      <a href="/blog" class="nav-link">Blog</a>
-      <a href="/contabilidades" class="nav-link nav-link-secondary">
+    <nav class="nav-links" aria-label="Navegação principal">
+      <a href="#verticais">Para você</a>
+      <a href="#precos">Preços</a>
+      <a href="#calculadora">Calculadora</a>
+      <a href="#blog">Blog</a>
+      <a href="/contabilidades" class="nav-link-secondary" data-future-page="contabilidades">
         Para contabilidades
       </a>
     </nav>
 
-    
-      href="https://wa.me/5511XXXXXXXXX"
-      target="_blank"
-      rel="noopener"
-      class="btn btn-primary header-cta"
-    >
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+    <a href="https://api.whatsapp.com/send?phone=5511936220451&text=Ol%C3%A1!%20Vim%20do%20site%20e%20gostaria%20de%20saber%20mais%20sobre%20os%20servi%C3%A7os!"
+       target="_blank" rel="noopener" class="btn-primary btn-small">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+           stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M3 21l1.65 -3.8a9 9 0 1 1 3.4 2.9l-5.05 .9"></path>
+        <path d="M9 10a.5 .5 0 0 0 1 0v-1a.5 .5 0 0 0 -1 0v1a5 5 0 0 0 5 5h1a.5 .5 0 0 0 0 -1h-1a.5 .5 0 0 0 0 1"></path>
       </svg>
       WhatsApp
     </a>
@@ -36,56 +44,75 @@
 </header>
 
 <style>
-  .header {
+  header {
     position: sticky;
     top: 0;
     z-index: 100;
-    background: #fff;
-    border-bottom: 1px solid rgba(13,66,63,0.06);
+    background: rgba(255,255,255,0.97);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(13,66,63,0.12);
   }
-  .header-inner {
+  .nav {
     display: flex;
-    align-items: center;
     justify-content: space-between;
-    padding: 16px var(--container-padding);
-    gap: 24px;
-  }
-  .header-logo {
-    flex-shrink: 0;
-  }
-  .header-logo-text {
-    font-weight: 600;
-    font-size: 20px;
-    color: var(--c-green-dark);
-    letter-spacing: -0.5px;
-  }
-  .header-nav {
-    display: flex;
     align-items: center;
-    gap: 32px;
-    flex: 1;
-    justify-content: center;
-  }
-  .nav-link {
-    font-size: 14px;
-    color: var(--c-green-dark);
-    transition: opacity 0.15s ease;
-  }
-  .nav-link:hover { opacity: 0.7; }
-  .nav-link-secondary {
-    padding: 8px 16px;
-    border: 1px solid rgba(13,66,63,0.2);
-    border-radius: 100px;
-    font-size: 13px;
-  }
-  .header-cta {
-    flex-shrink: 0;
+    padding: 16px 0;
   }
 
-  /* Mobile */
+  /* Reserva de espaço pra logo — funciona pro fallback textual e pra <img> futura.
+     A altura 28px é a referência: quando a <img> entrar, mantém width="100" height="28"
+     que a posição não desloca. */
+  .nav-logo {
+    display: inline-flex;
+    align-items: center;
+    height: 28px;
+    min-width: 100px;
+    color: var(--c-green-dark);
+  }
+  .nav-logo img {
+    height: 28px;
+    width: auto;
+    display: block;
+  }
+
+  /* Fallback textual enquanto a logo PNG não chega */
+  .nav-logo-fallback {
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--c-green-dark);
+    letter-spacing: -1px;
+    line-height: 1;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 28px;
+    align-items: center;
+  }
+  .nav-links a {
+    font-size: 14px;
+    color: var(--c-text-muted-strong);
+    transition: color 0.15s;
+  }
+  .nav-links a:hover { color: var(--c-green-dark); }
+
+  /* Link secundário no header (pra páginas futuras como /contabilidades) */
+  .nav-link-secondary {
+    font-weight: 500;
+    color: var(--c-green-dark) !important;
+    padding: 8px 14px;
+    border-radius: 8px;
+    border: 1px solid rgba(13,66,63,0.15);
+    transition: all 0.15s;
+  }
+  .nav-link-secondary:hover {
+    background: rgba(13,66,63,0.04);
+    border-color: rgba(13,66,63,0.35);
+  }
+
+  /* Mobile: legacy esconde os links da nav, sem hamburger */
   @media (max-width: 900px) {
-    .header-nav { display: none; }
-    .header-inner { padding: 12px 16px; gap: 12px; }
-    .header-cta { padding: 10px 16px; font-size: 13px; }
+    .nav-links { display: none; }
   }
 </style>

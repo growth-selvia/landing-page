@@ -25,6 +25,7 @@ button { font-family: inherit; cursor: pointer; }
 a { color: inherit; text-decoration: none; }
 
 :root {
+  /* Cores principais da marca */
   --c-green-dark: #0D423F;
   --c-green-light: #69E470;
   --c-green-light-soft: #C4F5C8;
@@ -34,10 +35,16 @@ a { color: inherit; text-decoration: none; }
   --c-beige: #E2E7C7;
   --c-yellow: #FFD15C;
   --c-orange: #F4933B;
+  --c-orange-light: #F8A85B;
   --c-blue: #84A0FF;
   --c-pink: #F2B8F4;
 
-  --container-max: 1200px;
+  /* Cinzas (do legacy — usados em texto secundário, navlinks e footer) */
+  --c-text-muted: #5F5E5A;
+  --c-text-muted-strong: #444441;
+
+  /* Container — IMPORTANTE: 1140px (não 1200) pra bater com o legacy */
+  --container-max: 1140px;
   --container-padding: 24px;
 }
 
@@ -47,54 +54,44 @@ a { color: inherit; text-decoration: none; }
   padding: 0 var(--container-padding);
 }
 
-.btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  padding: 12px 20px;
-  border-radius: 100px;
-  font-weight: 500;
-  font-size: 14px;
-  border: 1px solid transparent;
-  text-decoration: none;
-  white-space: nowrap;
-  cursor: pointer;
-  transition: transform 0.15s ease, opacity 0.15s ease;
-}
-.btn:hover { transform: translateY(-1px); }
-.btn:active { transform: translateY(0); }
-
+/* === BOTÕES (espelhando legacy) ===
+   No legacy os botões usam border-radius 8px (não pill). */
 .btn-primary {
   background: var(--c-green-light);
   color: var(--c-green-dark);
+  border: none;
+  padding: 12px 22px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: transform 0.15s, box-shadow 0.15s;
+  text-decoration: none;
 }
-.btn-primary:hover { opacity: 0.92; }
+.btn-primary:hover { transform: translateY(-1px); box-shadow: 0 4px 14px rgba(105,228,112,0.4); }
+.btn-primary:active { transform: translateY(0); }
 
 .btn-secondary {
   background: transparent;
-  color: var(--c-green-dark);
-  border-color: var(--c-green-dark);
+  color: var(--c-offwhite);
+  border: 1px solid var(--c-green-light);
+  padding: 11px 22px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 400;
+  cursor: pointer;
+  transition: background 0.15s;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
 }
-.btn-secondary.is-dark {
-  color: #fff;
-  border-color: rgba(255,255,255,0.4);
-}
+.btn-secondary:hover { background: rgba(105,228,112,0.12); }
 
-.section-pill {
-  display: inline-block;
-  padding: 6px 16px;
-  border: 1px solid rgba(13,66,63,0.15);
-  border-radius: 100px;
-  font-size: 13px;
-  margin-bottom: 24px;
-  background: rgba(13,66,63,0.04);
-}
-.section-pill-light {
-  border-color: rgba(255,255,255,0.25);
-  background: rgba(255,255,255,0.04);
-  color: #fff;
-}
+.btn-small { padding: 8px 14px; font-size: 13px; }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
