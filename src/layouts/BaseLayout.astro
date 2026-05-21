@@ -1,5 +1,6 @@
 ---
 import SEO from '../components/seo/SEO.astro';
+import '../styles/global.css';
 
 interface Props {
   title: string;
@@ -34,44 +35,10 @@ const { title, description, image, noindex, jsonLd } = Astro.props;
       href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&display=swap"
     />
 
-    <!-- Favicon (temporário até termos o real) -->
+    <!-- TODO: trocar pelo favicon oficial Selvia em /public/favicon.svg -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   </head>
   <body>
     <slot />
   </body>
 </html>
-
-<style is:global>
-  /* Reset e tokens globais — vamos preencher com o CSS da home depois */
-  *, *::before, *::after {
-    box-sizing: border-box;
-  }
-  html {
-    scroll-behavior: smooth;
-    overflow-x: hidden;
-  }
-  body {
-    margin: 0;
-    font-family: 'Lexend', system-ui, -apple-system, sans-serif;
-    color: #0D423F;
-    background: #FFFFFF;
-    line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
-    overflow-x: hidden;
-  }
-  img, svg { max-width: 100%; display: block; }
-  button { font-family: inherit; cursor: pointer; }
-
-  :root {
-    --c-green-dark: #0D423F;
-    --c-green-light: #69E470;
-    --c-offwhite: #F9F9F9;
-    --c-yellow-light: #F1FDC1;
-    --c-beige: #E2E7C7;
-    --c-yellow: #FFD15C;
-    --c-orange: #F4933B;
-    --c-blue: #84A0FF;
-    --c-pink: #F2B8F4;
-  }
-</style>

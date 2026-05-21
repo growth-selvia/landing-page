@@ -1,5 +1,8 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Announcement from '../components/layout/Announcement.astro';
+import Header from '../components/layout/Header.astro';
+import Footer from '../components/layout/Footer.astro';
 
 const organizationSchema = {
   "@context": "https://schema.org",
@@ -19,23 +22,15 @@ const organizationSchema = {
   description="Contabilidade, banco PJ e assessoria financeira no WhatsApp. Para médicos, devs, advogados, criadores e outras PJs. Sem app, sem login. Atendimento humano em <1 min."
   jsonLd={organizationSchema}
 >
-  <main>
-    <h1>Selvia — em migração</h1>
-    <p>SEO setup completo. Próximo passo: trazer o conteúdo do <code>_legacy/index.html</code>.</p>
+  <Announcement />
+  <Header />
 
-    <h2>Páginas planejadas (vão existir já no primeiro deploy):</h2>
-    <ul>
-      <li>/medicos</li>
-      <li>/devs</li>
-      <li>/advogados</li>
-      <li>/criadores</li>
-      <li>/saude</li>
-      <li>/outras-pj</li>
-      <li>/contabilidades</li>
-      <li>/sobre</li>
-      <li>/imprensa</li>
-      <li>/blog</li>
-      <li>/calculadoras/impostos</li>
-    </ul>
+  <main>
+    <section style="padding: 80px 24px; text-align: center;">
+      <h1>Em construção — Sub-etapa A concluída ✓</h1>
+      <p>Header e Footer no ar. Próximo: Hero + Verticais + Como Funciona + Stats.</p>
+    </section>
   </main>
+
+  <Footer />
 </BaseLayout>
