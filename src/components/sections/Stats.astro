@@ -1,0 +1,213 @@
+---
+// Stats — quarta seção da home
+// 1:1 com _legacy/index.html (CSS linhas 900-951, HTML 2288-2326, JS 3261-3314)
+//
+// Estrutura:
+// - Background verde escuro (alto impacto)
+// - Pill light + h2 light + subheadline light
+// - 4 cards em grid (verde claro 6% + backdrop-filter blur)
+// - Counter animation: números crescem de 0 → valor final em 1.8s easeOutCubic
+// - Curva decorativa via <Curve variant="stats" />
+//
+// Animação:
+// - scroll-animate (fade do header) + stagger-children (cards em cadeia)
+// - statsObserver dispara o counter quando a seção entra 30% no viewport
+// - +1.000 → 1000 com formato thousand ("1.000")
+// - 22       → 22 com formato int
+// - 9,7      → 9.7 com formato decimal ("9,7" com vírgula)
+// - < 1 min  → não anima (não é numérico simples)
+
+import Curve from '../ui/Curve.astro';
+---
+
+<section class="stats-bg scroll-animate" data-parallax>
+  <Curve variant="stats" />
+
+  <div class="container">
+    <span class="pill pill-light">Selvia em números</span>
+    <h2 class="h2 h2-light">Confiança construída todos os dias.</h2>
+    <p class="section-sub section-sub-light">Dados atualizados em maio de 2026.</p>
+
+    <div class="stats-grid stagger-children">
+      <div class="stat">
+        <p class="stat-num">+1.000</p>
+        <p class="stat-label">clientes ativos</p>
+      </div>
+      <div class="stat">
+        <p class="stat-num">22</p>
+        <p class="stat-label">estados atendidos</p>
+      </div>
+      <div class="stat">
+        <p class="stat-num">9,7</p>
+        <p class="stat-label">nota média dos clientes</p>
+      </div>
+      <div class="stat">
+        <p class="stat-num">&lt; 1 min</p>
+        <p class="stat-label">resposta no WhatsApp</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* === STATS — verde escuro com glows === */
+  .stats-bg {
+    background: var(--c-green-dark);
+    position: relative;
+    overflow: hidden;
+  }
+  .stats-bg::before {
+    content: '';
+    position: absolute;
+    top: 50%; left: 10%;
+    transform: translateY(-50%);
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(105,228,112,0.10) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .stats-bg::after {
+    content: '';
+    position: absolute;
+    bottom: -100px; right: 5%;
+    width: 350px; height: 350px;
+    background: radial-gradient(circle, rgba(132,160,255,0.10) 0%, transparent 65%);
+    pointer-events: none;
+  }
+  .stats-bg :global(.container) {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* === Grid de 4 stats === */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+  .stats-grid > * { min-width: 0; }
+
+  .stat {
+    background: rgba(105,228,112,0.06);
+    padding: 28px 20px;
+    border-radius: 12px;
+    border: 1px solid rgba(105,228,112,0.18);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    transition: all 0.2s;
+  }
+  .stat:hover {
+    border-color: rgba(105,228,112,0.4);
+    background: rgba(105,228,112,0.09);
+  }
+  .stat-num {
+    font-size: clamp(26px, 7vw, 40px);
+    font-weight: 500;
+    color: var(--c-green-light);
+    line-height: 1;
+    margin: 0;
+    letter-spacing: -1.5px;
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+  }
+  .stat-label {
+    font-size: 13px;
+    color: rgba(249,249,249,0.75);
+    margin: 10px 0 0;
+  }
+
+  /* === Mobile === */
+  @media (max-width: 900px) {
+    .stats-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .stat {
+      padding: 22px 14px;
+    }
+  }
+  @media (max-width: 560px) {
+    .stats-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+</style>
+
+<script>
+  // ===== COUNTER ANIMATION DOS STATS =====
+  // Dispara quando a seção entra 30% no viewport.
+  // Anima de 0 até o valor target em 1.8s com easeOutCubic.
+  (function() {
+    interface StatConfig {
+      selector: string;
+      target: number;
+      prefix: string;
+      suffix: string;
+      format: 'thousand' | 'int' | 'decimal';
+    }
+
+    const stats: StatConfig[] = [
+      { selector: '.stat:nth-child(1) .stat-num', target: 1000, prefix: '+', suffix: '', format: 'thousand' },
+      { selector: '.stat:nth-child(2) .stat-num', target: 22, prefix: '', suffix: '', format: 'int' },
+      { selector: '.stat:nth-child(3) .stat-num', target: 9.7, prefix: '', suffix: '', format: 'decimal' },
+      // .stat:nth-child(4) é "< 1 min" — não anima (não é numérico simples)
+    ];
+
+    const formatNum = (val: number, fmt: StatConfig['format']): string => {
+      if (fmt === 'thousand') {
+        return Math.round(val).toLocaleString('pt-BR');
+      }
+      if (fmt === 'decimal') {
+        return val.toFixed(1).replace('.', ',');
+      }
+      return Math.round(val).toString();
+    };
+
+    const animateCounter = (
+      el: HTMLElement,
+      target: number,
+      prefix: string,
+      suffix: string,
+      fmt: StatConfig['format']
+    ) => {
+      const duration = 1800;
+      const startTime = performance.now();
+      const start = 0;
+      const tick = (now: number) => {
+        const elapsed = now - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3); // easeOutCubic
+        const value = start + (target - start) * eased;
+        el.textContent = prefix + formatNum(value, fmt) + suffix;
+        if (progress < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    };
+
+    const statsSection = document.querySelector('.stats-bg');
+    if (!statsSection) return;
+
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) {
+      // Mostra valores finais direto, sem animação
+      return;
+    }
+
+    if ('IntersectionObserver' in window) {
+      const statsObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            stats.forEach(s => {
+              const el = entry.target.querySelector<HTMLElement>(s.selector);
+              if (el && !el.dataset.counted) {
+                el.dataset.counted = '1';
+                el.textContent = s.prefix + formatNum(0, s.format) + s.suffix;
+                animateCounter(el, s.target, s.prefix, s.suffix, s.format);
+              }
+            });
+            statsObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.3 });
+      statsObserver.observe(statsSection);
+    }
+  })();
+</script>
