@@ -71,8 +71,9 @@
     color: var(--c-green-dark);
   }
   .nav-logo img {
-    height: 28px;
+    height: 36px;
     width: auto;
+    max-width: 180px;
     display: block;
   }
 
@@ -114,5 +115,16 @@
   /* Mobile: legacy esconde os links da nav, sem hamburger */
   @media (max-width: 900px) {
     .nav-links { display: none; }
+  }
+  @media (max-width: 600px) {
+    .nav-logo, .nav-logo img {
+      height: 30px;
+    }
+    .nav-logo {
+      min-width: 110px;
+    }
+    .nav-logo img {
+      max-width: 140px;
+    }
   }
 </style>
