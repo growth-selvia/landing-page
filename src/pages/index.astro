@@ -6,8 +6,16 @@ import Hero from '../components/sections/Hero.astro';
 import Verticais from '../components/sections/Verticais.astro';
 import ComoFunciona from '../components/sections/ComoFunciona.astro';
 import Stats from '../components/sections/Stats.astro';
+import Depoimentos from '../components/sections/Depoimentos.astro';
+import FAQ from '../components/sections/FAQ.astro';
+import CtaFinal from '../components/sections/CtaFinal.astro';
+import Midia from '../components/sections/Midia.astro';
 import Footer from '../components/layout/Footer.astro';
+import { faqSchema } from '../data/faqs.ts';
 
+// JSON-LD da home: array com Organization + FAQPage.
+// LLMs (ChatGPT, Perplexity, Claude) usam o FAQPage pra citar respostas
+// com atribuição clara à Selvia.
 const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
@@ -20,12 +28,14 @@ const organizationSchema = {
     "https://www.instagram.com/selvia.contabilidade/"
   ]
 };
+
+const jsonLd = [organizationSchema, faqSchema];
 ---
 
 <BaseLayout
   title="Selvia — Contabilidade no WhatsApp para PJs"
   description="Contabilidade, banco PJ e assessoria financeira no WhatsApp. Para médicos, devs, advogados, criadores e outras PJs. Sem app, sem login. Atendimento humano em <1 min."
-  jsonLd={organizationSchema}
+  jsonLd={jsonLd}
 >
   <Announcement />
   <Header />
@@ -35,12 +45,10 @@ const organizationSchema = {
     <Verticais />
     <ComoFunciona />
     <Stats />
-
-    <!-- Sub-etapa C em construção -->
-    <section style="padding: 80px 24px; text-align: center;">
-      <h2 style="font-size: 24px;">Próximas seções (Sub-etapa C)</h2>
-      <p>Depoimentos · Preços · Calculadora · Blog · FAQ · CTA Final · Mídia</p>
-    </section>
+    <Depoimentos />
+    <FAQ />
+    <CtaFinal />
+    <Midia />
   </main>
 
   <Footer />

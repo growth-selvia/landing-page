@@ -1,0 +1,456 @@
+---
+// Depoimentos — quinta seção da home
+// 1:1 com _legacy/index.html (CSS 953-1153, HTML 2328-2403, JS 3086-3190)
+//
+// Estrutura:
+// - Background off-white com dots pattern + 2 glow blobs (verde + azul)
+// - Pill + h2 + subheadline
+// - Carrossel de 3 depoimentos: cada slide é um card verde escuro com gradient
+//   interno (luz refletida no topo) + inset shadows pra efeito 3D
+// - Setas prev/next nas laterais (verde claro)
+// - Dots clicáveis embaixo (dot ativo vira pill)
+// - Curva decorativa via <Curve variant="depoimentos" />
+//
+// Comportamento:
+// - Auto-slide a cada 6s em padrão ping-pong (0→1→2→1→0→1→2...)
+// - Pause on hover/touch
+// - Pause quando aba inativa
+// - Dots clicáveis e setas com wrap-around
+// - Inicia só quando entra no viewport
+// - Respeita prefers-reduced-motion (desliga auto + transition)
+
+import Curve from '../ui/Curve.astro';
+
+interface Testimonial {
+  initials: string;
+  quote: string;
+  name: string;
+  role: string;
+}
+
+const testimonials: Testimonial[] = [
+  {
+    initials: 'JR',
+    quote: 'Sempre me auxiliaram em todo o processo, desde a abertura da empresa até regularização fiscal. Qualquer dúvida que surgia estavam sempre dispostos a me ajudar.',
+    name: 'Dr. João Rogério',
+    role: 'Cardiologista — CRM-SP 250328',
+  },
+  {
+    initials: 'AD',
+    quote: 'Desde que comecei a usar a Selvia, a troca de MEI para ME foi resolvida sem dor de cabeça e passei a emitir notas pelo WhatsApp no mesmo dia, e foi muito mais prático e ágil. Ganhei confiança nas decisões tomadas e reduzi tarefas operacionais.',
+    name: 'André Diogo',
+    role: 'Engenheiro de Produto',
+  },
+  {
+    initials: 'JF',
+    quote: 'Desde que comecei a usar a Selvia, tenho 0 preocupações quanto aos impostos que preciso pagar e quando preciso pagar! Além disso, tenho toda uma assessoria automática dos meus gastos o que diminuiu meus gastos com plataformas de gestão financeira.',
+    name: 'João Fraga',
+    role: 'AI Deployment',
+  },
+];
+
+const t0 = testimonials[0];
+const t1 = testimonials[1];
+const t2 = testimonials[2];
+---
+
+<section class="depoimentos-bg scroll-animate" data-parallax>
+  <Curve variant="depoimentos" />
+
+  <div class="container">
+    <span class="pill pill-dark">Depoimentos</span>
+    <h2 class="h2">O que os clientes falam.</h2>
+    <p class="section-sub">Médicos, devs e profissionais que já pararam de se estressar com contabilidade.</p>
+
+    <div class="depoimentos-shell">
+      <div class="depoimentos-carousel" id="depoimentos-carousel">
+        <div class="depoimentos-viewport">
+          <div class="depoimentos-track" id="depoimentos-track">
+            <div class="depoimento">
+              <div class="depoimento-stars">★ ★ ★ ★ ★</div>
+              <p class="depoimento-quote">"{t0.quote}"</p>
+              <div class="depoimento-author">
+                <div class="depoimento-avatar">{t0.initials}</div>
+                <div>
+                  <p class="depoimento-name">{t0.name}</p>
+                  <p class="depoimento-role">{t0.role}</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="depoimento">
+              <div class="depoimento-stars">★ ★ ★ ★ ★</div>
+              <p class="depoimento-quote">"{t1.quote}"</p>
+              <div class="depoimento-author">
+                <div class="depoimento-avatar">{t1.initials}</div>
+                <div>
+                  <p class="depoimento-name">{t1.name}</p>
+                  <p class="depoimento-role">{t1.role}</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="depoimento">
+              <div class="depoimento-stars">★ ★ ★ ★ ★</div>
+              <p class="depoimento-quote">"{t2.quote}"</p>
+              <div class="depoimento-author">
+                <div class="depoimento-avatar">{t2.initials}</div>
+                <div>
+                  <p class="depoimento-name">{t2.name}</p>
+                  <p class="depoimento-role">{t2.role}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button type="button" class="depoimento-arrow depoimento-arrow-prev" id="depoimento-prev" aria-label="Depoimento anterior">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
+        </button>
+        <button type="button" class="depoimento-arrow depoimento-arrow-next" id="depoimento-next" aria-label="Próximo depoimento">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </button>
+      </div>
+
+      <div class="depoimentos-dots" role="tablist" aria-label="Navegação dos depoimentos">
+        <button type="button" class="depoimento-dot active" data-i="0" aria-label="Depoimento 1"></button>
+        <button type="button" class="depoimento-dot" data-i="1" aria-label="Depoimento 2"></button>
+        <button type="button" class="depoimento-dot" data-i="2" aria-label="Depoimento 3"></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* === DEPOIMENTOS — background + decorativos === */
+  .depoimentos-bg {
+    background:
+      radial-gradient(circle, rgba(13,66,63,0.05) 1px, transparent 1.5px) 0 0 / 28px 28px,
+      linear-gradient(180deg, #F9F9F9 0%, #FFFFFF 100%);
+    position: relative;
+    overflow: hidden;
+  }
+  .depoimentos-bg::before {
+    content: '';
+    position: absolute;
+    top: 10%; right: -100px;
+    width: 380px; height: 380px;
+    background: radial-gradient(circle, rgba(105,228,112,0.18) 0%, transparent 65%);
+    filter: blur(70px);
+    pointer-events: none;
+  }
+  .depoimentos-bg::after {
+    content: '';
+    position: absolute;
+    bottom: -50px; left: -100px;
+    width: 320px; height: 320px;
+    background: radial-gradient(circle, rgba(132,160,255,0.12) 0%, transparent 65%);
+    filter: blur(70px);
+    pointer-events: none;
+  }
+  .depoimentos-bg :global(.container) { position: relative; z-index: 1; }
+
+  /* === Wrapper + carrossel === */
+  .depoimentos-shell {
+    max-width: 720px;
+    margin: 0 auto;
+    position: relative;
+  }
+  .depoimentos-carousel {
+    max-width: 720px;
+    margin: 0 auto;
+    position: relative;
+  }
+  .depoimentos-viewport {
+    overflow: hidden;
+    border-radius: 16px;
+    position: relative;
+    z-index: 2;
+    /* Sombra com 2 camadas - drop-shadow respeita border-radius */
+    filter:
+      drop-shadow(0 8px 16px rgba(13,66,63,0.25))
+      drop-shadow(0 24px 50px rgba(13,66,63,0.30));
+  }
+  .depoimentos-track {
+    display: flex;
+    transition: transform 0.7s cubic-bezier(0.65, 0, 0.35, 1);
+    will-change: transform;
+  }
+  .depoimentos-track > * { min-width: 0; }
+
+  /* === Card de depoimento === */
+  .depoimentos-track .depoimento {
+    flex: 0 0 100%;
+    box-sizing: border-box;
+    /* Gradient interno: simula luz vindo de cima */
+    background: linear-gradient(180deg, #156961 0%, #0D423F 60%, #082E2C 100%);
+    color: var(--c-offwhite);
+    border-radius: 16px;
+    padding: 40px 36px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+    /* Inset shadows pra efeito 3D interno */
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,0.12),
+      inset 0 -1px 0 rgba(0,0,0,0.30),
+      inset 0 0 0 1px rgba(255,255,255,0.04);
+  }
+  .depoimentos-track .depoimento::before {
+    content: '';
+    position: absolute;
+    top: -80px; right: -80px;
+    width: 280px; height: 280px;
+    background: radial-gradient(circle, rgba(105,228,112,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .depoimentos-track .depoimento > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .depoimentos-track .depoimento-stars {
+    color: var(--c-green-light);
+    font-size: 20px;
+    letter-spacing: 4px;
+    margin-bottom: 24px;
+  }
+  .depoimentos-track .depoimento-quote {
+    font-size: 17px;
+    line-height: 1.65;
+    color: var(--c-offwhite);
+    flex-grow: 1;
+    margin-bottom: 32px;
+  }
+  .depoimentos-track .depoimento-author {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(105,228,112,0.25);
+  }
+  .depoimentos-track .depoimento-avatar {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: var(--c-green-light);
+    color: var(--c-green-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 500;
+    font-size: 16px;
+    flex-shrink: 0;
+    box-shadow: 0 6px 16px rgba(105,228,112,0.35);
+  }
+  .depoimentos-track .depoimento-name {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--c-offwhite);
+    margin: 0;
+  }
+  .depoimentos-track .depoimento-role {
+    font-size: 13px;
+    color: rgba(105,228,112,0.9);
+    margin: 2px 0 0;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .depoimentos-track { transition: none; }
+  }
+
+  /* === Setas prev/next === */
+  .depoimento-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 5;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(105,228,112,0.92);
+    color: var(--c-green-dark);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    box-shadow: 0 4px 12px rgba(13,66,63,0.30), 0 2px 4px rgba(13,66,63,0.20);
+    transition: all 0.2s ease;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+  }
+  .depoimento-arrow:hover {
+    background: var(--c-green-light);
+    box-shadow: 0 6px 18px rgba(13,66,63,0.35), 0 3px 6px rgba(13,66,63,0.25);
+    transform: translateY(-50%) scale(1.06);
+  }
+  .depoimento-arrow:active {
+    transform: translateY(-50%) scale(0.96);
+  }
+  .depoimento-arrow:focus-visible {
+    outline: 2px solid var(--c-green-dark);
+    outline-offset: 2px;
+  }
+  .depoimento-arrow-prev { left: -22px; }
+  .depoimento-arrow-next { right: -22px; }
+
+  /* === Dots === */
+  .depoimentos-dots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 56px;
+    position: relative;
+    z-index: 3;
+  }
+  .depoimento-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(13,66,63,0.25);
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    transition: all 0.3s ease;
+  }
+  .depoimento-dot:hover {
+    background: rgba(13,66,63,0.5);
+    transform: scale(1.2);
+  }
+  .depoimento-dot.active {
+    background: var(--c-green-dark);
+    width: 24px;
+    border-radius: 4px;
+  }
+
+  /* === Mobile === */
+  @media (max-width: 900px) {
+    .depoimentos-track .depoimento {
+      padding: 32px 24px;
+    }
+    .depoimentos-track .depoimento-quote {
+      font-size: 15px;
+    }
+    .depoimento-arrow {
+      width: 38px;
+      height: 38px;
+    }
+    .depoimento-arrow-prev { left: 6px; }
+    .depoimento-arrow-next { right: 6px; }
+  }
+</style>
+
+<script>
+  // ===== CARROSSEL DE DEPOIMENTOS =====
+  // Slide automático a cada 6s, pause on hover, dots clicáveis pra nav manual
+  // Padrão ping-pong (0→1→2→1→0→...) pra parecer orgânico em vez de loop seco
+  (function() {
+    const carousel = document.getElementById('depoimentos-carousel');
+    if (!carousel) return;
+
+    const shell = (carousel.closest('.depoimentos-shell') || carousel.parentElement) as HTMLElement | null;
+    const track = document.getElementById('depoimentos-track') as HTMLElement | null;
+    if (!track || !shell) return;
+
+    const slides = track.querySelectorAll('.depoimento');
+    const dots = shell.querySelectorAll<HTMLButtonElement>('.depoimento-dot');
+    const total = slides.length;
+    if (total <= 1) return;
+
+    let current = 0;
+    let direction: 1 | -1 = 1;
+    let timer: number | null = null;
+    const INTERVAL = 6000;
+
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    const goTo = (i: number) => {
+      current = Math.max(0, Math.min(total - 1, i));
+      track.style.transform = `translateX(-${current * 100}%)`;
+      dots.forEach((dot, idx) => {
+        dot.classList.toggle('active', idx === current);
+        dot.setAttribute('aria-selected', idx === current ? 'true' : 'false');
+      });
+    };
+
+    const next = () => {
+      // Ping-pong: ao chegar nas pontas, inverte a direção
+      if (current === total - 1) direction = -1;
+      else if (current === 0) direction = 1;
+      goTo(current + direction);
+    };
+
+    const stop = () => {
+      if (timer !== null) {
+        window.clearInterval(timer);
+        timer = null;
+      }
+    };
+
+    const start = () => {
+      if (prefersReducedMotion) return;
+      stop();
+      timer = window.setInterval(next, INTERVAL);
+    };
+
+    // Click nos dots
+    dots.forEach((dot) => {
+      dot.addEventListener('click', () => {
+        const i = parseInt(dot.dataset.i ?? '0', 10);
+        if (i > current) direction = 1;
+        else if (i < current) direction = -1;
+        goTo(i);
+        start();
+      });
+    });
+
+    // Setas prev/next com wrap-around
+    const prevBtn = document.getElementById('depoimento-prev');
+    const nextBtn = document.getElementById('depoimento-next');
+    if (prevBtn) {
+      prevBtn.addEventListener('click', () => {
+        direction = -1;
+        goTo(current === 0 ? total - 1 : current - 1);
+        start();
+      });
+    }
+    if (nextBtn) {
+      nextBtn.addEventListener('click', () => {
+        direction = 1;
+        goTo(current === total - 1 ? 0 : current + 1);
+        start();
+      });
+    }
+
+    // Pause on hover (desktop) e touch (mobile)
+    shell.addEventListener('mouseenter', stop);
+    shell.addEventListener('mouseleave', start);
+    shell.addEventListener('touchstart', stop, { passive: true });
+    shell.addEventListener('touchend', start, { passive: true });
+
+    // Pause quando a aba não tá ativa
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) stop();
+      else start();
+    });
+
+    // Disparar só quando o carrossel fica visível pela primeira vez
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) start();
+          else stop();
+        });
+      }, { threshold: 0.3 });
+      io.observe(carousel);
+    } else {
+      start();
+    }
+  })();
+</script>

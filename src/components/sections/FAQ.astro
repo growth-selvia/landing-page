@@ -1,0 +1,108 @@
+---
+// FAQ — sexta seção da home
+// 1:1 com _legacy/index.html (CSS 1604-1669, HTML 2855-2889)
+//
+// Dados em src/data/faqs.ts (compartilhado com o JSON-LD schema)
+
+import { FAQS } from '../../data/faqs.ts';
+---
+
+<section class="faq-bg scroll-animate" data-parallax>
+  <div class="container">
+    <span class="pill pill-dark">Dúvidas frequentes</span>
+    <h2 class="h2">Perguntas que a gente recebe todo dia.</h2>
+    <p class="section-sub">Se a sua não tá aqui, manda no WhatsApp.</p>
+
+    <div class="faq-grid stagger-children">
+      {FAQS.map((faq) => (
+        <details class="faq-item">
+          <summary>{faq.question}</summary>
+          <p>{faq.answer}</p>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  /* === FAQ — background + decorativos === */
+  .faq-bg {
+    background:
+      radial-gradient(circle, rgba(13,66,63,0.05) 1px, transparent 1.5px) 0 0 / 28px 28px,
+      linear-gradient(180deg, #FFFFFF 0%, #F9F9F9 100%);
+    position: relative;
+    overflow: hidden;
+  }
+  .faq-bg::before {
+    content: '';
+    position: absolute;
+    top: 20%; right: -80px;
+    width: 380px; height: 380px;
+    background: radial-gradient(circle, rgba(105,228,112,0.16) 0%, transparent 65%);
+    filter: blur(70px);
+    pointer-events: none;
+  }
+  .faq-bg::after {
+    content: '';
+    position: absolute;
+    bottom: 10%; left: -80px;
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(132,160,255,0.12) 0%, transparent 65%);
+    filter: blur(70px);
+    pointer-events: none;
+  }
+  .faq-bg :global(.container) {
+    position: relative;
+    z-index: 1;
+  }
+
+  .faq-grid {
+    display: grid;
+    gap: 10px;
+  }
+
+  .faq-item {
+    background: #FFFFFF;
+    border: 1px solid rgba(13,66,63,0.08);
+    border-radius: 12px;
+    padding: 20px 24px;
+    transition: all 0.2s;
+    box-shadow: 0 1px 2px rgba(13,66,63,0.04);
+  }
+  .faq-item[open] {
+    background: #FFFFFF;
+    border-color: var(--c-green-dark);
+    box-shadow:
+      0 16px 32px -12px rgba(13,66,63,0.15),
+      0 4px 8px -4px rgba(105,228,112,0.1);
+  }
+
+  .faq-item summary {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--c-green-dark);
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+  }
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-item summary::after {
+    content: '+';
+    font-size: 22px;
+    color: var(--c-green-dark);
+    font-weight: 300;
+    line-height: 1;
+    flex-shrink: 0;
+  }
+  .faq-item[open] summary::after { content: '−'; }
+
+  .faq-item p {
+    margin: 14px 0 0;
+    font-size: 14px;
+    color: var(--c-text-muted-strong);
+    line-height: 1.7;
+  }
+</style>
