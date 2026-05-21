@@ -1,0 +1,3535 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Selvia | Sua equipe financeira no WhatsApp</title>
+  <meta name="description" content="Contabilidade, impostos, banco PJ e assessoria no WhatsApp para médicos, devs, advogados e mais. Abertura de CNPJ grátis. Sem fidelidade." />
+  <meta name="theme-color" content="#0D423F" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="pt_BR" />
+  <meta property="og:site_name" content="Selvia" />
+  <meta property="og:title" content="Selvia | Sua equipe financeira no WhatsApp" />
+  <meta property="og:description" content="Contabilidade, impostos, banco PJ e assessoria no WhatsApp para médicos, devs, advogados e mais." />
+  <meta property="og:url" content="https://www.selvia.com.br" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Selvia | Sua equipe financeira no WhatsApp" />
+  <meta name="twitter:description" content="Contabilidade, impostos, banco PJ e assessoria no WhatsApp para médicos, devs, advogados e mais." />
+
+  <!-- Fonte Lexend -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%230D423F'/%3E%3Ctext x='50' y='66' font-family='Lexend,Arial' font-size='60' font-weight='500' fill='%2369E470' text-anchor='middle'%3ES%3C/text%3E%3C/svg%3E" />
+
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Selvia",
+    "url": "https://www.selvia.com.br",
+    "logo": "https://www.selvia.com.br/logo.png",
+    "description": "Contabilidade, impostos, banco PJ e assessoria no WhatsApp para profissionais PJ.",
+    "sameAs": [
+      "https://www.instagram.com/selvia.contabilidade/",
+      "https://www.linkedin.com/company/selvia-m"
+    ],
+    "subOrganization": [
+      {
+        "@type": "Organization",
+        "name": "SELVIA TECNOLOGIA LTDA",
+        "taxID": "55.044.108/0001-78",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Alameda Rio Negro, 503, Sala 2020, Alphaville",
+          "addressLocality": "Barueri",
+          "addressRegion": "SP",
+          "postalCode": "06454-000",
+          "addressCountry": "BR"
+        }
+      },
+      {
+        "@type": "Organization",
+        "name": "SELVIA CONTABILIDADE LTDA",
+        "taxID": "37.888.114/0001-20",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Rua Doutor Joaquim Taveira, 1111",
+          "addressLocality": "Goiânia",
+          "addressRegion": "GO",
+          "postalCode": "74345-170",
+          "addressCountry": "BR"
+        }
+      }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Quanto custa a Selvia?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Depende da sua profissão e do seu faturamento. Médicos começam em R$ 347/mês. Devs, advogados e outras profissões PJ começam em R$ 189,90/mês. Criadores de conteúdo, dentistas, psicólogos e fisios começam em R$ 99,90/mês. Quem fatura até R$ 81k/ano e pode ser MEI paga R$ 9,90/mês."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Preciso assinar contrato de fidelidade?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Não. Sem fidelidade, sem multa. Se a Selvia não atende suas expectativas, você cancela a qualquer momento."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "E se eu já tiver contador?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A gente cuida da migração toda. Você só nos passa o contato do contador atual e o resto é com a gente. Em geral leva 15 a 30 dias e você não precisa fazer praticamente nada."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Médico pode ser MEI?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Não. Profissionais com conselho de classe — médicos, advogados, dentistas, psicólogos, fisioterapeutas, nutricionistas — são impedidos legalmente de ser MEI. O caminho é Simples Nacional via Microempresa (ME)."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <style>
+    /* ===== TOKENS DE COR =====
+       Principais
+       --verde-escuro: #0D423F
+       --verde-claro:  #69E470
+       --off-white:    #F9F9F9
+       Auxiliares (em uso aqui)
+       --azul:         #84A0FF (substitui o amarelo claro #F1FDC1 em "Como funciona" e detalhes)
+       --laranja:      #F4933B (substitui amarelo no anúncio + acentos)
+       --amarelo-acen: #FFD15C (acento pontual em badges)
+       Bordas
+       --border:       rgba(13,66,63,0.15) (substitui o bege #E2E7C7)
+    */
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html {
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+    body {
+      margin: 0;
+      font-family: 'Lexend', system-ui, -apple-system, sans-serif;
+      color: #0D423F;
+      background: #FFFFFF;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+    }
+    img, svg { max-width: 100%; display: block; }
+    button { font-family: inherit; cursor: pointer; }
+    a { color: inherit; text-decoration: none; }
+    h1, h2, h3, h4 { margin: 0; font-weight: 500; letter-spacing: -0.5px; }
+
+    .container { max-width: 1140px; margin: 0 auto; padding: 0 24px; }
+
+    /* === ANNOUNCEMENT - LARANJA === */
+    .announcement {
+      background: linear-gradient(90deg, #F4933B 0%, #F8A85B 50%, #F4933B 100%);
+      color: #FFFFFF;
+      padding: 12px 16px;
+      text-align: center;
+      font-size: 13px;
+      font-weight: 400;
+    }
+    .announcement a {
+      color: #FFFFFF;
+      text-decoration: underline;
+      font-weight: 500;
+    }
+    .announcement svg { vertical-align: -3px; margin-right: 6px; color: #FFFFFF; }
+
+    /* === HEADER === */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255,255,255,0.97);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(13,66,63,0.12);
+    }
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 0;
+    }
+    .nav-logo {
+      font-size: 22px;
+      font-weight: 500;
+      color: #0D423F;
+      letter-spacing: -1px;
+    }
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      align-items: center;
+    }
+    .nav-links a {
+      font-size: 14px;
+      color: #444441;
+      transition: color 0.15s;
+    }
+    .nav-links a:hover { color: #0D423F; }
+    /* Link secundário no header (pra páginas futuras como /contabilidades) */
+    .nav-link-secondary {
+      font-weight: 500;
+      color: #0D423F !important;
+      padding: 8px 14px;
+      border-radius: 8px;
+      border: 1px solid rgba(13,66,63,0.15);
+      transition: all 0.15s;
+    }
+    .nav-link-secondary:hover {
+      background: rgba(13,66,63,0.04);
+      border-color: rgba(13,66,63,0.35);
+    }
+
+    /* === BUTTONS === */
+    .btn-primary {
+      background: #69E470;
+      color: #0D423F;
+      border: none;
+      padding: 12px 22px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: transform 0.15s, box-shadow 0.15s;
+      text-decoration: none;
+    }
+    .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 4px 14px rgba(105,228,112,0.4); }
+    .btn-primary:active { transform: translateY(0); }
+    .btn-secondary {
+      background: transparent;
+      color: #F9F9F9;
+      border: 1px solid #69E470;
+      padding: 11px 22px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 400;
+      cursor: pointer;
+      transition: background 0.15s;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn-secondary:hover { background: rgba(105,228,112,0.12); }
+    .btn-small { padding: 8px 14px; font-size: 13px; }
+
+    /* === PILLS === */
+    .pill {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 100px;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.3px;
+      margin-bottom: 16px;
+    }
+    .pill-green { background: rgba(105,228,112,0.18); color: #69E470; }
+    .pill-dark { background: rgba(13,66,63,0.08); color: #0D423F; border: 1px solid rgba(13,66,63,0.12); }
+    .pill-light { background: rgba(255,255,255,0.12); color: #F9F9F9; border: 1px solid rgba(105,228,112,0.4); }
+
+    /* === SECTIONS === */
+    section { padding: 80px 0; }
+    .h2 { font-size: 36px; line-height: 1.15; margin-bottom: 12px; }
+    .section-sub { font-size: 15px; color: #5F5E5A; margin-bottom: 40px; max-width: 560px; line-height: 1.6; }
+    .h2-light { color: #F9F9F9; }
+    .section-sub-light { color: rgba(249,249,249,0.75); }
+
+    /* === HERO === */
+    .hero {
+      background: #0D423F;
+      color: #F9F9F9;
+      padding: 80px 0 100px;
+      position: relative;
+      overflow: hidden;
+    }
+    /* Glow radial decorativo (verde claro - canto superior direito) */
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -150px; right: -100px;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(105,228,112,0.15) 0%, transparent 65%);
+      pointer-events: none;
+      z-index: 0;
+    }
+    /* Glow radial decorativo (azul - canto inferior esquerdo) */
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -200px; left: -150px;
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(132,160,255,0.12) 0%, transparent 60%);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .hero .container { position: relative; z-index: 1; }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 48px;
+      align-items: center;
+    }
+    /* CSS Grid bug fix: itens do grid têm min-width:auto por padrão e não encolhem.
+       Sem isso, conteúdo com width fixo (como mock-chat 420px) estoura o grid em mobile. */
+    .hero-grid > * { min-width: 0; }
+
+    /* Mesma defesa em outras grids do site */
+    .verticais-grid > *,
+    .stats-grid > *,
+    .price-grid > *,
+    .depoimentos-track > *,
+    .blog-grid > *,
+    .footer-grid > * { min-width: 0; }
+    .hero h1 {
+      font-size: 56px;
+      line-height: 1.05;
+      color: #F9F9F9;
+      margin-bottom: 18px;
+      letter-spacing: -1.5px;
+    }
+    .hero-sub {
+      font-size: 17px;
+      line-height: 1.6;
+      color: rgba(249,249,249,0.85);
+      margin-bottom: 30px;
+      max-width: 480px;
+    }
+    .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 24px; }
+    .hero-social-proof {
+      font-size: 13px;
+      color: rgba(249,249,249,0.7);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* === ANIMAÇÃO DO MOCK CHAT ===
+       Estratégia: elementos começam com display:none (não ocupam espaço no layout)
+       Quando ganham classe .visible, viram display:block/flex/inline-flex com fade-in
+    */
+
+    /* Estado inicial: invisível E sem ocupar espaço */
+    .mock-chat .mock-msg-them,
+    .mock-chat .mock-msg-us,
+    .mock-chat .mock-msg-action,
+    .mock-chat .mock-buttons,
+    .mock-chat .mock-file,
+    .mock-chat .mock-typing {
+      display: none;
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity 0.35s ease-out, transform 0.35s ease-out;
+    }
+
+    /* Quando .visible é adicionado: mostra com display correto pra cada tipo */
+    .mock-chat .mock-msg-them.visible { display: block; opacity: 1; transform: translateY(0); }
+    .mock-chat .mock-msg-us.visible { display: block; opacity: 1; transform: translateY(0); }
+    .mock-chat .mock-buttons.visible { display: block; opacity: 1; transform: translateY(0); }
+    .mock-chat .mock-msg-action.visible { display: flex; opacity: 1; transform: translateY(0); }
+    .mock-chat .mock-file.visible { display: flex; opacity: 1; transform: translateY(0); }
+    .mock-chat .mock-typing.visible { display: inline-flex; opacity: 1; transform: translateY(0); }
+
+    /* Fallback estático (prefers-reduced-motion) - mostra tudo direto */
+    .mock-chat.is-static .mock-msg-them { display: block; opacity: 1; transform: translateY(0); }
+    .mock-chat.is-static .mock-msg-us { display: block; opacity: 1; transform: translateY(0); }
+    .mock-chat.is-static .mock-buttons { display: block; opacity: 1; transform: translateY(0); }
+    .mock-chat.is-static .mock-msg-action { display: flex; opacity: 1; transform: translateY(0); }
+    .mock-chat.is-static .mock-file { display: flex; opacity: 1; transform: translateY(0); }
+    .mock-chat.is-static .mock-typing { display: none; }
+
+    /* Indicador "digitando..." - estilos visuais (independente de visibilidade) */
+    .mock-typing {
+      background: #FFFFFF;
+      border-radius: 12px 12px 12px 4px;
+      border: 1px solid rgba(13,66,63,0.1);
+      padding: 14px 16px;
+      margin-bottom: 8px;
+      align-items: center;
+      gap: 4px;
+      width: fit-content;
+    }
+    .mock-typing-us {
+      background: #DCF8C6;
+      border-radius: 12px 12px 4px 12px;
+      margin-left: auto;
+      border: none;
+    }
+    .mock-typing span {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #1D9E75;
+      opacity: 0.5;
+      animation: typing-bounce 1.4s infinite;
+    }
+    .mock-typing span:nth-child(2) { animation-delay: 0.2s; }
+    .mock-typing span:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes typing-bounce {
+      0%, 60%, 100% { transform: translateY(0); opacity: 0.5; }
+      30% { transform: translateY(-4px); opacity: 1; }
+    }
+
+    /* Respeitar quem prefere menos animação */
+    @media (prefers-reduced-motion: reduce) {
+      .mock-chat .mock-msg-them,
+      .mock-chat .mock-msg-us,
+      .mock-chat .mock-msg-action,
+      .mock-chat .mock-buttons,
+      .mock-chat .mock-file {
+        opacity: 1;
+        transform: none;
+        transition: none;
+      }
+      .mock-chat .mock-msg-them { display: block; }
+      .mock-chat .mock-msg-us { display: block; }
+      .mock-chat .mock-buttons { display: block; }
+      .mock-chat .mock-msg-action { display: flex; }
+      .mock-chat .mock-file { display: flex; }
+      .mock-chat .mock-typing { display: none !important; }
+    }
+
+    /* Mock WhatsApp */
+    .mock-chat {
+      background: #F9F9F9;
+      border-radius: 16px;
+      padding: 16px;
+      width: 420px;
+      max-width: 100%;
+      margin-left: auto;
+      box-shadow: 0 24px 70px rgba(0,0,0,0.35);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .mock-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid rgba(13,66,63,0.12);
+      margin-bottom: 0;
+      flex-shrink: 0;
+    }
+    /* Container scrollável das mensagens */
+    .mock-scroll {
+      height: 480px;
+      overflow-y: auto;
+      overflow-x: hidden;
+      padding-top: 16px;
+      padding-bottom: 4px;
+      position: relative;
+      scroll-behavior: smooth;
+      /* Esconder scrollbar visualmente em todos os browsers */
+      scrollbar-width: none; /* Firefox */
+      -ms-overflow-style: none; /* IE/Edge legado */
+    }
+    .mock-scroll::-webkit-scrollbar {
+      display: none; /* Chrome/Safari/Opera */
+      width: 0;
+      height: 0;
+    }
+    .mock-avatar {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: #0D423F;
+      color: #69E470;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 500;
+      font-size: 14px;
+    }
+    .mock-status p { margin: 0; }
+    .mock-name { font-size: 14px; font-weight: 500; color: #0D423F; }
+    .mock-online { font-size: 12px; color: #1D9E75; }
+    .mock-msg-them, .mock-msg-us {
+      padding: 10px 13px;
+      font-size: 13px;
+      line-height: 1.5;
+      color: #0D423F;
+      margin-bottom: 8px;
+      max-width: 88%;
+      width: fit-content;
+    }
+    .mock-msg-them { background: #FFFFFF; border-radius: 12px 12px 12px 4px; border: 1px solid rgba(13,66,63,0.1); }
+    .mock-msg-us { background: #DCF8C6; border-radius: 12px 12px 4px 12px; margin-left: auto; }
+    .mock-time { font-size: 10px; color: #888; margin-top: 4px; text-align: right; }
+    .mock-sender { font-size: 11px; font-weight: 500; color: #1D9E75; margin: 0 0 2px; }
+    /* Botões interativos do WhatsApp (texto verde claro) */
+    .mock-buttons {
+      background: #FFFFFF;
+      border-radius: 0 0 12px 12px;
+      border: 1px solid rgba(13,66,63,0.1);
+      border-top: none;
+      margin-top: -8px;
+      margin-bottom: 8px;
+      max-width: 88%;
+      width: fit-content;
+      min-width: 60%;
+      overflow: hidden;
+    }
+    .mock-button {
+      padding: 10px 13px;
+      font-size: 13px;
+      color: #1D9E75;
+      font-weight: 500;
+      text-align: center;
+      border-top: 1px solid rgba(13,66,63,0.08);
+      cursor: default;
+    }
+    .mock-msg-them.has-buttons { border-radius: 12px 12px 0 0; margin-bottom: 0; }
+
+    /* Mensagem do cliente com botão único (etapa 2 do print) */
+    .mock-msg-action {
+      background: rgba(105,228,112,0.18);
+      border-radius: 12px 12px 4px 12px;
+      margin-left: auto;
+      margin-bottom: 8px;
+      padding: 10px 13px;
+      max-width: 88%;
+      width: fit-content;
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+    }
+    .mock-msg-action-icon {
+      width: 28px;
+      height: 28px;
+      background: rgba(105,228,112,0.4);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #1D9E75;
+      flex-shrink: 0;
+    }
+    .mock-msg-action-text { font-size: 13px; color: #0D423F; line-height: 1.4; }
+    .mock-msg-action-text strong { font-weight: 500; display: block; }
+    .mock-msg-action-text span { font-size: 11px; color: #5F5E5A; }
+
+    /* Quote (resposta a mensagem) - etapa 4 */
+    .mock-quote {
+      border-left: 3px solid #1D9E75;
+      padding: 6px 10px;
+      background: rgba(29,158,117,0.08);
+      border-radius: 6px;
+      margin-bottom: 6px;
+    }
+    .mock-quote-sender { font-size: 11px; font-weight: 500; color: #1D9E75; margin: 0 0 2px; }
+    .mock-quote-text { font-size: 12px; color: #444441; margin: 0; line-height: 1.4; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; }
+
+    /* Card de arquivo (PDF) - versão expandida */
+    .mock-file {
+      background: #FFFFFF;
+      border-radius: 12px 12px 12px 4px;
+      border: 1px solid rgba(13,66,63,0.1);
+      padding: 12px;
+      margin-bottom: 4px;
+      max-width: 88%;
+      width: fit-content;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .mock-file-icon {
+      width: 40px;
+      height: 40px;
+      background: rgba(105,228,112,0.18);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #1D9E75;
+      flex-shrink: 0;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+    .mock-file-info p { margin: 0; }
+    .mock-file-name { font-size: 13px; color: #0D423F; font-weight: 500; }
+    .mock-file-meta { font-size: 11px; color: #5F5E5A; margin-top: 2px; }
+
+    /* === VERTICAIS === */
+    .verticais-bg {
+      background:
+        radial-gradient(circle, rgba(13,66,63,0.06) 1px, transparent 1.5px) 0 0 / 28px 28px,
+        linear-gradient(180deg, #FFFFFF 0%, #F9F9F9 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    /* Mesh blob verde claro - canto superior esquerdo */
+    .verticais-bg::before {
+      content: '';
+      position: absolute;
+      top: -100px; left: -80px;
+      width: 420px; height: 420px;
+      background: radial-gradient(circle, rgba(105,228,112,0.25) 0%, transparent 65%);
+      filter: blur(60px);
+      pointer-events: none;
+    }
+    /* Mesh blob azul - canto inferior direito */
+    .verticais-bg::after {
+      content: '';
+      position: absolute;
+      bottom: -100px; right: -80px;
+      width: 360px; height: 360px;
+      background: radial-gradient(circle, rgba(132,160,255,0.20) 0%, transparent 65%);
+      filter: blur(60px);
+      pointer-events: none;
+    }
+    .verticais-bg .container { position: relative; z-index: 1; }
+    .verticais-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .vertical-card {
+      /* Gradient sutil interno: branco no topo (luz vindo de cima), off-white na base */
+      background: linear-gradient(180deg, #FFFFFF 0%, #FAFAFA 100%);
+      border-radius: 14px;
+      padding: 24px;
+      transition: all 0.25s;
+      cursor: pointer;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      /* Inset highlights + box-shadow em camadas pra dar efeito 3D */
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.9),
+        inset 0 -1px 0 rgba(13,66,63,0.05),
+        inset 0 0 0 1px rgba(13,66,63,0.06),
+        0 1px 3px rgba(13,66,63,0.04),
+        0 4px 8px rgba(13,66,63,0.06),
+        0 12px 24px rgba(13,66,63,0.08);
+    }
+    .vertical-card:hover {
+      transform: translateY(-4px);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.9),
+        inset 0 -1px 0 rgba(13,66,63,0.06),
+        inset 0 0 0 1px rgba(13,66,63,0.12),
+        0 2px 6px rgba(13,66,63,0.06),
+        0 8px 16px rgba(13,66,63,0.10),
+        0 20px 40px rgba(13,66,63,0.14),
+        0 8px 24px rgba(105,228,112,0.18);
+    }
+    .vertical-card svg { color: #0D423F; margin-bottom: 14px; }
+    .vertical-card h3 { font-size: 16px; margin-bottom: 6px; color: #0D423F; }
+    .vertical-card p { font-size: 13px; color: #5F5E5A; margin: 0; line-height: 1.5; }
+    .vertical-arrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 12px;
+      color: #0F6E56;
+      font-weight: 500;
+      margin-top: 14px;
+      transition: gap 0.15s;
+    }
+    .vertical-card:hover .vertical-arrow { gap: 8px; }
+
+    /* === COMO FUNCIONA - VERDE CLARO COM GRADIENT + DOTS + LINHA === */
+    .como-funciona-bg {
+      background:
+        radial-gradient(circle, rgba(13,66,63,0.08) 1px, transparent 1.5px) 0 0 / 28px 28px,
+        radial-gradient(ellipse at top left, #7DEC83 0%, #69E470 50%, #5FD466 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    /* Glow decorativo verde escuro sutil */
+    .como-funciona-bg::before {
+      content: '';
+      position: absolute;
+      bottom: -100px; right: -100px;
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(13,66,63,0.10) 0%, transparent 70%);
+      filter: blur(40px);
+      pointer-events: none;
+    }
+    /* Mesh blob branco sutil no topo direito */
+    .como-funciona-bg::after {
+      content: '';
+      position: absolute;
+      top: -50px; right: 10%;
+      width: 320px; height: 320px;
+      background: radial-gradient(circle, rgba(255,255,255,0.25) 0%, transparent 65%);
+      filter: blur(50px);
+      pointer-events: none;
+    }
+    .como-funciona-bg .container { position: relative; z-index: 1; }
+
+    /* Layout horizontal: 3 colunas lado a lado no desktop */
+    .steps-h {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      position: relative;
+      margin-top: 56px;
+      padding: 0 8px;
+    }
+
+    .step-h {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    /* Visual decorativo (ícone grande com glow) acima do número */
+    .step-h-visual {
+      width: 100px;
+      height: 100px;
+      margin-bottom: 8px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    /* Glow externo pulsante - dá o efeito de "respiração" premium */
+    .step-h-visual::before {
+      content: '';
+      position: absolute;
+      inset: -10px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,255,255,0.45) 0%, transparent 65%);
+      filter: blur(14px);
+      pointer-events: none;
+      z-index: 0;
+      animation: icon-glow-pulse 4s ease-in-out infinite;
+    }
+    .step-h-icon {
+      width: 96px;
+      height: 96px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.55) 0%, rgba(255,255,255,0.15) 40%, transparent 70%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      z-index: 1;
+      overflow: hidden;
+      isolation: isolate;
+    }
+    /* Shine traveling: faixa de luz que atravessa o ícone diagonalmente.
+       Loop suave que cria a sensação de cristal/vidro reflexivo - efeito premium. */
+    .step-h-icon::after {
+      content: '';
+      position: absolute;
+      top: -20%;
+      left: -50%;
+      width: 60%;
+      height: 140%;
+      background: linear-gradient(
+        105deg,
+        transparent 0%,
+        rgba(255,255,255,0.35) 40%,
+        rgba(255,255,255,0.85) 50%,
+        rgba(255,255,255,0.35) 60%,
+        transparent 100%
+      );
+      transform: translateX(-100%) skewX(-15deg);
+      animation: icon-shine 4.5s ease-in-out infinite;
+      pointer-events: none;
+      z-index: 1;
+    }
+    .step-h-icon svg {
+      width: 44px;
+      height: 44px;
+      color: #0D423F;
+      opacity: 0.85;
+      position: relative;
+      z-index: 2;  /* fica acima do shine - shine passa "atrás" do ícone */
+    }
+
+    /* Delays escalonados pra parecer orgânico (não sincronizado) */
+    .step-h:nth-child(1) .step-h-visual::before { animation-delay: 0s; }
+    .step-h:nth-child(2) .step-h-visual::before { animation-delay: 1.3s; }
+    .step-h:nth-child(3) .step-h-visual::before { animation-delay: 2.6s; }
+
+    .step-h:nth-child(1) .step-h-icon::after { animation-delay: 0.4s; }
+    .step-h:nth-child(2) .step-h-icon::after { animation-delay: 1.9s; }
+    .step-h:nth-child(3) .step-h-icon::after { animation-delay: 3.4s; }
+
+    @keyframes icon-glow-pulse {
+      0%, 100% {
+        opacity: 0.65;
+        transform: scale(1);
+      }
+      50% {
+        opacity: 1;
+        transform: scale(1.08);
+      }
+    }
+
+    @keyframes icon-shine {
+      0%, 30% {
+        transform: translateX(-100%) skewX(-15deg);
+      }
+      60%, 100% {
+        transform: translateX(380%) skewX(-15deg);
+      }
+    }
+
+    /* Número gigante - elemento visual dominante (como comp.vc) */
+    .step-h-number {
+      font-size: 140px;
+      line-height: 1;
+      font-weight: 500;
+      color: #0D423F;
+      letter-spacing: -4px;
+      margin-bottom: 24px;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Texto abaixo */
+    .step-h-body { max-width: 320px; }
+    .step-h-title { font-size: 22px; margin-bottom: 10px; color: #0D423F; font-weight: 500; }
+    .step-h-desc { font-size: 14px; color: #0D423F; opacity: 0.85; line-height: 1.6; margin: 0; }
+
+    /* Linhas conectoras entre os números.
+       No DESKTOP: 2 segmentos horizontais, posicionados via JS exatamente entre os números (1→2 e 2→3).
+       No MOBILE: segmentos verticais conectando os ícones. */
+    .steps-h-segment {
+      position: absolute;
+      background: rgba(13,66,63,0.35);
+      border-radius: 1px;
+      pointer-events: none;
+      z-index: 0;
+      /* Estado inicial: invisível, anima quando .is-playing entra */
+      transform: scaleX(0);
+      transform-origin: left center;
+      transition: transform 1.2s cubic-bezier(0.22, 0.61, 0.36, 1);
+      /* Posicionamento real (top, left, width) é calculado dinamicamente via JS no desktop */
+    }
+    /* Stagger: segmento 1 anima primeiro, segmento 2 depois */
+    .como-funciona-bg.is-playing .steps-h-segment[data-segment="1"] {
+      transform: scaleX(1);
+      transition-delay: 0.4s;
+    }
+    .como-funciona-bg.is-playing .steps-h-segment[data-segment="2"] {
+      transform: scaleX(1);
+      transition-delay: 0.8s;
+    }
+
+    /* === ANIMAÇÃO DE ENTRADA: cada step entra com fade-in + scale-up no número === */
+    /* Estado inicial (escondido) */
+    .step-h-visual,
+    .step-h-number,
+    .step-h-body {
+      opacity: 0;
+      transform: translateY(20px);
+      transition:
+        opacity 0.7s cubic-bezier(0.22, 0.61, 0.36, 1),
+        transform 0.7s cubic-bezier(0.22, 0.61, 0.36, 1);
+    }
+    .step-h-number {
+      transform: translateY(20px) scale(0.85);
+    }
+
+    /* Quando entra: cada step aparece em cadeia */
+    .como-funciona-bg.is-playing .step-h:nth-child(1) .step-h-visual { transition-delay: 0.2s; }
+    .como-funciona-bg.is-playing .step-h:nth-child(1) .step-h-number { transition-delay: 0.3s; }
+    .como-funciona-bg.is-playing .step-h:nth-child(1) .step-h-body { transition-delay: 0.4s; }
+    .como-funciona-bg.is-playing .step-h:nth-child(2) .step-h-visual { transition-delay: 0.5s; }
+    .como-funciona-bg.is-playing .step-h:nth-child(2) .step-h-number { transition-delay: 0.6s; }
+    .como-funciona-bg.is-playing .step-h:nth-child(2) .step-h-body { transition-delay: 0.7s; }
+    .como-funciona-bg.is-playing .step-h:nth-child(3) .step-h-visual { transition-delay: 0.8s; }
+    .como-funciona-bg.is-playing .step-h:nth-child(3) .step-h-number { transition-delay: 0.9s; }
+    .como-funciona-bg.is-playing .step-h:nth-child(3) .step-h-body { transition-delay: 1.0s; }
+
+    .como-funciona-bg.is-playing .step-h-visual,
+    .como-funciona-bg.is-playing .step-h-body {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .como-funciona-bg.is-playing .step-h-number {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    /* Respeita prefers-reduced-motion */
+    @media (prefers-reduced-motion: reduce) {
+      .step-h-visual, .step-h-number, .step-h-body {
+        opacity: 1;
+        transform: none;
+        transition: none;
+      }
+      .steps-h-segment { transform: scaleX(1) scaleY(1); transition: none; }
+      .step-h-visual::before,
+      .step-h-icon::after {
+        animation: none;
+      }
+    }
+
+    /* === STATS - VERDE ESCURO COM GLOWS === */
+    .stats-bg {
+      background: #0D423F;
+      position: relative;
+      overflow: hidden;
+    }
+    .stats-bg::before {
+      content: '';
+      position: absolute;
+      top: 50%; left: 10%;
+      transform: translateY(-50%);
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(105,228,112,0.10) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .stats-bg::after {
+      content: '';
+      position: absolute;
+      bottom: -100px; right: 5%;
+      width: 350px; height: 350px;
+      background: radial-gradient(circle, rgba(132,160,255,0.10) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .stats-bg .container { position: relative; z-index: 1; }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+    .stat {
+      background: rgba(105,228,112,0.06);
+      padding: 28px 20px;
+      border-radius: 12px;
+      border: 1px solid rgba(105,228,112,0.18);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      transition: all 0.2s;
+    }
+    .stat:hover {
+      border-color: rgba(105,228,112,0.4);
+      background: rgba(105,228,112,0.09);
+    }
+    .stat-num {
+      font-size: clamp(26px, 7vw, 40px);
+      font-weight: 500;
+      color: #69E470;
+      line-height: 1;
+      margin: 0;
+      letter-spacing: -1.5px;
+      white-space: nowrap;
+    }
+    .stat-label { font-size: 13px; color: rgba(249,249,249,0.75); margin: 10px 0 0; }
+
+    /* === DEPOIMENTOS === */
+    .depoimentos-bg {
+      background:
+        radial-gradient(circle, rgba(13,66,63,0.05) 1px, transparent 1.5px) 0 0 / 28px 28px,
+        linear-gradient(180deg, #F9F9F9 0%, #FFFFFF 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    .depoimentos-bg::before {
+      content: '';
+      position: absolute;
+      top: 10%; right: -100px;
+      width: 380px; height: 380px;
+      background: radial-gradient(circle, rgba(105,228,112,0.18) 0%, transparent 65%);
+      filter: blur(70px);
+      pointer-events: none;
+    }
+    .depoimentos-bg::after {
+      content: '';
+      position: absolute;
+      bottom: -50px; left: -100px;
+      width: 320px; height: 320px;
+      background: radial-gradient(circle, rgba(132,160,255,0.12) 0%, transparent 65%);
+      filter: blur(70px);
+      pointer-events: none;
+    }
+    .depoimentos-bg .container { position: relative; z-index: 1; }
+    /* === CARROSSEL DE DEPOIMENTOS === */
+    /* Wrapper externo: contém carrossel + dots */
+    .depoimentos-shell {
+      max-width: 720px;
+      margin: 0 auto;
+      position: relative;
+    }
+    /* === CARROSSEL DE DEPOIMENTOS === */
+    .depoimentos-carousel {
+      max-width: 720px;
+      margin: 0 auto;
+      position: relative;
+    }
+    .depoimentos-viewport {
+      overflow: hidden;
+      border-radius: 16px;
+      position: relative;
+      z-index: 2;
+      /* Sombra com 2 camadas - drop-shadow respeita border-radius e não é cortado por overflow:hidden */
+      filter:
+        drop-shadow(0 8px 16px rgba(13,66,63,0.25))
+        drop-shadow(0 24px 50px rgba(13,66,63,0.30));
+    }
+    .depoimentos-track {
+      display: flex;
+      transition: transform 0.7s cubic-bezier(0.65, 0, 0.35, 1);
+      will-change: transform;
+    }
+    .depoimentos-track .depoimento {
+      flex: 0 0 100%;
+      box-sizing: border-box;
+      /* Gradient interno: simula luz vindo de cima (topo mais claro, base mais escura) */
+      background: linear-gradient(180deg, #156961 0%, #0D423F 60%, #082E2C 100%);
+      color: #F9F9F9;
+      border-radius: 16px;
+      padding: 40px 36px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+      /* Inset shadows pra efeito 3D interno (luz refletida + profundidade do material) */
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.12),
+        inset 0 -1px 0 rgba(0,0,0,0.30),
+        inset 0 0 0 1px rgba(255,255,255,0.04);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .depoimentos-track { transition: none; }
+    }
+    .depoimentos-track .depoimento::before {
+      content: '';
+      position: absolute;
+      top: -80px; right: -80px;
+      width: 280px; height: 280px;
+      background: radial-gradient(circle, rgba(105,228,112,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .depoimentos-track .depoimento > * { position: relative; z-index: 1; }
+
+    .depoimentos-track .depoimento-stars {
+      color: #69E470;
+      font-size: 20px;
+      letter-spacing: 4px;
+      margin-bottom: 24px;
+    }
+    .depoimentos-track .depoimento-quote {
+      font-size: 17px;
+      line-height: 1.65;
+      color: #F9F9F9;
+      flex-grow: 1;
+      margin-bottom: 32px;
+    }
+    .depoimentos-track .depoimento-author {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding-top: 24px;
+      border-top: 1px solid rgba(105,228,112,0.25);
+    }
+    .depoimentos-track .depoimento-avatar {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: #69E470;
+      color: #0D423F;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 500;
+      font-size: 16px;
+      flex-shrink: 0;
+      box-shadow: 0 6px 16px rgba(105,228,112,0.35);
+    }
+    .depoimentos-track .depoimento-name {
+      font-size: 15px;
+      font-weight: 500;
+      color: #F9F9F9;
+      margin: 0;
+    }
+    .depoimentos-track .depoimento-role {
+      font-size: 13px;
+      color: rgba(105,228,112,0.9);
+      margin: 2px 0 0;
+    }
+
+    /* === SETAS DO CARROSSEL === */
+    .depoimento-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 5;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: rgba(105,228,112,0.92);
+      color: #0D423F;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+      box-shadow: 0 4px 12px rgba(13,66,63,0.30), 0 2px 4px rgba(13,66,63,0.20);
+      transition: all 0.2s ease;
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+    }
+    .depoimento-arrow:hover {
+      background: #69E470;
+      box-shadow: 0 6px 18px rgba(13,66,63,0.35), 0 3px 6px rgba(13,66,63,0.25);
+      transform: translateY(-50%) scale(1.06);
+    }
+    .depoimento-arrow:active {
+      transform: translateY(-50%) scale(0.96);
+    }
+    .depoimento-arrow:focus-visible {
+      outline: 2px solid #0D423F;
+      outline-offset: 2px;
+    }
+    .depoimento-arrow-prev { left: -22px; }
+    .depoimento-arrow-next { right: -22px; }
+
+    /* Dots de navegação */
+    .depoimentos-dots {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 56px;
+      position: relative;
+      z-index: 3;
+    }
+    .depoimento-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(13,66,63,0.25);
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      transition: all 0.3s ease;
+    }
+    .depoimento-dot:hover {
+      background: rgba(13,66,63,0.5);
+      transform: scale(1.2);
+    }
+    .depoimento-dot.active {
+      background: #0D423F;
+      width: 24px;
+      border-radius: 4px;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .depoimentos-track { transition: none; }
+    }
+
+    /* === PREÇOS - VERDE ESCURO COM GLOWS MAIS RICOS === */
+    .precos-bg {
+      background: #0D423F;
+      color: #F9F9F9;
+      position: relative;
+      overflow: hidden;
+    }
+    /* 3 glows estratégicos pra dar profundidade */
+    .precos-bg::before {
+      content: '';
+      position: absolute;
+      top: -100px; right: -100px;
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(105,228,112,0.18) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .precos-bg::after {
+      content: '';
+      position: absolute;
+      bottom: -150px; left: -100px;
+      width: 450px; height: 450px;
+      background: radial-gradient(circle, rgba(132,160,255,0.14) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .precos-bg .container { position: relative; z-index: 1; }
+    /* Adicionar 3º glow via wrapper */
+    .precos-bg .container::after {
+      content: '';
+      position: absolute;
+      top: 50%; right: 30%;
+      width: 300px; height: 300px;
+      background: radial-gradient(circle, rgba(105,228,112,0.08) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: -1;
+    }
+    .price-tabs {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 32px;
+    }
+    .price-tab {
+      padding: 10px 16px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 100px;
+      font-size: 13px;
+      cursor: pointer;
+      color: #F9F9F9;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.15s;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+    .price-tab:hover {
+      border-color: #69E470;
+      background: rgba(105,228,112,0.1);
+    }
+    .price-tab.active {
+      background: #69E470;
+      color: #0D423F;
+      border-color: #69E470;
+      font-weight: 500;
+      box-shadow: 0 4px 12px rgba(105,228,112,0.3);
+    }
+    .price-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .price-card {
+      background: #FFFFFF;
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 14px;
+      padding: 28px 24px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      color: #0D423F;
+      box-shadow: 0 16px 32px -12px rgba(0,0,0,0.25);
+    }
+    .price-card.featured {
+      border: 2px solid #69E470;
+      box-shadow: 0 24px 60px -8px rgba(105,228,112,0.35), 0 12px 24px -8px rgba(0,0,0,0.3);
+      transform: translateY(-4px);
+    }
+    .price-card.featured::before {
+      content: 'Mais escolhido';
+      position: absolute;
+      top: -12px;
+      left: 20px;
+      background: #69E470;
+      color: #0D423F;
+      padding: 4px 12px;
+      border-radius: 100px;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.3px;
+      box-shadow: 0 4px 12px rgba(105,228,112,0.4);
+    }
+    /* MEI card - FUNDO BRANCO com borda dupla verde claro (corrigindo bug de legibilidade) */
+    .price-card-mei {
+      background: #FFFFFF;
+      border: 2px solid #69E470;
+      position: relative;
+    }
+    /* Banner discreto "MEI" no topo do card MEI */
+    .price-card-mei::before {
+      content: 'MEI · Pra começar';
+      position: absolute;
+      top: -12px;
+      left: 20px;
+      background: linear-gradient(135deg, #69E470 0%, #5FD466 100%);
+      color: #0D423F;
+      padding: 4px 12px;
+      border-radius: 100px;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.3px;
+      box-shadow: 0 4px 12px rgba(105,228,112,0.3);
+    }
+    .price-card-disabled {
+      background: rgba(255,255,255,0.85);
+      opacity: 0.7;
+      box-shadow: none;
+    }
+    .price-modalidade { font-size: 10px; color: #0F6E56; font-weight: 500; letter-spacing: 0.8px; margin: 0; }
+    .price-card-disabled .price-modalidade { color: #888; }
+    .price-plano { font-size: 18px; font-weight: 500; color: #0D423F; margin: 6px 0 14px; }
+    .price-value { font-size: 36px; font-weight: 500; color: #0D423F; margin: 0; line-height: 1; }
+    .price-value-sub { font-size: 14px; color: #5F5E5A; font-weight: 400; }
+    .price-features { margin: 20px 0; padding: 0; list-style: none; flex-grow: 1; }
+    .price-features li {
+      font-size: 13px;
+      color: #444441;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      line-height: 1.5;
+    }
+    .price-features li svg { color: #1D9E75; flex-shrink: 0; margin-top: 2px; }
+    .price-btn {
+      width: 100%;
+      padding: 12px;
+      background: #0D423F;
+      color: #69E470;
+      border: none;
+      border-radius: 8px;
+      font-weight: 500;
+      font-size: 13px;
+      cursor: pointer;
+      transition: all 0.15s;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    .price-btn:hover { background: #082c2a; box-shadow: 0 6px 16px rgba(13,66,63,0.25); }
+    .price-card-mei .price-btn {
+      background: #69E470;
+      color: #0D423F;
+    }
+    .price-card-mei .price-btn:hover { background: #4dd055; box-shadow: 0 6px 16px rgba(105,228,112,0.35); }
+    .price-disclaimer { font-size: 13px; color: #5F5E5A; line-height: 1.6; margin: 12px 0; }
+    .price-note {
+      font-size: 13px;
+      color: rgba(249,249,249,0.75);
+      margin-top: 32px;
+      text-align: center;
+      line-height: 1.5;
+    }
+    .price-note a { color: #69E470; text-decoration: underline; }
+
+    /* === DEEP LINKS DE PRICING (pras páginas futuras por vertical) === */
+    .price-deep-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 24px;
+      padding: 14px 24px;
+      background: rgba(105,228,112,0.08);
+      border: 1px solid rgba(105,228,112,0.25);
+      border-radius: 10px;
+      color: #69E470;
+      font-size: 14px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .price-deep-link:hover {
+      background: rgba(105,228,112,0.14);
+      border-color: rgba(105,228,112,0.5);
+      transform: translateY(-1px);
+    }
+    .price-deep-link span {
+      transition: transform 0.2s;
+      display: inline-block;
+    }
+    .price-deep-link:hover span { transform: translateX(4px); }
+
+    /* === CALCULADORA === */
+    .calc-bg {
+      background:
+        radial-gradient(circle, rgba(13,66,63,0.05) 1px, transparent 1.5px) 0 0 / 28px 28px,
+        linear-gradient(180deg, #FFFFFF 0%, #F9F9F9 100%);
+      border-top: 1px solid rgba(13,66,63,0.06);
+      position: relative;
+      overflow: hidden;
+    }
+    .calc-bg::before {
+      content: '';
+      position: absolute;
+      top: 20%; right: -100px;
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(105,228,112,0.20) 0%, transparent 65%);
+      filter: blur(70px);
+      pointer-events: none;
+    }
+    .calc-bg::after {
+      content: '';
+      position: absolute;
+      bottom: -80px; left: 10%;
+      width: 280px; height: 280px;
+      background: radial-gradient(circle, rgba(132,160,255,0.14) 0%, transparent 65%);
+      filter: blur(70px);
+      pointer-events: none;
+    }
+    .calc-bg .container { position: relative; z-index: 1; }
+    .calc-wrap {
+      background: radial-gradient(ellipse at top right, #7DEC83 0%, #69E470 60%, #5FD466 100%);
+      border-radius: 16px;
+      padding: 32px;
+      max-width: 560px;
+      box-shadow: 0 24px 60px -12px rgba(105,228,112,0.4), 0 12px 24px -8px rgba(13,66,63,0.15);
+      position: relative;
+      overflow: hidden;
+    }
+    .calc-wrap::before {
+      content: '';
+      position: absolute;
+      bottom: -80px; left: -80px;
+      width: 280px; height: 280px;
+      background: radial-gradient(circle, rgba(13,66,63,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .calc-wrap > * { position: relative; z-index: 1; }
+    .calc-label { display: block; font-size: 14px; color: #0D423F; font-weight: 500; margin-bottom: 10px; }
+    .calc-input {
+      width: 100%;
+      padding: 14px 16px;
+      border: 1px solid rgba(13,66,63,0.25);
+      border-radius: 8px;
+      font-size: 16px;
+      font-family: 'Lexend', sans-serif;
+      background: #F9F9F9;
+      margin-bottom: 16px;
+      color: #0D423F;
+    }
+    .calc-input:focus {
+      outline: none;
+      border-color: #0D423F;
+      box-shadow: 0 0 0 3px rgba(13,66,63,0.1);
+    }
+    .calc-btn {
+      width: 100%;
+      padding: 14px;
+      background: #0D423F;
+      color: #69E470;
+      border: none;
+      border-radius: 8px;
+      font-weight: 500;
+      font-size: 15px;
+      cursor: pointer;
+      font-family: 'Lexend', sans-serif;
+      transition: background 0.15s;
+    }
+    .calc-btn:hover:not(:disabled) { background: #082c2a; }
+    .calc-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+    .calc-results { display: none; margin-top: 24px; }
+    .calc-results.show { display: block; }
+    .calc-summary {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    .calc-summary-card {
+      background: rgba(249,249,249,0.85);
+      padding: 14px;
+      border-radius: 8px;
+    }
+    .calc-summary-card p { margin: 0; }
+    .calc-summary-label { font-size: 11px; color: #444441; letter-spacing: 0.5px; }
+    .calc-summary-value { font-size: 20px; font-weight: 500; color: #0D423F; margin-top: 4px !important; }
+    .calc-summary-extra { font-size: 12px; color: #5F5E5A; margin-top: 2px !important; }
+    .calc-best {
+      background: #0D423F;
+      color: #F9F9F9;
+      padding: 20px;
+      border-radius: 12px;
+      text-align: center;
+    }
+    .calc-best p { margin: 0; }
+    .calc-best-label { font-size: 11px; opacity: 0.7; letter-spacing: 0.5px; }
+    .calc-best-name { font-size: 20px; font-weight: 500; margin-top: 6px !important; margin-bottom: 10px !important; }
+    .calc-best-saving { font-size: 14px; opacity: 0.9; margin-bottom: 16px !important; }
+    .calc-best-saving strong { color: #69E470; font-weight: 500; font-size: 18px; }
+    .calc-cta-btn {
+      width: 100%;
+      padding: 14px;
+      background: #69E470;
+      color: #0D423F;
+      border: none;
+      border-radius: 8px;
+      font-weight: 500;
+      font-size: 14px;
+      cursor: pointer;
+      font-family: 'Lexend', sans-serif;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    .calc-disclaimer {
+      font-size: 11px;
+      color: #444441;
+      margin-top: 14px;
+      line-height: 1.5;
+    }
+    .calc-disclaimer a { text-decoration: underline; }
+
+    /* === MÍDIA - LARANJA COM GRADIENT === */
+    .midia-bg {
+      background: radial-gradient(ellipse at top right, #F8A85B 0%, #F4933B 50%, #E68228 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    .midia-bg::before {
+      content: '';
+      position: absolute;
+      bottom: -100px; left: -100px;
+      width: 350px; height: 350px;
+      background: radial-gradient(circle, rgba(105,228,112,0.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .midia-bg .container { position: relative; z-index: 1; }
+    .midia-card {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 24px;
+      background: #69E470;
+      border-radius: 12px;
+      border: 1px solid rgba(13,66,63,0.15);
+      transition: all 0.2s;
+      text-decoration: none;
+      box-shadow: 0 16px 32px -8px rgba(244,147,59,0.4), 0 4px 12px rgba(13,66,63,0.1);
+    }
+    .midia-card:hover {
+      border-color: #0D423F;
+      transform: translateY(-3px);
+      box-shadow: 0 24px 40px -8px rgba(244,147,59,0.5), 0 8px 16px rgba(13,66,63,0.15);
+    }
+    .midia-label { font-size: 11px; color: #0D423F; letter-spacing: 0.8px; font-weight: 500; margin: 0; opacity: 0.7; }
+    .midia-title { font-size: 14px; color: #0D423F; font-weight: 500; line-height: 1.4; margin: 6px 0 0; }
+
+    /* === BLOG === */
+    .blog-bg {
+      background:
+        radial-gradient(circle, rgba(13,66,63,0.05) 1px, transparent 1.5px) 0 0 / 28px 28px,
+        linear-gradient(180deg, #F9F9F9 0%, #FFFFFF 100%);
+      border-top: 1px solid rgba(13,66,63,0.06);
+      position: relative;
+      overflow: hidden;
+    }
+    .blog-bg::before {
+      content: '';
+      position: absolute;
+      top: -50px; left: -100px;
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(132,160,255,0.18) 0%, transparent 65%);
+      filter: blur(70px);
+      pointer-events: none;
+    }
+    .blog-bg::after {
+      content: '';
+      position: absolute;
+      bottom: -100px; right: -50px;
+      width: 320px; height: 320px;
+      background: radial-gradient(circle, rgba(105,228,112,0.15) 0%, transparent 65%);
+      filter: blur(70px);
+      pointer-events: none;
+    }
+    .blog-bg .container { position: relative; z-index: 1; }
+    .blog-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 32px;
+    }
+    .blog-header a { font-size: 13px; color: #0F6E56; font-weight: 500; }
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .blog-card {
+      /* Gradient sutil interno: branco no topo (luz vindo de cima), off-white na base */
+      background: linear-gradient(180deg, #FFFFFF 0%, #FAFAFA 100%);
+      border-radius: 14px;
+      overflow: hidden;
+      transition: all 0.25s;
+      cursor: pointer;
+      /* Inset highlights + box-shadow em camadas pra dar efeito 3D */
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.9),
+        inset 0 -1px 0 rgba(13,66,63,0.05),
+        inset 0 0 0 1px rgba(13,66,63,0.06),
+        0 1px 3px rgba(13,66,63,0.04),
+        0 4px 8px rgba(13,66,63,0.06),
+        0 12px 24px rgba(13,66,63,0.08);
+    }
+    .blog-card:hover {
+      transform: translateY(-4px);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.9),
+        inset 0 -1px 0 rgba(13,66,63,0.06),
+        inset 0 0 0 1px rgba(13,66,63,0.12),
+        0 2px 6px rgba(13,66,63,0.06),
+        0 8px 16px rgba(13,66,63,0.10),
+        0 20px 40px rgba(13,66,63,0.14),
+        0 8px 24px rgba(105,228,112,0.14);
+    }
+    .blog-card-img {
+      height: 140px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .blog-card-img svg { color: #0D423F; }
+    .blog-card-body { padding: 18px; }
+    .blog-card-tag { font-size: 10px; color: #0F6E56; letter-spacing: 0.8px; font-weight: 500; }
+    .blog-card-title { font-size: 14px; font-weight: 500; color: #0D423F; line-height: 1.35; margin: 8px 0; }
+    .blog-card-meta { font-size: 11px; color: #5F5E5A; margin: 0; }
+
+    /* === FAQ === */
+    .faq-bg {
+      background:
+        radial-gradient(circle, rgba(13,66,63,0.05) 1px, transparent 1.5px) 0 0 / 28px 28px,
+        linear-gradient(180deg, #FFFFFF 0%, #F9F9F9 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    .faq-bg::before {
+      content: '';
+      position: absolute;
+      top: 20%; right: -80px;
+      width: 380px; height: 380px;
+      background: radial-gradient(circle, rgba(105,228,112,0.16) 0%, transparent 65%);
+      filter: blur(70px);
+      pointer-events: none;
+    }
+    .faq-bg::after {
+      content: '';
+      position: absolute;
+      bottom: 10%; left: -80px;
+      width: 300px; height: 300px;
+      background: radial-gradient(circle, rgba(132,160,255,0.12) 0%, transparent 65%);
+      filter: blur(70px);
+      pointer-events: none;
+    }
+    .faq-bg .container { position: relative; z-index: 1; }
+    .faq-grid { display: grid; gap: 10px; }
+    .faq-item {
+      background: #FFFFFF;
+      border: 1px solid rgba(13,66,63,0.08);
+      border-radius: 12px;
+      padding: 20px 24px;
+      transition: all 0.2s;
+      box-shadow: 0 1px 2px rgba(13,66,63,0.04);
+    }
+    .faq-item[open] {
+      background: #FFFFFF;
+      border-color: #0D423F;
+      box-shadow: 0 16px 32px -12px rgba(13,66,63,0.15), 0 4px 8px -4px rgba(105,228,112,0.1);
+    }
+    .faq-item summary {
+      font-size: 15px;
+      font-weight: 500;
+      color: #0D423F;
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .faq-item summary::-webkit-details-marker { display: none; }
+    .faq-item summary::after {
+      content: '+';
+      font-size: 22px;
+      color: #0D423F;
+      font-weight: 300;
+      line-height: 1;
+    }
+    .faq-item[open] summary::after { content: '−'; }
+    .faq-item p {
+      margin: 14px 0 0;
+      font-size: 14px;
+      color: #444441;
+      line-height: 1.7;
+    }
+
+    /* === CTA FINAL === */
+    .cta-final {
+      background: #0D423F;
+      color: #F9F9F9;
+      padding: 80px 0;
+      text-align: center;
+      border-radius: 24px;
+      margin: 80px 0;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 32px 64px -16px rgba(13,66,63,0.4), 0 16px 32px -8px rgba(0,0,0,0.15);
+    }
+    .cta-final::before {
+      content: '';
+      position: absolute;
+      top: -100px; right: -100px;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(105,228,112,0.22) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .cta-final::after {
+      content: '';
+      position: absolute;
+      bottom: -150px; left: -100px;
+      width: 350px;
+      height: 350px;
+      background: radial-gradient(circle, rgba(132,160,255,0.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .cta-final h2 {
+      font-size: 40px;
+      line-height: 1.15;
+      color: #F9F9F9;
+      margin-bottom: 16px;
+      letter-spacing: -1px;
+      position: relative;
+    }
+    .cta-final p {
+      font-size: 16px;
+      color: rgba(249,249,249,0.8);
+      margin-bottom: 32px;
+      position: relative;
+    }
+    .cta-final .btn-primary { font-size: 16px; padding: 16px 32px; position: relative; }
+
+    /* === FOOTER === */
+    footer {
+      background: #FFFFFF;
+      padding: 60px 0 40px;
+      border-top: 1px solid rgba(13,66,63,0.12);
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 32px;
+      margin-bottom: 40px;
+    }
+    .footer-brand p { font-size: 13px; color: #5F5E5A; margin: 12px 0 16px; line-height: 1.6; max-width: 280px; }
+    .footer-social { display: flex; gap: 12px; }
+    .footer-social a { color: #0D423F; transition: color 0.15s; }
+    .footer-social a:hover { color: #1D9E75; }
+    .footer-col h4 { font-size: 13px; color: #0D423F; font-weight: 500; margin-bottom: 14px; }
+    .footer-col a { display: block; font-size: 13px; color: #5F5E5A; margin-bottom: 8px; transition: color 0.15s; }
+    .footer-col a:hover { color: #0D423F; }
+    .footer-legal {
+      padding-top: 28px;
+      border-top: 1px solid rgba(13,66,63,0.1);
+      font-size: 12px;
+      color: #5F5E5A;
+      line-height: 1.8;
+    }
+    .footer-legal strong { color: #0D423F; font-weight: 500; }
+    .footer-copy { margin-top: 16px; opacity: 0.7; }
+
+    /* === SCROLL ANIMATIONS ===
+       Aplicado em seções via class="scroll-animate".
+       Quando a seção entra no viewport, JS adiciona .is-visible
+       e os filhos diretos animam com fade-in escalonado. */
+
+    /* Estado inicial: filhos diretos do container invisíveis e levemente abaixo */
+    .scroll-animate > .container > *,
+    .scroll-animate > .container > * > h2,
+    .scroll-animate > .container > * > p,
+    .scroll-animate > .container > * > .pill {
+      opacity: 0;
+      transform: translateY(28px);
+      transition:
+        opacity 0.75s cubic-bezier(0.22, 0.61, 0.36, 1),
+        transform 0.75s cubic-bezier(0.22, 0.61, 0.36, 1);
+    }
+
+    /* Quando .is-visible é adicionado: anima os filhos com stagger automático */
+    .scroll-animate.is-visible > .container > * {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .scroll-animate.is-visible > .container > *:nth-child(1) { transition-delay: 0s; }
+    .scroll-animate.is-visible > .container > *:nth-child(2) { transition-delay: 0.08s; }
+    .scroll-animate.is-visible > .container > *:nth-child(3) { transition-delay: 0.16s; }
+    .scroll-animate.is-visible > .container > *:nth-child(4) { transition-delay: 0.24s; }
+    .scroll-animate.is-visible > .container > *:nth-child(5) { transition-delay: 0.32s; }
+    .scroll-animate.is-visible > .container > *:nth-child(6) { transition-delay: 0.4s; }
+    .scroll-animate.is-visible > .container > *:nth-child(7) { transition-delay: 0.48s; }
+
+    /* Stagger interno: filhos de grids/listas tambem animam em cadeia */
+    .scroll-animate .stagger-children > * {
+      opacity: 0;
+      transform: translateY(20px);
+      transition:
+        opacity 0.6s cubic-bezier(0.22, 0.61, 0.36, 1),
+        transform 0.6s cubic-bezier(0.22, 0.61, 0.36, 1);
+    }
+    .scroll-animate.is-visible .stagger-children > * {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .scroll-animate.is-visible .stagger-children > *:nth-child(1) { transition-delay: 0.35s; }
+    .scroll-animate.is-visible .stagger-children > *:nth-child(2) { transition-delay: 0.42s; }
+    .scroll-animate.is-visible .stagger-children > *:nth-child(3) { transition-delay: 0.49s; }
+    .scroll-animate.is-visible .stagger-children > *:nth-child(4) { transition-delay: 0.56s; }
+    .scroll-animate.is-visible .stagger-children > *:nth-child(5) { transition-delay: 0.63s; }
+    .scroll-animate.is-visible .stagger-children > *:nth-child(6) { transition-delay: 0.7s; }
+    .scroll-animate.is-visible .stagger-children > *:nth-child(7) { transition-delay: 0.77s; }
+    .scroll-animate.is-visible .stagger-children > *:nth-child(8) { transition-delay: 0.84s; }
+
+    /* === PARALLAX DOS BLOBS DECORATIVOS ===
+       Usa CSS variable --parallax-y setada via JS no scroll.
+       Aplicado nos pseudo-elementos ::before/::after de algumas seções. */
+    [data-parallax]::before,
+    [data-parallax]::after {
+      transform: translateY(var(--parallax-y, 0));
+    }
+    /* Como Funciona tem position diferente nos blobs - overide específico */
+    .como-funciona-bg[data-parallax]::before {
+      transform: translateY(var(--parallax-y, 0)) translateZ(0);
+    }
+
+    /* Counter dos stats - hide do conteúdo até iniciar */
+    .stat-num[data-counter] {
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Respeitar preferência de redução de movimento */
+    @media (prefers-reduced-motion: reduce) {
+      .scroll-animate > .container > *,
+      .scroll-animate .stagger-children > * {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+      }
+      [data-parallax]::before,
+      [data-parallax]::after {
+        transform: none !important;
+      }
+    }
+
+    /* === RESPONSIVE === */
+    @media (max-width: 900px) {
+      .hero h1 { font-size: 40px; }
+      .h2 { font-size: 28px; }
+      .hero-grid { grid-template-columns: 1fr; gap: 32px; }
+      .mock-chat {
+        width: 100%;
+        max-width: 420px;
+        margin: 0 auto;
+      }
+      .verticais-grid { grid-template-columns: repeat(2, 1fr); }
+      .price-grid { grid-template-columns: 1fr; }
+      .price-card.featured { transform: none; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .stat { padding: 22px 14px; }
+      .depoimentos-track .depoimento { padding: 32px 24px; }
+      .depoimentos-track .depoimento-quote { font-size: 15px; }
+      .depoimento-arrow { width: 38px; height: 38px; }
+      .depoimento-arrow-prev { left: 6px; }
+      .depoimento-arrow-next { right: 6px; }
+      .blog-grid { grid-template-columns: 1fr; }
+
+      /* === COMO FUNCIONA MOBILE: vertical (1 coluna), estilo idêntico ao desktop mas empilhado === */
+      .steps-h {
+        grid-template-columns: 1fr;
+        gap: 48px;
+        margin-top: 40px;
+        padding: 0;
+      }
+      .step-h {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .step-h-visual {
+        width: 72px;
+        height: 72px;
+        margin-bottom: 4px;
+      }
+      .step-h-icon { width: 72px; height: 72px; }
+      .step-h-icon svg { width: 32px; height: 32px; }
+      .step-h-number {
+        font-size: 80px;
+        letter-spacing: -2px;
+        margin-bottom: 16px;
+      }
+      .step-h-body { max-width: 100%; }
+      .step-h-title { font-size: 20px; }
+      .step-h-desc { font-size: 14px; }
+
+      /* No mobile: esconde as linhas - layout vertical já comunica a sequência sem precisar delas */
+      .steps-h-segment { display: none; }
+
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .nav-links { display: none; }
+      section { padding: 56px 0; }
+      .cta-final { padding: 56px 24px; margin-top: 56px; }
+      .cta-final h2 { font-size: 28px; }
+      .price-tabs { gap: 6px; }
+      .price-tab { padding: 8px 12px; font-size: 12px; }
+    }
+
+    @media (max-width: 560px) {
+      .verticais-grid { grid-template-columns: 1fr; }
+      .stats-grid { grid-template-columns: 1fr 1fr; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .container { padding: 0 20px; }
+      .hero { padding: 56px 0 64px; }
+      .calc-wrap { padding: 24px; }
+    }
+
+    /* =====================================================
+       CURVAS DECORATIVAS DE FUNDO (efeito 3D + blur de profundidade)
+       Uma curva por seção, desfocada no plano de fundo
+       ===================================================== */
+    .curve {
+      position: absolute;
+      pointer-events: none;
+      z-index: 0;
+      clip-path: polygon(0% 0%, 0% 0%, -3% 100%, -3% 100%);
+      transition: clip-path 3.2s cubic-bezier(0.65, 0, 0.35, 1);
+      filter: blur(4px);
+    }
+    .curve svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+    /* Quando a seção entra no viewport, a curva é "desenhada" da esquerda pra direita */
+    .scroll-animate.is-visible .curve,
+    .hero.is-visible .curve {
+      clip-path: polygon(0% 0%, 110% 0%, 105% 100%, -3% 100%);
+      transition-delay: 0.3s;
+    }
+
+    /* Posicionamentos individuais (escolhidos pra não sobrepor conteúdo) */
+    .curve-hero {
+      width: 120vw; height: 320px;
+      bottom: 8%; left: 50%;
+      transform: translateX(-50%);
+      opacity: 0.30;
+    }
+    .curve-verticais {
+      width: 120vw; height: 320px;
+      top: 58%; left: 50%;
+      transform: translateX(-50%);
+      opacity: 0.20;
+    }
+    .curve-como {
+      width: 120vw; height: 320px;
+      top: 22%; left: 50%;
+      transform: translateX(-50%);
+      opacity: 0.10;
+    }
+    .curve-stats {
+      width: 120vw; height: 320px;
+      top: 28%; left: 50%;
+      transform: translateX(-50%);
+      opacity: 0.22;
+    }
+    .curve-depoimentos {
+      width: 120vw; height: 320px;
+      top: 52%; left: 50%;
+      transform: translateX(-50%);
+      opacity: 0.20;
+    }
+    .curve-precos {
+      width: 120vw; height: 320px;
+      top: 18%; left: 50%;
+      transform: translateX(-50%);
+      opacity: 0.22;
+    }
+    .curve-cta-final {
+      width: 120%; height: 220px;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      opacity: 0.18;
+    }
+
+    /* Mobile: curva menor, blur menor (pra não pesar performance) */
+    @media (max-width: 900px) {
+      .curve {
+        filter: blur(2px);
+        height: 180px !important;
+        width: 110vw !important;
+        opacity: 0.12 !important;
+      }
+      .curve-hero { bottom: 4%; opacity: 0.25 !important; }
+    }
+
+    /* Pra acessibilidade: respeitar reduced-motion */
+    @media (prefers-reduced-motion: reduce) {
+      .curve {
+        clip-path: polygon(0% 0%, 110% 0%, 105% 100%, -3% 100%);
+        transition: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ============ ANNOUNCEMENT (laranja) ============ -->
+<div class="announcement">
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.912 5.813a2 2 0 0 0 1.275 1.275L21 12l-5.813 1.912a2 2 0 0 0 -1.275 1.275L12 21l-1.912 -5.813a2 2 0 0 0 -1.275 -1.275L3 12l5.813 -1.912a2 2 0 0 0 1.275 -1.275L12 3z"></path></svg>
+  Selvia captou R$ 2,5M e lançou conta PJ para médicos — <a href="https://startups.com.br/negocios/fintech/depois-de-captar-r-25m-selvia-lanca-conta-pj-para-medicos/" target="_blank" rel="noopener">leia no Startups.com.br →</a>
+</div>
+
+<!-- ============ HEADER ============ -->
+<header>
+  <div class="container nav">
+    <div class="nav-logo">selvia</div>
+    <nav class="nav-links">
+      <a href="#verticais">Para você</a>
+      <a href="#precos">Preços</a>
+      <a href="#calculadora">Calculadora</a>
+      <a href="#blog">Blog</a>
+      <a href="/contabilidades" class="nav-link-secondary" data-future-page="contabilidades">Para contabilidades</a>
+    </nav>
+    <a href="https://api.whatsapp.com/send?phone=5511936220451&text=Ol%C3%A1!%20Vim%20do%20site%20e%20gostaria%20de%20saber%20mais%20sobre%20os%20servi%C3%A7os!" target="_blank" rel="noopener" class="btn-primary btn-small">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21l1.65 -3.8a9 9 0 1 1 3.4 2.9l-5.05 .9"></path><path d="M9 10a.5 .5 0 0 0 1 0v-1a.5 .5 0 0 0 -1 0v1a5 5 0 0 0 5 5h1a.5 .5 0 0 0 0 -1h-1a.5 .5 0 0 0 0 1"></path></svg>
+      WhatsApp
+    </a>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="curve curve-hero">
+<svg viewBox="0 -50 1400 320" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+  <defs>
+    <filter id="shadow-hero" x="-15%" y="-30%" width="130%" height="180%">
+      <feGaussianBlur stdDeviation="12" />
+    </filter>
+  </defs>
+  <path d="M -30 130 C 200 40, 380 200, 560 110 C 700 40, 820 80, 880 150 C 920 200, 870 230, 820 200 C 770 170, 810 100, 920 120 C 1080 150, 1220 90, 1430 50" stroke="#000000" stroke-width="34" stroke-linecap="round" fill="none" opacity="0.55" filter="url(#shadow-hero)" transform="translate(8, 20)"/>
+  <path d="M -30 130 C 200 40, 380 200, 560 110 C 700 40, 820 80, 880 150 C 920 200, 870 230, 820 200 C 770 170, 810 100, 920 120 C 1080 150, 1220 90, 1430 50" stroke="#69E470" stroke-width="26" stroke-linecap="round" fill="none"/>
+  <path d="M -30 130 C 200 40, 380 200, 560 110 C 700 40, 820 80, 880 150 C 920 200, 870 230, 820 200 C 770 170, 810 100, 920 120 C 1080 150, 1220 90, 1430 50" stroke="#C4F5C8" stroke-width="7" stroke-linecap="round" fill="none" opacity="0.7" transform="translate(-1, -3)"/>
+</svg>
+</div>
+  <div class="container hero-grid">
+    <div>
+      <span class="pill pill-green">Para profissionais PJ no Brasil</span>
+      <h1>Sua equipe financeira no WhatsApp.</h1>
+      <p class="hero-sub">Contabilidade, impostos, banco PJ e assessoria — tudo em um só chat. Com gente humana por trás, atendendo médicos, devs, advogados e mais.</p>
+      <div class="hero-ctas">
+        <a href="https://api.whatsapp.com/send?phone=5511936220451&text=Ol%C3%A1!%20Vim%20do%20site%20e%20gostaria%20de%20saber%20mais%20sobre%20os%20servi%C3%A7os!" target="_blank" rel="noopener" class="btn-primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21l1.65 -3.8a9 9 0 1 1 3.4 2.9l-5.05 .9"></path><path d="M9 10a.5 .5 0 0 0 1 0v-1a.5 .5 0 0 0 -1 0v1a5 5 0 0 0 5 5h1a.5 .5 0 0 0 0 -1h-1a.5 .5 0 0 0 0 1"></path></svg>
+          Falar com a Selvia
+        </a>
+        <a href="#precos" class="btn-secondary">Ver preços →</a>
+      </div>
+      <p class="hero-social-proof">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 7m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0"></path><path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path><path d="M21 21v-2a4 4 0 0 0 -3 -3.85"></path></svg>
+        +1.000 médicos, devs e profissionais já contam com a Selvia
+      </p>
+    </div>
+
+    <div class="mock-chat" id="mock-chat">
+      <div class="mock-header">
+        <div class="mock-avatar">S</div>
+        <div class="mock-status">
+          <p class="mock-name">Selvia</p>
+          <p class="mock-online">● online</p>
+        </div>
+      </div>
+
+      <div class="mock-scroll" id="mock-scroll">
+
+        <!-- ETAPA 1: Selvia oferece o botão de emissão -->
+        <div class="mock-typing" id="typing-1">
+          <span></span><span></span><span></span>
+        </div>
+        <div class="mock-msg-them has-buttons" id="msg-1">
+          <p class="mock-sender">Selvia</p>
+          Clique aqui para emitir sua nota fiscal!
+          <div class="mock-time">17:40</div>
+        </div>
+        <div class="mock-buttons" id="msg-1-buttons">
+          <div class="mock-button">Emitir Nota Fiscal</div>
+        </div>
+
+        <!-- ETAPA 2: Cliente clica no botão -->
+        <div class="mock-msg-action" id="msg-2">
+          <div class="mock-msg-action-icon">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3v4a1 1 0 0 0 1 1h4"></path><path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z"></path></svg>
+          </div>
+          <div class="mock-msg-action-text">
+            <strong>Emitir Nota Fiscal</strong>
+            <span>Resposta enviada.</span>
+            <div class="mock-time" style="text-align: left; margin-top: 4px;">17:42 ✓✓</div>
+          </div>
+        </div>
+
+        <!-- ETAPA 3: Selvia confirma e oferece 2 opções -->
+        <div class="mock-typing" id="typing-2">
+          <span></span><span></span><span></span>
+        </div>
+        <div class="mock-msg-them has-buttons" id="msg-3">
+          <p class="mock-sender">Selvia</p>
+          <strong style="font-weight: 500;">Sua nota fiscal está pronta para prosseguir com a emissão!</strong><br><br>
+          Escolha como deseja emitir:<br><br>
+          • Emitir agora (automático)<br>
+          • Solicitar revisão humana (1 dia útil)
+          <div class="mock-time">17:42</div>
+        </div>
+        <div class="mock-buttons" id="msg-3-buttons">
+          <div class="mock-button">Emitir agora</div>
+          <div class="mock-button">Solicitar revisão (1 dia)</div>
+        </div>
+
+        <!-- ETAPA 4: Cliente escolhe "Emitir agora" com quote -->
+        <div class="mock-typing mock-typing-us" id="typing-3">
+          <span></span><span></span><span></span>
+        </div>
+        <div class="mock-msg-us" id="msg-4">
+          <div class="mock-quote">
+            <p class="mock-quote-sender">Selvia</p>
+            <p class="mock-quote-text">Sua nota fiscal está pronta para prosseguir com a emissão!...</p>
+          </div>
+          Emitir agora
+          <div class="mock-time">17:42 ✓✓</div>
+        </div>
+
+        <!-- ETAPA 5: Selvia processa -->
+        <div class="mock-typing" id="typing-4">
+          <span></span><span></span><span></span>
+        </div>
+        <div class="mock-msg-them" id="msg-5">
+          <p class="mock-sender">Selvia</p>
+          <strong style="font-weight: 500;">Sua nota fiscal está sendo processada. ⏳</strong><br><br>
+          Assim que a emissão for concluída, você receberá a nota fiscal pelo seu WhatsApp e poderá solicitar o XML.
+          <div class="mock-time">17:42</div>
+        </div>
+
+        <!-- ETAPA 6: Selvia entrega PDF + mensagem final -->
+        <div class="mock-typing" id="typing-5">
+          <span></span><span></span><span></span>
+        </div>
+        <div class="mock-file" id="msg-6-file">
+          <div class="mock-file-icon">PDF</div>
+          <div class="mock-file-info">
+            <p class="mock-file-name">NFSe Gilson - Nº 40.pdf</p>
+            <p class="mock-file-meta">182 KB · PDF</p>
+          </div>
+        </div>
+        <div class="mock-msg-them has-buttons" id="msg-6">
+          <p class="mock-sender">Selvia</p>
+          Olá <strong style="font-weight: 500;">Gilson</strong>,<br><br>
+          Sua Nota Fiscal foi emitida!<br>
+          • R$ 1.580,00 para <strong style="font-weight: 500;">Feern</strong><br>
+          • Nº 40<br><br>
+          Aqui está o documento!
+          <div class="mock-time">17:43</div>
+        </div>
+        <div class="mock-buttons" id="msg-6-buttons">
+          <div class="mock-button">Avaliar experiência</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ VERTICAIS ============ -->
+<section id="verticais" class="verticais-bg scroll-animate" data-parallax>
+  <div class="curve curve-verticais">
+<svg viewBox="0 -50 1400 320" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+  <defs>
+    <filter id="shadow-vert" x="-15%" y="-30%" width="130%" height="180%">
+      <feGaussianBlur stdDeviation="12" />
+    </filter>
+  </defs>
+  <path d="M -30 130 C 200 40, 380 200, 560 110 C 700 40, 820 80, 880 150 C 920 200, 870 230, 820 200 C 770 170, 810 100, 920 120 C 1080 150, 1220 90, 1430 50" stroke="#000000" stroke-width="34" stroke-linecap="round" fill="none" opacity="0.30" filter="url(#shadow-vert)" transform="translate(8, 20)"/>
+  <path d="M -30 130 C 200 40, 380 200, 560 110 C 700 40, 820 80, 880 150 C 920 200, 870 230, 820 200 C 770 170, 810 100, 920 120 C 1080 150, 1220 90, 1430 50" stroke="#0D423F" stroke-width="26" stroke-linecap="round" fill="none"/>
+  <path d="M -30 130 C 200 40, 380 200, 560 110 C 700 40, 820 80, 880 150 C 920 200, 870 230, 820 200 C 770 170, 810 100, 920 120 C 1080 150, 1220 90, 1430 50" stroke="#2A6862" stroke-width="7" stroke-linecap="round" fill="none" opacity="0.7" transform="translate(-1, -3)"/>
+</svg>
+</div>
+  <div class="container">
+    <span class="pill pill-dark">Pra quem é</span>
+    <h2 class="h2">A Selvia é para você se é:</h2>
+    <p class="section-sub">Atendimento especializado por profissão, com contadores que entendem do seu mundo. Clica e vê o plano da sua área.</p>
+
+    <div class="verticais-grid stagger-children">
+      <a href="#precos" data-vertical="medicos" class="vertical-card vertical-link">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4h-1a2 2 0 0 0 -2 2v3.5h0a5.5 5.5 0 0 0 11 0v-3.5a2 2 0 0 0 -2 -2h-1"></path><rect x="4" y="3" width="3" height="3" rx=".5"></rect><rect x="11" y="3" width="3" height="3" rx=".5"></rect><path d="M8 15a6 6 0 1 0 12 0v-3"></path><path d="M20 11m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"></path></svg>
+        <h3>Médicos</h3>
+        <p>Plantão, residência, consultório, Receita Saúde</p>
+        <span class="vertical-arrow">Ver plano →</span>
+      </a>
+      <a href="#precos" data-vertical="devs" class="vertical-card vertical-link">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 8l-4 4l4 4"></path><path d="M17 8l4 4l-4 4"></path><path d="M14 4l-4 16"></path></svg>
+        <h3>Devs e TI</h3>
+        <p>Inclui recebimento do exterior em dólar</p>
+        <span class="vertical-arrow">Ver plano →</span>
+      </a>
+      <a href="#precos" data-vertical="advogados" class="vertical-card vertical-link">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 20l10 0"></path><path d="M6 6l6 -1l6 1"></path><path d="M12 3l0 17"></path><path d="M9 12l-3 -6l-3 6a3 3 0 0 0 6 0"></path><path d="M21 12l-3 -6l-3 6a3 3 0 0 0 6 0"></path></svg>
+        <h3>Advogados</h3>
+        <p>Sociedade Unipessoal e escritórios</p>
+        <span class="vertical-arrow">Ver plano →</span>
+      </a>
+      <a href="#precos" data-vertical="criadores" class="vertical-card vertical-link">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 2m0 3a3 3 0 0 1 3 -3h0a3 3 0 0 1 3 3v5a3 3 0 0 1 -3 3h0a3 3 0 0 1 -3 -3z"></path><path d="M5 10a7 7 0 0 0 14 0"></path><path d="M8 21l8 0"></path><path d="M12 17l0 4"></path></svg>
+        <h3>Criadores de conteúdo</h3>
+        <p>YouTube, Twitch, Hotmart, infoprodutos</p>
+        <span class="vertical-arrow">Ver plano →</span>
+      </a>
+      <a href="#precos" data-vertical="saude" class="vertical-card vertical-link">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19.5 12.572l-7.5 7.428l-7.5 -7.428a5 5 0 1 1 7.5 -6.566a5 5 0 1 1 7.5 6.572"></path></svg>
+        <h3>Saúde geral</h3>
+        <p>Psicólogos, fisios, dentistas, nutris</p>
+        <span class="vertical-arrow">Ver plano →</span>
+      </a>
+      <a href="#precos" data-vertical="outras" class="vertical-card vertical-link">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7m0 2a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v9a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z"></path><path d="M8 7v-2a2 2 0 0 1 2 -2h4a2 2 0 0 1 2 2v2"></path><path d="M12 12l0 .01"></path><path d="M3 13a20 20 0 0 0 18 0"></path></svg>
+        <h3>Outras PJ</h3>
+        <p>Consultores, designers, e mais</p>
+        <span class="vertical-arrow">Ver plano →</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ COMO FUNCIONA (verde claro) ============ -->
+<section class="como-funciona-bg scroll-animate" data-parallax>
+  <div class="curve curve-como">
+<svg viewBox="0 -50 1400 320" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+  <defs>
+    <filter id="shadow-como" x="-15%" y="-30%" width="130%" height="180%">
+      <feGaussianBlur stdDeviation="12" />
+    </filter>
+  </defs>
+  <path d="M -30 130 C 200 40, 380 200, 560 110 C 700 40, 820 80, 880 150 C 920 200, 870 230, 820 200 C 770 170, 810 100, 920 120 C 1080 150, 1220 90, 1430 50" stroke="#000000" stroke-width="34" stroke-linecap="round" fill="none" opacity="0.20" filter="url(#shadow-como)" transform="translate(8, 20)"/>
+  <path d="M -30 130 C 200 40, 380 200, 560 110 C 700 40, 820 80, 880 150 C 920 200, 870 230, 820 200 C 770 170, 810 100, 920 120 C 1080 150, 1220 90, 1430 50" stroke="#0D423F" stroke-width="26" stroke-linecap="round" fill="none"/>
+  <path d="M -30 130 C 200 40, 380 200, 560 110 C 700 40, 820 80, 880 150 C 920 200, 870 230, 820 200 C 770 170, 810 100, 920 120 C 1080 150, 1220 90, 1430 50" stroke="#2A6862" stroke-width="7" stroke-linecap="round" fill="none" opacity="0.7" transform="translate(-1, -3)"/>
+</svg>
+</div>
+  <div class="container">
+    <span class="pill pill-dark">Como funciona</span>
+    <h2 class="h2">Três passos. Zero burocracia.</h2>
+    <p class="section-sub">Sem app pra baixar, sem cadastro. Tudo acontece no seu WhatsApp.</p>
+
+    <div class="steps-h">
+      <!-- STEP 1 -->
+      <div class="step-h">
+        <div class="step-h-visual">
+          <div class="step-h-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+            </svg>
+          </div>
+        </div>
+        <div class="step-h-number">1</div>
+        <div class="step-h-body">
+          <h3 class="step-h-title">Você manda mensagem</h3>
+          <p class="step-h-desc">Texto, áudio, foto, PDF — manda do jeito que for mais fácil. A gente responde em minutos com gente de verdade, não bot.</p>
+        </div>
+      </div>
+
+      <!-- STEP 2 -->
+      <div class="step-h">
+        <div class="step-h-visual">
+          <div class="step-h-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 3 L13.5 8.5 L19 10 L13.5 11.5 L12 17 L10.5 11.5 L5 10 L10.5 8.5 Z"/>
+              <path d="M19 3 L19.7 5 L21.5 5.7 L19.7 6.4 L19 8.4 L18.3 6.4 L16.5 5.7 L18.3 5 Z"/>
+              <path d="M5 14 L5.7 16 L7.5 16.7 L5.7 17.4 L5 19.4 L4.3 17.4 L2.5 16.7 L4.3 16 Z"/>
+            </svg>
+          </div>
+        </div>
+        <div class="step-h-number">2</div>
+        <div class="step-h-body">
+          <h3 class="step-h-title">A Selvia cuida de tudo</h3>
+          <p class="step-h-desc">Abertura de CNPJ, emissão de NF-e, pagamento de DAS, contabilidade mensal, IRPF. Você só vê o resultado.</p>
+        </div>
+      </div>
+
+      <!-- STEP 3 -->
+      <div class="step-h">
+        <div class="step-h-visual">
+          <div class="step-h-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
+              <polyline points="17 6 23 6 23 12"/>
+            </svg>
+          </div>
+        </div>
+        <div class="step-h-number">3</div>
+        <div class="step-h-body">
+          <h3 class="step-h-title">Você decide com clareza</h3>
+          <p class="step-h-desc">Relatório mensal: quanto entrou, quanto saiu, quanto sobrou. Quer investir? Temos assessor pra te ajudar.</p>
+        </div>
+      </div>
+
+      <!-- Linhas conectoras entre os números (posicionadas via JS baseado no posicionamento real dos números) -->
+      <div class="steps-h-segment" data-segment="1" aria-hidden="true"></div>
+      <div class="steps-h-segment" data-segment="2" aria-hidden="true"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STATS (verde escuro - alto impacto) ============ -->
+<section class="stats-bg scroll-animate" data-parallax>
+  <div class="curve curve-stats">
+<svg viewBox="0 -50 1400 320" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+  <defs>
+    <filter id="shadow-stats" x="-15%" y="-30%" width="130%" height="180%">
+      <feGaussianBlur stdDeviation="12" />
+    </filter>
+  </defs>
+  <path d="M -30 130 C 200 40, 380 200, 560 110 C 700 40, 820 80, 880 150 C 920 200, 870 230, 820 200 C 770 170, 810 100, 920 120 C 1080 150, 1220 90, 1430 50" stroke="#000000" stroke-width="34" stroke-linecap="round" fill="none" opacity="0.55" filter="url(#shadow-stats)" transform="translate(8, 20)"/>
+  <path d="M -30 130 C 200 40, 380 200, 560 110 C 700 40, 820 80, 880 150 C 920 200, 870 230, 820 200 C 770 170, 810 100, 920 120 C 1080 150, 1220 90, 1430 50" stroke="#69E470" stroke-width="26" stroke-linecap="round" fill="none"/>
+  <path d="M -30 130 C 200 40, 380 200, 560 110 C 700 40, 820 80, 880 150 C 920 200, 870 230, 820 200 C 770 170, 810 100, 920 120 C 1080 150, 1220 90, 1430 50" stroke="#C4F5C8" stroke-width="7" stroke-linecap="round" fill="none" opacity="0.7" transform="translate(-1, -3)"/>
+</svg>
+</div>
+  <div class="container">
+    <span class="pill pill-light">Selvia em números</span>
+    <h2 class="h2 h2-light">Confiança construída todos os dias.</h2>
+    <p class="section-sub section-sub-light">Dados atualizados em maio de 2026.</p>
+
+    <div class="stats-grid stagger-children">
+      <div class="stat">
+        <p class="stat-num">+1.000</p>
+        <p class="stat-label">clientes ativos</p>
+      </div>
+      <div class="stat">
+        <p class="stat-num">22</p>
+        <p class="stat-label">estados atendidos</p>
+      </div>
+      <div class="stat">
+        <p class="stat-num">9,7</p>
+        <p class="stat-label">nota média dos clientes</p>
+      </div>
+      <div class="stat">
+        <p class="stat-num">&lt; 1 min</p>
+        <p class="stat-label">resposta no WhatsApp</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DEPOIMENTOS ============ -->
+<section class="depoimentos-bg scroll-animate" data-parallax>
+  <div class="curve curve-depoimentos">
+<svg viewBox="0 -50 1400 320" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+  <defs>
+    <filter id="shadow-dep" x="-15%" y="-30%" width="130%" height="180%">
+      <feGaussianBlur stdDeviation="12" />
+    </filter>
+  </defs>
+  <path d="M -30 130 C 200 40, 380 200, 560 110 C 700 40, 820 80, 880 150 C 920 200, 870 230, 820 200 C 770 170, 810 100, 920 120 C 1080 150, 1220 90, 1430 50" stroke="#000000" stroke-width="34" stroke-linecap="round" fill="none" opacity="0.30" filter="url(#shadow-dep)" transform="translate(8, 20)"/>
+  <path d="M -30 130 C 200 40, 380 200, 560 110 C 700 40, 820 80, 880 150 C 920 200, 870 230, 820 200 C 770 170, 810 100, 920 120 C 1080 150, 1220 90, 1430 50" stroke="#0D423F" stroke-width="26" stroke-linecap="round" fill="none"/>
+  <path d="M -30 130 C 200 40, 380 200, 560 110 C 700 40, 820 80, 880 150 C 920 200, 870 230, 820 200 C 770 170, 810 100, 920 120 C 1080 150, 1220 90, 1430 50" stroke="#2A6862" stroke-width="7" stroke-linecap="round" fill="none" opacity="0.7" transform="translate(-1, -3)"/>
+</svg>
+</div>
+  <div class="container">
+    <span class="pill pill-dark">Depoimentos</span>
+    <h2 class="h2">O que os clientes falam.</h2>
+    <p class="section-sub">Médicos, devs e profissionais que já pararam de se estressar com contabilidade.</p>
+
+    <div class="depoimentos-shell">
+      <div class="depoimentos-carousel" id="depoimentos-carousel">
+        <div class="depoimentos-viewport">
+          <div class="depoimentos-track" id="depoimentos-track">
+            <div class="depoimento">
+              <div class="depoimento-stars">★ ★ ★ ★ ★</div>
+              <p class="depoimento-quote">"Sempre me auxiliaram em todo o processo, desde a abertura da empresa até regularização fiscal. Qualquer dúvida que surgia estavam sempre dispostos a me ajudar."</p>
+              <div class="depoimento-author">
+                <div class="depoimento-avatar">JR</div>
+                <div>
+                  <p class="depoimento-name">Dr. João Rogério</p>
+                  <p class="depoimento-role">Cardiologista — CRM-SP 250328</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="depoimento">
+              <div class="depoimento-stars">★ ★ ★ ★ ★</div>
+              <p class="depoimento-quote">"Desde que comecei a usar a Selvia, a troca de MEI para ME foi resolvida sem dor de cabeça e passei a emitir notas pelo WhatsApp no mesmo dia, e foi muito mais prático e ágil. Ganhei confiança nas decisões tomadas e reduzi tarefas operacionais."</p>
+              <div class="depoimento-author">
+                <div class="depoimento-avatar">AD</div>
+                <div>
+                  <p class="depoimento-name">André Diogo</p>
+                  <p class="depoimento-role">Engenheiro de Produto</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="depoimento">
+              <div class="depoimento-stars">★ ★ ★ ★ ★</div>
+              <p class="depoimento-quote">"Desde que comecei a usar a Selvia, tenho 0 preocupações quanto aos impostos que preciso pagar e quando preciso pagar! Além disso, tenho toda uma assessoria automática dos meus gastos o que diminuiu meus gastos com plataformas de gestão financeira."</p>
+              <div class="depoimento-author">
+                <div class="depoimento-avatar">JF</div>
+                <div>
+                  <p class="depoimento-name">João Fraga</p>
+                  <p class="depoimento-role">AI Deployment</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button type="button" class="depoimento-arrow depoimento-arrow-prev" id="depoimento-prev" aria-label="Depoimento anterior">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        </button>
+        <button type="button" class="depoimento-arrow depoimento-arrow-next" id="depoimento-next" aria-label="Próximo depoimento">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        </button>
+      </div>
+
+      <div class="depoimentos-dots" role="tablist" aria-label="Navegação dos depoimentos">
+        <button type="button" class="depoimento-dot active" data-i="0" aria-label="Depoimento 1"></button>
+        <button type="button" class="depoimento-dot" data-i="1" aria-label="Depoimento 2"></button>
+        <button type="button" class="depoimento-dot" data-i="2" aria-label="Depoimento 3"></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PREÇOS (verde escuro - seção marcante) ============ -->
+<section id="precos" class="precos-bg scroll-animate" data-parallax>
+  <div class="curve curve-precos">
+<svg viewBox="0 -50 1400 320" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+  <defs>
+    <filter id="shadow-prec" x="-15%" y="-30%" width="130%" height="180%">
+      <feGaussianBlur stdDeviation="12" />
+    </filter>
+  </defs>
+  <path d="M -30 130 C 200 40, 380 200, 560 110 C 700 40, 820 80, 880 150 C 920 200, 870 230, 820 200 C 770 170, 810 100, 920 120 C 1080 150, 1220 90, 1430 50" stroke="#000000" stroke-width="34" stroke-linecap="round" fill="none" opacity="0.55" filter="url(#shadow-prec)" transform="translate(8, 20)"/>
+  <path d="M -30 130 C 200 40, 380 200, 560 110 C 700 40, 820 80, 880 150 C 920 200, 870 230, 820 200 C 770 170, 810 100, 920 120 C 1080 150, 1220 90, 1430 50" stroke="#69E470" stroke-width="26" stroke-linecap="round" fill="none"/>
+  <path d="M -30 130 C 200 40, 380 200, 560 110 C 700 40, 820 80, 880 150 C 920 200, 870 230, 820 200 C 770 170, 810 100, 920 120 C 1080 150, 1220 90, 1430 50" stroke="#C4F5C8" stroke-width="7" stroke-linecap="round" fill="none" opacity="0.7" transform="translate(-1, -3)"/>
+</svg>
+</div>
+  <div class="container">
+    <span class="pill pill-light">Preços</span>
+    <h2 class="h2 h2-light">Planos transparentes por profissão.</h2>
+    <p class="section-sub section-sub-light">Sem fidelidade. Abertura de CNPJ grátis. Cancele quando quiser.</p>
+
+    <div class="price-tabs">
+      <button class="price-tab active" data-vertical="medicos">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4h-1a2 2 0 0 0 -2 2v3.5h0a5.5 5.5 0 0 0 11 0v-3.5a2 2 0 0 0 -2 -2h-1"></path><path d="M8 15a6 6 0 1 0 12 0v-3"></path><path d="M20 11m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"></path></svg>
+        Médicos
+      </button>
+      <button class="price-tab" data-vertical="devs">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 8l-4 4l4 4"></path><path d="M17 8l4 4l-4 4"></path><path d="M14 4l-4 16"></path></svg>
+        Devs e TI
+      </button>
+      <button class="price-tab" data-vertical="advogados">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 20l10 0"></path><path d="M6 6l6 -1l6 1"></path><path d="M12 3l0 17"></path></svg>
+        Advogados
+      </button>
+      <button class="price-tab" data-vertical="criadores">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 2m0 3a3 3 0 0 1 3 -3h0a3 3 0 0 1 3 3v5a3 3 0 0 1 -3 3h0a3 3 0 0 1 -3 -3z"></path><path d="M5 10a7 7 0 0 0 14 0"></path></svg>
+        Criadores
+      </button>
+      <button class="price-tab" data-vertical="saude">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19.5 12.572l-7.5 7.428l-7.5 -7.428a5 5 0 1 1 7.5 -6.566a5 5 0 1 1 7.5 6.572"></path></svg>
+        Saúde geral
+      </button>
+      <button class="price-tab" data-vertical="outras">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7m0 2a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v9a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z"></path><path d="M8 7v-2a2 2 0 0 1 2 -2h4a2 2 0 0 1 2 2v2"></path></svg>
+        Outras PJ
+      </button>
+    </div>
+
+    <!-- MÉDICOS -->
+    <div class="price-pane" data-vertical="medicos">
+      <div class="price-grid">
+      <div class="price-card featured">
+        <p class="price-modalidade">SIMPLES NACIONAL</p>
+        <p class="price-plano">Basic</p>
+        <p class="price-value">R$ 347<span class="price-value-sub">/mês</span></p>
+        <ul class="price-features">
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5l10 -10"></path></svg>Contabilidade completa no WhatsApp</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5l10 -10"></path></svg>Emissão de NF-e ilimitada</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5l10 -10"></path></svg>Pagamento automático de DAS</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5l10 -10"></path></svg>IRPF anual incluso</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5l10 -10"></path></svg>Plataforma de finanças pessoais</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5l10 -10"></path></svg>50% off se fatura abaixo de R$ 4k/mês</li>
+        </ul>
+        <button class="price-btn" onclick="openWhatsApp('médico Simples Nacional')">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21l1.65 -3.8a9 9 0 1 1 3.4 2.9l-5.05 .9"></path></svg>
+          Falar no WhatsApp
+        </button>
+      </div>
+      <div class="price-card">
+        <p class="price-modalidade">LUCRO PRESUMIDO</p>
+        <p class="price-plano">Pro</p>
+        <p class="price-value">R$ 547<span class="price-value-sub">/mês</span></p>
+        <ul class="price-features">
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5l10 -10"></path></svg>Tudo do plano Basic</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5l10 -10"></path></svg>Apuração de IRPJ + CSLL trimestral</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5l10 -10"></path></svg>PIS, COFINS e ISS</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5l10 -10"></path></svg>IRPF anual incluso</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5l10 -10"></path></svg>Indicado pra faturamento acima de R$ 30k/mês</li>
+        </ul>
+        <button class="price-btn" onclick="openWhatsApp('médico Lucro Presumido')">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21l1.65 -3.8a9 9 0 1 1 3.4 2.9l-5.05 .9"></path></svg>
+          Falar no WhatsApp
+        </button>
+      </div>
+      <div class="price-card price-card-disabled">
+        <p class="price-modalidade">MEI</p>
+        <p class="price-plano">Não disponível</p>
+        <p class="price-disclaimer">Profissionais com conselho de classe (CRM, CRO, etc.) não podem ser MEI pela legislação atual.</p>
+        <p class="price-disclaimer" style="margin-top: auto;">Recomendamos o plano Basic via Simples Nacional.</p>
+      </div>
+      </div>
+    </div>
+
+    <!-- DEVS -->
+    <div class="price-pane" data-vertical="devs" style="display: none;">
+      <div class="price-grid">
+      <div class="price-card price-card-mei">
+        <p class="price-modalidade">MEI</p>
+        <p class="price-plano">Tech Júnior</p>
+        <p class="price-value">R$ 9,90<span class="price-value-sub">/mês</span></p>
+        <ul class="price-features">
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5l10 -10"></path></svg>Pra quem fatura até R$ 81k/ano</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5l10 -10"></path></svg>Atendimento no WhatsApp</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5l10 -10"></path></svg>Pagamento do DAS-MEI</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5l10 -10"></path></svg>Emissão de NF-e</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5l10 -10"></path></svg>Migração pra ME quando for hora</li>
+        </ul>
+        <button class="price-btn" onclick="openWhatsApp('dev MEI')">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21l1.65 -3.8a9 9 0 1 1 3.4 2.9l-5.05 .9"></path></svg>
+          Falar no WhatsApp
+        </button>
+      </div>
+      <div class="price-card featured">
+        <p class="price-modalidade">SIMPLES NACIONAL</p>
+        <p class="price-plano">Basic</p>
+        <p class="price-value">R$ 189,90<span class="price-value-sub">/mês</span></p>
+        <ul class="price-features">
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5l10 -10"></path></svg>Contabilidade completa no WhatsApp</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5l10 -10"></path></svg>Emissão de NF-e ilimitada</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5l10 -10"></path></svg>Pagamento automático de DAS</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5l10 -10"></path></svg>Suporte para recebimento do exterior</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5l10 -10"></path></svg>Plataforma de finanças pessoais</li>
+        </ul>
+        <button class="price-btn" onclick="openWhatsApp('dev Simples Nacional')">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21l1.65 -3.8a9 9 0 1 1 3.4 2.9l-5.05 .9"></path></svg>
+          Falar no WhatsApp
+        </button>
+      </div>
+      <div class="price-card">
+        <p class="price-modalidade">LUCRO PRESUMIDO</p>
+        <p class="price-plano">Pro</p>
+        <p class="price-value">R$ 547<span class="price-value-sub">/mês</span></p>
+        <ul class="price-features">
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5l10 -10"></path></svg>Tudo do plano Basic</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5l10 -10"></path></svg>Apuração de IRPJ + CSLL trimestral</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5l10 -10"></path></svg>PIS, COFINS e ISS</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5l10 -10"></path></svg>IRPF anual incluso</li>
+        </ul>
+        <button class="price-btn" onclick="openWhatsApp('dev Lucro Presumido')">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21l1.65 -3.8a9 9 0 1 1 3.4 2.9l-5.05 .9"></path></svg>
+          Falar no WhatsApp
+        </button>
+      </div>
+      </div>
+      <a class="price-deep-link" href="/devs" data-future-page="devs">
+        Ver plano completo para Devs e TI <span>→</span>
+      </a>
+    </div>
+
+    <!-- ADVOGADOS -->
+    <div class="price-pane" data-vertical="advogados" style="display: none;">
+      <div class="price-grid">
+      <div class="price-card featured">
+        <p class="price-modalidade">SIMPLES NACIONAL</p>
+        <p class="price-plano">Basic</p>
+        <p class="price-value">R$ 189,90<span class="price-value-sub">/mês</span></p>
+        <ul class="price-features">
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5l10 -10"></path></svg>Contabilidade completa no WhatsApp</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5l10 -10"></path></svg>Suporte a Sociedade Unipessoal</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5l10 -10"></path></svg>Emissão de NF-e ilimitada</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5l10 -10"></path></svg>Pagamento automático de DAS</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5l10 -10"></path></svg>Plataforma de finanças pessoais</li>
+        </ul>
+        <button class="price-btn" onclick="openWhatsApp('advogado Simples Nacional')">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21l1.65 -3.8a9 9 0 1 1 3.4 2.9l-5.05 .9"></path></svg>
+          Falar no WhatsApp
+        </button>
+      </div>
+      <div class="price-card">
+        <p class="price-modalidade">LUCRO PRESUMIDO</p>
+        <p class="price-plano">Pro</p>
+        <p class="price-value">R$ 547<span class="price-value-sub">/mês</span></p>
+        <ul class="price-features">
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5l10 -10"></path></svg>Tudo do plano Basic</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5l10 -10"></path></svg>Apuração de IRPJ + CSLL trimestral</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5l10 -10"></path></svg>PIS, COFINS e ISS</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5l10 -10"></path></svg>IRPF anual incluso</li>
+        </ul>
+        <button class="price-btn" onclick="openWhatsApp('advogado Lucro Presumido')">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21l1.65 -3.8a9 9 0 1 1 3.4 2.9l-5.05 .9"></path></svg>
+          Falar no WhatsApp
+        </button>
+      </div>
+      <div class="price-card price-card-disabled">
+        <p class="price-modalidade">MEI</p>
+        <p class="price-plano">Não disponível</p>
+        <p class="price-disclaimer">Advogados inscritos na OAB não podem ser MEI pela legislação atual.</p>
+        <p class="price-disclaimer" style="margin-top: auto;">Recomendamos o plano Basic via Simples Nacional.</p>
+      </div>
+      </div>
+      <a class="price-deep-link" href="/advogados" data-future-page="advogados">
+        Ver plano completo para Advogados <span>→</span>
+      </a>
+    </div>
+
+    <!-- CRIADORES -->
+    <div class="price-pane" data-vertical="criadores" style="display: none;">
+      <div class="price-grid">
+      <div class="price-card price-card-mei">
+        <p class="price-modalidade">MEI</p>
+        <p class="price-plano">Plano Júnior</p>
+        <p class="price-value">R$ 9,90<span class="price-value-sub">/mês</span></p>
+        <ul class="price-features">
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5l10 -10"></path></svg>Pra quem fatura até R$ 81k/ano</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5l10 -10"></path></svg>Atendimento no WhatsApp</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5l10 -10"></path></svg>Pagamento do DAS-MEI</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5l10 -10"></path></svg>Emissão de NF-e</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5l10 -10"></path></svg>Migração pra ME quando for hora</li>
+        </ul>
+        <button class="price-btn" onclick="openWhatsApp('criador MEI')">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21l1.65 -3.8a9 9 0 1 1 3.4 2.9l-5.05 .9"></path></svg>
+          Falar no WhatsApp
+        </button>
+      </div>
+      <div class="price-card featured">
+        <p class="price-modalidade">SIMPLES NACIONAL</p>
+        <p class="price-plano">Basic</p>
+        <p class="price-value">R$ 99,90<span class="price-value-sub">/mês</span></p>
+        <ul class="price-features">
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5l10 -10"></path></svg>Contabilidade completa no WhatsApp</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5l10 -10"></path></svg>Emissão de NF-e (YouTube, Hotmart, Twitch)</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5l10 -10"></path></svg>Pagamento automático de DAS</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5l10 -10"></path></svg>Suporte a múltiplas fontes de receita</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5l10 -10"></path></svg>Plataforma de finanças pessoais</li>
+        </ul>
+        <button class="price-btn" onclick="openWhatsApp('criador Simples Nacional')">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21l1.65 -3.8a9 9 0 1 1 3.4 2.9l-5.05 .9"></path></svg>
+          Falar no WhatsApp
+        </button>
+      </div>
+      <div class="price-card">
+        <p class="price-modalidade">LUCRO PRESUMIDO</p>
+        <p class="price-plano">Pro</p>
+        <p class="price-value">R$ 547<span class="price-value-sub">/mês</span></p>
+        <ul class="price-features">
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5l10 -10"></path></svg>Tudo do plano Basic</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5l10 -10"></path></svg>Apuração de IRPJ + CSLL trimestral</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5l10 -10"></path></svg>PIS, COFINS e ISS</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5l10 -10"></path></svg>IRPF anual incluso</li>
+        </ul>
+        <button class="price-btn" onclick="openWhatsApp('criador Lucro Presumido')">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21l1.65 -3.8a9 9 0 1 1 3.4 2.9l-5.05 .9"></path></svg>
+          Falar no WhatsApp
+        </button>
+      </div>
+      </div>
+      <a class="price-deep-link" href="/criadores" data-future-page="criadores">
+        Ver plano completo para Criadores de conteúdo <span>→</span>
+      </a>
+    </div>
+
+    <!-- SAÚDE -->
+    <div class="price-pane" data-vertical="saude" style="display: none;">
+      <div class="price-grid">
+      <div class="price-card featured">
+        <p class="price-modalidade">SIMPLES NACIONAL</p>
+        <p class="price-plano">Basic</p>
+        <p class="price-value">R$ 99,90<span class="price-value-sub">/mês</span></p>
+        <ul class="price-features">
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5l10 -10"></path></svg>Contabilidade completa no WhatsApp</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5l10 -10"></path></svg>Emissão de NF-e ilimitada</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5l10 -10"></path></svg>Pagamento automático de DAS</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5l10 -10"></path></svg>Atendimento de quem entende seu conselho</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5l10 -10"></path></svg>Plataforma de finanças pessoais</li>
+        </ul>
+        <button class="price-btn" onclick="openWhatsApp('saúde Simples Nacional')">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21l1.65 -3.8a9 9 0 1 1 3.4 2.9l-5.05 .9"></path></svg>
+          Falar no WhatsApp
+        </button>
+      </div>
+      <div class="price-card">
+        <p class="price-modalidade">LUCRO PRESUMIDO</p>
+        <p class="price-plano">Pro</p>
+        <p class="price-value">R$ 547<span class="price-value-sub">/mês</span></p>
+        <ul class="price-features">
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5l10 -10"></path></svg>Tudo do plano Basic</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5l10 -10"></path></svg>Apuração de IRPJ + CSLL trimestral</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5l10 -10"></path></svg>PIS, COFINS e ISS</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5l10 -10"></path></svg>IRPF anual incluso</li>
+        </ul>
+        <button class="price-btn" onclick="openWhatsApp('saúde Lucro Presumido')">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21l1.65 -3.8a9 9 0 1 1 3.4 2.9l-5.05 .9"></path></svg>
+          Falar no WhatsApp
+        </button>
+      </div>
+      <div class="price-card price-card-disabled">
+        <p class="price-modalidade">MEI</p>
+        <p class="price-plano">Não disponível</p>
+        <p class="price-disclaimer">Profissionais com conselho de classe (CRP, CREFITO, CRO, CRN) não podem ser MEI.</p>
+        <p class="price-disclaimer" style="margin-top: auto;">Recomendamos o plano Basic via Simples Nacional.</p>
+      </div>
+      </div>
+      <a class="price-deep-link" href="/saude" data-future-page="saude">
+        Ver plano completo para Saúde geral <span>→</span>
+      </a>
+    </div>
+
+    <!-- OUTRAS PJ -->
+    <div class="price-pane" data-vertical="outras" style="display: none;">
+      <div class="price-grid">
+      <div class="price-card price-card-mei">
+        <p class="price-modalidade">MEI</p>
+        <p class="price-plano">Plano Júnior</p>
+        <p class="price-value">R$ 9,90<span class="price-value-sub">/mês</span></p>
+        <ul class="price-features">
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5l10 -10"></path></svg>Pra quem fatura até R$ 81k/ano</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5l10 -10"></path></svg>Atendimento no WhatsApp</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5l10 -10"></path></svg>Pagamento do DAS-MEI</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5l10 -10"></path></svg>Emissão de NF-e</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5l10 -10"></path></svg>Migração pra ME quando for hora</li>
+        </ul>
+        <button class="price-btn" onclick="openWhatsApp('outras PJ MEI')">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21l1.65 -3.8a9 9 0 1 1 3.4 2.9l-5.05 .9"></path></svg>
+          Falar no WhatsApp
+        </button>
+      </div>
+      <div class="price-card featured">
+        <p class="price-modalidade">SIMPLES NACIONAL</p>
+        <p class="price-plano">Basic</p>
+        <p class="price-value">R$ 189,90<span class="price-value-sub">/mês</span></p>
+        <ul class="price-features">
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5l10 -10"></path></svg>Contabilidade completa no WhatsApp</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5l10 -10"></path></svg>Emissão de NF-e ilimitada</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5l10 -10"></path></svg>Pagamento automático de DAS</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5l10 -10"></path></svg>Pra consultores, designers, e demais PJ</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5l10 -10"></path></svg>Plataforma de finanças pessoais</li>
+        </ul>
+        <button class="price-btn" onclick="openWhatsApp('outras PJ Simples Nacional')">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21l1.65 -3.8a9 9 0 1 1 3.4 2.9l-5.05 .9"></path></svg>
+          Falar no WhatsApp
+        </button>
+      </div>
+      <div class="price-card">
+        <p class="price-modalidade">LUCRO PRESUMIDO</p>
+        <p class="price-plano">Pro</p>
+        <p class="price-value">R$ 547<span class="price-value-sub">/mês</span></p>
+        <ul class="price-features">
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5l10 -10"></path></svg>Tudo do plano Basic</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5l10 -10"></path></svg>Apuração de IRPJ + CSLL trimestral</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5l10 -10"></path></svg>PIS, COFINS e ISS</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5l10 -10"></path></svg>IRPF anual incluso</li>
+        </ul>
+        <button class="price-btn" onclick="openWhatsApp('outras PJ Lucro Presumido')">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21l1.65 -3.8a9 9 0 1 1 3.4 2.9l-5.05 .9"></path></svg>
+          Falar no WhatsApp
+        </button>
+      </div>
+      </div>
+      <a class="price-deep-link" href="/outras-pj" data-future-page="outras-pj">
+        Ver plano completo para Outras PJ <span>→</span>
+      </a>
+    </div>
+
+    <p class="price-note">
+      Abertura de CNPJ grátis · Sem fidelidade · Não sabe qual plano? <a href="#calculadora">Use a calculadora abaixo</a>
+    </p>
+  </div>
+</section>
+
+<!-- ============ CALCULADORA ============ -->
+<section id="calculadora" class="calc-bg scroll-animate" data-parallax>
+  <div class="container">
+    <span class="pill pill-dark">Calculadora</span>
+    <h2 class="h2">Quanto você economiza com a Selvia?</h2>
+    <p class="section-sub">Compare Simples Nacional via Fator R com Lucro Presumido em segundos. Sem cadastro.</p>
+
+    <div class="calc-wrap">
+      <label class="calc-label" for="calc-fat">Faturamento do mês</label>
+      <input type="number" id="calc-fat" class="calc-input" placeholder="Ex: 18000" />
+      <button id="calc-btn" class="calc-btn" disabled>Calcular minha economia</button>
+
+      <div id="calc-results" class="calc-results">
+        <div class="calc-summary">
+          <div class="calc-summary-card">
+            <p class="calc-summary-label">SIMPLES NACIONAL</p>
+            <p class="calc-summary-value" id="calc-sn">—</p>
+            <p class="calc-summary-extra" id="calc-sn-aliq">—</p>
+          </div>
+          <div class="calc-summary-card">
+            <p class="calc-summary-label">LUCRO PRESUMIDO</p>
+            <p class="calc-summary-value" id="calc-lp">—</p>
+            <p class="calc-summary-extra" id="calc-lp-aliq">—</p>
+          </div>
+        </div>
+
+        <div class="calc-best">
+          <p class="calc-best-label">MELHOR REGIME PARA VOCÊ</p>
+          <p class="calc-best-name" id="calc-best">—</p>
+          <p class="calc-best-saving">Sua economia anual: <strong id="calc-saving">—</strong></p>
+          <button class="calc-cta-btn" onclick="openWhatsAppCalc()">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21l1.65 -3.8a9 9 0 1 1 3.4 2.9l-5.05 .9"></path></svg>
+            <span id="calc-cta-text">Quero economizar — falar no WhatsApp</span>
+          </button>
+        </div>
+
+        <p class="calc-disclaimer">
+          Simulação ilustrativa baseada em Anexo III via Fator R (folha de 28%) e ISS de 2%. Valores reais variam por CNAE, município e composição da folha. Para cálculo personalizado, <a href="#" onclick="openWhatsApp('calculadora completa'); return false;">fale com a Selvia</a>.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BLOG ============ -->
+<section id="blog" class="blog-bg scroll-animate" data-parallax>
+  <div class="container">
+    <div class="blog-header">
+      <div>
+        <span class="pill pill-dark">Conteúdo</span>
+        <h2 class="h2">Conteúdos para PJ.</h2>
+        <p class="section-sub" style="margin-bottom: 0;">Guias, calculadoras e respostas diretas pra quem é PJ no Brasil.</p>
+      </div>
+      <a href="#">Ver todos →</a>
+    </div>
+
+    <div class="blog-grid stagger-children">
+      <article class="blog-card">
+        <div class="blog-card-img" style="background: rgba(132,160,255,0.18);">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="2"></rect><path d="M8 7h8"></path><path d="M8 11h8"></path><path d="M8 15h5"></path></svg>
+        </div>
+        <div class="blog-card-body">
+          <span class="blog-card-tag">TRIBUTAÇÃO</span>
+          <h3 class="blog-card-title">Fator R: como pagar 6% em vez de 15,5% no Simples Nacional</h3>
+          <p class="blog-card-meta">8 min · Selvia Contabilidade</p>
+        </div>
+      </article>
+
+      <article class="blog-card">
+        <div class="blog-card-img" style="background: rgba(105,228,112,0.22);">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4h-1a2 2 0 0 0 -2 2v3.5h0a5.5 5.5 0 0 0 11 0v-3.5a2 2 0 0 0 -2 -2h-1"></path><path d="M8 15a6 6 0 1 0 12 0v-3"></path><path d="M20 11m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"></path></svg>
+        </div>
+        <div class="blog-card-body">
+          <span class="blog-card-tag">MÉDICOS</span>
+          <h3 class="blog-card-title">Médico residente precisa declarar IR em 2026?</h3>
+          <p class="blog-card-meta">6 min · Selvia Contabilidade</p>
+        </div>
+      </article>
+
+      <article class="blog-card">
+        <div class="blog-card-img" style="background: #69E470;">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 8l-4 4l4 4"></path><path d="M17 8l4 4l-4 4"></path><path d="M14 4l-4 16"></path></svg>
+        </div>
+        <div class="blog-card-body">
+          <span class="blog-card-tag">DEVS</span>
+          <h3 class="blog-card-title">Dev PJ recebendo do exterior: invoice, dólar e IR</h3>
+          <p class="blog-card-meta">10 min · Selvia Contabilidade</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="faq-bg scroll-animate" data-parallax>
+  <div class="container">
+    <span class="pill pill-dark">Dúvidas frequentes</span>
+    <h2 class="h2">Perguntas que a gente recebe todo dia.</h2>
+    <p class="section-sub">Se a sua não tá aqui, manda no WhatsApp.</p>
+
+    <div class="faq-grid stagger-children">
+      <details class="faq-item">
+        <summary>Quanto custa a Selvia pra mim?</summary>
+        <p>Depende da sua profissão e do seu faturamento. Médicos começam em R$ 347/mês. Devs, advogados e outras profissões PJ começam em R$ 189,90/mês. Criadores de conteúdo, dentistas, psicólogos e fisios começam em R$ 99,90/mês. Quem fatura até R$ 81k/ano e pode ser MEI paga R$ 9,90/mês.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Por que médico paga mais que dev?</summary>
+        <p>Médicos têm complexidades específicas — Receita Saúde, regras de plantão, alíquotas de ISS variando por município e procedimento, IRPF mais elaborado por causa das despesas dedutíveis. Nosso time dedicado a médicos é especializado nisso. Pra outras profissões a operação é mais simples e o preço acompanha.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Preciso assinar contrato de fidelidade?</summary>
+        <p>Não. Sem fidelidade, sem multa. Se a Selvia não atende suas expectativas, você cancela a qualquer momento.</p>
+      </details>
+      <details class="faq-item">
+        <summary>E se eu já tiver contador?</summary>
+        <p>A gente cuida da migração toda. Você só nos passa o contato do contador atual e o resto é com a gente. Em geral leva 15 a 30 dias e você não precisa fazer praticamente nada.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Sou médico, posso ser MEI?</summary>
+        <p>Não. Profissionais com conselho de classe — médicos, advogados, dentistas, psicólogos, fisioterapeutas, nutricionistas — são impedidos legalmente de ser MEI. O caminho é Simples Nacional via Microempresa (ME). A gente abre seu CNPJ no enquadramento certo, sem você ter que pensar nisso.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Como funciona o atendimento no WhatsApp?</summary>
+        <p>Você manda mensagem de texto ou áudio para o nosso número oficial. Em minutos uma pessoa real do nosso time responde — não é bot.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA FINAL ============ -->
+<div class="container">
+  <div class="cta-final scroll-animate">
+    <div class="curve curve-cta-final">
+<svg viewBox="0 -50 1400 320" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+  <defs>
+    <filter id="shadow-cta" x="-15%" y="-30%" width="130%" height="180%">
+      <feGaussianBlur stdDeviation="12" />
+    </filter>
+  </defs>
+  <path d="M -30 130 C 200 40, 380 200, 560 110 C 700 40, 820 80, 880 150 C 920 200, 870 230, 820 200 C 770 170, 810 100, 920 120 C 1080 150, 1220 90, 1430 50" stroke="#000000" stroke-width="34" stroke-linecap="round" fill="none" opacity="0.55" filter="url(#shadow-cta)" transform="translate(8, 20)"/>
+  <path d="M -30 130 C 200 40, 380 200, 560 110 C 700 40, 820 80, 880 150 C 920 200, 870 230, 820 200 C 770 170, 810 100, 920 120 C 1080 150, 1220 90, 1430 50" stroke="#ffffff" stroke-width="26" stroke-linecap="round" fill="none"/>
+  <path d="M -30 130 C 200 40, 380 200, 560 110 C 700 40, 820 80, 880 150 C 920 200, 870 230, 820 200 C 770 170, 810 100, 920 120 C 1080 150, 1220 90, 1430 50" stroke="#ffffff" stroke-width="7" stroke-linecap="round" fill="none" opacity="0.7" transform="translate(-1, -3)"/>
+</svg>
+</div>
+  <h2>Pronto pra parar de se estressar com contabilidade?</h2>
+    <p>Sem cadastro. Sem fidelidade. Atendimento humano em até 1 minuto.</p>
+    <a href="https://api.whatsapp.com/send?phone=5511936220451&text=Ol%C3%A1!%20Vim%20do%20site%20e%20gostaria%20de%20saber%20mais%20sobre%20os%20servi%C3%A7os!" target="_blank" rel="noopener" class="btn-primary">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21l1.65 -3.8a9 9 0 1 1 3.4 2.9l-5.05 .9"></path><path d="M9 10a.5 .5 0 0 0 1 0v-1a.5 .5 0 0 0 -1 0v1a5 5 0 0 0 5 5h1a.5 .5 0 0 0 0 -1h-1a.5 .5 0 0 0 0 1"></path></svg>
+      Falar com a Selvia agora
+    </a>
+  </div>
+</div>
+
+<!-- ============ MÍDIA ============ -->
+<section class="midia-bg scroll-animate" data-parallax>
+  <div class="container">
+    <span class="pill pill-light">Imprensa</span>
+    <h2 class="h2 h2-light">Selvia na mídia.</h2>
+    <p class="section-sub section-sub-light">O que estão dizendo sobre a gente.</p>
+
+    <a href="https://startups.com.br/negocios/fintech/depois-de-captar-r-25m-selvia-lanca-conta-pj-para-medicos/" target="_blank" rel="noopener" class="midia-card">
+      <div>
+        <p class="midia-label">STARTUPS.COM.BR · 25 JUN 2025</p>
+        <p class="midia-title">Depois de captar R$ 2,5M, Selvia lança conta PJ para médicos</p>
+      </div>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0D423F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6h-6a2 2 0 0 0 -2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-6"></path><path d="M11 13l9 -9"></path><path d="M15 4h5v5"></path></svg>
+    </a>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="nav-logo">selvia</div>
+        <p>Sua equipe financeira no WhatsApp. Contabilidade, impostos, banco PJ e assessoria para profissionais PJ.</p>
+        <div class="footer-social">
+          <a href="https://www.instagram.com/selvia.contabilidade/" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="4"></rect><circle cx="12" cy="12" r="3"></circle><circle cx="16.5" cy="7.5" r=".5" fill="currentColor"></circle></svg>
+          </a>
+          <a href="https://www.linkedin.com/company/selvia-m" target="_blank" rel="noopener" aria-label="LinkedIn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"></rect><line x1="8" y1="11" x2="8" y2="16"></line><line x1="8" y1="8" x2="8" y2="8.01"></line><line x1="12" y1="16" x2="12" y2="11"></line><path d="M16 16v-3a2 2 0 0 0 -4 0"></path></svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Para quem</h4>
+        <a href="#verticais">Médicos</a>
+        <a href="#verticais">Devs</a>
+        <a href="#verticais">Advogados</a>
+        <a href="#verticais">Outras profissões</a>
+      </div>
+      <div class="footer-col">
+        <h4>Conteúdo</h4>
+        <a href="#blog">Blog</a>
+        <a href="#calculadora">Calculadora</a>
+        <a href="#precos">Preços</a>
+      </div>
+      <div class="footer-col">
+        <h4>Empresa</h4>
+        <a href="#">Sobre</a>
+        <a href="#">Imprensa</a>
+        <a href="#">Contato</a>
+      </div>
+    </div>
+
+    <div class="footer-legal">
+      <p><strong>SELVIA TECNOLOGIA LTDA</strong> — CNPJ 55.044.108/0001-78<br>
+      Alameda Rio Negro, 503, Sala 2020, Alphaville, Barueri — SP, 06454-000</p>
+      <p style="margin-top: 12px;"><strong>SELVIA CONTABILIDADE LTDA</strong> — CNPJ 37.888.114/0001-20<br>
+      Rua Doutor Joaquim Taveira, 1111, Goiânia — GO, 74345-170 · Responsável Técnico: CRC GO-018845/O-3</p>
+      <p class="footer-copy">© 2026 Selvia. Todos os direitos reservados.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ===== ANIMAÇÃO DO MOCK CHAT (hero) =====
+  (function() {
+    const chat = document.getElementById('mock-chat');
+    const scroll = document.getElementById('mock-scroll');
+    if (!chat || !scroll) return;
+
+    // Se o usuário prefere movimento reduzido, mostra tudo estático
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) {
+      chat.classList.add('is-static');
+      scroll.scrollTop = scroll.scrollHeight;
+      return;
+    }
+
+    let animationStarted = false;
+
+    function startAnimation() {
+      if (animationStarted) return;
+      animationStarted = true;
+
+      const show = (id) => {
+        const el = document.getElementById(id);
+        if (el) {
+          el.classList.add('visible');
+          // Espera a animação de fade-in terminar (350ms) antes de scrollar
+          setTimeout(() => scrollToBottom(), 380);
+        }
+      };
+      const hideTyping = (id) => {
+        const el = document.getElementById(id);
+        if (el) { el.classList.remove('visible'); }
+      };
+      const showTyping = (id) => {
+        const el = document.getElementById(id);
+        if (el) {
+          el.classList.add('visible');
+          setTimeout(() => scrollToBottom(), 380);
+        }
+      };
+      const scrollToBottom = () => {
+        scroll.scrollTo({ top: scroll.scrollHeight, behavior: 'smooth' });
+      };
+
+      // Sequência de 6 etapas do fluxo de emissão de NF
+      // Tempo total: ~14 segundos
+
+      // ETAPA 1: Selvia oferece o botão (t=0.5s → 2s)
+      setTimeout(() => showTyping('typing-1'), 500);
+      setTimeout(() => {
+        hideTyping('typing-1');
+        show('msg-1');
+        setTimeout(() => show('msg-1-buttons'), 250);
+      }, 2000);
+
+      // ETAPA 2: Cliente clica no botão (t=3.5s)
+      setTimeout(() => show('msg-2'), 3500);
+
+      // ETAPA 3: Selvia confirma e oferece 2 opções (t=4.5s → 6s)
+      setTimeout(() => showTyping('typing-2'), 4500);
+      setTimeout(() => {
+        hideTyping('typing-2');
+        show('msg-3');
+        setTimeout(() => show('msg-3-buttons'), 250);
+      }, 6000);
+
+      // ETAPA 4: Cliente responde "Emitir agora" com quote (t=7.5s → 8.5s)
+      setTimeout(() => showTyping('typing-3'), 7500);
+      setTimeout(() => {
+        hideTyping('typing-3');
+        show('msg-4');
+      }, 8500);
+
+      // ETAPA 5: Selvia processando (t=9.5s → 10.5s)
+      setTimeout(() => showTyping('typing-4'), 9500);
+      setTimeout(() => {
+        hideTyping('typing-4');
+        show('msg-5');
+      }, 10500);
+
+      // ETAPA 6: Selvia entrega PDF + mensagem final + botão avaliar (t=12s → 14s)
+      setTimeout(() => showTyping('typing-5'), 12000);
+      setTimeout(() => {
+        hideTyping('typing-5');
+        show('msg-6-file');
+        setTimeout(() => show('msg-6'), 350);
+        setTimeout(() => show('msg-6-buttons'), 700);
+      }, 13000);
+    }
+
+    // Inicia quando o chat fica visível na tela
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            startAnimation();
+            observer.disconnect();
+          }
+        });
+      }, { threshold: 0.3 });
+      observer.observe(chat);
+    } else {
+      // Fallback pra browsers antigos
+      startAnimation();
+    }
+  })();
+
+  // ===== CARROSSEL DE DEPOIMENTOS =====
+  // Slide automático a cada 6s, pause on hover, dots clicáveis pra nav manual
+  (function() {
+    const carousel = document.getElementById('depoimentos-carousel');
+    if (!carousel) return;
+
+    const shell = carousel.closest('.depoimentos-shell') || carousel.parentElement;
+    const track = document.getElementById('depoimentos-track');
+    const slides = track.querySelectorAll('.depoimento');
+    const dots = shell.querySelectorAll('.depoimento-dot');
+    const total = slides.length;
+    if (total <= 1) return;
+
+    let current = 0;
+    let direction = 1; // 1 = avançando, -1 = voltando
+    let timer = null;
+    const INTERVAL = 6000;
+
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    const goTo = (i) => {
+      current = Math.max(0, Math.min(total - 1, i));
+      track.style.transform = `translateX(-${current * 100}%)`;
+      dots.forEach((dot, idx) => {
+        dot.classList.toggle('active', idx === current);
+        dot.setAttribute('aria-selected', idx === current ? 'true' : 'false');
+      });
+    };
+
+    const next = () => {
+      // Ping-pong: ao chegar nas pontas, inverte a direção
+      if (current === total - 1) direction = -1;
+      else if (current === 0) direction = 1;
+      goTo(current + direction);
+    };
+
+    const start = () => {
+      if (prefersReducedMotion) return;
+      stop();
+      timer = setInterval(next, INTERVAL);
+    };
+
+    const stop = () => {
+      if (timer) { clearInterval(timer); timer = null; }
+    };
+
+    // Click nos dots: pula pro slide, ajusta direção e reseta o timer
+    dots.forEach((dot) => {
+      dot.addEventListener('click', () => {
+        const i = parseInt(dot.dataset.i, 10);
+        // Atualiza a direção baseado em pra onde está indo
+        if (i > current) direction = 1;
+        else if (i < current) direction = -1;
+        goTo(i);
+        start();
+      });
+    });
+
+    // Click nas setas prev/next: navegação manual com wrap-around
+    const prevBtn = document.getElementById('depoimento-prev');
+    const nextBtn = document.getElementById('depoimento-next');
+    if (prevBtn) {
+      prevBtn.addEventListener('click', () => {
+        direction = -1;
+        // Wrap: se está no primeiro, vai pro último
+        goTo(current === 0 ? total - 1 : current - 1);
+        start();
+      });
+    }
+    if (nextBtn) {
+      nextBtn.addEventListener('click', () => {
+        direction = 1;
+        // Wrap: se está no último, vai pro primeiro
+        goTo(current === total - 1 ? 0 : current + 1);
+        start();
+      });
+    }
+
+    // Pause on hover (desktop) e touch (mobile) - shell cobre carousel + dots
+    shell.addEventListener('mouseenter', stop);
+    shell.addEventListener('mouseleave', start);
+    shell.addEventListener('touchstart', stop, { passive: true });
+    shell.addEventListener('touchend', start, { passive: true });
+
+    // Pause quando a aba não tá ativa (não desperdiça energia)
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) stop(); else start();
+    });
+
+    // Disparar só quando o carrossel fica visível pela primeira vez
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) start();
+          else stop();
+        });
+      }, { threshold: 0.25 });
+      io.observe(carousel);
+    } else {
+      start();
+    }
+  })();
+
+  // ===== SCROLL ANIMATIONS (opção C: fade-in + parallax + counter) =====
+  // Aplicado em todas as seções com class="scroll-animate", exceto a hero.
+
+  (function() {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) {
+      // Marca tudo como visível direto, sem animação
+      document.querySelectorAll('.scroll-animate').forEach(s => s.classList.add('is-visible'));
+      return;
+    }
+
+    // -- 1) FADE-IN ao entrar no viewport (uma vez só) --
+    if ('IntersectionObserver' in window) {
+      const fadeObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            fadeObserver.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.15,
+        rootMargin: '0px 0px -80px 0px' // dispara um pouco antes da seção entrar 100%
+      });
+      document.querySelectorAll('.scroll-animate').forEach(s => fadeObserver.observe(s));
+      // Hero não tem .scroll-animate (não usa fade-in nos filhos), mas precisa de is-visible
+      // pra animar a curva de fundo. Adicionamos imediatamente pois Hero já está na tela no load.
+      const heroEl = document.querySelector('.hero');
+      if (heroEl) {
+        // pequeno delay pra dar tempo da página carregar e a transição ser visível
+        requestAnimationFrame(() => requestAnimationFrame(() => heroEl.classList.add('is-visible')));
+      }
+    } else {
+      // Fallback antigo: mostra tudo direto
+      document.querySelectorAll('.scroll-animate').forEach(s => s.classList.add('is-visible'));
+      document.querySelector('.hero')?.classList.add('is-visible');
+    }
+
+    // -- 2) PARALLAX sutil nos blobs decorativos (apenas desktop, mobile pesa demais) --
+    const isMobile = window.matchMedia('(max-width: 900px)').matches;
+    if (!isMobile) {
+      const parallaxSections = document.querySelectorAll('[data-parallax]');
+      let ticking = false;
+
+      const updateParallax = () => {
+        const viewportH = window.innerHeight;
+        const viewportCenter = viewportH / 2;
+        parallaxSections.forEach(section => {
+          const rect = section.getBoundingClientRect();
+          // Só processa se a seção está minimamente visível
+          if (rect.bottom < -200 || rect.top > viewportH + 200) return;
+          const sectionCenter = rect.top + rect.height / 2;
+          // distância do centro da seção ao centro da viewport
+          const distance = sectionCenter - viewportCenter;
+          // Parallax sutil: 12% do scroll relativo
+          const parallaxY = distance * 0.12;
+          section.style.setProperty('--parallax-y', `${-parallaxY}px`);
+        });
+        ticking = false;
+      };
+
+      const onScroll = () => {
+        if (!ticking) {
+          requestAnimationFrame(updateParallax);
+          ticking = true;
+        }
+      };
+
+      window.addEventListener('scroll', onScroll, { passive: true });
+      updateParallax(); // estado inicial
+    }
+
+    // -- 3) COUNTER ANIMATION nos stats (números crescem ao entrar no viewport) --
+    const stats = [
+      { selector: '.stat:nth-child(1) .stat-num', target: 1000, prefix: '+', suffix: '', format: 'thousand' },
+      { selector: '.stat:nth-child(2) .stat-num', target: 22, prefix: '', suffix: '', format: 'int' },
+      { selector: '.stat:nth-child(3) .stat-num', target: 9.7, prefix: '', suffix: '', format: 'decimal' },
+      // .stat:nth-child(4) é "< 1 min" - não anima (não é numérico simples)
+    ];
+
+    const formatNum = (val, fmt) => {
+      if (fmt === 'thousand') {
+        // Mostra como "1.000" (com ponto como separador de milhar)
+        return Math.round(val).toLocaleString('pt-BR');
+      }
+      if (fmt === 'decimal') {
+        return val.toFixed(1).replace('.', ',');
+      }
+      return Math.round(val).toString();
+    };
+
+    const animateCounter = (el, target, prefix, suffix, fmt) => {
+      const duration = 1800; // 1.8s
+      const startTime = performance.now();
+      const start = 0;
+      const tick = (now) => {
+        const elapsed = now - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        // easeOutCubic
+        const eased = 1 - Math.pow(1 - progress, 3);
+        const value = start + (target - start) * eased;
+        el.textContent = prefix + formatNum(value, fmt) + suffix;
+        if (progress < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    };
+
+    const statsObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          stats.forEach(s => {
+            const el = entry.target.querySelector(s.selector);
+            if (el && !el.dataset.counted) {
+              el.dataset.counted = '1';
+              el.textContent = s.prefix + formatNum(0, s.format) + s.suffix;
+              animateCounter(el, s.target, s.prefix, s.suffix, s.format);
+            }
+          });
+          statsObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
+
+    const statsSection = document.querySelector('.stats-bg');
+    if (statsSection) statsObserver.observe(statsSection);
+  })();
+
+  // ===== ANIMAÇÃO DA SEÇÃO COMO FUNCIONA =====
+  // Dispara UMA VEZ quando a seção entra no viewport.
+  // Adicionalmente, calcula dinamicamente a posição dos 2 segmentos da linha
+  // (entre número 1-2 e entre número 2-3) baseado no rect real dos números.
+  (function() {
+    const section = document.querySelector('.como-funciona-bg');
+    if (!section) return;
+
+    const numbers = section.querySelectorAll('.step-h-number');
+    const segments = section.querySelectorAll('.steps-h-segment');
+    const stepsContainer = section.querySelector('.steps-h');
+
+    // Calcula posição dos segmentos: cada um vai do final de um número até o início do próximo
+    const layoutSegments = () => {
+      // Só aplica no desktop. No mobile (≤900px), CSS posiciona os segmentos verticalmente
+      const isMobile = window.matchMedia('(max-width: 900px)').matches;
+      if (isMobile) {
+        // Limpa estilos inline pro CSS mobile assumir o controle
+        segments.forEach(s => {
+          s.style.top = '';
+          s.style.left = '';
+          s.style.width = '';
+          s.style.height = '';
+        });
+        return;
+      }
+      if (numbers.length < 3 || segments.length < 2 || !stepsContainer) return;
+
+      const containerRect = stepsContainer.getBoundingClientRect();
+      const num1 = numbers[0].getBoundingClientRect();
+      const num2 = numbers[1].getBoundingClientRect();
+      const num3 = numbers[2].getBoundingClientRect();
+
+      // Altura na qual a linha cruza os números (~70% da altura do número, na base)
+      const lineY = (num1.top + num1.height * 0.72) - containerRect.top;
+
+      const RESPIRO = 18; // espaço entre o número e a linha (px)
+
+      // Segmento 1: do fim do número 1 até o início do número 2
+      const seg1_left = (num1.right - containerRect.left) + RESPIRO;
+      const seg1_width = (num2.left - containerRect.left) - seg1_left - RESPIRO;
+
+      // Segmento 2: do fim do número 2 até o início do número 3
+      const seg2_left = (num2.right - containerRect.left) + RESPIRO;
+      const seg2_width = (num3.left - containerRect.left) - seg2_left - RESPIRO;
+
+      segments[0].style.top = `${lineY}px`;
+      segments[0].style.left = `${seg1_left}px`;
+      segments[0].style.width = `${Math.max(0, seg1_width)}px`;
+      segments[0].style.height = '2px';
+
+      segments[1].style.top = `${lineY}px`;
+      segments[1].style.left = `${seg2_left}px`;
+      segments[1].style.width = `${Math.max(0, seg2_width)}px`;
+      segments[1].style.height = '2px';
+    };
+
+    // Roda no carregamento e em resize (debounced)
+    layoutSegments();
+    let resizeTimer = null;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(layoutSegments, 100);
+    });
+
+    // Disparar a animação quando a seção entra no viewport
+    let played = false;
+    const play = () => {
+      if (played) return;
+      played = true;
+      // Garantir que segmentos estão posicionados antes de animar
+      layoutSegments();
+      section.classList.add('is-playing');
+    };
+
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) {
+      play();
+      return;
+    }
+
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            play();
+            observer.disconnect();
+          }
+        });
+      }, { threshold: 0.35 });
+      observer.observe(section);
+    } else {
+      play();
+    }
+  })();
+
+  // ===== TABS DE PREÇOS =====
+  function ativarTab(vertical) {
+    const tabs = document.querySelectorAll('.price-tab');
+    const panes = document.querySelectorAll('.price-pane');
+    tabs.forEach(t => t.classList.toggle('active', t.getAttribute('data-vertical') === vertical));
+    panes.forEach(p => {
+      p.style.display = p.getAttribute('data-vertical') === vertical ? 'block' : 'none';
+    });
+  }
+
+  (function() {
+    const tabs = document.querySelectorAll('.price-tab');
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        ativarTab(tab.getAttribute('data-vertical'));
+      });
+    });
+  })();
+
+  (function() {
+    const links = document.querySelectorAll('.vertical-link');
+    links.forEach(link => {
+      link.addEventListener('click', (e) => {
+        const vertical = link.getAttribute('data-vertical');
+        if (vertical) ativarTab(vertical);
+      });
+    });
+  })();
+
+  let calcEconomiaAtual = 0;
+  let calcMelhorRegime = '';
+
+  (function() {
+    const fat = document.getElementById('calc-fat');
+    const btn = document.getElementById('calc-btn');
+    const results = document.getElementById('calc-results');
+
+    fat.addEventListener('input', () => {
+      btn.disabled = !fat.value || parseFloat(fat.value) <= 0;
+    });
+
+    btn.addEventListener('click', () => {
+      const faturamentoMes = parseFloat(fat.value);
+      if (isNaN(faturamentoMes) || faturamentoMes <= 0) return;
+
+      const faturamentoAnual = faturamentoMes * 12;
+      const folhaSalarial = faturamentoMes * 0.28;
+
+      const faixasSN = [
+        { limite: 180000, aliquota: 0.06, deducao: 0 },
+        { limite: 360000, aliquota: 0.112, deducao: 9360 },
+        { limite: 720000, aliquota: 0.135, deducao: 17640 },
+        { limite: 1800000, aliquota: 0.16, deducao: 35640 },
+        { limite: 3600000, aliquota: 0.21, deducao: 125640 },
+        { limite: 4800000, aliquota: 0.33, deducao: 648000 }
+      ];
+      const faixaSN = faixasSN.find(f => faturamentoAnual <= f.limite) || faixasSN[faixasSN.length - 1];
+      const dasMensal = Math.max(0, faturamentoAnual * faixaSN.aliquota - faixaSN.deducao) / 12;
+
+      const tabelaIRRF = [
+        { limite: 2259.20, aliquota: 0,     deducao: 0      },
+        { limite: 2826.65, aliquota: 0.075, deducao: 169.44 },
+        { limite: 3751.05, aliquota: 0.15,  deducao: 381.44 },
+        { limite: 4664.68, aliquota: 0.225, deducao: 662.77 },
+        { limite: Infinity, aliquota: 0.275, deducao: 896.00 }
+      ];
+      const faixaIRRF = tabelaIRRF.find(f => folhaSalarial <= f.limite);
+      const irrf = Math.max(0, folhaSalarial * faixaIRRF.aliquota - faixaIRRF.deducao);
+
+      const tetoINSS = 8157.41;
+      const baseInss = Math.min(folhaSalarial, tetoINSS);
+      const inssSocioSN = baseInss * 0.11;
+      const totalSN = dasMensal + inssSocioSN + irrf;
+
+      const lucroPresumidoAnual = faturamentoAnual * 0.32;
+      let irpjAnual = lucroPresumidoAnual * 0.15;
+      if (lucroPresumidoAnual > 240000) {
+        irpjAnual += (lucroPresumidoAnual - 240000) * 0.10;
+      }
+      const csllAnual = lucroPresumidoAnual * 0.09;
+      const pisAnual = faturamentoAnual * 0.0065;
+      const cofinsAnual = faturamentoAnual * 0.03;
+      const issAnual = faturamentoAnual * 0.02;
+      const inssSocioLP = baseInss * 0.11 * 12;
+      const inssPatronalLP = baseInss * 0.20 * 12;
+      const totalLP = (irpjAnual + csllAnual + pisAnual + cofinsAnual + issAnual + inssSocioLP + inssPatronalLP) / 12;
+
+      calcMelhorRegime = totalSN < totalLP ? 'Simples Nacional' : 'Lucro Presumido';
+      calcEconomiaAtual = Math.abs(totalSN - totalLP) * 12;
+      const aliqSN = totalSN / faturamentoMes;
+      const aliqLP = totalLP / faturamentoMes;
+
+      const fmt = (v) => v.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+      const pct = (v) => (v * 100).toFixed(2) + '%';
+      const fmtRound = (v) => 'R$ ' + Math.round(v).toLocaleString('pt-BR');
+
+      document.getElementById('calc-sn').textContent = fmt(totalSN);
+      document.getElementById('calc-sn-aliq').textContent = pct(aliqSN) + ' efetiva';
+      document.getElementById('calc-lp').textContent = fmt(totalLP);
+      document.getElementById('calc-lp-aliq').textContent = pct(aliqLP) + ' efetiva';
+      document.getElementById('calc-best').textContent = calcMelhorRegime;
+      document.getElementById('calc-saving').textContent = fmt(calcEconomiaAtual);
+      document.getElementById('calc-cta-text').textContent = 'Quero economizar ' + fmtRound(calcEconomiaAtual) + ' — falar agora';
+
+      results.classList.add('show');
+    });
+  })();
+
+  function openWhatsApp(context) {
+    const msg = 'Olá! Vim do site e gostaria de saber mais sobre os serviços' + (context ? ' (' + context + ')' : '') + '.';
+    const url = 'https://api.whatsapp.com/send?phone=5511936220451&text=' + encodeURIComponent(msg);
+    window.open(url, '_blank', 'noopener');
+  }
+
+  function openWhatsAppCalc() {
+    const fmtRound = (v) => 'R$ ' + Math.round(v).toLocaleString('pt-BR');
+    const msg = 'Olá! Vim do site, usei a calculadora e quero economizar ' + fmtRound(calcEconomiaAtual) + ' por ano com o regime ' + calcMelhorRegime + '. Pode me ajudar?';
+    const url = 'https://api.whatsapp.com/send?phone=5511936220451&text=' + encodeURIComponent(msg);
+    window.open(url, '_blank', 'noopener');
+  }
+</script>
+
+</body>
+</html>
