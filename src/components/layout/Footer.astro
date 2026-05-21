@@ -1,50 +1,64 @@
 ---
 // Footer com colunas de navegação + dados legais (CNPJs Selvia)
-// As 2 entidades legais são obrigatórias: tecnologia (SP) e contabilidade (GO)
+// 1:1 com _legacy/index.html (linhas 1717-1744, 2933-2977)
+// As 2 entidades legais são obrigatórias: Tecnologia (SP) e Contabilidade (GO)
+//
+// ESPAÇO DA LOGO:
+// Mesmo padrão do Header: o <a class="footer-logo"> reserva altura e tem fallback textual.
+// Quando a logo PNG estiver em /public/logo.png, trocar o <span> por <img>.
 ---
 
-<footer class="footer">
+<footer>
   <div class="container">
     <div class="footer-grid">
-      <div class="footer-col">
-        <a href="/" class="footer-logo">
-          <!-- TODO: substituir por <img src="/logo.svg" alt="Selvia" /> -->
-          <span class="footer-logo-text">selvia</span>
+      <div class="footer-brand">
+        <a href="/" class="footer-logo" aria-label="Selvia">
+          <!-- TODO: substituir pelo <img src="/logo.png" ...> quando a logo estiver pronta -->
+          <span class="footer-logo-fallback">selvia</span>
         </a>
-        <p class="footer-tagline">
-          Contabilidade no WhatsApp. Sem app. Sem login.
-        </p>
+        <p>Sua equipe financeira no WhatsApp. Contabilidade, impostos, banco PJ e assessoria para profissionais PJ.</p>
+        <div class="footer-social">
+          <a href="https://www.instagram.com/selvia.contabilidade/" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="4" y="4" width="16" height="16" rx="4"></rect>
+              <circle cx="12" cy="12" r="3"></circle>
+              <circle cx="16.5" cy="7.5" r=".5" fill="currentColor"></circle>
+            </svg>
+          </a>
+          <a href="https://www.linkedin.com/company/selvia-m" target="_blank" rel="noopener" aria-label="LinkedIn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="4" y="4" width="16" height="16" rx="2"></rect>
+              <line x1="8" y1="11" x2="8" y2="16"></line>
+              <line x1="8" y1="8" x2="8" y2="8.01"></line>
+              <line x1="12" y1="16" x2="12" y2="11"></line>
+              <path d="M16 16v-3a2 2 0 0 0 -4 0"></path>
+            </svg>
+          </a>
+        </div>
       </div>
 
       <div class="footer-col">
-        <h4>Para você</h4>
-        <ul>
-          <li><a href="/medicos">Médicos</a></li>
-          <li><a href="/devs">Devs e TI</a></li>
-          <li><a href="/advogados">Advogados</a></li>
-          <li><a href="/criadores">Criadores</a></li>
-          <li><a href="/saude">Saúde geral</a></li>
-          <li><a href="/outras-pj">Outras PJs</a></li>
-        </ul>
+        <h4>Para quem</h4>
+        <a href="#verticais">Médicos</a>
+        <a href="#verticais">Devs</a>
+        <a href="#verticais">Advogados</a>
+        <a href="#verticais">Outras profissões</a>
       </div>
 
       <div class="footer-col">
-        <h4>Selvia</h4>
-        <ul>
-          <li><a href="/sobre">Sobre nós</a></li>
-          <li><a href="/imprensa">Imprensa</a></li>
-          <li><a href="/blog">Blog</a></li>
-          <li><a href="/contabilidades">Para contabilidades</a></li>
-          <li><a href="/calculadoras/impostos">Calculadora</a></li>
-        </ul>
+        <h4>Conteúdo</h4>
+        <a href="#blog">Blog</a>
+        <a href="#calculadora">Calculadora</a>
+        <a href="#precos">Preços</a>
       </div>
 
       <div class="footer-col">
-        <h4>Contato</h4>
-        <ul>
-          <li><a href="https://wa.me/5511XXXXXXXXX" target="_blank" rel="noopener">WhatsApp</a></li>
-          <li><a href="mailto:contato@selvia.com.br">contato@selvia.com.br</a></li>
-        </ul>
+        <h4>Empresa</h4>
+        <a href="#">Sobre</a>
+        <a href="#">Imprensa</a>
+        <a href="#">Contato</a>
       </div>
     </div>
 
@@ -53,7 +67,7 @@
         <strong>SELVIA TECNOLOGIA LTDA</strong> — CNPJ 55.044.108/0001-78<br />
         Alameda Rio Negro, 503, Sala 2020, Alphaville, Barueri — SP, 06454-000
       </p>
-      <p>
+      <p style="margin-top: 12px;">
         <strong>SELVIA CONTABILIDADE LTDA</strong> — CNPJ 37.888.114/0001-20<br />
         Rua Doutor Joaquim Taveira, 1111, Goiânia — GO, 74345-170 ·
         Responsável Técnico: CRC GO-018845/O-3
@@ -64,69 +78,87 @@
 </footer>
 
 <style>
-  .footer {
-    background: #fff;
-    padding: 64px 0 32px;
-    border-top: 1px solid rgba(13,66,63,0.08);
+  footer {
+    background: #FFFFFF;
+    padding: 60px 0 40px;
+    border-top: 1px solid rgba(13,66,63,0.12);
   }
   .footer-grid {
     display: grid;
     grid-template-columns: 2fr 1fr 1fr 1fr;
-    gap: 48px;
-    margin-bottom: 48px;
+    gap: 32px;
+    margin-bottom: 40px;
   }
-  .footer-logo-text {
-    font-weight: 600;
-    font-size: 22px;
+
+  /* Reserva de espaço pra logo — mesmo padrão do Header */
+  .footer-logo {
+    display: inline-flex;
+    align-items: center;
+    height: 28px;
+    min-width: 100px;
     color: var(--c-green-dark);
-    letter-spacing: -0.5px;
-    display: inline-block;
-    margin-bottom: 12px;
+    margin-bottom: 0;
   }
-  .footer-tagline {
-    font-size: 14px;
-    color: rgba(13,66,63,0.7);
-    margin: 0;
-    max-width: 240px;
+  .footer-logo img {
+    height: 28px;
+    width: auto;
+    display: block;
   }
+  .footer-logo-fallback {
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--c-green-dark);
+    letter-spacing: -1px;
+    line-height: 1;
+  }
+
+  .footer-brand p {
+    font-size: 13px;
+    color: var(--c-text-muted);
+    margin: 12px 0 16px;
+    line-height: 1.6;
+    max-width: 280px;
+  }
+  .footer-social {
+    display: flex;
+    gap: 12px;
+  }
+  .footer-social a {
+    color: var(--c-green-dark);
+    transition: color 0.15s;
+  }
+  .footer-social a:hover { color: #1D9E75; }
+
   .footer-col h4 {
     font-size: 13px;
-    font-weight: 600;
     color: var(--c-green-dark);
-    margin: 0 0 16px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-  }
-  .footer-col ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
+    font-weight: 500;
+    margin-bottom: 14px;
   }
   .footer-col a {
-    font-size: 14px;
-    color: rgba(13,66,63,0.75);
-    transition: color 0.15s ease;
+    display: block;
+    font-size: 13px;
+    color: var(--c-text-muted);
+    margin-bottom: 8px;
+    transition: color 0.15s;
   }
   .footer-col a:hover { color: var(--c-green-dark); }
+
   .footer-legal {
-    border-top: 1px solid rgba(13,66,63,0.08);
-    padding-top: 32px;
-    font-size: 13px;
-    color: rgba(13,66,63,0.6);
+    padding-top: 28px;
+    border-top: 1px solid rgba(13,66,63,0.1);
+    font-size: 12px;
+    color: var(--c-text-muted);
+    line-height: 1.8;
   }
-  .footer-legal p { margin: 0 0 12px; }
-  .footer-copy { margin-top: 24px !important; font-size: 12px; }
+  .footer-legal p { margin: 0; }
+  .footer-legal strong { color: var(--c-green-dark); font-weight: 500; }
+  .footer-copy { margin-top: 16px; opacity: 0.7; }
 
   @media (max-width: 900px) {
-    .footer-grid {
-      grid-template-columns: 1fr 1fr;
-      gap: 32px;
-    }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
   }
-  @media (max-width: 600px) {
+  @media (max-width: 560px) {
     .footer-grid { grid-template-columns: 1fr; }
   }
 </style>

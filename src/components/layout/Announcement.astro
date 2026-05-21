@@ -1,48 +1,37 @@
 ---
 // Banner topo: anúncio do investimento R$ 2,5M (Startups.com.br)
+// 1:1 com _legacy/index.html (linhas 151-165, 1988-1992)
 // TODO: quando expirar o anúncio, trocar copy ou ocultar com flag
 ---
 
-<aside class="announcement" role="region" aria-label="Anúncio">
-  <div class="announcement-inner">
-    <span class="announcement-icon" aria-hidden="true">✨</span>
-    <p>
-      Selvia captou R$ 2,5M e lançou conta PJ para médicos —
-      <a href="https://startups.com.br" target="_blank" rel="noopener">
-        leia no Startups.com.br →
-      </a>
-    </p>
-  </div>
-</aside>
+<div class="announcement">
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+       stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M12 3l1.912 5.813a2 2 0 0 0 1.275 1.275L21 12l-5.813 1.912a2 2 0 0 0 -1.275 1.275L12 21l-1.912 -5.813a2 2 0 0 0 -1.275 -1.275L3 12l5.813 -1.912a2 2 0 0 0 1.275 -1.275L12 3z"></path>
+  </svg>
+  Selvia captou R$ 2,5M e lançou conta PJ para médicos —
+  <a href="https://startups.com.br/negocios/fintech/depois-de-captar-r-25m-selvia-lanca-conta-pj-para-medicos/"
+     target="_blank" rel="noopener">leia no Startups.com.br →</a>
+</div>
 
 <style>
   .announcement {
-    background: linear-gradient(90deg, #F4933B 0%, #FFD15C 100%);
-    color: #0D423F;
-    padding: 10px 16px;
-    font-size: 14px;
-    font-weight: 500;
-  }
-  .announcement-inner {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-  }
-  .announcement p {
-    margin: 0;
+    background: linear-gradient(90deg, #F4933B 0%, #F8A85B 50%, #F4933B 100%);
+    color: #FFFFFF;
+    padding: 12px 16px;
     text-align: center;
+    font-size: 13px;
+    font-weight: 400;
   }
   .announcement a {
+    color: #FFFFFF;
     text-decoration: underline;
-    font-weight: 600;
+    font-weight: 500;
   }
-  .announcement-icon {
-    font-size: 16px;
-  }
-  @media (max-width: 700px) {
-    .announcement { font-size: 12px; padding: 8px 12px; }
+  .announcement svg {
+    vertical-align: -3px;
+    margin-right: 6px;
+    color: #FFFFFF;
+    display: inline-block;
   }
 </style>
