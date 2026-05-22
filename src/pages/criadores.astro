@@ -1,4 +1,6 @@
 ---
+// LP vertical /criadores
+
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Announcement from '../components/layout/Announcement.astro';
 import Header from '../components/layout/Header.astro';
@@ -15,6 +17,7 @@ import Midia from '../components/sections/Midia.astro';
 import Footer from '../components/layout/Footer.astro';
 
 import { getVerticalContent, getVerticalFaqSchema } from '../data/vertical-content.ts';
+import { getServiceSchema } from '../components/seo/ServiceSchema.ts';
 
 const SLUG = 'criadores';
 const VERTICAL_NAME = 'Criadores';
@@ -35,12 +38,16 @@ const organizationSchema = {
 };
 
 const faqSchema = getVerticalFaqSchema(SLUG);
+const serviceSchema = getServiceSchema({
+  slug: SLUG,
+  siteUrl: Astro.site,
+});
 ---
 
 <BaseLayout
   title="Contabilidade para criadores de conteúdo | Selvia"
-  description={content.heroSub}
-  jsonLd={[organizationSchema, faqSchema]}
+  description={content.metaDescription}
+  jsonLd={[organizationSchema, faqSchema, serviceSchema]}
 >
   <Announcement />
   <Header />

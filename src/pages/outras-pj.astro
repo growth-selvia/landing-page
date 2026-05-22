@@ -1,4 +1,7 @@
 ---
+// LP vertical /outras-pj
+// Slug interno 'outras' (verticais.ts) mas URL pública /outras-pj
+
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Announcement from '../components/layout/Announcement.astro';
 import Header from '../components/layout/Header.astro';
@@ -15,6 +18,7 @@ import Midia from '../components/sections/Midia.astro';
 import Footer from '../components/layout/Footer.astro';
 
 import { getVerticalContent, getVerticalFaqSchema } from '../data/vertical-content.ts';
+import { getServiceSchema } from '../components/seo/ServiceSchema.ts';
 
 const SLUG = 'outras';
 const VERTICAL_NAME = 'Outras PJ';
@@ -35,12 +39,17 @@ const organizationSchema = {
 };
 
 const faqSchema = getVerticalFaqSchema(SLUG);
+const serviceSchema = getServiceSchema({
+  slug: SLUG,
+  siteUrl: Astro.site,
+  pageSlug: 'outras-pj',
+});
 ---
 
 <BaseLayout
   title="Contabilidade para qualquer profissional PJ | Selvia"
-  description={content.heroSub}
-  jsonLd={[organizationSchema, faqSchema]}
+  description={content.metaDescription}
+  jsonLd={[organizationSchema, faqSchema, serviceSchema]}
 >
   <Announcement />
   <Header />
