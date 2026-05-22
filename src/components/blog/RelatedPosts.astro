@@ -1,0 +1,152 @@
+---
+/**
+ * RelatedPosts — sugestões de leitura no fim do artigo
+ *
+ * Mostra até 3 outros artigos da mesma vertical (não o atual).
+ *
+ * BUG FIX (22/05/2026): a template literal `/blog/${vertical}/${slug}` inline
+ * no JSX estava confundindo o parser do Astro com o CSS abaixo. Solução:
+ * pré-calcular a URL no frontmatter, mapear pra um objeto, e usar variável
+ * simples no JSX.
+ */
+
+import { getCollection, type CollectionEntry } from 'astro:content';
+
+interface Props {
+  currentSlug: string;
+  vertical: string;
+}
+
+const { currentSlug, vertical } = Astro.props;
+
+// Busca todos artigos não-draft da mesma vertical, exceto o atual
+const allPosts = await getCollection('blog', ({ data, slug }) => {
+  return !data.draft && data.vertical === vertical && slug !== currentSlug;
+});
+
+// Função pra pegar o slug "limpo" (sem o prefixo de vertical, que vem de pasta)
+function getCleanSlug(entry: CollectionEntry<'blog'>): string {
+  const parts = entry.slug.split('/');
+  return parts[parts.length - 1];
+}
+
+// Pré-monta TUDO (incluindo URL e data formatada) no frontmatter
+const relatedPosts = allPosts
+  .sort((a, b) => b.data.publishedAt.getTime() - a.data.publishedAt.getTime())
+  .slice(0, 3)
+  .map((post) => ({
+    title: post.data.title,
+    description: post.data.description,
+    url: '/blog/' + post.data.vertical + '/' + getCleanSlug(post),
+    dateFormatted: post.data.publishedAt.toLocaleDateString('pt-BR', {
+      day: 'numeric',
+      month: 'short',
+      year: 'numeric',
+    }),
+  }));
+
+const hasRelated = relatedPosts.length > 0;
+---
+
+{hasRelated && (
+  <section class="related-posts">
+    <div class="container">
+      <h2 class="related-posts-title">Continue lendo</h2>
+
+      <div class="related-posts-grid">
+        {relatedPosts.map((post) => (
+          <a href={post.url} class="related-card">
+            <p class="related-card-date">{post.dateFormatted}</p>
+            <h3 class="related-card-title">{post.title}</h3>
+            <p class="related-card-description">{post.description}</p>
+            <span class="related-card-link">
+              Ler artigo <span aria-hidden="true">→</span>
+            </span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+)}
+
+<style>
+  .related-posts {
+    padding: 56px 0 64px;
+    background: #F9F9F9;
+    border-top: 1px solid rgba(13,66,63,0.08);
+  }
+
+  .related-posts-title {
+    font-size: 24px;
+    font-weight: 500;
+    color: var(--c-green-dark);
+    letter-spacing: -0.5px;
+    margin: 0 0 24px;
+  }
+
+  .related-posts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
+  }
+
+  .related-card {
+    background: #FFFFFF;
+    border: 1px solid rgba(13,66,63,0.08);
+    border-radius: 12px;
+    padding: 24px;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.2s;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-height: 200px;
+  }
+  .related-card:hover {
+    border-color: var(--c-green-light);
+    box-shadow: 0 12px 32px -12px rgba(105,228,112,0.25);
+    transform: translateY(-2px);
+  }
+
+  .related-card-date {
+    font-size: 11px;
+    color: var(--c-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin: 0;
+  }
+
+  .related-card-title {
+    font-size: 17px;
+    font-weight: 500;
+    color: var(--c-green-dark);
+    line-height: 1.3;
+    margin: 0;
+    letter-spacing: -0.3px;
+  }
+
+  .related-card-description {
+    font-size: 13px;
+    color: var(--c-text-muted-strong);
+    line-height: 1.5;
+    margin: 0;
+    flex-grow: 1;
+  }
+
+  .related-card-link {
+    font-size: 13px;
+    color: var(--c-green-dark);
+    font-weight: 500;
+    margin-top: 8px;
+  }
+
+  @media (max-width: 600px) {
+    .related-posts {
+      padding: 40px 0 48px;
+    }
+    .related-posts-title {
+      font-size: 22px;
+    }
+  }
+</style>

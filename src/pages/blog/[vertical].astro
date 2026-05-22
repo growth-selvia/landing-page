@@ -1,0 +1,230 @@
+---
+/**
+ * /blog/[vertical] — lista filtrada por vertical
+ *
+ * BUG FIX: a renderização inline com class condicional ternária dentro de
+ * .map() confundia o parser do Astro. Solução: pré-montar o objeto com
+ * className já decidida no frontmatter.
+ */
+
+import { getCollection } from 'astro:content';
+
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Announcement from '../../components/layout/Announcement.astro';
+import Header from '../../components/layout/Header.astro';
+import Footer from '../../components/layout/Footer.astro';
+import BlogCard from '../../components/blog/BlogCard.astro';
+
+import {
+  getBlogPostUrl,
+  formatBlogDate,
+  calculateReadingTime,
+  getVerticalName,
+} from '../../components/blog/blogHelpers.ts';
+
+export async function getStaticPaths() {
+  const allPosts = await getCollection('blog', ({ data }) => !data.draft);
+  const verticaisUnicas = Array.from(new Set(allPosts.map((p) => p.data.vertical)));
+
+  return verticaisUnicas.map((vertical) => ({
+    params: { vertical },
+    props: { allPosts },
+  }));
+}
+
+interface Props {
+  allPosts: Awaited<ReturnType<typeof getCollection<'blog'>>>;
+}
+
+const { allPosts } = Astro.props;
+const { vertical } = Astro.params;
+
+const postsDesteVertical = allPosts
+  .filter((p) => p.data.vertical === vertical)
+  .sort((a, b) => b.data.publishedAt.getTime() - a.data.publishedAt.getTime());
+
+const postCards = postsDesteVertical.map((post) => ({
+  url: getBlogPostUrl(post),
+  vertical: post.data.vertical,
+  verticalName: getVerticalName(post.data.vertical),
+  title: post.data.title,
+  description: post.data.description,
+  dateFormatted: formatBlogDate(post.data.publishedAt),
+  readingTime: calculateReadingTime(post.body),
+}));
+
+// Pré-monta TUDO dos filtros (incluindo className) no frontmatter
+// pra evitar bug do parser do Astro com ternário inline em .map()
+const verticaisComArtigos = Array.from(new Set(allPosts.map((p) => p.data.vertical)));
+const filtros = verticaisComArtigos.map((slug) => {
+  const isActive = slug === vertical;
+  return {
+    slug,
+    name: getVerticalName(slug),
+    url: '/blog/' + slug,
+    className: isActive
+      ? 'blog-list-filter blog-list-filter-active'
+      : 'blog-list-filter',
+  };
+});
+
+const verticalName = getVerticalName(vertical as string);
+
+const organizationSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'Selvia',
+  url: Astro.site?.href,
+  logo: new URL('/logo.png', Astro.site).href,
+  description: 'Contabilidade no WhatsApp para profissionais PJ no Brasil.',
+};
+
+const blogSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Blog',
+  name: 'Blog Selvia — ' + verticalName,
+  description: 'Artigos sobre contabilidade e gestão de PJ para ' + verticalName + '.',
+  url: new URL(Astro.url.pathname, Astro.site).href,
+  publisher: {
+    '@type': 'Organization',
+    name: 'Selvia',
+  },
+};
+
+const pageTitle = 'Blog ' + verticalName + ' | Selvia';
+const pageDescription = 'Artigos sobre contabilidade, impostos e gestão de PJ para ' + verticalName + '. Escrito pela equipe Selvia.';
+---
+
+<BaseLayout
+  title={pageTitle}
+  description={pageDescription}
+  jsonLd={[organizationSchema, blogSchema]}
+>
+  <Announcement />
+  <Header />
+
+  <main>
+    <header class="blog-list-header">
+      <div class="container">
+        <a href="/blog" class="blog-list-back">← Todos os artigos</a>
+        <span class="pill pill-dark">Blog · {verticalName}</span>
+        <h1 class="blog-list-title">Artigos para {verticalName}.</h1>
+        <p class="blog-list-sub">
+          Conteúdo específico pra realidade de quem trabalha nessa área.
+        </p>
+
+        <nav class="blog-list-filters" aria-label="Filtros por vertical">
+          <a href="/blog" class="blog-list-filter">Todos</a>
+          {filtros.map((f) => (
+            <a href={f.url} class={f.className}>{f.name}</a>
+          ))}
+        </nav>
+      </div>
+    </header>
+
+    <section class="blog-list-section">
+      <div class="container">
+        <div class="blog-list-grid">
+          {postCards.map((post) => (
+            <BlogCard
+              url={post.url}
+              vertical={post.vertical}
+              verticalName={post.verticalName}
+              title={post.title}
+              description={post.description}
+              dateFormatted={post.dateFormatted}
+              readingTime={post.readingTime}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<style>
+  .blog-list-header {
+    background: #FFFFFF;
+    padding: 32px 0;
+    border-bottom: 1px solid rgba(13,66,63,0.06);
+  }
+
+  .blog-list-back {
+    font-size: 13px;
+    color: var(--c-text-muted);
+    text-decoration: none;
+    display: inline-block;
+    margin-bottom: 16px;
+    transition: color 0.15s;
+  }
+  .blog-list-back:hover {
+    color: var(--c-green-dark);
+  }
+
+  .blog-list-title {
+    font-size: clamp(28px, 4.5vw, 44px);
+    font-weight: 500;
+    color: var(--c-green-dark);
+    line-height: 1.15;
+    letter-spacing: -1px;
+    margin: 16px 0 12px;
+    max-width: 720px;
+  }
+  .blog-list-sub {
+    font-size: 17px;
+    color: var(--c-text-muted-strong);
+    margin: 0;
+    max-width: 580px;
+  }
+
+  .blog-list-filters {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 28px;
+  }
+  .blog-list-filter {
+    padding: 8px 16px;
+    background: rgba(13,66,63,0.05);
+    color: var(--c-text-muted-strong);
+    border-radius: 100px;
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.15s;
+  }
+  .blog-list-filter:hover {
+    background: rgba(13,66,63,0.1);
+    color: var(--c-green-dark);
+  }
+  .blog-list-filter-active {
+    background: var(--c-green-dark);
+    color: var(--c-green-light);
+  }
+  .blog-list-filter-active:hover {
+    background: var(--c-green-dark);
+    color: var(--c-green-light);
+  }
+
+  .blog-list-section {
+    background: #F9F9F9;
+    padding: 48px 0 80px;
+    min-height: 400px;
+  }
+  .blog-list-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 20px;
+  }
+
+  @media (max-width: 600px) {
+    .blog-list-header {
+      padding: 24px 0;
+    }
+    .blog-list-section {
+      padding: 32px 0 56px;
+    }
+  }
+</style>

@@ -1,0 +1,179 @@
+---
+/**
+ * BlogCta — CTA contextual no fim do artigo
+ *
+ * Dois modos via prop `cta` (vem do frontmatter):
+ *   - "whatsapp" (default): bloco verde escuro com botão WhatsApp
+ *   - "vertical": bloco verde escuro com botão "Ver planos para [Vertical]"
+ *
+ * O CTA "vertical" é mais agressivo (leva pra LP que tem preço).
+ * O CTA "whatsapp" é mais consultivo (conversa antes).
+ *
+ * Médicos é especial: não tem LP vertical, então quando `cta=vertical` e
+ * vertical="medicos", o link vai pra home (que cumpre esse papel).
+ *
+ * "geral" também não tem LP, então cta=vertical em artigo "geral" vai pra /blog.
+ */
+
+interface Props {
+  cta: 'whatsapp' | 'vertical';
+  vertical: string;
+  articleTitle: string;
+}
+
+const { cta, vertical, articleTitle } = Astro.props;
+
+const verticalNames: Record<string, string> = {
+  medicos: 'Médicos',
+  devs: 'Devs e TI',
+  advogados: 'Advogados',
+  criadores: 'Criadores',
+  saude: 'Saúde',
+  outras: 'Outras PJ',
+  geral: 'Profissionais',
+};
+const verticalName = verticalNames[vertical] || vertical;
+
+// URL da LP da vertical (especialmente médicos vai pra home)
+const verticalUrl = vertical === 'medicos'
+  ? '/'
+  : vertical === 'outras'
+    ? '/outras-pj'
+    : vertical === 'geral'
+      ? '/blog'
+      : `/${vertical}`;
+
+const whatsappMessage = `Olá! Vim do artigo "${articleTitle}" e gostaria de saber mais sobre a Selvia.`;
+const whatsappUrl = `https://api.whatsapp.com/send?phone=5511936220451&text=${encodeURIComponent(whatsappMessage)}`;
+
+const showVerticalCta = cta === 'vertical';
+---
+
+<section class="blog-cta">
+  <div class="container">
+    <div class="blog-cta-block">
+      {showVerticalCta ? (
+        <>
+          <p class="blog-cta-eyebrow">Pronto pra começar?</p>
+          <h3 class="blog-cta-title">Planos especiais para {verticalName}</h3>
+          <p class="blog-cta-sub">
+            A Selvia tem planos pensados pra realidade de quem trabalha na sua área.
+            Veja os preços e o que tá incluso.
+          </p>
+          <a href={verticalUrl} class="blog-cta-btn">
+            Ver planos para {verticalName}
+            <span aria-hidden="true">→</span>
+          </a>
+        </>
+      ) : (
+        <>
+          <p class="blog-cta-eyebrow">Ficou com dúvida?</p>
+          <h3 class="blog-cta-title">Fale com a Selvia no WhatsApp</h3>
+          <p class="blog-cta-sub">
+            Atendimento humano, sem bot. A gente entende sua situação e
+            recomenda o melhor caminho pra você.
+          </p>
+          <a href={whatsappUrl} target="_blank" rel="noopener" class="blog-cta-btn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M3 21l1.65 -3.8a9 9 0 1 1 3.4 2.9l-5.05 .9" />
+            </svg>
+            Falar no WhatsApp
+          </a>
+        </>
+      )}
+    </div>
+  </div>
+</section>
+
+<style>
+  .blog-cta {
+    padding: 48px 0;
+    background: #FFFFFF;
+  }
+
+  .blog-cta-block {
+    background: var(--c-green-dark);
+    border-radius: 16px;
+    padding: 48px 32px;
+    text-align: center;
+    max-width: 720px;
+    margin: 0 auto;
+    color: var(--c-offwhite);
+    position: relative;
+    overflow: hidden;
+  }
+  .blog-cta-block::before {
+    content: '';
+    position: absolute;
+    top: -80px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 400px;
+    height: 200px;
+    background: radial-gradient(ellipse, rgba(105,228,112,0.18) 0%, transparent 65%);
+    pointer-events: none;
+  }
+  .blog-cta-block > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .blog-cta-eyebrow {
+    font-size: 12px;
+    color: var(--c-green-light);
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    font-weight: 500;
+    margin: 0 0 10px;
+  }
+
+  .blog-cta-title {
+    font-size: 24px;
+    color: var(--c-offwhite);
+    font-weight: 500;
+    margin: 0 0 12px;
+    line-height: 1.25;
+    letter-spacing: -0.5px;
+  }
+
+  .blog-cta-sub {
+    font-size: 14px;
+    color: rgba(249,249,249,0.78);
+    line-height: 1.6;
+    max-width: 480px;
+    margin: 0 auto 24px;
+  }
+
+  .blog-cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 13px 26px;
+    background: var(--c-green-light);
+    color: var(--c-green-dark);
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 14px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    box-shadow: 0 8px 24px rgba(105,228,112,0.25);
+  }
+  .blog-cta-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px rgba(105,228,112,0.4);
+    background: #7BEE82;
+  }
+
+  @media (max-width: 700px) {
+    .blog-cta {
+      padding: 32px 0;
+    }
+    .blog-cta-block {
+      padding: 36px 24px;
+    }
+    .blog-cta-title {
+      font-size: 20px;
+    }
+  }
+</style>

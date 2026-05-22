@@ -1,0 +1,108 @@
+---
+/**
+ * BlogBreadcrumb — migalhas de pão estilo "Home > Blog > Médicos > Artigo"
+ *
+ * Função SEO: ajuda Google a entender hierarquia do site e mostra breadcrumb
+ * nos resultados de busca (rich result).
+ *
+ * Função UX: usuário sabe onde tá e consegue voltar pra Blog ou pra Vertical
+ * sem ter que clicar no menu.
+ */
+
+import { getVertical } from '../../data/verticais.ts';
+
+interface Props {
+  vertical: string;
+  title: string;
+}
+
+const { vertical, title } = Astro.props;
+
+// Mapeamento slug → nome legível
+// "geral" não tem entrada em verticais.ts (é só pro blog), tratamos à parte
+const verticalNames: Record<string, string> = {
+  medicos: 'Médicos',
+  devs: 'Devs',
+  advogados: 'Advogados',
+  criadores: 'Criadores',
+  saude: 'Saúde',
+  outras: 'Outras PJ',
+  geral: 'Geral',
+};
+const verticalName = verticalNames[vertical] || vertical;
+
+// URL da vertical (médicos não tem LP, vai pra home)
+const verticalUrl = vertical === 'medicos'
+  ? '/'
+  : vertical === 'outras'
+    ? '/outras-pj'
+    : vertical === 'geral'
+      ? '/blog'
+      : `/${vertical}`;
+
+// Trunca título longo pro breadcrumb (mantém legível)
+const truncate = (s: string, n: number) => s.length > n ? s.slice(0, n - 1) + '…' : s;
+---
+
+<nav class="breadcrumb" aria-label="Navegação estrutural">
+  <ol>
+    <li>
+      <a href="/">Home</a>
+      <span aria-hidden="true">›</span>
+    </li>
+    <li>
+      <a href="/blog">Blog</a>
+      <span aria-hidden="true">›</span>
+    </li>
+    <li>
+      <a href={`/blog/${vertical}`}>{verticalName}</a>
+      <span aria-hidden="true">›</span>
+    </li>
+    <li aria-current="page" class="breadcrumb-current">{truncate(title, 60)}</li>
+  </ol>
+</nav>
+
+<style>
+  .breadcrumb {
+    padding: 16px 0;
+    font-size: 13px;
+    color: var(--c-text-muted);
+  }
+  .breadcrumb ol {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    align-items: center;
+  }
+  .breadcrumb li {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .breadcrumb a {
+    color: var(--c-text-muted);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+  .breadcrumb a:hover {
+    color: var(--c-green-dark);
+  }
+  .breadcrumb-current {
+    color: var(--c-green-dark);
+    font-weight: 500;
+  }
+  .breadcrumb span {
+    color: var(--c-text-muted);
+    opacity: 0.6;
+  }
+
+  @media (max-width: 600px) {
+    .breadcrumb {
+      padding: 12px 0;
+      font-size: 12px;
+    }
+  }
+</style>

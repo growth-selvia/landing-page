@@ -1,0 +1,200 @@
+---
+/**
+ * /blog — lista geral de todos artigos não-draft
+ */
+
+import { getCollection } from 'astro:content';
+
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Announcement from '../../components/layout/Announcement.astro';
+import Header from '../../components/layout/Header.astro';
+import Footer from '../../components/layout/Footer.astro';
+import BlogCard from '../../components/blog/BlogCard.astro';
+
+import {
+  getBlogPostUrl,
+  formatBlogDate,
+  calculateReadingTime,
+  getVerticalName,
+} from '../../components/blog/blogHelpers.ts';
+
+const allPosts = await getCollection('blog', ({ data }) => !data.draft);
+const sortedPosts = allPosts.sort(
+  (a, b) => b.data.publishedAt.getTime() - a.data.publishedAt.getTime()
+);
+
+const postCards = sortedPosts.map((post) => ({
+  url: getBlogPostUrl(post),
+  vertical: post.data.vertical,
+  verticalName: getVerticalName(post.data.vertical),
+  title: post.data.title,
+  description: post.data.description,
+  dateFormatted: formatBlogDate(post.data.publishedAt),
+  readingTime: calculateReadingTime(post.body),
+}));
+
+const verticaisComArtigos = Array.from(new Set(sortedPosts.map((p) => p.data.vertical)));
+const filtros = verticaisComArtigos.map((slug) => ({
+  slug,
+  name: getVerticalName(slug),
+  url: '/blog/' + slug,
+}));
+
+const hasArtigos = postCards.length > 0;
+
+const organizationSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'Selvia',
+  url: Astro.site?.href,
+  logo: new URL('/logo.png', Astro.site).href,
+  description: 'Contabilidade no WhatsApp para profissionais PJ no Brasil.',
+};
+
+const blogSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Blog',
+  name: 'Blog Selvia',
+  description: 'Artigos sobre contabilidade, impostos e gestão de PJ para profissionais brasileiros.',
+  url: new URL('/blog', Astro.site).href,
+  publisher: {
+    '@type': 'Organization',
+    name: 'Selvia',
+  },
+};
+---
+
+<BaseLayout
+  title="Blog Selvia — Contabilidade, impostos e gestão de PJ"
+  description="Artigos sobre contabilidade, Simples Nacional, Fator R e gestão financeira de PJ. Escrito por contadores da Selvia com CRC GO-018845/O-3."
+  jsonLd={[organizationSchema, blogSchema]}
+>
+  <Announcement />
+  <Header />
+
+  <main>
+    <header class="blog-list-header">
+      <div class="container">
+        <span class="pill pill-dark">Blog</span>
+        <h1 class="blog-list-title">Tudo sobre contabilidade de PJ no Brasil.</h1>
+        <p class="blog-list-sub">
+          Artigos escritos pela equipe Selvia. Sem jargão, direto ao ponto.
+        </p>
+
+        {filtros.length > 0 && (
+          <nav class="blog-list-filters" aria-label="Filtros por vertical">
+            <a href="/blog" class="blog-list-filter blog-list-filter-active">Todos</a>
+            {filtros.map((f) => (
+              <a href={f.url} class="blog-list-filter">{f.name}</a>
+            ))}
+          </nav>
+        )}
+      </div>
+    </header>
+
+    <section class="blog-list-section">
+      <div class="container">
+        {hasArtigos ? (
+          <div class="blog-list-grid">
+            {postCards.map((post) => (
+              <BlogCard
+                url={post.url}
+                vertical={post.vertical}
+                verticalName={post.verticalName}
+                title={post.title}
+                description={post.description}
+                dateFormatted={post.dateFormatted}
+                readingTime={post.readingTime}
+              />
+            ))}
+          </div>
+        ) : (
+          <div class="blog-list-empty">
+            <p>Em breve, artigos sobre contabilidade direto da nossa equipe.</p>
+          </div>
+        )}
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<style>
+  .blog-list-header {
+    background: #FFFFFF;
+    padding: 48px 0 32px;
+    border-bottom: 1px solid rgba(13,66,63,0.06);
+  }
+  .blog-list-title {
+    font-size: clamp(28px, 4.5vw, 44px);
+    font-weight: 500;
+    color: var(--c-green-dark);
+    line-height: 1.15;
+    letter-spacing: -1px;
+    margin: 16px 0 12px;
+    max-width: 720px;
+  }
+  .blog-list-sub {
+    font-size: 17px;
+    color: var(--c-text-muted-strong);
+    margin: 0;
+    max-width: 580px;
+  }
+
+  .blog-list-filters {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 28px;
+  }
+  .blog-list-filter {
+    padding: 8px 16px;
+    background: rgba(13,66,63,0.05);
+    color: var(--c-text-muted-strong);
+    border-radius: 100px;
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.15s;
+  }
+  .blog-list-filter:hover {
+    background: rgba(13,66,63,0.1);
+    color: var(--c-green-dark);
+  }
+  .blog-list-filter-active {
+    background: var(--c-green-dark);
+    color: var(--c-green-light);
+  }
+  .blog-list-filter-active:hover {
+    background: var(--c-green-dark);
+    color: var(--c-green-light);
+  }
+
+  .blog-list-section {
+    background: #F9F9F9;
+    padding: 48px 0 80px;
+    min-height: 400px;
+  }
+  .blog-list-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 20px;
+  }
+
+  .blog-list-empty {
+    text-align: center;
+    padding: 64px 24px;
+    color: var(--c-text-muted);
+    font-size: 15px;
+  }
+
+  @media (max-width: 600px) {
+    .blog-list-header {
+      padding: 32px 0 24px;
+    }
+    .blog-list-section {
+      padding: 32px 0 56px;
+    }
+  }
+</style>

@@ -1,0 +1,141 @@
+---
+/**
+ * BlogHero — hero do artigo do blog, design minimalista
+ *
+ * Layout:
+ *   - Pill da vertical (verde claro, igual home)
+ *   - H1 grande, max-width 720px (legível, não estourado)
+ *   - Meta linha: "Selvia · 22 de maio de 2026 · 5 min de leitura"
+ *   - Subtítulo (description do frontmatter)
+ *
+ * Sem imagem hero (decisão de design minimalista).
+ */
+
+interface Props {
+  title: string;
+  description: string;
+  vertical: string;
+  publishedAt: Date;
+  updatedAt?: Date;
+  readingTime: number;  // em minutos
+}
+
+const { title, description, vertical, publishedAt, updatedAt, readingTime } = Astro.props;
+
+const verticalNames: Record<string, string> = {
+  medicos: 'Médicos',
+  devs: 'Devs e TI',
+  advogados: 'Advogados',
+  criadores: 'Criadores',
+  saude: 'Saúde',
+  outras: 'Outras PJ',
+  geral: 'Geral',
+};
+const verticalName = verticalNames[vertical] || vertical;
+
+// Formata data em pt-BR ("22 de maio de 2026")
+const formatDate = (date: Date) =>
+  date.toLocaleDateString('pt-BR', { day: 'numeric', month: 'long', year: 'numeric' });
+
+const showUpdated = updatedAt && updatedAt.getTime() !== publishedAt.getTime();
+---
+
+<header class="blog-hero">
+  <div class="container">
+    <a href={`/blog/${vertical}`} class="blog-hero-pill">{verticalName}</a>
+
+    <h1 class="blog-hero-title">{title}</h1>
+
+    <p class="blog-hero-description">{description}</p>
+
+    <div class="blog-hero-meta">
+      <span class="blog-hero-author">Por <strong>Selvia</strong></span>
+      <span class="blog-hero-sep" aria-hidden="true">·</span>
+      <time datetime={publishedAt.toISOString()}>{formatDate(publishedAt)}</time>
+      {showUpdated && (
+        <>
+          <span class="blog-hero-sep" aria-hidden="true">·</span>
+          <span class="blog-hero-updated">Atualizado em {formatDate(updatedAt!)}</span>
+        </>
+      )}
+      <span class="blog-hero-sep" aria-hidden="true">·</span>
+      <span>{readingTime} min de leitura</span>
+    </div>
+  </div>
+</header>
+
+<style>
+  .blog-hero {
+    background: #FFFFFF;
+    padding: 24px 0 40px;
+    border-bottom: 1px solid rgba(13,66,63,0.08);
+  }
+
+  .blog-hero-pill {
+    display: inline-block;
+    background: var(--c-green-light);
+    color: var(--c-green-dark);
+    padding: 6px 14px;
+    border-radius: 100px;
+    font-size: 12px;
+    font-weight: 500;
+    text-decoration: none;
+    margin-bottom: 20px;
+    transition: opacity 0.15s;
+  }
+  .blog-hero-pill:hover {
+    opacity: 0.85;
+  }
+
+  .blog-hero-title {
+    font-size: clamp(28px, 4.5vw, 44px);
+    font-weight: 500;
+    line-height: 1.15;
+    letter-spacing: -1px;
+    color: var(--c-green-dark);
+    margin: 0 0 16px;
+    max-width: 720px;
+  }
+
+  .blog-hero-description {
+    font-size: 17px;
+    line-height: 1.55;
+    color: var(--c-text-muted-strong);
+    margin: 0 0 24px;
+    max-width: 680px;
+  }
+
+  .blog-hero-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--c-text-muted);
+  }
+  .blog-hero-meta strong {
+    color: var(--c-green-dark);
+    font-weight: 500;
+  }
+  .blog-hero-sep {
+    opacity: 0.5;
+  }
+  .blog-hero-updated {
+    font-style: italic;
+  }
+
+  @media (max-width: 600px) {
+    .blog-hero {
+      padding: 16px 0 32px;
+    }
+    .blog-hero-title {
+      letter-spacing: -0.5px;
+    }
+    .blog-hero-description {
+      font-size: 16px;
+    }
+    .blog-hero-meta {
+      font-size: 12px;
+    }
+  }
+</style>

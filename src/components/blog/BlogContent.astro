@@ -1,0 +1,168 @@
+---
+/**
+ * BlogContent — wrapper de estilo pro markdown renderizado do artigo
+ *
+ * O conteúdo do .md vem via slot (renderizado pelo Astro Content Collections).
+ * Aqui só aplicamos tipografia, espaçamento e estilo de listas/links/headings
+ * que combinam com a identidade da Selvia.
+ */
+---
+
+<div class="blog-content">
+  <slot />
+</div>
+
+<style is:global>
+  /* Estilos globais pra elementos markdown dentro de .blog-content
+     (precisa ser :global porque o markdown é renderizado fora do escopo do componente) */
+
+  .blog-content {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 48px 0 64px;
+    color: var(--c-text-muted-strong);
+    font-size: 17px;
+    line-height: 1.7;
+  }
+
+  .blog-content > * + * {
+    margin-top: 1.25em;
+  }
+
+  .blog-content > p:first-child {
+    font-size: 19px;
+    line-height: 1.6;
+    color: var(--c-green-dark);
+    font-weight: 400;
+    padding: 20px 24px;
+    background: linear-gradient(135deg, rgba(105,228,112,0.08) 0%, rgba(105,228,112,0.04) 100%);
+    border-left: 3px solid var(--c-green-light);
+    border-radius: 8px;
+    margin-bottom: 32px;
+  }
+
+  .blog-content h2 {
+    font-size: 26px;
+    font-weight: 500;
+    line-height: 1.25;
+    color: var(--c-green-dark);
+    margin-top: 48px !important;
+    margin-bottom: 16px !important;
+    letter-spacing: -0.5px;
+  }
+
+  .blog-content h3 {
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 1.3;
+    color: var(--c-green-dark);
+    margin-top: 32px !important;
+    margin-bottom: 12px !important;
+  }
+
+  .blog-content p {
+    margin: 0;
+  }
+
+  .blog-content a {
+    color: var(--c-green-dark);
+    text-decoration: underline;
+    text-decoration-color: var(--c-green-light);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 3px;
+    transition: text-decoration-color 0.15s;
+  }
+  .blog-content a:hover {
+    text-decoration-color: var(--c-green-dark);
+  }
+
+  .blog-content strong {
+    color: var(--c-green-dark);
+    font-weight: 500;
+  }
+
+  .blog-content em {
+    font-style: italic;
+  }
+
+  .blog-content ul,
+  .blog-content ol {
+    padding-left: 24px;
+    margin: 16px 0 !important;
+  }
+  .blog-content li {
+    margin-bottom: 8px;
+    padding-left: 4px;
+  }
+  .blog-content li::marker {
+    color: var(--c-green-light);
+  }
+
+  .blog-content blockquote {
+    border-left: 3px solid var(--c-green-light);
+    padding: 4px 0 4px 20px;
+    margin: 24px 0 !important;
+    color: var(--c-text-muted-strong);
+    font-style: italic;
+  }
+  .blog-content blockquote p {
+    margin: 0;
+  }
+
+  .blog-content code {
+    font-family: 'Menlo', 'Monaco', monospace;
+    font-size: 14px;
+    background: rgba(13,66,63,0.06);
+    padding: 2px 6px;
+    border-radius: 4px;
+    color: var(--c-green-dark);
+  }
+
+  .blog-content pre {
+    background: var(--c-green-dark);
+    color: var(--c-offwhite);
+    padding: 20px;
+    border-radius: 8px;
+    overflow-x: auto;
+    font-size: 14px;
+    line-height: 1.6;
+    margin: 24px 0 !important;
+  }
+  .blog-content pre code {
+    background: transparent;
+    color: inherit;
+    padding: 0;
+  }
+
+  .blog-content hr {
+    border: none;
+    border-top: 1px solid rgba(13,66,63,0.12);
+    margin: 40px 0 !important;
+  }
+
+  .blog-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin: 24px 0 !important;
+  }
+
+  @media (max-width: 700px) {
+    .blog-content {
+      padding: 32px 0 48px;
+      font-size: 16px;
+    }
+    .blog-content > p:first-child {
+      font-size: 17px;
+      padding: 16px 20px;
+    }
+    .blog-content h2 {
+      font-size: 22px;
+      margin-top: 36px !important;
+    }
+    .blog-content h3 {
+      font-size: 18px;
+      margin-top: 24px !important;
+    }
+  }
+</style>

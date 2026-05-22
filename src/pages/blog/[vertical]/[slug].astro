@@ -1,0 +1,147 @@
+---
+/**
+ * Página dinâmica de artigo do blog.
+ *
+ * Astro gera uma URL pra cada artigo em src/content/blog/<vertical>/<slug>.md
+ * automaticamente. A função getStaticPaths abaixo lista todas as combinações
+ * possíveis no build (Static Site Generation).
+ *
+ * Estrutura da página:
+ *   Header (compartilhado)
+ *   Breadcrumb
+ *   BlogHero (título, meta, descrição)
+ *   BlogContent (markdown renderizado)
+ *   BlogFaq (se tiver faq no frontmatter)
+ *   BlogCta (whatsapp ou vertical)
+ *   RelatedPosts (3 da mesma vertical)
+ *   Footer (compartilhado)
+ *
+ * JSON-LD: Organization + Article + FAQPage (se tiver faq)
+ */
+
+import { getCollection, type CollectionEntry } from 'astro:content';
+
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Announcement from '../../../components/layout/Announcement.astro';
+import Header from '../../../components/layout/Header.astro';
+import Footer from '../../../components/layout/Footer.astro';
+
+import BlogBreadcrumb from '../../../components/blog/BlogBreadcrumb.astro';
+import BlogHero from '../../../components/blog/BlogHero.astro';
+import BlogContent from '../../../components/blog/BlogContent.astro';
+import BlogFaq from '../../../components/blog/BlogFaq.astro';
+import BlogCta from '../../../components/blog/BlogCta.astro';
+import RelatedPosts from '../../../components/blog/RelatedPosts.astro';
+
+import { getArticleSchema, getArticleFaqSchema } from '../../../components/seo/ArticleSchema.ts';
+
+// === getStaticPaths: gera URL pra cada artigo no build ===
+export async function getStaticPaths() {
+  const posts = await getCollection('blog', ({ data }) => !data.draft);
+
+  return posts.map((post) => {
+    // post.slug vem como "medicos/receita-saude-medico-pj"
+    // precisamos dividir em vertical + slug limpo pra rota [vertical]/[slug]
+    const parts = post.slug.split('/');
+    const vertical = parts[0];
+    const slug = parts.slice(1).join('/') || parts[0];
+
+    return {
+      params: { vertical, slug },
+      props: { post },
+    };
+  });
+}
+
+interface Props {
+  post: CollectionEntry<'blog'>;
+}
+
+const { post } = Astro.props;
+const { Content, headings } = await post.render();
+
+// Calcula reading time (200 palavras por minuto)
+const text = post.body || '';
+const wordCount = text.trim().split(/\s+/).length;
+const readingTime = Math.max(1, Math.ceil(wordCount / 200));
+
+// URL canônica do artigo
+const articleUrl = new URL(Astro.url.pathname, Astro.site).href;
+
+// === JSON-LD ===
+const organizationSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'Selvia',
+  url: Astro.site?.href,
+  logo: new URL('/logo.png', Astro.site).href,
+  description: 'Contabilidade no WhatsApp para profissionais PJ no Brasil.',
+  sameAs: [
+    'https://www.linkedin.com/company/selvia-m',
+    'https://www.instagram.com/selvia.contabilidade/',
+  ],
+};
+
+const articleSchema = getArticleSchema({
+  title: post.data.title,
+  description: post.data.description,
+  url: articleUrl,
+  publishedAt: post.data.publishedAt,
+  updatedAt: post.data.updatedAt,
+  siteUrl: Astro.site,
+});
+
+const articleFaqSchema = getArticleFaqSchema(post.data.faq);
+
+const jsonLd = articleFaqSchema
+  ? [organizationSchema, articleSchema, articleFaqSchema]
+  : [organizationSchema, articleSchema];
+---
+
+<BaseLayout
+  title={`${post.data.title} | Blog Selvia`}
+  description={post.data.description}
+  jsonLd={jsonLd}
+  ogType="article"
+>
+  <Announcement />
+  <Header />
+
+  <main>
+    <div class="container">
+      <BlogBreadcrumb vertical={post.data.vertical} title={post.data.title} />
+    </div>
+
+    <BlogHero
+      title={post.data.title}
+      description={post.data.description}
+      vertical={post.data.vertical}
+      publishedAt={post.data.publishedAt}
+      updatedAt={post.data.updatedAt}
+      readingTime={readingTime}
+    />
+
+    <article>
+      <div class="container">
+        <BlogContent>
+          <Content />
+        </BlogContent>
+      </div>
+    </article>
+
+    <BlogFaq faqs={post.data.faq} />
+
+    <BlogCta
+      cta={post.data.cta}
+      vertical={post.data.vertical}
+      articleTitle={post.data.title}
+    />
+
+    <RelatedPosts
+      currentSlug={post.slug}
+      vertical={post.data.vertical}
+    />
+  </main>
+
+  <Footer />
+</BaseLayout>
