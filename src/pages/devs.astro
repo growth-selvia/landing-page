@@ -1,0 +1,97 @@
+---
+// LP vertical /devs — primeira página vertical, modelo pras outras 4
+//
+// Estrutura:
+//   1. Announcement + Header (compartilhados com home)
+//   2. HeroVertical — específico (eyebrow + h1 + sub do data file)
+//   3. IntroVertical — parágrafo SEO específico
+//   4. ComoFunciona — reusado da home (mesma proposta de valor)
+//   5. Stats — reusado da home (mesmos números)
+//   6. Depoimentos — reusado da home (decidimos manter)
+//   7. PrecosVertical — 3 cards específicos da vertical (sem tabs)
+//   8. Calculadora — reusada da home (cálculo é igual)
+//   9. FaqVertical — 3 específicas + 3 genéricas
+//   10. CtaFinal + Midia + Footer — reusados da home
+//
+// JSON-LD (3 schemas):
+//   - Organization (Selvia como empresa)
+//   - Service (contabilidade para devs)
+//   - FAQPage (perguntas da vertical)
+
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Announcement from '../components/layout/Announcement.astro';
+import Header from '../components/layout/Header.astro';
+import HeroVertical from '../components/sections/HeroVertical.astro';
+import IntroVertical from '../components/sections/IntroVertical.astro';
+import ComoFunciona from '../components/sections/ComoFunciona.astro';
+import Stats from '../components/sections/Stats.astro';
+import Depoimentos from '../components/sections/Depoimentos.astro';
+import PrecosVertical from '../components/sections/PrecosVertical.astro';
+import Calculadora from '../components/sections/Calculadora.astro';
+import FaqVertical from '../components/sections/FaqVertical.astro';
+import CtaFinal from '../components/sections/CtaFinal.astro';
+import Midia from '../components/sections/Midia.astro';
+import Footer from '../components/layout/Footer.astro';
+
+import { getVerticalContent, getVerticalFaqSchema } from '../data/vertical-content.ts';
+import { serviceSchema } from '../components/seo/ServiceSchema.astro';
+
+const SLUG = 'devs';
+const VERTICAL_NAME = 'Devs';
+
+const content = getVerticalContent(SLUG);
+
+// === JSON-LD ===
+const organizationSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'Selvia',
+  url: Astro.site?.href,
+  logo: new URL('/logo.png', Astro.site).href,
+  description: 'Contabilidade no WhatsApp para profissionais PJ no Brasil.',
+  sameAs: [
+    'https://www.linkedin.com/company/selvia-m',
+    'https://www.instagram.com/selvia.contabilidade/',
+  ],
+};
+
+const faqSchema = getVerticalFaqSchema(SLUG);
+
+// Service schema vem do componente ServiceSchema (precisa renderizar pra inicializar)
+// Vamos passar via array
+---
+
+<BaseLayout
+  title={`Contabilidade para devs e profissionais de TI | Selvia`}
+  description={content.heroSub}
+  jsonLd={[organizationSchema, faqSchema]}
+>
+  <Announcement />
+  <Header />
+
+  <main>
+    <HeroVertical
+      eyebrow={content.heroEyebrow}
+      h1={content.heroH1}
+      sub={content.heroSub}
+      whatsappContext={`LP de ${VERTICAL_NAME}`}
+    />
+
+    <IntroVertical text={content.introText} />
+
+    <ComoFunciona />
+    <Stats />
+    <Depoimentos />
+
+    <PrecosVertical slug={SLUG} verticalName={VERTICAL_NAME} />
+
+    <Calculadora />
+
+    <FaqVertical slug={SLUG} verticalName={VERTICAL_NAME} />
+
+    <CtaFinal />
+    <Midia />
+  </main>
+
+  <Footer />
+</BaseLayout>

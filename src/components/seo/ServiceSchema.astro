@@ -1,0 +1,82 @@
+---
+// ServiceSchema — gera JSON-LD Service específico por vertical
+//
+// O que é Service schema:
+//   Diz pro Google e LLMs: "esta página é sobre o serviço X, prestado pela
+//   empresa Y, com tal preço e disponibilidade". Permite rich results no
+//   Google Search e citações estruturadas em LLMs.
+//
+// Diferença vs Organization schema (que já tá na home):
+//   - Organization: descreve a Selvia como empresa
+//   - Service: descreve UM SERVIÇO específico (ex: "Contabilidade para devs")
+//
+// Usado em src/pages/devs.astro, /advogados.astro, etc. via jsonLd do BaseLayout.
+
+import { getVertical } from '../../data/verticais.ts';
+import { getVerticalContent } from '../../data/vertical-content.ts';
+
+interface Props {
+  slug: string;
+}
+
+const { slug } = Astro.props;
+
+const vertical = getVertical(slug);
+const content = getVerticalContent(slug);
+
+if (!vertical) {
+  throw new Error(`ServiceSchema: vertical "${slug}" não encontrada`);
+}
+
+// Plano "featured" (geralmente Simples Nacional) — pra preço mínimo no schema
+const featuredPlan = vertical.plans.find((p) => p.featured) || vertical.plans[0];
+
+// URL canônica da LP vertical
+const pageUrl = new URL(`/${slug === 'outras' ? 'outras-pj' : slug}`, Astro.site).href;
+
+// Extrai número limpo do preço (ex: "R$ 347" → 347)
+const priceNumber = featuredPlan?.price
+  ? parseInt(featuredPlan.price.replace(/\D/g, ''), 10)
+  : null;
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: `Contabilidade para ${vertical.name}`,
+  description: content.serviceDescription,
+  url: pageUrl,
+  provider: {
+    '@type': 'Organization',
+    name: 'Selvia',
+    url: Astro.site?.href,
+  },
+  areaServed: {
+    '@type': 'Country',
+    name: 'Brasil',
+  },
+  serviceType: 'Contabilidade',
+  audience: {
+    '@type': 'Audience',
+    audienceType: vertical.name,
+  },
+  ...(priceNumber && {
+    offers: {
+      '@type': 'Offer',
+      price: priceNumber.toString(),
+      priceCurrency: 'BRL',
+      priceSpecification: {
+        '@type': 'UnitPriceSpecification',
+        price: priceNumber.toString(),
+        priceCurrency: 'BRL',
+        unitText: 'MONTH',
+      },
+      availability: 'https://schema.org/InStock',
+    },
+  }),
+};
+
+export { serviceSchema };
+---
+
+<!-- Schema é injetado via jsonLd do BaseLayout, não renderiza nada aqui.
+     Este componente é só uma "fábrica de schemas" reutilizável. -->

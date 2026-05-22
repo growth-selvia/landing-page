@@ -1,0 +1,74 @@
+---
+// IntroVertical — parágrafo SEO logo após o Hero, antes do Como Funciona
+//
+// Funções:
+//   - SEO/LEO: dá ao Google e às LLMs o sumário em texto da proposta
+//     da LP vertical. Aqui é onde palavras-chave específicas da vertical
+//     aparecem em prosa natural (não jargão)
+//   - UX: cria respiro entre Hero (verde escuro impactante) e ComoFunciona
+//     (verde claro vibrante). Transição suave de cor e densidade
+//
+// Visual:
+//   - Background off-white sem dots (mais clean que outras seções)
+//   - Texto centralizado, max-width 720px
+//   - Tipografia 18px, line-height confortável pra leitura
+//   - Sem pills, sem h2 — é um "parágrafo de chegada", não uma seção formal
+//
+// Animação:
+//   - scroll-animate fade-in básico
+
+interface Props {
+  text: string;
+}
+
+const { text } = Astro.props;
+---
+
+<section class="intro-vertical scroll-animate">
+  <div class="container">
+    <p class="intro-vertical-text">{text}</p>
+  </div>
+</section>
+
+<style>
+  .intro-vertical {
+    background: #FFFFFF;
+    padding: 64px 0 56px;
+    position: relative;
+    overflow: hidden;
+  }
+  /* Decoração sutil: linha verde fininha no topo, como "sublinhado do Hero" */
+  .intro-vertical::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background: var(--c-green-light);
+    border-radius: 2px;
+  }
+
+  .intro-vertical-text {
+    font-size: 18px;
+    line-height: 1.7;
+    color: var(--c-text-muted-strong);
+    max-width: 720px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  /* Mobile */
+  @media (max-width: 700px) {
+    .intro-vertical {
+      padding: 48px 0 40px;
+    }
+    .intro-vertical-text {
+      font-size: 16px;
+      line-height: 1.65;
+      text-align: left;
+      padding: 0 4px;
+    }
+  }
+</style>
