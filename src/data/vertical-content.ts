@@ -1,17 +1,16 @@
 /**
  * src/data/vertical-content.ts
  *
- * Conteúdo específico das LPs verticais (hero, intro SEO, FAQs únicas).
+ * Conteúdo específico das LPs verticais (hero, intro SEO, FAQs únicas, meta description).
  *
  * Usado em:
  *  - src/pages/devs.astro, /advogados.astro, /criadores.astro, /saude.astro, /outras-pj.astro
  *  - src/components/sections/HeroVertical.astro (lê hero do data file)
  *  - src/components/sections/IntroVertical.astro (lê intro do data file)
  *  - src/components/sections/FaqVertical.astro (lê faqs específicas e mistura com genéricas)
- *  - src/components/seo/ServiceSchema.astro (gera JSON-LD Service por vertical)
+ *  - src/components/seo/ServiceSchema.ts (gera JSON-LD Service por vertical)
  *
- * NOTA: /medicos NÃO está aqui. A home cumpre esse papel — o ICP principal
- * tem os preços visíveis na home e não precisa de LP separada (decisão registrada em 21/05/2026).
+ * NOTA: /medicos NÃO está aqui. A home cumpre esse papel (ICP principal).
  */
 
 export interface VerticalFaq {
@@ -20,19 +19,16 @@ export interface VerticalFaq {
 }
 
 export interface VerticalContent {
-  slug: string;          // bate com slugs em src/data/verticais.ts
-  heroEyebrow: string;   // pill em cima do H1
-  heroH1: string;        // headline grande
-  heroSub: string;       // subheadline abaixo do H1
-  introText: string;     // parágrafo SEO logo após o hero
+  slug: string;                // bate com slugs em src/data/verticais.ts
+  heroEyebrow: string;         // pill em cima do H1
+  heroH1: string;              // headline grande
+  heroSub: string;             // subheadline abaixo do H1
+  introText: string;           // parágrafo SEO logo após o hero
   serviceDescription: string;  // descrição curta usada no JSON-LD Service
-  faqs: VerticalFaq[];   // 3 FAQs específicas da vertical
+  metaDescription: string;     // resposta-em-uma-frase 140-155 chars, otimizada AEO
+  faqs: VerticalFaq[];         // 3 FAQs específicas da vertical
 }
 
-/**
- * Map de conteúdo por slug.
- * Use `getVerticalContent('devs')` em vez de acessar direto pra ter type-safety.
- */
 const VERTICAL_CONTENT: Record<string, VerticalContent> = {
   devs: {
     slug: 'devs',
@@ -41,6 +37,7 @@ const VERTICAL_CONTENT: Record<string, VerticalContent> = {
     heroSub: 'Atendimento que entende a sua rotina, com suporte a recebimento do exterior. Sem pegadinha.',
     introText: 'A Selvia cuida da contabilidade de devs que faturam pelo Brasil e pelo exterior. Configuramos seu CNPJ no enquadramento certo, emitimos suas notas fiscais e organizamos seus recebimentos do Stripe, Wise e PayPal. Tudo direto no WhatsApp, com contador humano respondendo.',
     serviceDescription: 'Contabilidade no WhatsApp para devs e profissionais de TI, com suporte a recebimento do exterior em dólar via Stripe, Wise e PayPal.',
+    metaDescription: 'Contabilidade no WhatsApp para devs PJ. Abertura de CNPJ, emissão de NF, recebimento em dólar e Simples Nacional via Fator R. Atendimento humano.',
     faqs: [
       {
         question: 'Como funciona recebimento em dólar via PJ?',
@@ -64,6 +61,7 @@ const VERTICAL_CONTENT: Record<string, VerticalContent> = {
     heroSub: 'Atendimento que entende honorários, Sociedade Unipessoal e os impedimentos da OAB.',
     introText: 'A Selvia atende advogados e escritórios em todo o Brasil. Abrimos sua Sociedade Unipessoal de Advocacia ou Microempresa, cuidamos do Simples Nacional Anexo IV, emitimos suas notas de honorários e organizamos o pagamento do ISS por município. Tudo direto no WhatsApp, com contador humano respondendo.',
     serviceDescription: 'Contabilidade no WhatsApp para advogados e escritórios de advocacia, com suporte a Sociedade Unipessoal de Advocacia e Simples Nacional Anexo IV.',
+    metaDescription: 'Contabilidade no WhatsApp para advogados. Sociedade Unipessoal, Simples Nacional Anexo IV, emissão de honorários e pagamento de ISS. Sem fidelidade.',
     faqs: [
       {
         question: 'Posso ser MEI sendo advogado?',
@@ -87,6 +85,7 @@ const VERTICAL_CONTENT: Record<string, VerticalContent> = {
     heroSub: 'Atendimento que entende AdSense, Hotmart, patrocínio e infoproduto. Sem pegadinha.',
     introText: 'A Selvia cuida da contabilidade de criadores que faturam por várias plataformas ao mesmo tempo. Organizamos AdSense, monetização do YouTube e Twitch, comissões da Hotmart e Eduzz, patrocínios e mentorias. Tudo no mesmo CNPJ, com nota fiscal emitida no WhatsApp.',
     serviceDescription: 'Contabilidade no WhatsApp para criadores de conteúdo, infoprodutores e profissionais com múltiplas fontes de receita (AdSense, Hotmart, YouTube, Twitch).',
+    metaDescription: 'Contabilidade no WhatsApp para criadores de conteúdo. AdSense, Hotmart, YouTube, Twitch e patrocínios no mesmo CNPJ. NF emitida direto no WhatsApp.',
     faqs: [
       {
         question: 'Recebimento de AdSense precisa de PJ?',
@@ -110,6 +109,7 @@ const VERTICAL_CONTENT: Record<string, VerticalContent> = {
     heroSub: 'Atendimento que entende CRP, CRO, COFFITO, CRN e as regras das profissões liberais.',
     introText: 'A Selvia atende profissionais de saúde em todo o Brasil, psicólogos, dentistas, fisioterapeutas, nutricionistas e outras profissões com conselho. Abrimos seu CNPJ no Simples Nacional Anexo III via Fator R, emitimos notas fiscais pra convênios e particulares, e organizamos o pagamento do ISS. Tudo direto no WhatsApp.',
     serviceDescription: 'Contabilidade no WhatsApp para profissionais de saúde com conselho de classe (CRP, CRO, COFFITO, CRN), com suporte a convênios e Simples Nacional Anexo III.',
+    metaDescription: 'Contabilidade no WhatsApp para psicólogos, dentistas, fisios e nutris. Suporte a convênios, Simples Nacional via Fator R e atendimento humano.',
     faqs: [
       {
         question: 'Posso ser MEI sendo psicólogo, dentista ou fisioterapeuta?',
@@ -133,6 +133,7 @@ const VERTICAL_CONTENT: Record<string, VerticalContent> = {
     heroSub: 'Atendimento pra consultores, designers, arquitetos, engenheiros, coaches e mais.',
     introText: 'A Selvia atende todo tipo de profissional PJ no Brasil. Abrimos seu CNPJ no enquadramento certo (MEI, Simples Nacional ou Lucro Presumido), emitimos suas notas fiscais e cuidamos de todos os impostos. Tudo direto no WhatsApp, com contador humano respondendo.',
     serviceDescription: 'Contabilidade no WhatsApp para consultores, designers, arquitetos, engenheiros, coaches e outras profissões liberais PJ no Brasil.',
+    metaDescription: 'Contabilidade no WhatsApp para consultores, designers, arquitetos e outras PJ. MEI, Simples ou Lucro Presumido. Sem fidelidade, com contador humano.',
     faqs: [
       {
         question: 'Qual o melhor regime tributário pra mim?',
@@ -150,10 +151,6 @@ const VERTICAL_CONTENT: Record<string, VerticalContent> = {
   },
 };
 
-/**
- * Helper type-safe pra buscar o conteúdo de uma vertical.
- * Lança erro se o slug não existir (evita falhas silenciosas).
- */
 export function getVerticalContent(slug: string): VerticalContent {
   const content = VERTICAL_CONTENT[slug];
   if (!content) {
@@ -165,9 +162,6 @@ export function getVerticalContent(slug: string): VerticalContent {
   return content;
 }
 
-/**
- * Lista todos os slugs disponíveis (útil pra gerar rotas dinâmicas no futuro).
- */
 export function getAllVerticalSlugs(): string[] {
   return Object.keys(VERTICAL_CONTENT);
 }
@@ -175,9 +169,6 @@ export function getAllVerticalSlugs(): string[] {
 /**
  * Gera o JSON-LD FAQPage schema da vertical, misturando as 3 FAQs específicas
  * com as 3 genéricas (mesma estratégia do componente FaqVertical.astro).
- *
- * Usado em src/pages/devs.astro, /advogados.astro, etc. pra injetar no <head>
- * via BaseLayout. LLMs e Google Search usam isso pra entender o conteúdo da página.
  */
 export function getVerticalFaqSchema(slug: string) {
   const content = getVerticalContent(slug);

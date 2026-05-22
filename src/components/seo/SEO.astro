@@ -1,49 +1,81 @@
 ---
-import JsonLd from './JsonLd.astro';
+/**
+ * SEO.astro — meta tags consolidadas em um único componente
+ *
+ * Cobre 4 grupos de tags pro <head>:
+ *   1. Básicas: title, description, robots, canonical
+ *   2. Open Graph: o que aparece quando alguém compartilha no LinkedIn,
+ *      Facebook, WhatsApp, Slack, Discord, etc. (Selvia usa muito)
+ *   3. Twitter Card: o que aparece no X/Twitter
+ *   4. JSON-LD: schemas estruturados (Organization, FAQPage, Service, etc.)
+ *
+ * Notas AEO:
+ *   - description deve ser 140-155 chars, factual, com palavra-chave
+ *   - og:image deve ser 1200x630 (Facebook/LinkedIn/WhatsApp esperam isso)
+ *   - twitter:card "summary_large_image" mostra a imagem grande, não thumbnail
+ *   - canonical evita penalização por conteúdo duplicado quando há ?utm= etc.
+ */
 
 interface Props {
   title: string;
   description: string;
-  image?: string;
-  noindex?: boolean;
+  image?: string;        // path da OG image (default: /og-image.png)
+  noindex?: boolean;     // pra páginas que não devem ser indexadas (rascunhos, etc.)
   jsonLd?: Record<string, any> | Record<string, any>[];
+  ogType?: 'website' | 'article';  // article só pro blog
 }
 
 const {
   title,
   description,
-  image = '/og-default.png',
+  image = '/og-image.png',
   noindex = false,
   jsonLd,
+  ogType = 'website',
 } = Astro.props;
 
-const canonical = new URL(Astro.url.pathname, Astro.site).href;
-const ogImage = new URL(image, Astro.site).href;
+// URL canônica da página atual (sem query params ou hash)
+const canonicalURL = new URL(Astro.url.pathname, Astro.site).href;
+
+// URL absoluta da OG image (LinkedIn/Facebook exigem URL absoluta, não relativa)
+const ogImageURL = new URL(image, Astro.site).href;
+
+// Normaliza jsonLd em array pra simplificar o loop
+const jsonLdArray = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
 ---
 
-<!-- Primary Meta Tags -->
+<!-- === BÁSICAS === -->
 <title>{title}</title>
-<meta name="title" content={title} />
 <meta name="description" content={description} />
-<link rel="canonical" href={canonical} />
+<link rel="canonical" href={canonicalURL} />
 
 {noindex && <meta name="robots" content="noindex, nofollow" />}
+{!noindex && <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />}
 
-<!-- Open Graph / Facebook -->
-<meta property="og:type" content="website" />
-<meta property="og:url" content={canonical} />
+<!-- Idioma e autoria -->
+<meta name="author" content="Selvia" />
+<meta http-equiv="content-language" content="pt-BR" />
+
+<!-- === OPEN GRAPH (Facebook, LinkedIn, WhatsApp, Slack, Discord) === -->
+<meta property="og:type" content={ogType} />
+<meta property="og:url" content={canonicalURL} />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
-<meta property="og:image" content={ogImage} />
-<meta property="og:locale" content="pt_BR" />
+<meta property="og:image" content={ogImageURL} />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content={`Selvia — ${title}`} />
 <meta property="og:site_name" content="Selvia" />
+<meta property="og:locale" content="pt_BR" />
 
-<!-- Twitter -->
+<!-- === TWITTER CARD (X/Twitter) === -->
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:url" content={canonical} />
 <meta name="twitter:title" content={title} />
 <meta name="twitter:description" content={description} />
-<meta name="twitter:image" content={ogImage} />
+<meta name="twitter:image" content={ogImageURL} />
+<meta name="twitter:image:alt" content={`Selvia — ${title}`} />
 
-<!-- Schema.org JSON-LD -->
-{jsonLd && <JsonLd data={jsonLd} />}
+<!-- === JSON-LD (schemas estruturados) === -->
+{jsonLdArray.map((schema) => (
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+))}
