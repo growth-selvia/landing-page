@@ -1,0 +1,116 @@
+---
+/**
+ * BlogCard — card individual de artigo na listagem
+ */
+
+interface Props {
+  url: string;
+  vertical: string;
+  verticalName: string;
+  title: string;
+  description: string;
+  dateFormatted: string;
+  readingTime: number;
+}
+
+const { url, vertical, verticalName, title, description, dateFormatted, readingTime } = Astro.props;
+---
+
+<a href={url} class="blog-card">
+  <div class="blog-card-meta">
+    <span class="blog-card-pill">{verticalName}</span>
+    <span class="blog-card-date">{dateFormatted}</span>
+    <span class="blog-card-sep" aria-hidden="true">·</span>
+    <span class="blog-card-time">{readingTime} min</span>
+  </div>
+
+  <h3 class="blog-card-title">{title}</h3>
+  <p class="blog-card-description">{description}</p>
+
+  <span class="blog-card-link">
+    Ler artigo <span aria-hidden="true">→</span>
+  </span>
+</a>
+
+<style>
+  .blog-card {
+    background: #FFFFFF;
+    border: 1px solid rgba(13,66,63,0.08);
+    border-radius: 14px;
+    padding: 28px;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.2s;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    min-height: 240px;
+  }
+  .blog-card:hover {
+    border-color: var(--c-green-light);
+    box-shadow: 0 16px 32px -12px rgba(105,228,112,0.25);
+    transform: translateY(-3px);
+  }
+
+  .blog-card-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+    color: var(--c-text-muted);
+    flex-wrap: wrap;
+  }
+
+  .blog-card-pill {
+    background: var(--c-green-light);
+    color: var(--c-green-dark);
+    padding: 4px 10px;
+    border-radius: 100px;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+  }
+
+  .blog-card-date {
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .blog-card-sep {
+    opacity: 0.5;
+  }
+
+  .blog-card-title {
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--c-green-dark);
+    line-height: 1.3;
+    margin: 6px 0 0;
+    letter-spacing: -0.4px;
+  }
+
+  .blog-card-description {
+    font-size: 14px;
+    color: var(--c-text-muted-strong);
+    line-height: 1.55;
+    margin: 0;
+    flex-grow: 1;
+  }
+
+  .blog-card-link {
+    font-size: 13px;
+    color: var(--c-green-dark);
+    font-weight: 500;
+    margin-top: 8px;
+  }
+
+  @media (max-width: 600px) {
+    .blog-card {
+      padding: 22px;
+      min-height: auto;
+    }
+    .blog-card-title {
+      font-size: 18px;
+    }
+  }
+</style>

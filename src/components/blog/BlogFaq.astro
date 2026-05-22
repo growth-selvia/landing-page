@@ -1,0 +1,120 @@
+---
+/**
+ * BlogFaq — FAQ específica do artigo (lê do frontmatter)
+ *
+ * Vem do campo `faq` do frontmatter de cada artigo .md. Se o artigo
+ * não tem FAQ, o componente não renderiza nada.
+ *
+ * O FAQPage schema do artigo é gerado em paralelo via ArticleSchema.ts
+ * e injetado no <head> pelo BaseLayout.
+ *
+ * Visual: igual ao FAQ da home (cards expansíveis em <details>) pra
+ * manter consistência da marca.
+ */
+
+interface FaqItem {
+  question: string;
+  answer: string;
+}
+
+interface Props {
+  faqs: FaqItem[];
+}
+
+const { faqs } = Astro.props;
+
+if (!faqs || faqs.length === 0) return null;
+---
+
+<section class="blog-faq">
+  <div class="container">
+    <h2 class="blog-faq-title">Perguntas frequentes</h2>
+
+    <div class="blog-faq-list">
+      {faqs.map((faq) => (
+        <details class="blog-faq-item">
+          <summary>{faq.question}</summary>
+          <p>{faq.answer}</p>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .blog-faq {
+    background:
+      radial-gradient(circle, rgba(13,66,63,0.05) 1px, transparent 1.5px) 0 0 / 28px 28px,
+      #FFFFFF;
+    padding: 56px 0 40px;
+    border-top: 1px solid rgba(13,66,63,0.08);
+  }
+
+  .blog-faq-title {
+    font-size: 26px;
+    font-weight: 500;
+    color: var(--c-green-dark);
+    letter-spacing: -0.5px;
+    margin: 0 0 24px;
+    max-width: 720px;
+  }
+
+  .blog-faq-list {
+    display: grid;
+    gap: 10px;
+    max-width: 720px;
+  }
+
+  .blog-faq-item {
+    background: #FFFFFF;
+    border: 1px solid rgba(13,66,63,0.08);
+    border-radius: 12px;
+    padding: 18px 22px;
+    transition: all 0.2s;
+    box-shadow: 0 1px 2px rgba(13,66,63,0.04);
+  }
+  .blog-faq-item[open] {
+    border-color: var(--c-green-dark);
+    box-shadow:
+      0 16px 32px -12px rgba(13,66,63,0.15),
+      0 4px 8px -4px rgba(105,228,112,0.1);
+  }
+
+  .blog-faq-item summary {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--c-green-dark);
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+  }
+  .blog-faq-item summary::-webkit-details-marker { display: none; }
+  .blog-faq-item summary::after {
+    content: '+';
+    font-size: 22px;
+    color: var(--c-green-dark);
+    font-weight: 300;
+    line-height: 1;
+    flex-shrink: 0;
+  }
+  .blog-faq-item[open] summary::after { content: '−'; }
+
+  .blog-faq-item p {
+    margin: 12px 0 0;
+    font-size: 14px;
+    color: var(--c-text-muted-strong);
+    line-height: 1.7;
+  }
+
+  @media (max-width: 700px) {
+    .blog-faq {
+      padding: 40px 0 32px;
+    }
+    .blog-faq-title {
+      font-size: 22px;
+    }
+  }
+</style>

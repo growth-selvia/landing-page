@@ -1,11 +1,12 @@
 ---
 // Footer com colunas de navegação + dados legais (CNPJs Selvia)
-// 1:1 com _legacy/index.html (linhas 1717-1744, 2933-2977)
-// As 2 entidades legais são obrigatórias: Tecnologia (SP) e Contabilidade (GO)
 //
-// ESPAÇO DA LOGO:
-// Mesmo padrão do Header: o <a class="footer-logo"> reserva altura e tem fallback textual.
-// Quando a logo PNG estiver em /public/logo.png, trocar o <span> por <img>.
+// MUDANÇAS (sub-etapa E):
+//   - "Para quem": links de âncora viraram rotas reais (/medicos, /devs, etc.)
+//     Médicos vai pra home (vertical principal, não tem LP separada).
+//   - "Conteúdo": Blog vira rota /blog. Calculadora/Preços continuam como âncora,
+//     mas com prefixo / pra funcionar de qualquer página.
+//   - Adicionei "Criadores" e "Saúde" (verticais que faltavam no footer antigo).
 ---
 
 <footer>
@@ -13,7 +14,6 @@
     <div class="footer-grid">
       <div class="footer-brand">
         <a href="/" class="footer-logo" aria-label="Selvia">
-          <!-- TODO: substituir pelo <img src="/logo.png" ...> quando a logo estiver pronta -->
           <img src="/logo.png" alt="Selvia" width="200" height="56">
         </a>
         <p>Contabilidade simples, e confiável, como deveria ser.</p>
@@ -41,17 +41,19 @@
 
       <div class="footer-col">
         <h4>Para quem</h4>
-        <a href="#verticais">Médicos</a>
-        <a href="#verticais">Devs</a>
-        <a href="#verticais">Advogados</a>
-        <a href="#verticais">Outras profissões</a>
+        <a href="/">Médicos</a>
+        <a href="/devs">Devs e TI</a>
+        <a href="/advogados">Advogados</a>
+        <a href="/criadores">Criadores</a>
+        <a href="/saude">Saúde</a>
+        <a href="/outras-pj">Outras profissões</a>
       </div>
 
       <div class="footer-col">
         <h4>Conteúdo</h4>
-        <a href="#blog">Blog</a>
-        <a href="#calculadora">Calculadora</a>
-        <a href="#precos">Preços</a>
+        <a href="/blog">Blog</a>
+        <a href="/#calculadora">Calculadora</a>
+        <a href="/#precos">Preços</a>
       </div>
 
       <div class="footer-col">
@@ -90,7 +92,6 @@
     margin-bottom: 40px;
   }
 
-  /* Reserva de espaço pra logo — mesmo padrão do Header */
   .footer-logo {
     display: inline-flex;
     align-items: center;

@@ -2,30 +2,28 @@
 // Header sticky com nav e CTA WhatsApp
 // 1:1 com _legacy/index.html (linhas 167-212, 1994-2010)
 //
-// ESPAÇO DA LOGO:
-// O <a class="nav-logo"> reserva 28px de altura e tem display:inline-flex pra centralizar.
-// Enquanto a logo PNG não estiver disponível, mostra o fallback textual "selvia".
-//
-// Quando a logo PNG estiver pronta:
-//   1. Salvar em /public/logo.png (e idealmente /public/logo@2x.png pra retina)
-//   2. Trocar o <span class="nav-logo-fallback">selvia</span> por:
-//      <img src="/logo.png" srcset="/logo.png 1x, /logo@2x.png 2x"
-//           alt="Selvia" width="200" height="56" />
-//   3. Remover a classe .nav-logo-fallback e o <style> dela (se quiser limpar)
+// MUDANÇAS (sub-etapa E):
+//   - "Blog" agora aponta pra /blog (rota real, não âncora)
+//   - "Blog" tem highlight visual quando URL começa com /blog
+//   - Âncoras "Para você", "Preços", "Calculadora" agora apontam pra /#... 
+//     pra funcionar de qualquer página (não só da home)
+
+const pathname = Astro.url.pathname;
+const isBlogActive = pathname === '/blog' || pathname.startsWith('/blog/');
+const blogLinkClass = isBlogActive ? 'nav-link-active' : '';
 ---
 
 <header>
   <div class="container nav">
     <a href="/" class="nav-logo" aria-label="Selvia">
-      <!-- TODO: substituir pelo <img src="/logo.png" ...> quando a logo estiver pronta -->
       <img src="/logo.png" alt="Selvia" width="3500" height="1500">
     </a>
 
     <nav class="nav-links" aria-label="Navegação principal">
-      <a href="#verticais">Para você</a>
-      <a href="#precos">Preços</a>
-      <a href="#calculadora">Calculadora</a>
-      <a href="#blog">Blog</a>
+      <a href="/#verticais">Para você</a>
+      <a href="/#precos">Preços</a>
+      <a href="/#calculadora">Calculadora</a>
+      <a href="/blog" class={blogLinkClass}>Blog</a>
       <a href="/contabilidades" class="nav-link-secondary" data-future-page="contabilidades">
         Para contabilidades
       </a>
@@ -60,9 +58,6 @@
     padding: 16px 0;
   }
 
-  /* Reserva de espaço pra logo — funciona pro fallback textual e pra <img> futura.
-     A altura 28px é a referência: quando a <img> entrar, mantém width="100" height="28"
-     que a posição não desloca. */
   .nav-logo {
     display: inline-flex;
     align-items: center;
@@ -77,7 +72,6 @@
     display: block;
   }
 
-  /* Fallback textual enquanto a logo PNG não chega */
   .nav-logo-fallback {
     font-size: 22px;
     font-weight: 500;
@@ -95,10 +89,26 @@
     font-size: 14px;
     color: var(--c-text-muted-strong);
     transition: color 0.15s;
+    position: relative;
   }
   .nav-links a:hover { color: var(--c-green-dark); }
 
-  /* Link secundário no header (pra páginas futuras como /contabilidades) */
+  /* Highlight quando o link tá "ativo" (rota atual) */
+  .nav-link-active {
+    color: var(--c-green-dark) !important;
+    font-weight: 500;
+  }
+  .nav-link-active::after {
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--c-green-light);
+    border-radius: 2px;
+  }
+
   .nav-link-secondary {
     font-weight: 500;
     color: var(--c-green-dark) !important;
@@ -111,8 +121,9 @@
     background: rgba(13,66,63,0.04);
     border-color: rgba(13,66,63,0.35);
   }
+  /* O secundário não ganha underline mesmo quando hover */
+  .nav-link-secondary::after { display: none; }
 
-  /* Mobile: legacy esconde os links da nav, sem hamburger */
   @media (max-width: 900px) {
     .nav-links { display: none; }
   }
