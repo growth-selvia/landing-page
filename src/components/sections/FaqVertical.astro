@@ -1,0 +1,152 @@
+---
+// FaqVertical — FAQ da LP vertical com mistura de perguntas específicas + genéricas
+//
+// Estratégia SEO/LEO:
+//   - 3 perguntas ESPECÍFICAS da vertical (vem do vertical-content.ts)
+//     vão primeiro — sinal forte de conteúdo único pro Google
+//   - 3 perguntas GENÉRICAS (preço, fidelidade, atendimento) vão depois —
+//     reforçam objeções comuns que aparecem em qualquer vertical
+//
+// JSON-LD:
+//   - Exporta `getVerticalFaqSchema(slug)` pra cada LP injetar
+//     o FAQPage schema correto no BaseLayout
+//   - LLMs (ChatGPT, Perplexity, Claude) usam isso pra citar respostas
+//     específicas da vertical com atribuição clara à Selvia
+
+import { getVerticalContent } from '../../data/vertical-content.ts';
+import type { FaqItem } from '../../data/faqs.ts';
+
+interface Props {
+  slug: string;
+  verticalName: string;
+}
+
+const { slug, verticalName } = Astro.props;
+
+const verticalContent = getVerticalContent(slug);
+
+// 3 FAQs genéricas selecionadas (subset das 6 da home).
+// Critério: as 3 que cobrem objeções universais (preço, fidelidade, atendimento)
+// e NÃO dependem de profissão específica.
+const FAQS_GENERICAS: FaqItem[] = [
+  {
+    question: 'Preciso assinar contrato de fidelidade?',
+    answer: 'Não. Sem fidelidade, sem multa. Se a Selvia não atende suas expectativas, você cancela a qualquer momento.',
+  },
+  {
+    question: 'E se eu já tiver contador?',
+    answer: 'A gente cuida da migração toda. Você só nos passa o contato do contador atual e o resto é com a gente. Em geral leva 15 a 30 dias e você não precisa fazer praticamente nada.',
+  },
+  {
+    question: 'Como funciona o atendimento no WhatsApp?',
+    answer: 'Você manda mensagem de texto ou áudio para o nosso número oficial. Em minutos uma pessoa real do nosso time responde, não é bot.',
+  },
+];
+
+// Combina as 3 específicas + 3 genéricas (ordem importa: específicas primeiro
+// pra capturar atenção e dar mais peso semântico)
+const faqsCombinadas: FaqItem[] = [
+  ...verticalContent.faqs,
+  ...FAQS_GENERICAS,
+];
+---
+
+<section class="faq-bg scroll-animate" data-parallax>
+  <div class="container">
+    <span class="pill pill-dark">Dúvidas frequentes</span>
+    <h2 class="h2">Perguntas que {verticalName} faz pra Selvia.</h2>
+    <p class="section-sub">Se a sua não tá aqui, manda no WhatsApp.</p>
+
+    <div class="faq-grid stagger-children">
+      {faqsCombinadas.map((faq) => (
+        <details class="faq-item">
+          <summary>{faq.question}</summary>
+          <p>{faq.answer}</p>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  /* === FAQ — mesmo estilo da home (replicado pra não depender de scoped) === */
+  .faq-bg {
+    background:
+      radial-gradient(circle, rgba(13,66,63,0.05) 1px, transparent 1.5px) 0 0 / 28px 28px,
+      linear-gradient(180deg, #FFFFFF 0%, #F9F9F9 100%);
+    position: relative;
+    overflow: hidden;
+  }
+  .faq-bg::before {
+    content: '';
+    position: absolute;
+    top: 20%; right: -80px;
+    width: 380px; height: 380px;
+    background: radial-gradient(circle, rgba(105,228,112,0.16) 0%, transparent 65%);
+    filter: blur(70px);
+    pointer-events: none;
+  }
+  .faq-bg::after {
+    content: '';
+    position: absolute;
+    bottom: 10%; left: -80px;
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(132,160,255,0.12) 0%, transparent 65%);
+    filter: blur(70px);
+    pointer-events: none;
+  }
+  .faq-bg :global(.container) {
+    position: relative;
+    z-index: 1;
+  }
+
+  .faq-grid {
+    display: grid;
+    gap: 10px;
+  }
+
+  .faq-item {
+    background: #FFFFFF;
+    border: 1px solid rgba(13,66,63,0.08);
+    border-radius: 12px;
+    padding: 20px 24px;
+    transition: all 0.2s;
+    box-shadow: 0 1px 2px rgba(13,66,63,0.04);
+  }
+  .faq-item[open] {
+    background: #FFFFFF;
+    border-color: var(--c-green-dark);
+    box-shadow:
+      0 16px 32px -12px rgba(13,66,63,0.15),
+      0 4px 8px -4px rgba(105,228,112,0.1);
+  }
+
+  .faq-item summary {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--c-green-dark);
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+  }
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-item summary::after {
+    content: '+';
+    font-size: 22px;
+    color: var(--c-green-dark);
+    font-weight: 300;
+    line-height: 1;
+    flex-shrink: 0;
+  }
+  .faq-item[open] summary::after { content: '−'; }
+
+  .faq-item p {
+    margin: 14px 0 0;
+    font-size: 14px;
+    color: var(--c-text-muted-strong);
+    line-height: 1.7;
+  }
+</style>
