@@ -1,0 +1,41 @@
+---
+/**
+ * IntroMedicos.astro — parágrafo introdutório de SEO da LP /medicos
+ *
+ * Bloco de texto curto logo após o hero. Serve pra:
+ *  - Reforçar palavras-chave específicas (Receita Saúde, Fator R, Anexo III)
+ *  - Dar contexto pro Google e LLMs sobre o que a LP cobre
+ *  - Posicionar a Selvia como especialista em médicos
+ */
+
+import { medicosIntro } from '../../data/medicos.ts';
+---
+
+<section class="intro-medicos">
+  <div class="container">
+    <p class="intro-medicos-text">{medicosIntro.text}</p>
+  </div>
+</section>
+
+<style>
+  .intro-medicos {
+    padding: 32px 0 48px;
+    background: #FFFFFF;
+  }
+
+  .intro-medicos-text {
+    max-width: 760px;
+    margin: 0 auto;
+    font-size: 17px;
+    line-height: 1.65;
+    color: var(--c-text-muted-strong);
+    text-align: center;
+  }
+
+  @media (max-width: 700px) {
+    .intro-medicos-text {
+      font-size: 15px;
+      text-align: left;
+    }
+  }
+</style>
