@@ -1,0 +1,174 @@
+---
+/**
+ * SegurancaOpenFinance.astro — bloco específico da Assistente Financeira
+ *
+ * Comunica a segurança do Open Finance do Banco Central. Essencial pra
+ * vencer a objeção "vou compartilhar minha conta bancária com uma IA?"
+ *
+ * Layout: 2 colunas em desktop, 1 em mobile. Coluna esquerda tem texto e
+ * a direita tem 3 selos visuais (Open Finance, Banco Central, criptografia).
+ */
+---
+
+<section class="seguranca-of">
+  <div class="container">
+    <div class="seguranca-of-grid">
+      <div class="seguranca-of-text">
+        <span class="pill pill-dark">Segurança</span>
+        <h2 class="seguranca-of-title">Seus dados, sob o padrão do Banco Central.</h2>
+        <p class="seguranca-of-sub">
+          A Selvia usa o Open Finance, regulamentado pelo Banco Central, pra
+          conectar com suas contas bancárias. Você autoriza direto no app do seu
+          banco, sem nunca passar senha pra ninguém. A conexão é criptografada
+          ponta a ponta e pode ser revogada a qualquer momento.
+        </p>
+
+        <a href="https://www.bcb.gov.br/estabilidadefinanceira/openfinance" target="_blank" rel="noopener" class="seguranca-of-link">
+          Saiba mais sobre Open Finance
+          <span aria-hidden="true">→</span>
+        </a>
+      </div>
+
+      <div class="seguranca-of-badges">
+        <div class="seguranca-badge">
+          <div class="seguranca-badge-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 3l8 4v6c0 5-3.5 8.5-8 10c-4.5-1.5-8-5-8-10V7l8-4z"></path>
+            </svg>
+          </div>
+          <div>
+            <div class="seguranca-badge-title">Open Finance Brasil</div>
+            <div class="seguranca-badge-desc">Padrão regulamentado pelo Banco Central</div>
+          </div>
+        </div>
+
+        <div class="seguranca-badge">
+          <div class="seguranca-badge-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="11" width="18" height="11" rx="2"></rect>
+              <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+            </svg>
+          </div>
+          <div>
+            <div class="seguranca-badge-title">Criptografia ponta a ponta</div>
+            <div class="seguranca-badge-desc">Selvia não armazena senhas bancárias</div>
+          </div>
+        </div>
+
+        <div class="seguranca-badge">
+          <div class="seguranca-badge-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="9"></circle>
+              <path d="M9 12l2 2 4-4"></path>
+            </svg>
+          </div>
+          <div>
+            <div class="seguranca-badge-title">Revogação a qualquer momento</div>
+            <div class="seguranca-badge-desc">Você corta o acesso pelo app do seu banco</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .seguranca-of {
+    padding: 72px 0;
+    background: #FFFFFF;
+  }
+
+  .seguranca-of-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 56px;
+    align-items: center;
+  }
+
+  .seguranca-of-title {
+    font-size: clamp(28px, 4vw, 36px);
+    font-weight: 500;
+    color: var(--c-green-dark);
+    letter-spacing: -0.8px;
+    line-height: 1.2;
+    margin: 12px 0 16px;
+  }
+
+  .seguranca-of-sub {
+    font-size: 16px;
+    line-height: 1.65;
+    color: var(--c-text-muted-strong);
+    margin: 0 0 24px;
+  }
+
+  .seguranca-of-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--c-green-dark);
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: gap 0.15s;
+  }
+  .seguranca-of-link:hover {
+    gap: 10px;
+  }
+
+  .seguranca-of-badges {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .seguranca-badge {
+    background: #F9F9F9;
+    border: 1px solid rgba(13,66,63,0.06);
+    border-radius: 12px;
+    padding: 18px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .seguranca-badge-icon {
+    width: 44px;
+    height: 44px;
+    flex-shrink: 0;
+    background: var(--c-green-light);
+    color: var(--c-green-dark);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .seguranca-badge-icon svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  .seguranca-badge-title {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--c-green-dark);
+    margin-bottom: 2px;
+  }
+
+  .seguranca-badge-desc {
+    font-size: 12px;
+    color: var(--c-text-muted);
+    line-height: 1.5;
+  }
+
+  @media (max-width: 900px) {
+    .seguranca-of-grid {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+  }
+  @media (max-width: 700px) {
+    .seguranca-of {
+      padding: 56px 0;
+    }
+  }
+</style>

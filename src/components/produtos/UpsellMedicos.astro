@@ -1,0 +1,184 @@
+---
+/**
+ * UpsellMedicos.astro — bloco de upsell pro plano completo Selvia
+ *
+ * Usado na LP do Agendamento de Plantão (gratuito) pra conduzir pro plano
+ * completo de médicos. Mostra os principais benefícios da modalidade paga
+ * e o ponto de entrada (que é a home, já que médicos não tem LP separada).
+ *
+ * Visual: bloco verde escuro tipo CTA Final, mas com lista de features
+ * incluídas no plano completo.
+ */
+---
+
+<section class="upsell-medicos">
+  <div class="container">
+    <div class="upsell-medicos-block">
+      <span class="upsell-medicos-eyebrow">Quer mais que agendamento?</span>
+      <h2 class="upsell-medicos-title">Conheça a Selvia completa pra médicos.</h2>
+      <p class="upsell-medicos-sub">
+        Além do agendamento de plantão gratuito, a Selvia cuida de toda a
+        contabilidade do médico PJ. Tudo no mesmo WhatsApp.
+      </p>
+
+      <ul class="upsell-medicos-list">
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+          Abertura do CNPJ no enquadramento certo
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+          Emissão de nota fiscal direto no WhatsApp
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+          Pagamento automático dos impostos (DAS, ISS, IR)
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+          Receita Saúde emitida pra cada atendimento particular
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+          Resumo financeiro mensal com impostos calculados
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+          Atendimento humano 24h pelo WhatsApp
+        </li>
+      </ul>
+
+      <a href="/" class="upsell-medicos-btn">
+        Ver plano completo para médicos
+        <span aria-hidden="true">→</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .upsell-medicos {
+    padding: 56px 0;
+    background: #FFFFFF;
+  }
+
+  .upsell-medicos-block {
+    background: var(--c-green-dark);
+    border-radius: 16px;
+    padding: 56px 48px;
+    color: var(--c-offwhite);
+    position: relative;
+    overflow: hidden;
+    max-width: 880px;
+    margin: 0 auto;
+  }
+
+  .upsell-medicos-block::before {
+    content: '';
+    position: absolute;
+    top: -100px;
+    right: -100px;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(105,228,112,0.18) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .upsell-medicos-block > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .upsell-medicos-eyebrow {
+    display: inline-block;
+    font-size: 12px;
+    color: var(--c-green-light);
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    font-weight: 500;
+    margin-bottom: 12px;
+  }
+
+  .upsell-medicos-title {
+    font-size: clamp(26px, 3.5vw, 34px);
+    font-weight: 500;
+    color: var(--c-offwhite);
+    line-height: 1.2;
+    letter-spacing: -0.6px;
+    margin: 0 0 14px;
+    max-width: 600px;
+  }
+
+  .upsell-medicos-sub {
+    font-size: 16px;
+    color: rgba(249,249,249,0.78);
+    line-height: 1.6;
+    margin: 0 0 28px;
+    max-width: 580px;
+  }
+
+  .upsell-medicos-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 32px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    max-width: 720px;
+  }
+  .upsell-medicos-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 14px;
+    color: rgba(249,249,249,0.92);
+    line-height: 1.55;
+  }
+  .upsell-medicos-list svg {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    color: var(--c-green-light);
+    margin-top: 2px;
+  }
+
+  .upsell-medicos-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 13px 26px;
+    background: var(--c-green-light);
+    color: var(--c-green-dark);
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 14px;
+    text-decoration: none;
+    transition: all 0.2s;
+    box-shadow: 0 8px 24px rgba(105,228,112,0.25);
+  }
+  .upsell-medicos-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px rgba(105,228,112,0.4);
+    background: #7BEE82;
+  }
+
+  @media (max-width: 700px) {
+    .upsell-medicos-block {
+      padding: 40px 28px;
+    }
+    .upsell-medicos-list {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
