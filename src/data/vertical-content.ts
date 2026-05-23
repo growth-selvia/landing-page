@@ -4,13 +4,17 @@
  * Conteúdo específico das LPs verticais (hero, intro SEO, FAQs únicas, meta description).
  *
  * Usado em:
- *  - src/pages/devs.astro, /advogados.astro, /criadores.astro, /saude.astro, /outras-pj.astro
+ *  - src/pages/medicos.astro, /devs.astro, /advogados.astro, /criadores.astro,
+ *    /saude.astro, /outras-pj.astro
  *  - src/components/sections/HeroVertical.astro (lê hero do data file)
  *  - src/components/sections/IntroVertical.astro (lê intro do data file)
  *  - src/components/sections/FaqVertical.astro (lê faqs específicas e mistura com genéricas)
  *  - src/components/seo/ServiceSchema.ts (gera JSON-LD Service por vertical)
  *
- * NOTA: /medicos NÃO está aqui. A home cumpre esse papel (ICP principal).
+ * NOTA: /medicos foi adicionado em 23/05/2026 pra criar LP dedicada destinada a
+ * campanhas e SEO específico. A home (/) continua sendo a LP implícita de médicos.
+ * As duas convivem porque o conteúdo dos componentes específicos difere o
+ * suficiente pra Google indexar separadamente sem canibalização.
  */
 
 export interface VerticalFaq {
@@ -30,6 +34,30 @@ export interface VerticalContent {
 }
 
 const VERTICAL_CONTENT: Record<string, VerticalContent> = {
+  medicos: {
+    slug: 'medicos',
+    heroEyebrow: 'Para médicos PJ',
+    heroH1: 'Contabilidade para médico, do jeito que deveria ser.',
+    heroSub: 'Atendimento que entende plantão, Receita Saúde, residência e consultório. Sem pegadinha.',
+    introText: 'A Selvia atende mais de 1.000 médicos PJ em todo o Brasil. Cuidamos da abertura do CNPJ no enquadramento certo (Simples Nacional Anexo III com Fator R), emitimos a Receita Saúde pra cada atendimento particular, organizamos seus plantões e pagamos os impostos automaticamente. Tudo direto no seu WhatsApp, com contadores que entendem a rotina médica.',
+    serviceDescription: 'Contabilidade no WhatsApp para médicos PJ, com Receita Saúde automatizada, gestão de plantões e Simples Nacional via Fator R.',
+    metaDescription: 'Contabilidade no WhatsApp para médicos PJ. Abertura de CNPJ, Receita Saúde, gestão de plantões e impostos pagos automaticamente. Sem pegadinha.',
+    faqs: [
+      {
+        question: 'Como funciona a Receita Saúde com a Selvia?',
+        answer: 'A Receita Saúde é obrigatória pra todo médico que atende particular. A Selvia emite a Receita Saúde automaticamente pra cada atendimento que você informa pelo WhatsApp. Sem app, sem login no portal da Receita Federal. Você envia mensagem com data, paciente e valor, e a Receita Saúde já é gerada.',
+      },
+      {
+        question: 'A Selvia organiza meus plantões?',
+        answer: 'Sim. Você manda mensagem com data, hora, hospital e valor do plantão, e a Selvia organiza tudo. Ao final do mês, você recebe o resumo financeiro com quanto entrou, quanto tá pendente de cada hospital e o cálculo dos impostos. É gratuito mesmo pra quem ainda não é cliente do plano completo.',
+      },
+      {
+        question: 'Posso ser MEI sendo médico?',
+        answer: 'Não. Médicos com inscrição no CRM são impedidos pela legislação atual de ser MEI. O caminho é Microempresa via Simples Nacional Anexo III com Fator R, que pode reduzir bastante a tributação efetiva. A Selvia abre seu CNPJ no enquadramento certo.',
+      },
+    ],
+  },
+
   devs: {
     slug: 'devs',
     heroEyebrow: 'Para devs e profissionais de TI',

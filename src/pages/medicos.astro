@@ -1,45 +1,36 @@
 ---
-/**
- * LP /medicos
- *
- * Landing page dedicada pra médicos PJ.
- *
- * Decisão: reusa 8 dos 9 componentes da home (Verticais, ComoFunciona, Stats,
- * Depoimentos, Precos, Calculadora, CtaFinal, Midia). Substitui 3 (Hero,
- * Intro, FAQ) por versões médico-específicas pra:
- *  - Atacar palavras-chave médicas (Receita Saúde, Fator R, Anexo III)
- *  - Evitar duplicação completa com a home (canonical separado)
- *  - Servir como destino dedicado pra campanhas Ads/Meta
- *
- * JSON-LD:
- *  - Organization (Selvia)
- *  - Service específico pra contabilidade médica
- *  - FAQPage com as 6 perguntas específicas de médicos
- */
+// LP vertical /medicos — LP dedicada pra SEO e campanhas
+//
+// Estruturalmente idêntica a /devs, /advogados, /criadores, /saude, /outras-pj.
+// JSON-LD: Organization + FAQPage + Service
+//
+// A home (/) continua sendo a LP implícita de médicos. As duas convivem
+// porque o conteúdo dos componentes verticais (HeroVertical, IntroVertical,
+// FaqVertical) tem variações naturais pra Google indexar separadamente.
 
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Announcement from '../components/layout/Announcement.astro';
 import Header from '../components/layout/Header.astro';
-import Footer from '../components/layout/Footer.astro';
-
-// Componentes específicos /medicos (NOVOS)
-import HeroMedicos from '../components/medicos/HeroMedicos.astro';
-import IntroMedicos from '../components/medicos/IntroMedicos.astro';
-import FaqMedicos from '../components/medicos/FaqMedicos.astro';
-
-// Componentes da home reaproveitados
-import Verticais from '../components/sections/Verticais.astro';
+import HeroVertical from '../components/sections/HeroVertical.astro';
+import IntroVertical from '../components/sections/IntroVertical.astro';
 import ComoFunciona from '../components/sections/ComoFunciona.astro';
 import Stats from '../components/sections/Stats.astro';
 import Depoimentos from '../components/sections/Depoimentos.astro';
-import Precos from '../components/sections/Precos.astro';
+import PrecosVertical from '../components/sections/PrecosVertical.astro';
 import Calculadora from '../components/sections/Calculadora.astro';
+import FaqVertical from '../components/sections/FaqVertical.astro';
 import CtaFinal from '../components/sections/CtaFinal.astro';
 import Midia from '../components/sections/Midia.astro';
+import Footer from '../components/layout/Footer.astro';
 
-import { medicosMeta, medicosFaqs } from '../data/medicos.ts';
+import { getVerticalContent, getVerticalFaqSchema } from '../data/vertical-content.ts';
+import { getServiceSchema } from '../components/seo/ServiceSchema.ts';
 
-// === JSON-LD ===
+const SLUG = 'medicos';
+const VERTICAL_NAME = 'Médicos';
+
+const content = getVerticalContent(SLUG);
+
 const organizationSchema = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
@@ -53,72 +44,35 @@ const organizationSchema = {
   ],
 };
 
-// Service schema específico pra contabilidade médica
-const serviceSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'Service',
-  name: 'Contabilidade para Médico PJ',
-  description: 'Contabilidade especializada em médicos: abertura de CNPJ, Receita Saúde, gestão de plantões, impostos automatizados e suporte no WhatsApp.',
-  url: new URL('/medicos', Astro.site).href,
-  provider: {
-    '@type': 'Organization',
-    name: 'Selvia',
-    url: Astro.site?.href,
-    identifier: 'CRC GO-018845/O-3',
-  },
-  areaServed: {
-    '@type': 'Country',
-    name: 'Brasil',
-  },
-  audience: {
-    '@type': 'Audience',
-    audienceType: 'Médicos PJ',
-  },
-  serviceType: 'Contabilidade especializada em médicos',
-  offers: {
-    '@type': 'Offer',
-    price: '347',
-    priceCurrency: 'BRL',
-    availability: 'https://schema.org/InStock',
-    description: 'Plano mensal pra médico PJ com abertura de CNPJ gratuita',
-  },
-};
-
-// FAQPage com as perguntas específicas de médicos
-const faqSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: medicosFaqs.map((f) => ({
-    '@type': 'Question',
-    name: f.question,
-    acceptedAnswer: {
-      '@type': 'Answer',
-      text: f.answer,
-    },
-  })),
-};
-
-const jsonLd = [organizationSchema, serviceSchema, faqSchema];
+const faqSchema = getVerticalFaqSchema(SLUG);
+const serviceSchema = getServiceSchema({
+  slug: SLUG,
+  siteUrl: Astro.site,
+});
 ---
 
 <BaseLayout
-  title={medicosMeta.title}
-  description={medicosMeta.description}
-  jsonLd={jsonLd}
+  title="Contabilidade para Médicos PJ no WhatsApp | Selvia"
+  description={content.metaDescription}
+  jsonLd={[organizationSchema, faqSchema, serviceSchema]}
 >
   <Announcement />
   <Header />
 
   <main>
-    <HeroMedicos />
-    <IntroMedicos />
-    <Verticais />
+    <HeroVertical
+      eyebrow={content.heroEyebrow}
+      h1={content.heroH1}
+      sub={content.heroSub}
+      whatsappContext={`LP de ${VERTICAL_NAME}`}
+    />
+    <IntroVertical text={content.introText} />
     <ComoFunciona />
     <Stats />
     <Depoimentos />
-    <Precos />
+    <PrecosVertical slug={SLUG} verticalName={VERTICAL_NAME} />
     <Calculadora />
-    <FaqMedicos />
+    <FaqVertical slug={SLUG} verticalName={VERTICAL_NAME} />
     <CtaFinal />
     <Midia />
   </main>
