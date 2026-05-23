@@ -1,11 +1,9 @@
 ---
 // Header sticky com nav e CTA WhatsApp
 //
-// MUDANÇAS (sub-etapa F):
-//   - Novo submenu "Produtos" com dropdown (Assistente Financeira, Agendamento de Plantão)
-//   - Submenu mostra no hover (desktop) e expande no clique (mobile)
-//   - Highlight visual quando URL é uma das LPs de produto
-//   - Mantém o link "Blog" do header anterior
+// FIX SUB-ETAPA F: class condicional inline (com {var ? 'a' : 'b'}) confunde
+// o parser do Astro 5 em alguns contextos e renderiza o atributo literal no
+// HTML. Pré-monta todas as className no frontmatter e usa variável simples.
 
 const pathname = Astro.url.pathname;
 const isBlogActive = pathname === '/blog' || pathname.startsWith('/blog/');
@@ -13,10 +11,19 @@ const blogLinkClass = isBlogActive ? 'nav-link-active' : '';
 
 const isProdutosActive =
   pathname === '/assistente-financeira' || pathname === '/agendamento-de-plantao';
-const produtosLinkClass = isProdutosActive ? 'nav-link-active' : '';
+const produtosTriggerClass = isProdutosActive
+  ? 'nav-dropdown-trigger nav-link-active'
+  : 'nav-dropdown-trigger';
 
 const isAssistenteActive = pathname === '/assistente-financeira';
 const isAgendamentoActive = pathname === '/agendamento-de-plantao';
+
+const assistenteItemClass = isAssistenteActive
+  ? 'nav-dropdown-item nav-dropdown-item-active'
+  : 'nav-dropdown-item';
+const agendamentoItemClass = isAgendamentoActive
+  ? 'nav-dropdown-item nav-dropdown-item-active'
+  : 'nav-dropdown-item';
 ---
 
 <header>
@@ -30,11 +37,10 @@ const isAgendamentoActive = pathname === '/agendamento-de-plantao';
       <a href="/#precos">Preços</a>
       <a href="/#calculadora">Calculadora</a>
 
-      <!-- Submenu Produtos com dropdown -->
       <div class="nav-dropdown">
         <button
           type="button"
-          class={`nav-dropdown-trigger ${produtosLinkClass}`}
+          class={produtosTriggerClass}
           aria-haspopup="true"
           aria-expanded="false"
         >
@@ -46,19 +52,11 @@ const isAgendamentoActive = pathname === '/agendamento-de-plantao';
         </button>
 
         <div class="nav-dropdown-menu" role="menu">
-          
-            href="/assistente-financeira"
-            class={isAssistenteActive ? 'nav-dropdown-item nav-dropdown-item-active' : 'nav-dropdown-item'}
-            role="menuitem"
-          >
+          <a href="/assistente-financeira" class={assistenteItemClass} role="menuitem">
             <span class="nav-dropdown-item-title">Assistente Financeira</span>
             <span class="nav-dropdown-item-desc">Suas finanças no WhatsApp, sem planilha</span>
           </a>
-          
-            href="/agendamento-de-plantao"
-            class={isAgendamentoActive ? 'nav-dropdown-item nav-dropdown-item-active' : 'nav-dropdown-item'}
-            role="menuitem"
-          >
+          <a href="/agendamento-de-plantao" class={agendamentoItemClass} role="menuitem">
             <span class="nav-dropdown-item-title">Agendamento de Plantão</span>
             <span class="nav-dropdown-item-desc">Pra médicos, gratuito, direto no WhatsApp</span>
           </a>
@@ -85,10 +83,6 @@ const isAgendamentoActive = pathname === '/agendamento-de-plantao';
 </header>
 
 <script>
-  // === Comportamento do dropdown "Produtos" ===
-  // Desktop: hover já abre via CSS, mas adicionamos aria-expanded também
-  // Mobile/Touch: precisa de click pra abrir, porque hover não funciona
-
   const trigger = document.querySelector('.nav-dropdown-trigger') as HTMLButtonElement;
   const dropdown = document.querySelector('.nav-dropdown') as HTMLElement;
 
@@ -105,7 +99,6 @@ const isAgendamentoActive = pathname === '/agendamento-de-plantao';
       }
     });
 
-    // Fecha quando clica fora
     document.addEventListener('click', (e) => {
       const target = e.target as Node;
       if (!dropdown.contains(target)) {
@@ -114,7 +107,6 @@ const isAgendamentoActive = pathname === '/agendamento-de-plantao';
       }
     });
 
-    // Fecha com ESC
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
         dropdown.classList.remove('nav-dropdown-open');
@@ -168,7 +160,6 @@ const isAgendamentoActive = pathname === '/agendamento-de-plantao';
   }
   .nav-links > a:hover { color: var(--c-green-dark); }
 
-  /* Highlight do link ativo */
   .nav-link-active {
     color: var(--c-green-dark) !important;
     font-weight: 500;
@@ -184,7 +175,6 @@ const isAgendamentoActive = pathname === '/agendamento-de-plantao';
     border-radius: 2px;
   }
 
-  /* === Dropdown Produtos === */
   .nav-dropdown {
     position: relative;
   }
@@ -237,7 +227,6 @@ const isAgendamentoActive = pathname === '/agendamento-de-plantao';
     transform: translateX(-50%) translateY(0);
   }
 
-  /* Ponte invisível entre o trigger e o menu pro hover não quebrar */
   .nav-dropdown::after {
     content: '';
     position: absolute;
@@ -277,7 +266,6 @@ const isAgendamentoActive = pathname === '/agendamento-de-plantao';
     line-height: 1.4;
   }
 
-  /* Link secundário no header */
   .nav-link-secondary {
     font-weight: 500;
     color: var(--c-green-dark) !important;
@@ -292,7 +280,6 @@ const isAgendamentoActive = pathname === '/agendamento-de-plantao';
   }
   .nav-link-secondary::after { display: none; }
 
-  /* Mobile */
   @media (max-width: 900px) {
     .nav-links { display: none; }
   }
