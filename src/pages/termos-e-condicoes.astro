@@ -1,0 +1,599 @@
+---
+/**
+ * /termos-e-condicoes
+ *
+ * Termos e Condições específicos da criação e gestão da conta da empresa
+ * com propósito (conta bancária PJ via Celcoin).
+ *
+ * Baseado no documento oficial em
+ * https://www.selvia.com.br/termos-e-condi%C3%A7%C3%B5es
+ *
+ * IMPORTANTE: essa página existe pra ser referenciada nos contratos de clientes
+ * que contratam o serviço de conta bancária PJ. Não aparece no menu, footer ou
+ * navegação. Acessível apenas via URL direta.
+ *
+ * Marca como noindex (mesmo padrão do original e das outras páginas legais).
+ */
+
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Announcement from '../components/layout/Announcement.astro';
+import Header from '../components/layout/Header.astro';
+import Footer from '../components/layout/Footer.astro';
+
+const organizationSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'Selvia',
+  url: Astro.site?.href,
+  logo: new URL('/logo.png', Astro.site).href,
+};
+---
+
+<BaseLayout
+  title="Termos e Condições | Selvia"
+  description="Termos e Condições da criação e gestão de conta bancária PJ da Selvia, via parceria com a Celcoin."
+  noindex={true}
+  jsonLd={[organizationSchema]}
+>
+  <Announcement />
+  <Header />
+
+  <main class="legal">
+    <div class="container">
+      <header class="legal-header">
+        <span class="pill pill-dark">Legal</span>
+        <h1>Termos e Condições</h1>
+        <p class="legal-updated">Criação e gestão de conta da empresa com propósito específico</p>
+      </header>
+
+      <article class="legal-content">
+        <p>
+          Por meio dos presentes Termos e Condições a
+          <strong>SELVIA TECNOLOGIA LTDA</strong> (CNPJ nº 55.044.108/0001-78) e
+          a <strong>SELVIA CONTABILIDADE LTDA</strong> (CNPJ nº 37.888.114/0001-20),
+          em conjunto, "Selvia" ou "Contratada", estabelecem os
+          <strong>TERMOS E CONDIÇÕES ESPECÍFICOS</strong> para a contratação do
+          serviço de auxílio na criação e gestão de conta da empresa com
+          propósito específico, os quais se incorporam, para todos os fins e
+          efeitos, Contrato de Prestação de Serviços, denominados, em conjunto,
+          "Contrato".
+        </p>
+        <p>
+          A assinatura dos presentes Termos representa e confirma a concordância
+          mútua com relação às regras de contratação do referido Serviço
+          ("Serviço") e da execução pela Contratada.
+        </p>
+        <p>
+          A assinatura deste instrumento, pressupõe que foram lidas, entendidas
+          e aceitas todas as condições aqui dispostas.
+        </p>
+
+        <section>
+          <h2>1. Do objeto</h2>
+          <p>
+            <strong>1.1.</strong> Estes Termos têm por objeto a contratação do
+            Serviço de auxílio na criação e gestão de conta de empresa com
+            propósito específico, nos termos dispostos nos capítulos 2 e 3
+            abaixo, e em eventual Proposta Comercial, que deve ser associada a
+            um único CNPJ.
+          </p>
+          <p>
+            <strong>1.2.</strong> Estes Termos e esse Serviço se submetem aos
+            termos de serviços da <strong>CELCOIN INSTITUIÇÃO DE PAGAMENTO S.A</strong>
+            e à Procuração por meio do qual o Usuário elegeu a Contratada como
+            seu legítimo Procurador para fins de abertura da conta bancária a
+            que se refere os presentes Termos Específicos.
+          </p>
+        </section>
+
+        <section>
+          <h2>2. Do serviço</h2>
+          <p>
+            <strong>2.1.</strong> De acordo com a adesão do Usuário, a
+            Contratada poderá se obrigar também à prestação dos seguintes
+            serviços:
+          </p>
+          <ul>
+            <li>Auxílio na abertura de conta bancária de pagamento;</li>
+            <li>Gerenciamento da referida conta, que permite o aporte, instrução de pagamento e saque de recursos mantidos em conta de pagamento;</li>
+            <li>Pagamento de tributos;</li>
+            <li>Possibilidade de antecipação de recebíveis, mediante coleta de autorização específica.</li>
+          </ul>
+          <p>
+            <strong>2.2. Auxílio na Abertura de conta bancária de pagamento.</strong>
+            O Usuário autoriza a Contratada a abrir e manter uma conta de
+            pagamento no nome do Usuário (titularidade de CNPJ), utilizando-se
+            dos dados cadastrais fornecidos, em conformidade com os documentos
+            apresentados e as exigências regulamentares. Essa conta será gerida
+            pela CELCOIN INSTITUIÇÃO DE PAGAMENTO S.A, inscrita no CNPJ nº
+            13.935.893/0001-09 ("CELCOIN").
+          </p>
+          <p>
+            <strong>2.3. Gerenciamento da referida conta</strong>, que permite o
+            aporte, instrução de pagamento e saque de recursos mantidos em conta
+            de pagamento. O Usuário autoriza a Contratada a providenciar a
+            movimentação da referida conta, elegendo-a como única representante
+            delegada do referido perante a conta bancária em referência, criada
+            perante a CELCOIN.
+          </p>
+          <p>
+            <strong>2.4.</strong> Para que os serviços previstos nestes Termos
+            sejam executados, o Usuário assinou Procuração junto à CELCOIN,
+            nomeando a Contratada como sua Procuradora Outorgada e autorizando a
+            Contratada a realizar todas as transações necessárias para a
+            consecução do objeto do presente. Por meio da referida autorização,
+            a Contratada foi nomeada como principal operadora da conta, estando
+            autorizada a exercer, através do acesso concedido, todas as
+            faculdades que o acesso permitido pelo Cliente autorize, no caso, os
+            mais amplos e gerais, como realizar e alterar cadastros, obter e
+            alterar senhas, acessar tokens, habilitar dispositivos de segurança,
+            encerrar a conta, contratar produtos e serviços, praticar todos os
+            atos inerentes ao Contrato, inclusive realizar todas as funções de
+            movimentações financeiras.
+          </p>
+          <p>
+            <strong>2.4.1.</strong> Caso a referida autorização seja revogada, a
+            Contratada não se responsabilizará por eventual atraso ou
+            inviabilidade na execução dos Serviços contratados.
+          </p>
+        </section>
+
+        <section>
+          <h2>3. Das obrigações da Contratada</h2>
+          <p>
+            <strong>3.1.</strong> Além do previsto nas demais previsões do
+            Contrato, a Contratada se compromete a:
+          </p>
+          <ul>
+            <li>Executar os serviços constantes no item 2 deste Documento;</li>
+            <li>Alocar pessoal e tecnologia qualificada para a execução do objeto contratual, de acordo com as melhores técnicas do mercado;</li>
+            <li>Arcar com eventuais prejuízos eventualmente sofridos pelo Contratante quando decorrentes de culpa grave ou dolo da tecnologia e da Contratada, nos termos da Cláusula 8.6.</li>
+          </ul>
+          <p>
+            <strong>3.2.</strong> Em caso de queda ou instabilidade da CELCOIN,
+            sem culpa da Contratada, os serviços programados para o referido dia
+            serão devidamente executados no próximo dia útil após a normalização
+            da estabilidade.
+          </p>
+        </section>
+
+        <section>
+          <h2>4. Das obrigações do Usuário Contratante</h2>
+          <p>
+            <strong>4.1.</strong> Além do previsto nas demais previsões do
+            Contrato, o Usuário se compromete a:
+          </p>
+          <ul>
+            <li>Colocar à disposição da Contratada todas as informações que esta necessite, para consecução do objetivo do presente Contrato;</li>
+            <li>Responsabilizar-se por eventuais atrasos e falhas que possam ocorrer na execução de quaisquer dos serviços, decorrentes do não atendimento dos itens sob sua responsabilidade;</li>
+            <li>Não utilizar os serviços da Contratada para fins ilícitos ou para remunerar atividades ilegais;</li>
+            <li>Utilizar a conta bancária relacionada ao presente Contrato apenas para operações decorrentes do objeto do Contrato de Prestação de Serviços firmado com a Contratada;</li>
+            <li>Observar as leis e normas antifraude, lavagem de dinheiro e financiamento ao terrorismo vigentes no Brasil, bem como aos normativos da Receita Federal, COAF e BACEN, isentando a Contratada de qualquer responsabilidade decorrentes de tais questões.</li>
+          </ul>
+          <p>
+            <strong>4.2.</strong> O Usuário declara que autoriza ("a" e "b"
+            desde já) a Contratada a operar a sua conta da CELCOIN para as
+            seguintes transações:
+          </p>
+          <ul>
+            <li>Transferência de pix para conta pessoal dele (conta associada ao CPF dos sócios do CNPJ);</li>
+            <li>Pagamentos de impostos do CNPJ;</li>
+            <li>Outros pagamentos e transferências que o Usuário autorize prévia e expressamente.</li>
+          </ul>
+          <p class="legal-emphasis">
+            <strong>4.3.</strong> O USUÁRIO DECLARA ESTAR CIENTE DE QUE, EM
+            VIRTUDE DA CONTA BANCÁRIA DE PESSOA JURÍDICA (PJ) MENCIONADA NESTE
+            INSTRUMENTO SER UTILIZADA, ENTRE OUTRAS FINALIDADES, PARA O
+            PAGAMENTO DE TRIBUTOS, A CONTRATADA NÃO RECOMENDA A ABERTURA OU
+            UTILIZAÇÃO DE OUTRA CONTA BANCÁRIA PJ PARA O RECEBIMENTO DE VALORES,
+            SOB O RISCO DE OCASIONAR ERROS NO CÁLCULO E NO PAGAMENTO DE
+            TRIBUTOS. CASO O USUÁRIO OPTE POR REALIZAR TAL OPERAÇÃO SEM A DEVIDA
+            COMUNICAÇÃO PRÉVIA À CONTRATADA, ASSUMIRÁ INTEGRALMENTE A
+            RESPONSABILIDADE POR QUAISQUER ERROS DECORRENTES DE EQUÍVOCOS NO
+            CÁLCULO E NO PAGAMENTO DE TRIBUTOS, INCLUINDO, MAS NÃO SE
+            LIMITANDO, AO PAGAMENTO DE MULTAS, JUROS E DEMAIS ENCARGOS
+            DECORRENTES DE ATRASOS OU INCORREÇÕES NO CUMPRIMENTO DAS OBRIGAÇÕES
+            FISCAIS.
+          </p>
+          <p>
+            <strong>4.4.</strong> O Usuário reconhece que todas as informações
+            fornecidas por si à Contratada são autodeclaratórias e, caso sejam
+            identificadas inveracidade nas referidas, o presente Contrato poderá
+            ser encerrado.
+          </p>
+          <p>
+            <strong>4.5.</strong> O Usuário concorda que todas as autorizações
+            relacionadas aos Serviços deste Termo, incluindo aquelas previstas
+            no item 4.2, alínea "c", serão concedidas, preferencialmente, por
+            meio do aplicativo WhatsApp, na conta oficial da Contratada
+            (+55 11 93502-6188), ou, alternativamente, por meio do e-mail
+            <a href="mailto:contato@selvia.com.br">contato@selvia.com.br</a>, a
+            partir do número de telefone cadastrado pelo Usuário junto à
+            Contratada.
+          </p>
+          <p class="legal-emphasis">
+            <strong>4.6.</strong> O USUÁRIO ASSUME A RESPONSABILIDADE DE
+            COMUNICAR IMEDIATAMENTE À CONTRATADA, EXCLUSIVAMENTE POR MEIO DO
+            E-MAIL <a href="mailto:contato@selvia.com.br">contato@selvia.com.br</a>
+            OU POR MEIO DO WHATSAPP DE SUPORTE (+55 12 99624-8346), QUALQUER
+            ALTERAÇÃO DO NÚMERO DE TELEFONE CADASTRADO, BEM COMO A OCORRÊNCIA
+            DE EVENTOS COMO PERDA, ROUBO, ENTRE OUTROS, SOB PENA DE ISENÇÃO DE
+            RESPONSABILIDADE DA CONTRATADA POR QUAISQUER AUTORIZAÇÕES
+            PROVENIENTES DO NÚMERO DE TELEFONE E/OU DO APLICATIVO ANTERIORMENTE
+            INFORMADOS.
+          </p>
+        </section>
+
+        <section>
+          <h2>5. Do prestador da solução tecnológica de Banco como Serviço (BaaS)</h2>
+          <p>
+            <strong>5.1.</strong> O Usuário está ciente e concorda que a conta
+            de pagamento de sua titularidade será aberta diretamente na
+            <strong>CELCOIN INSTITUIÇÃO DE PAGAMENTO S.A</strong>, inscrita no
+            CNPJ nº 13.935.893/0001-09, empresa parceira contratada pela
+            Contratada, para prestação da solução tecnológica de Banco como
+            Serviço ("Bank as a Service"/"BaaS"), que contempla os procedimentos
+            de abertura e gerenciamento de contas de pagamento, emissão de
+            moeda eletrônica e serviços de processamento e liquidação.
+          </p>
+          <p>
+            <strong>5.2.</strong> O Usuário está ciente e concorda que todos os
+            dados fornecidos para abertura e manutenção da conta, serão
+            utilizados pela CELCOIN apenas para o cumprimento da relação
+            contratual firmada com a Selvia, dos deveres advindos da
+            regulamentação vigente, sempre em observância a legislação que
+            versa sobre proteção de dados e segurança da informação. A CELCOIN
+            poderá, a qualquer momento, solicitar informações complementares
+            para fins legais e regulatórios.
+          </p>
+        </section>
+
+        <section>
+          <h2>6. Do preço</h2>
+          <p>
+            <strong>6.1.</strong> Este Serviço será prestado de forma
+            <strong>gratuita</strong> ao Usuário, e a Contratada o reembolsará,
+            ainda, de todas as taxas dos serviços relacionados às transações
+            previstas neste Termo e realizadas por meio da operação e gestão da
+            Contratada.
+          </p>
+          <p>
+            <strong>6.2.</strong> Em qualquer tempo, a Contratada poderá passar
+            a cobrar por esse serviço e repassar ao Usuário o dever do
+            pagamento das referidas taxas, desde que mediante aviso prévio
+            escrito de pelo menos 30 (trinta) dias de antecedência.
+          </p>
+        </section>
+
+        <section>
+          <h2>7. Da vigência e encerramento contratual</h2>
+          <p>
+            <strong>7.1.</strong> Os presentes Termos entrarão em vigor a partir
+            da data de sua assinatura e terão prazo indeterminado, podendo ser
+            encerrados por iniciativa de qualquer das Partes, mediante aviso
+            prévio, por escrito, com antecedência mínima de 30 (trinta) dias.
+          </p>
+          <p>
+            <strong>7.2.</strong> A Contratada poderá, a qualquer tempo, mediante
+            aviso prévio por escrito com antecedência mínima de 30 (trinta)
+            dias, descontinuar a prestação de determinados serviços, bem como
+            sugerir à Contratante a utilização de outra instituição bancária ou
+            prestadora de serviços. Caso a Contratante não concorde com a
+            alteração sugerida, a Contratada poderá rescindir o presente
+            contrato, sem a incidência de qualquer multa, penalidade ou
+            obrigação de indenização, seja a que título for.
+          </p>
+        </section>
+
+        <section>
+          <h2>8. Responsabilidades</h2>
+          <p>
+            <strong>8.1.</strong> A Contratada não se responsabilizará, em
+            nenhuma hipótese, por quaisquer danos decorrentes de:
+          </p>
+          <ul>
+            <li>Mau uso da Plataforma da CELCOIN ou da Contratada por parte do Usuário;</li>
+            <li>Má conexão com a internet;</li>
+            <li>Interrupção da transmissão, difusão, disponibilização, recepção, obtenção e acesso à informação;</li>
+            <li>Quaisquer outras interrupções de acesso à Plataforma da CELCOIN, independentemente da causa ou do responsável;</li>
+            <li>Problemas técnicos e/ou operacionais, incluindo, mas não se limitando a, falhas, perda de informações, transmissão de vírus, entre outros;</li>
+            <li>Autorizações e eventuais prejuízos decorrentes do compartilhamento de contas, seja quando expressamente autorizado pelo Usuário, seja em razão de negligência no controle de acessos ao aplicativo WhatsApp, incluindo situações de descuido, uso indevido, ou falhas na gestão de segurança e acesso;</li>
+            <li>Prejuízos resultantes de furtos, roubos ou outros incidentes semelhantes não comunicados de forma imediata à Contratada, nos termos da Cláusula 4.6;</li>
+            <li>Atos causados por eventos de caso fortuito ou força maior.</li>
+          </ul>
+          <p>
+            <strong>8.2.</strong> A Contratada não se responsabiliza pela
+            qualidade, continuidade, manutenção e estabilidade dos serviços
+            oferecidos pela CELCOIN, e nem pela relação contratual estabelecida
+            entre o Usuário e a CELCOIN, regulada estritamente pelas diretrizes
+            da instituição bancária.
+          </p>
+          <p>
+            <strong>8.3.</strong> A Contratada se exime e se desobriga de
+            qualquer responsabilidade por perdas e danos de qualquer natureza,
+            lucros cessantes e danos emergentes, que possam decorrer das ações
+            de Usuários e/ou terceiros que violem os termos impostos pela
+            Contratada.
+          </p>
+          <p>
+            <strong>8.4.</strong> A Contratada se resguarda no direito de, a
+            qualquer momento, suspender ou cancelar a prestação dos Serviços
+            prevista neste Contrato, em caso de descumprimento dos deveres pelo
+            Usuário, sem direito a qualquer indenização em favor do Usuário e
+            sem prejuízo da aplicação das sanções previstas nestes Termos.
+          </p>
+          <p>
+            <strong>8.5.</strong> A Contratada se resguarda no direito de
+            alterar, a qualquer tempo, e a seu exclusivo critério, as
+            características e as funcionalidades de seus Serviços, não
+            possuindo o Usuário direito adquirido e imutável sobre os Serviços
+            oferecidos.
+          </p>
+          <p>
+            <strong>8.6.</strong> Em qualquer hipótese, a responsabilidade
+            máxima da Contratada decorrente deste Contrato será limitada ao
+            valor total do Contrato e se limita aos danos diretos comprovadamente
+            sofridos pelo Usuário em razão de qualquer descumprimento das
+            obrigações da Contratada, excluindo todos e quaisquer pleitos por
+            danos indiretos (incluindo por lucros cessantes e perda de dados ou
+            oportunidade de negócios) sofridos pelo Usuário ou por qualquer
+            terceiro.
+          </p>
+        </section>
+
+        <section>
+          <h2>9. Da observância à LGPD</h2>
+          <p class="legal-emphasis">
+            <strong>9.1.</strong> O USUÁRIO DECLARA EXPRESSO E ESPECÍFICO
+            CONSENTIMENTO QUE A CONTRATADA IRÁ COLETAR, TRATAR E COMPARTILHAR
+            TODOS OS DADOS PESSOAIS, INCLUSIVE OS SENSÍVEIS, NECESSÁRIOS À
+            EXECUÇÃO DOS PRESENTES SERVIÇOS, A EXEMPLO DE, MAS NÃO SE LIMITANDO
+            A: dados de acesso, senhas, movimentação financeira etc.
+          </p>
+          <p>
+            <strong>9.2.</strong> A Contratada adotará medidas técnicas e
+            administrativas aptas a proteger os dados pessoais de acessos não
+            autorizados e de situações acidentais ou ilícitas de destruição,
+            perda, alteração, comunicação ou difusão. Apesar das medidas de
+            segurança adotadas, a Contratada não pode garantir que jamais
+            aconteçam falhas ou situações ilícitas causadas por terceiros.
+          </p>
+          <p>
+            <strong>9.3.</strong> Os dados pessoais dos Usuários utilizados
+            para tais esforços também serão tratados com segurança. Caso haja
+            dúvidas, o Usuário poderá consultar o
+            <a href="/politica-de-privacidade">Aviso de Privacidade</a> da
+            Contratada.
+          </p>
+        </section>
+
+        <section>
+          <h2>10. Da propriedade intelectual</h2>
+          <p>
+            <strong>10.1.</strong> Todos os direitos de propriedade intelectual
+            e industrial relacionados à Plataforma e aos serviços da Contratada,
+            tais como operações, vídeos, marcas, logotipos, emblemas, design de
+            páginas e peças publicitárias, estrutura, conteúdos e informações,
+            ferramentas, símbolos e expressões que caracterizem os Serviços da
+            Contratada são de inteira propriedade desta. Não é concedida nenhuma
+            extensão de uso aos Usuários, exceto em caso de autorização prévia,
+            formal, expressa e por escrito dos representantes legais da empresa.
+          </p>
+          <p>
+            <strong>10.2.</strong> É vedado ao Usuário, em qualquer tempo,
+            modificar, copiar, distribuir, vender, transmitir, exibir, realizar,
+            reproduzir, publicar, disponibilizar, licenciar ou criar obras
+            derivadas a partir dos direitos de propriedade intelectual dos
+            Serviços aqui contratados ou de nosso Site.
+          </p>
+        </section>
+
+        <section>
+          <h2>11. Do sigilo e confidencialidade</h2>
+          <p>
+            <strong>11.1.</strong> As Partes obrigam-se, por si e por seus
+            sucessores, empregados, funcionários, prepostos, representantes,
+            gerentes e administradores, a manter o mais completo e absoluto
+            sigilo sobre quaisquer informações, metodologias, documentos e
+            especificações técnicas ou comerciais, dos quais venham a ter
+            conhecimento ou acesso, ou que lhes sejam confiados em razão deste
+            relacionamento e contratação, não podendo, sob qualquer pretexto,
+            divulgar, revelar, ceder, reproduzir, utilizar, ou deles dar
+            conhecimento a terceiros estranhos a esta contratação.
+          </p>
+          <p>
+            <strong>11.2.</strong> Além disso, declaram que manterão em sigilo
+            os termos do Contrato em referência.
+          </p>
+        </section>
+
+        <section>
+          <h2>12. Links externos</h2>
+          <p>
+            <strong>12.1.</strong> O Site da Contratada poderá conter links
+            para outros sites, incluindo sites mantidos por outras empresas que
+            não são regidas por estes Termos e outros instrumentos de
+            privacidade que poderão se diferenciar dos relacionados à
+            Contratada. Por isso, recomendamos que o Usuário analise os termos
+            de serviços e o aviso/política de privacidade de cada site visitado,
+            antes de disponibilizar quaisquer informações pessoais.
+          </p>
+        </section>
+
+        <section>
+          <h2>13. Modificação nos Termos</h2>
+          <p>
+            <strong>13.1.</strong> A Contratada poderá modificar os presentes
+            Termos a qualquer momento, sem necessidade de anuência do Usuário,
+            o qual será notificado das alterações por meio do Site e/ou por
+            e-mail.
+          </p>
+        </section>
+
+        <section>
+          <h2>14. Disposições gerais</h2>
+          <p>
+            <strong>14.1.</strong> Caso alguma ou algumas das cláusulas ou
+            disposições do presente termo seja considerada inválida, a referida
+            não será utilizada, mas tal invalidade não prejudica a validade e a
+            aplicação do restante das disposições.
+          </p>
+          <p>
+            <strong>14.2.</strong> Fica pactuada a total inexistência de
+            vínculo trabalhista entre as Partes, excluindo as obrigações
+            previdenciárias e os encargos sociais, não havendo entre as Partes
+            qualquer tipo de relação de subordinação. Da mesma forma, nenhuma
+            das Partes será fiadora das obrigações e encargos trabalhistas e
+            sociais da outra Parte, a qual assume, neste ato, integral
+            responsabilidade por tais obrigações, inclusive civil e penalmente.
+          </p>
+          <p>
+            <strong>14.3.</strong> O Usuário declara e garante possuir plena
+            capacidade jurídica para a celebração do presente Contrato, bem
+            como que todos os dados eventualmente fornecidos são verdadeiros,
+            sob as penas da lei.
+          </p>
+          <p>
+            <strong>14.4.</strong> A tolerância de uma Parte para com a outra,
+            relativa o descumprimento de qualquer das obrigações ora assumidas,
+            não será considerada novação ou renúncia a qualquer direito,
+            constituindo mera liberalidade, que não impedirá a parte tolerante
+            de exigir da outra o fiel cumprimento deste documento, a qualquer
+            tempo.
+          </p>
+        </section>
+
+        <section>
+          <h2>15. Dúvidas e comunicação</h2>
+          <p>
+            <strong>15.1.</strong> Os meios oficiais de comunicação com a
+            Contratada são os informados abaixo, sendo de inteira
+            responsabilidade do Usuário as informações neles inseridas ou por
+            meio deles solicitadas:
+          </p>
+
+          <h3>Comandos e ações/autorizações da Assistente Inteligente</h3>
+          <p>
+            E-mail: <a href="mailto:contato@selvia.com.br">contato@selvia.com.br</a><br />
+            WhatsApp: +55 11 93502-6188
+          </p>
+
+          <h3>Comunicação de roubo/furto, solicitação de alteração de dados</h3>
+          <p>
+            E-mail: <a href="mailto:contato@selvia.com.br">contato@selvia.com.br</a><br />
+            WhatsApp: +55 12 99624-8346
+          </p>
+        </section>
+
+        <section>
+          <h2>16. Do foro</h2>
+          <p>
+            <strong>16.1.</strong> O presente documento possui vigência em
+            total consonância com a legislação ao tempo da adesão do Usuário,
+            elegendo-se o foro da <strong>Comarca de Barueri/SP</strong>,
+            Brasil, para dirimir quaisquer dúvidas ou litígios decorrentes.
+          </p>
+        </section>
+      </article>
+    </div>
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<style>
+  .legal {
+    padding: 56px 0 80px;
+    background: #FFFFFF;
+  }
+
+  .legal-header {
+    margin-bottom: 40px;
+    max-width: 720px;
+  }
+  .legal-header h1 {
+    font-size: clamp(28px, 4.5vw, 40px);
+    font-weight: 500;
+    color: var(--c-green-dark);
+    line-height: 1.15;
+    letter-spacing: -1px;
+    margin: 16px 0 12px;
+  }
+  .legal-updated {
+    font-size: 13px;
+    color: var(--c-text-muted);
+    margin: 0;
+  }
+
+  .legal-content {
+    max-width: 760px;
+    color: var(--c-text-muted-strong);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+  .legal-content > p {
+    margin: 0 0 14px;
+  }
+  .legal-content section {
+    margin-bottom: 36px;
+    padding-top: 12px;
+    border-top: 1px solid rgba(13,66,63,0.06);
+  }
+  .legal-content h2 {
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--c-green-dark);
+    margin: 16px 0 16px;
+    letter-spacing: -0.3px;
+  }
+  .legal-content h3 {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--c-green-dark);
+    margin: 20px 0 8px;
+    letter-spacing: -0.2px;
+  }
+  .legal-content p {
+    margin: 0 0 12px;
+  }
+  .legal-content ul {
+    padding-left: 24px;
+    margin: 8px 0 16px;
+  }
+  .legal-content li {
+    margin-bottom: 6px;
+  }
+  .legal-content li::marker {
+    color: var(--c-green-light);
+  }
+  .legal-content a {
+    color: var(--c-green-dark);
+    text-decoration: underline;
+    text-decoration-color: var(--c-green-light);
+    text-underline-offset: 3px;
+  }
+  .legal-content strong {
+    color: var(--c-green-dark);
+    font-weight: 500;
+  }
+  .legal-emphasis {
+    background: rgba(105,228,112,0.08);
+    border-left: 3px solid var(--c-green-light);
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    margin: 16px 0 !important;
+    font-size: 14px;
+  }
+
+  @media (max-width: 700px) {
+    .legal {
+      padding: 32px 0 56px;
+    }
+    .legal-content {
+      font-size: 14px;
+    }
+    .legal-content h2 {
+      font-size: 18px;
+    }
+  }
+</style>

@@ -1,0 +1,107 @@
+---
+/**
+ * LP /assistente-financeira
+ *
+ * Subproduto Selvia: IA financeira no WhatsApp.
+ * Audiência: todos os ICPs.
+ *
+ * MUDANÇA (sub-etapa F): inclui LeadFormModal no fim da página.
+ * O modal é aberto pelos botões CTA via data-open-lead-modal.
+ */
+
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Announcement from '../components/layout/Announcement.astro';
+import Header from '../components/layout/Header.astro';
+import Footer from '../components/layout/Footer.astro';
+
+import HeroProduto from '../components/produtos/HeroProduto.astro';
+import FeaturesProduto from '../components/produtos/FeaturesProduto.astro';
+import SegurancaOpenFinance from '../components/produtos/SegurancaOpenFinance.astro';
+import FaqProduto from '../components/produtos/FaqProduto.astro';
+import LeadFormModal from '../components/produtos/LeadFormModal.astro';
+
+import IntroVertical from '../components/sections/IntroVertical.astro';
+import ComoFunciona from '../components/sections/ComoFunciona.astro';
+import Verticais from '../components/sections/Verticais.astro';
+import Stats from '../components/sections/Stats.astro';
+import Depoimentos from '../components/sections/Depoimentos.astro';
+import CtaFinal from '../components/sections/CtaFinal.astro';
+import Midia from '../components/sections/Midia.astro';
+
+import {
+  getProduto,
+  getProdutoFaqSchema,
+  getProdutoServiceSchema,
+} from '../data/produtos.ts';
+
+const SLUG = 'assistente-financeira';
+const produto = getProduto(SLUG);
+
+const organizationSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'Selvia',
+  url: Astro.site?.href,
+  logo: new URL('/logo.png', Astro.site).href,
+  description: 'Contabilidade no WhatsApp para profissionais PJ no Brasil.',
+  sameAs: [
+    'https://www.linkedin.com/company/selvia-m',
+    'https://www.instagram.com/selvia.contabilidade/',
+  ],
+};
+
+const faqSchema = getProdutoFaqSchema(SLUG);
+const serviceSchema = getProdutoServiceSchema(SLUG, Astro.site);
+---
+
+<BaseLayout
+  title={produto.metaTitle}
+  description={produto.metaDescription}
+  jsonLd={[organizationSchema, faqSchema, serviceSchema]}
+>
+  <Announcement />
+  <Header />
+
+  <main>
+    <HeroProduto
+      eyebrow={produto.heroEyebrow}
+      h1={produto.heroH1}
+      sub={produto.heroSub}
+      ctaLabel={produto.ctaLabel}
+      whatsappContext={produto.whatsappContext}
+    />
+
+    <IntroVertical text={produto.introText} />
+
+    <FeaturesProduto
+      features={produto.features}
+      sectionEyebrow="Funcionalidades"
+      sectionTitle="Tudo o que você precisa pra organizar suas finanças."
+    />
+
+    <ComoFunciona />
+
+    <SegurancaOpenFinance />
+
+    <Verticais />
+
+    <Stats />
+
+    <Depoimentos />
+
+    <FaqProduto faqs={produto.faqs} />
+
+    <CtaFinal />
+
+    <Midia />
+  </main>
+
+  <Footer />
+
+  <!-- Modal de captura de lead. Aberto por qualquer [data-open-lead-modal] -->
+  <LeadFormModal
+    produtoSlug={produto.slug}
+    produtoName={produto.name}
+    whatsappContext={produto.whatsappContext}
+  />
+</BaseLayout>

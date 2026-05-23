@@ -1,0 +1,120 @@
+---
+/**
+ * LP /agendamento-de-plantao
+ *
+ * Subproduto Selvia: IA de agendamento de plantão + resumo financeiro
+ * direto no WhatsApp. Audiência específica: médicos plantonistas,
+ * internos e residentes.
+ *
+ * Diferenças vs /assistente-financeira:
+ *  - Sem seção Verticais (audiência é só médicos)
+ *  - Com bloco UpsellMedicos (CTA pro plano completo de médicos)
+ *  - Sem SegurancaOpenFinance (não conecta contas bancárias)
+ *
+ * Estrutura:
+ *   Header
+ *   HeroProduto (eyebrow médicos + h1 + sub + CTA modal)
+ *   IntroVertical (parágrafo SEO)
+ *   FeaturesProduto (4 features: agenda, resumo, WhatsApp, rotina médica)
+ *   ComoFunciona (3 passos)
+ *   Stats
+ *   Depoimentos
+ *   UpsellMedicos (bloco verde escuro → home)
+ *   FaqProduto (6 FAQs específicas)
+ *   Midia
+ *   Footer
+ *   LeadFormModal (modal de captura de lead)
+ *
+ * JSON-LD: Organization + Service + FAQPage
+ */
+
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Announcement from '../components/layout/Announcement.astro';
+import Header from '../components/layout/Header.astro';
+import Footer from '../components/layout/Footer.astro';
+
+import HeroProduto from '../components/produtos/HeroProduto.astro';
+import FeaturesProduto from '../components/produtos/FeaturesProduto.astro';
+import UpsellMedicos from '../components/produtos/UpsellMedicos.astro';
+import FaqProduto from '../components/produtos/FaqProduto.astro';
+import LeadFormModal from '../components/produtos/LeadFormModal.astro';
+
+import IntroVertical from '../components/sections/IntroVertical.astro';
+import ComoFunciona from '../components/sections/ComoFunciona.astro';
+import Stats from '../components/sections/Stats.astro';
+import Depoimentos from '../components/sections/Depoimentos.astro';
+import Midia from '../components/sections/Midia.astro';
+
+import {
+  getProduto,
+  getProdutoFaqSchema,
+  getProdutoServiceSchema,
+} from '../data/produtos.ts';
+
+const SLUG = 'agendamento-de-plantao';
+const produto = getProduto(SLUG);
+
+const organizationSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'Selvia',
+  url: Astro.site?.href,
+  logo: new URL('/logo.png', Astro.site).href,
+  description: 'Contabilidade no WhatsApp para profissionais PJ no Brasil.',
+  sameAs: [
+    'https://www.linkedin.com/company/selvia-m',
+    'https://www.instagram.com/selvia.contabilidade/',
+  ],
+};
+
+const faqSchema = getProdutoFaqSchema(SLUG);
+const serviceSchema = getProdutoServiceSchema(SLUG, Astro.site);
+---
+
+<BaseLayout
+  title={produto.metaTitle}
+  description={produto.metaDescription}
+  jsonLd={[organizationSchema, faqSchema, serviceSchema]}
+>
+  <Announcement />
+  <Header />
+
+  <main>
+    <HeroProduto
+      eyebrow={produto.heroEyebrow}
+      h1={produto.heroH1}
+      sub={produto.heroSub}
+      ctaLabel={produto.ctaLabel}
+      whatsappContext={produto.whatsappContext}
+    />
+
+    <IntroVertical text={produto.introText} />
+
+    <FeaturesProduto
+      features={produto.features}
+      sectionEyebrow="Funcionalidades"
+      sectionTitle="Organize seus plantões em segundos."
+    />
+
+    <ComoFunciona />
+
+    <Stats />
+
+    <Depoimentos />
+
+    <UpsellMedicos />
+
+    <FaqProduto faqs={produto.faqs} />
+
+    <Midia />
+  </main>
+
+  <Footer />
+
+  <!-- Modal de captura de lead. Aberto por qualquer [data-open-lead-modal] -->
+  <LeadFormModal
+    produtoSlug={produto.slug}
+    produtoName={produto.name}
+    whatsappContext={produto.whatsappContext}
+  />
+</BaseLayout>

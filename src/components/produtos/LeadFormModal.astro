@@ -1,0 +1,360 @@
+---
+/**
+ * LeadFormModal.astro — modal de captura de lead pra LPs de produto
+ *
+ * Recebe via props:
+ *  - produtoSlug, produtoName, whatsappContext
+ *  - termsUrl (opcional): se passado, mostra link de Termos no consentimento
+ */
+
+interface Props {
+  produtoSlug: string;
+  produtoName: string;
+  whatsappContext: string;
+  termsUrl?: string;  // ex: "/termos-e-condicoes-assistente"
+}
+
+const { produtoSlug, produtoName, whatsappContext, termsUrl } = Astro.props;
+---
+
+<div class="lead-modal" id="lead-modal" role="dialog" aria-modal="true" aria-labelledby="lead-modal-title" hidden>
+  <div class="lead-modal-overlay" data-close-lead-modal></div>
+
+  <div class="lead-modal-content">
+    <button class="lead-modal-close" data-close-lead-modal aria-label="Fechar">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+
+    <h2 class="lead-modal-title" id="lead-modal-title">Libere seu acesso</h2>
+    <p class="lead-modal-sub">
+      Preencha os dados e a Selvia vai te chamar no WhatsApp em segundos.
+    </p>
+
+    <form class="lead-form" id="lead-form" novalidate>
+      <input type="hidden" name="produto_slug" value={produtoSlug} />
+      <input type="hidden" name="produto_name" value={produtoName} />
+      <input type="hidden" name="whatsapp_context" value={whatsappContext} />
+
+      <div class="lead-field">
+        <label for="lead-nome">Nome completo</label>
+        <input type="text" id="lead-nome" name="nome" required autocomplete="name" placeholder="Como você se chama?" />
+      </div>
+
+      <div class="lead-field">
+        <label for="lead-whatsapp">WhatsApp</label>
+        <input type="tel" id="lead-whatsapp" name="whatsapp" required autocomplete="tel" placeholder="(11) 99999-9999" inputmode="tel" />
+      </div>
+
+      <div class="lead-field">
+        <label for="lead-email">Email</label>
+        <input type="email" id="lead-email" name="email" required autocomplete="email" placeholder="seu@email.com" />
+      </div>
+
+      <div class="lead-field">
+        <label for="lead-cpf">CPF</label>
+        <input type="text" id="lead-cpf" name="cpf" required placeholder="000.000.000-00" inputmode="numeric" maxlength="14" />
+      </div>
+
+      <div class="lead-error" id="lead-error" hidden></div>
+
+      <p class="lead-consent">
+        Ao continuar, estou de acordo com a
+        <a href="/politica-de-privacidade" target="_blank" rel="noopener">Política de Privacidade</a>
+        {termsUrl && (
+          <>
+            {' '}e com os
+            {' '}<a href={termsUrl} target="_blank" rel="noopener">Termos de Uso</a>
+          </>
+        )}
+        , e quero compartilhar meus dados com a Selvia.
+      </p>
+
+      <button type="submit" class="btn-primary lead-submit">
+        <span class="lead-submit-default">Liberar acesso</span>
+        <span class="lead-submit-loading" hidden>Enviando…</span>
+      </button>
+    </form>
+  </div>
+</div>
+
+<script>
+  const modal = document.getElementById('lead-modal') as HTMLElement;
+  const form = document.getElementById('lead-form') as HTMLFormElement;
+  const errorBox = document.getElementById('lead-error') as HTMLElement;
+  const submitBtn = form?.querySelector('.lead-submit') as HTMLButtonElement;
+  const submitDefault = form?.querySelector('.lead-submit-default') as HTMLElement;
+  const submitLoading = form?.querySelector('.lead-submit-loading') as HTMLElement;
+  const cpfInput = document.getElementById('lead-cpf') as HTMLInputElement;
+  const whatsappInput = document.getElementById('lead-whatsapp') as HTMLInputElement;
+
+  function openModal() {
+    if (!modal) return;
+    modal.hidden = false;
+    document.body.style.overflow = 'hidden';
+    setTimeout(() => {
+      const firstInput = modal.querySelector('input[type="text"]') as HTMLInputElement;
+      firstInput?.focus();
+    }, 50);
+  }
+
+  function closeModal() {
+    if (!modal) return;
+    modal.hidden = true;
+    document.body.style.overflow = '';
+    hideError();
+  }
+
+  function showError(msg: string) {
+    if (!errorBox) return;
+    errorBox.textContent = msg;
+    errorBox.hidden = false;
+  }
+
+  function hideError() {
+    if (!errorBox) return;
+    errorBox.hidden = true;
+    errorBox.textContent = '';
+  }
+
+  function setLoading(loading: boolean) {
+    if (!submitBtn) return;
+    submitBtn.disabled = loading;
+    submitDefault.hidden = loading;
+    submitLoading.hidden = !loading;
+  }
+
+  function isCpfValid(cpf: string): boolean {
+    return cpf.replace(/\D/g, '').length === 11;
+  }
+  function isWhatsappValid(wpp: string): boolean {
+    const len = wpp.replace(/\D/g, '').length;
+    return len === 10 || len === 11;
+  }
+  function isEmailValid(email: string): boolean {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  }
+
+  function maskCpf(value: string): string {
+    const clean = value.replace(/\D/g, '').slice(0, 11);
+    if (clean.length <= 3) return clean;
+    if (clean.length <= 6) return `${clean.slice(0, 3)}.${clean.slice(3)}`;
+    if (clean.length <= 9) return `${clean.slice(0, 3)}.${clean.slice(3, 6)}.${clean.slice(6)}`;
+    return `${clean.slice(0, 3)}.${clean.slice(3, 6)}.${clean.slice(6, 9)}-${clean.slice(9)}`;
+  }
+  function maskWhatsapp(value: string): string {
+    const clean = value.replace(/\D/g, '').slice(0, 11);
+    if (clean.length <= 2) return clean;
+    if (clean.length <= 6) return `(${clean.slice(0, 2)}) ${clean.slice(2)}`;
+    if (clean.length <= 10) return `(${clean.slice(0, 2)}) ${clean.slice(2, 6)}-${clean.slice(6)}`;
+    return `(${clean.slice(0, 2)}) ${clean.slice(2, 7)}-${clean.slice(7)}`;
+  }
+
+  cpfInput?.addEventListener('input', (e) => {
+    const target = e.target as HTMLInputElement;
+    target.value = maskCpf(target.value);
+  });
+  whatsappInput?.addEventListener('input', (e) => {
+    const target = e.target as HTMLInputElement;
+    target.value = maskWhatsapp(target.value);
+  });
+
+  document.querySelectorAll('[data-open-lead-modal]').forEach((btn) => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      openModal();
+    });
+  });
+
+  document.querySelectorAll('[data-close-lead-modal]').forEach((btn) => {
+    btn.addEventListener('click', closeModal);
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal && !modal.hidden) closeModal();
+  });
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    hideError();
+
+    const formData = new FormData(form);
+    const nome = (formData.get('nome') as string || '').trim();
+    const whatsapp = (formData.get('whatsapp') as string || '').trim();
+    const email = (formData.get('email') as string || '').trim();
+    const cpf = (formData.get('cpf') as string || '').trim();
+    const produtoSlug = formData.get('produto_slug') as string;
+    const produtoName = formData.get('produto_name') as string;
+    const whatsappContext = formData.get('whatsapp_context') as string;
+
+    if (!nome || nome.length < 3) { showError('Por favor, preencha seu nome completo.'); return; }
+    if (!isWhatsappValid(whatsapp)) { showError('WhatsApp inválido. Use o formato (11) 99999-9999.'); return; }
+    if (!isEmailValid(email)) { showError('Email inválido.'); return; }
+    if (!isCpfValid(cpf)) { showError('CPF inválido. Use o formato 000.000.000-00.'); return; }
+
+    setLoading(true);
+
+    const payload = { nome, whatsapp, email, cpf, produto_slug: produtoSlug, produto_name: produtoName, origem: window.location.pathname };
+
+    try {
+      await fetch('/api/lead', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+        signal: AbortSignal.timeout(5000),
+      });
+    } catch (err) {
+      console.warn('API /api/lead falhou, usando fallback WhatsApp:', err);
+    }
+
+    const whatsappMessage = [
+      `Olá! Vim da LP de ${produtoName} (${whatsappContext}) e quero experimentar.`,
+      ``,
+      `Nome: ${nome}`,
+      `Email: ${email}`,
+      `CPF: ${cpf}`,
+    ].join('\n');
+
+    const whatsappUrl = `https://api.whatsapp.com/send?phone=5511936220451&text=${encodeURIComponent(whatsappMessage)}`;
+
+    setTimeout(() => { window.location.href = whatsappUrl; }, 300);
+  });
+</script>
+
+<style>
+  .lead-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    animation: lead-modal-fade-in 0.2s ease;
+  }
+  .lead-modal[hidden] { display: none; }
+
+  .lead-modal-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(13, 66, 63, 0.5);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+  }
+
+  .lead-modal-content {
+    position: relative;
+    background: #FFFFFF;
+    border-radius: 16px;
+    padding: 40px 32px 32px;
+    width: 100%;
+    max-width: 440px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 24px 64px -16px rgba(13, 66, 63, 0.3);
+    animation: lead-modal-slide-up 0.25s ease;
+  }
+
+  @keyframes lead-modal-fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  @keyframes lead-modal-slide-up {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .lead-modal-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 32px;
+    height: 32px;
+    background: rgba(13, 66, 63, 0.05);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    color: var(--c-text-muted-strong);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.15s;
+  }
+  .lead-modal-close:hover { background: rgba(13, 66, 63, 0.1); }
+  .lead-modal-close svg { width: 18px; height: 18px; }
+
+  .lead-modal-title {
+    font-size: 24px;
+    font-weight: 500;
+    color: var(--c-green-dark);
+    margin: 0 0 8px;
+    letter-spacing: -0.4px;
+  }
+  .lead-modal-sub {
+    font-size: 14px;
+    color: var(--c-text-muted-strong);
+    margin: 0 0 24px;
+    line-height: 1.55;
+  }
+
+  .lead-form { display: flex; flex-direction: column; gap: 14px; }
+  .lead-field { display: flex; flex-direction: column; gap: 6px; }
+  .lead-field label {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--c-green-dark);
+    letter-spacing: 0.2px;
+  }
+  .lead-field input {
+    padding: 12px 14px;
+    border: 1px solid rgba(13, 66, 63, 0.15);
+    border-radius: 8px;
+    font-size: 15px;
+    font-family: inherit;
+    color: var(--c-green-dark);
+    background: #FFFFFF;
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+  .lead-field input:focus {
+    outline: none;
+    border-color: var(--c-green-dark);
+    box-shadow: 0 0 0 3px rgba(105, 228, 112, 0.2);
+  }
+  .lead-field input::placeholder { color: rgba(13, 66, 63, 0.35); }
+
+  .lead-error {
+    background: rgba(220, 38, 38, 0.08);
+    color: #B91C1C;
+    border: 1px solid rgba(220, 38, 38, 0.2);
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+  .lead-consent {
+    font-size: 12px;
+    color: var(--c-text-muted);
+    line-height: 1.55;
+    margin: 4px 0 0;
+  }
+  .lead-consent a {
+    color: var(--c-green-dark);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  .lead-submit {
+    margin-top: 8px;
+    justify-content: center;
+    width: 100%;
+  }
+  .lead-submit:disabled { opacity: 0.6; cursor: not-allowed; }
+
+  @media (max-width: 500px) {
+    .lead-modal-content { padding: 32px 24px 24px; }
+    .lead-modal-title { font-size: 20px; }
+  }
+</style>

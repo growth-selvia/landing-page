@@ -1,0 +1,112 @@
+---
+/**
+ * FaqProduto.astro — FAQ específica de cada LP de produto
+ *
+ * Recebe via props o array de FAQs (vem de produtos.ts).
+ * Visual: mesmo padrão do FAQ da home, cards expansíveis em <details>.
+ */
+
+interface FaqItem {
+  question: string;
+  answer: string;
+}
+
+interface Props {
+  faqs: FaqItem[];
+  sectionTitle?: string;
+}
+
+const { faqs, sectionTitle = 'Perguntas frequentes' } = Astro.props;
+---
+
+<section class="faq-produto">
+  <div class="container">
+    <span class="pill pill-dark">FAQ</span>
+    <h2 class="faq-produto-title">{sectionTitle}</h2>
+
+    <div class="faq-produto-list">
+      {faqs.map((faq) => (
+        <details class="faq-produto-item">
+          <summary>{faq.question}</summary>
+          <p>{faq.answer}</p>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .faq-produto {
+    background:
+      radial-gradient(circle, rgba(13,66,63,0.05) 1px, transparent 1.5px) 0 0 / 28px 28px,
+      #FFFFFF;
+    padding: 72px 0;
+    border-top: 1px solid rgba(13,66,63,0.06);
+  }
+
+  .faq-produto-title {
+    font-size: clamp(28px, 4vw, 36px);
+    font-weight: 500;
+    color: var(--c-green-dark);
+    letter-spacing: -0.8px;
+    line-height: 1.2;
+    margin: 12px 0 32px;
+    max-width: 600px;
+  }
+
+  .faq-produto-list {
+    display: grid;
+    gap: 10px;
+    max-width: 760px;
+  }
+
+  .faq-produto-item {
+    background: #FFFFFF;
+    border: 1px solid rgba(13,66,63,0.08);
+    border-radius: 12px;
+    padding: 18px 22px;
+    transition: all 0.2s;
+    box-shadow: 0 1px 2px rgba(13,66,63,0.04);
+  }
+  .faq-produto-item[open] {
+    border-color: var(--c-green-dark);
+    box-shadow:
+      0 16px 32px -12px rgba(13,66,63,0.15),
+      0 4px 8px -4px rgba(105,228,112,0.1);
+  }
+
+  .faq-produto-item summary {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--c-green-dark);
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+  }
+  .faq-produto-item summary::-webkit-details-marker { display: none; }
+  .faq-produto-item summary::after {
+    content: '+';
+    font-size: 22px;
+    color: var(--c-green-dark);
+    font-weight: 300;
+    line-height: 1;
+    flex-shrink: 0;
+  }
+  .faq-produto-item[open] summary::after { content: '−'; }
+
+  .faq-produto-item p {
+    margin: 12px 0 0;
+    font-size: 14px;
+    color: var(--c-text-muted-strong);
+    line-height: 1.65;
+  }
+
+  @media (max-width: 700px) {
+    .faq-produto {
+      padding: 56px 0;
+    }
+  }
+</style>

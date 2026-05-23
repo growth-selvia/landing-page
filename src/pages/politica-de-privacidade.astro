@@ -1,0 +1,642 @@
+---
+/**
+ * /politica-de-privacidade
+ *
+ * Aviso de Privacidade oficial da Selvia, baseado no documento publicado
+ * em https://www.selvia.com.br/política-de-privacidade
+ *
+ * Última atualização do documento original: 10 de Outubro de 2025.
+ *
+ * Mantém o conteúdo legal idêntico ao oficial pra preservar validade jurídica.
+ * Marca como noindex pra evitar indexação (mesmo padrão da página original).
+ */
+
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Announcement from '../components/layout/Announcement.astro';
+import Header from '../components/layout/Header.astro';
+import Footer from '../components/layout/Footer.astro';
+
+const organizationSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'Selvia',
+  url: Astro.site?.href,
+  logo: new URL('/logo.png', Astro.site).href,
+};
+---
+
+<BaseLayout
+  title="Aviso de Privacidade | Selvia"
+  description="Aviso de Privacidade da Selvia. Como tratamos seus dados pessoais conforme a LGPD, com quem compartilhamos e como você pode exercer seus direitos."
+  noindex={true}
+  jsonLd={[organizationSchema]}
+>
+  <Announcement />
+  <Header />
+
+  <main class="legal">
+    <div class="container">
+      <header class="legal-header">
+        <span class="pill pill-dark">Legal</span>
+        <h1>Aviso de Privacidade</h1>
+        <p class="legal-updated">Última atualização: 10 de Outubro de 2025</p>
+      </header>
+
+      <article class="legal-content">
+        <p>
+          Nós, da <strong>SELVIA</strong>, levamos a sua privacidade e a proteção
+          dos seus dados a sério e nos comprometemos em garantir seus direitos.
+          Por isso, preparamos este documento para explicar como tratamos seus
+          dados pessoais, quais são os seus direitos e como você pode exercê-los.
+        </p>
+
+        <p>
+          Este Aviso de Privacidade se aplica a todas as redes sociais e ambientes
+          virtuais, bem como a todos os produtos e serviços oferecidos pela SELVIA,
+          por meio da <strong>SELVIA TECNOLOGIA LTDA</strong>, sociedade limitada
+          inscrita no CNPJ sob o nº 55.044.108/0001-78, que atua com a prestação de
+          serviços de assessoria financeira e tecnologia, e pela
+          <strong>SELVIA CONTABILIDADE LTDA</strong>, sociedade limitada inscrita
+          no CNPJ sob o nº 37.888.114/0001-20, que atua com serviços de assessoria
+          contábil.
+        </p>
+
+        <p>
+          Ao declarar ciência deste documento, você consente, de forma livre e
+          expressa, que seus dados e informações sejam coletados, armazenados,
+          tratados e compartilhados, conforme as regras dispostas neste Aviso de
+          Privacidade.
+        </p>
+
+        <section>
+          <h2>1. Por que tratamos seus dados pessoais</h2>
+          <p>
+            A SELVIA é uma plataforma especializada em fornecer serviços contábeis
+            e financeiros para profissionais da área da saúde, com o objetivo de
+            simplificar e otimizar a gestão das suas finanças.
+          </p>
+          <p>
+            Nosso propósito é oferecer, dentro de nossa gama de serviços contábeis
+            e financeiros, a melhor experiência possível a partir de uma assistência
+            personalizada e eficiente.
+          </p>
+          <p>
+            Em virtude disso, precisamos conhecer bem nossos Usuários, a fim de
+            proporcionar a melhor experiência possível em nossa Plataforma.
+          </p>
+        </section>
+
+        <section>
+          <h2>2. O que é preciso para entender este Aviso de Privacidade</h2>
+          <p>
+            A fim de proporcionar melhor e maior compreensão dos termos usados
+            neste Aviso, listamos abaixo alguns conceitos e definições que serão
+            utilizados ao longo deste documento. Esses são conceitos e definições
+            utilizados pela Lei Geral de Proteção de Dados (LGPD) e outras normas
+            sobre privacidade e proteção de dados.
+          </p>
+
+          <dl class="legal-definitions">
+            <dt>Aviso</dt>
+            <dd>
+              É este documento: Aviso de Privacidade. Importante destacar que esse
+              documento também é chamado por alguns de "Política de Privacidade",
+              porém o termo mais adequado é "Aviso", sendo a "Política" um documento
+              interno.
+            </dd>
+
+            <dt>Dado Pessoal (Art. 5º, I, LGPD)</dt>
+            <dd>
+              É qualquer informação relacionada a uma pessoa física, que seja capaz
+              de identificar essa pessoa ou tornar possível a sua identificação.
+              São exemplos de dados pessoais que podem permitir a identificação de
+              uma pessoa física: Nome, CPF, endereço, telefone, e-mail, etc.
+            </dd>
+
+            <dt>Dado Pessoal Sensível (Art. 5º, II, LGPD)</dt>
+            <dd>
+              São as informações sobre origem racial ou étnica, convicção religiosa,
+              opinião política, filiação a sindicato ou a organização de caráter
+              religioso, filosófico ou político, dado referente à saúde ou à vida
+              sexual, dado genético ou biométrico, quando vinculado a uma pessoa
+              física, que, por sua própria natureza, poderão ser utilizados para
+              fins discriminatórios e ilícitos em face de determinada pessoa natural.
+            </dd>
+
+            <dt>Tratamento (Art. 5º, X, LGPD)</dt>
+            <dd>
+              É toda forma de uso que podemos fazer dos seus Dados Pessoais,
+              incluindo, mas não se limitando, às seguintes atividades: coleta,
+              armazenamento, consulta, uso, compartilhamento, transmissão,
+              classificação, reprodução, exclusão e avaliação.
+            </dd>
+
+            <dt>Titular (Art. 5º, V, LGPD)</dt>
+            <dd>É a pessoa física a quem os dados se referem.</dd>
+          </dl>
+        </section>
+
+        <section>
+          <h2>3. Que tipo de dados pessoais nós tratamos e para quais finalidades</h2>
+          <p>
+            Os tipos de Dados Pessoais que tratamos são aqueles que dizem respeito
+            ao serviço que prestamos, isto é, aqueles dados relacionados à execução
+            de nossos serviços contábeis e financeiros, serviços parceiros voltados
+            para você como assessoria jurídica parceira, assessoria de investimento,
+            assessoria financeira, ou ainda para facilitar a criação de conta
+            bancária em instituições bancárias parceiras.
+          </p>
+
+          <h3>Dados de Cadastro</h3>
+          <p>
+            Nome completo, sexo, data de nascimento, imagens de documentos como RG,
+            CPF, carteira de motorista, carteira de trabalho, título de eleitor;
+            último recibo de imposto de renda, certificado digital de pessoa física
+            (opcional), usuário e senha gov.br, razão social, nome fantasia, CNPJ,
+            e-mail e número de telefone.
+          </p>
+          <p>
+            <strong>Finalidade</strong>: identificação e comunicação com cada
+            usuário, emissão de nota fiscal, suporte e execução de serviços e
+            produtos contratados.
+          </p>
+
+          <h3>Dados Profissionais e Acadêmicos</h3>
+          <p>Universidade em que estudou e data de colação de grau.</p>
+          <p><strong>Finalidade</strong>: personalização dos serviços.</p>
+
+          <h3>Dados de Localização e documentos relativos</h3>
+          <p>Geolocalização; endereço completo, comprovante de endereço e IPTU.</p>
+          <p>
+            <strong>Finalidade</strong>: análise agregada de perfil de usuários, e
+            informação de área de atuação da plataforma.
+          </p>
+
+          <h3>Dados Financeiros</h3>
+          <p>
+            Dados relacionados à forma de pagamento escolhida pelo usuário, dados
+            relativos às finanças do usuário e seu respectivo credit ou risk score
+            e, a depender dos serviços contratados pelo usuário, dados de acesso à
+            conta bancária.
+          </p>
+          <p>
+            <strong>Finalidade</strong>: processamento do pagamento dos serviços,
+            além da execução de alguns serviços e produtos contratados.
+          </p>
+
+          <h3>Histórico de dados/gastos financeiros</h3>
+          <p>
+            Dados relacionados aos gastos pessoais do Usuário em sua conta bancária
+            pessoal, caso ele permita expressamente.
+          </p>
+          <p>
+            <strong>Finalidade</strong>: prestação do serviço de planejamento
+            financeiro pessoal.
+          </p>
+
+          <h3>Utilização do Site</h3>
+          <p>
+            Dados sobre o seu computador, ou outro dispositivos, tais como IP, bem
+            como dados sobre seus acessos, consumo, buscas, visualizações, detalhes
+            do pedido, valor cobrado, método de pagamento, localização etc.
+          </p>
+          <p>
+            <strong>Finalidade</strong>: prevenção contra fraude; dados de uso, para
+            análise a fim de gerar melhorias no atendimento. Possibilitar o
+            desenvolvimento, oferta e melhoria dos nossos produtos, serviços,
+            conteúdo e publicidade dentro ou fora da plataforma.
+          </p>
+
+          <h3>Utilização dos produtos ou serviços</h3>
+          <p>
+            Dados de transações e movimentações financeiras na conta com a SELVIA,
+            como débitos, recebimentos, pagamentos e transferências, remetentes e
+            beneficiários etc. Histórico de conversa e atendimento com a SELVIA.
+          </p>
+          <p>
+            <strong>Finalidade</strong>: identificação e comunicação com cada
+            usuário, suporte e execução de serviços e produtos contratados,
+            autenticação de transações financeiras, aprimoramento dos serviços
+            prestados pela SELVIA, desenvolvimento de novos produtos etc.
+          </p>
+
+          <h3>Dados coletados por meio de terceiros</h3>
+          <p>
+            Dados cadastrais, tais como: nome completo, filiação, data de
+            nascimento, CPF, número de telefone, endereço, entre outros; dados
+            sobre restrições financeiras, tais como: negativações, valores devidos,
+            entre outros; Lista de Pessoas Politicamente Expostas (PPE), listas de
+            restrição (como, OFAC, CSNU e outras listas internacionais); processos
+            judiciais existentes ou arquivados na justiça estadual ou federal.
+          </p>
+          <p>
+            <strong>Finalidade</strong>: validação dos dados fornecidos pelo
+            usuário; prevenção de fraudes e ilícitos; prestação dos serviços e
+            oferecimento dos produtos contratados; prevenção e resolução de
+            problemas técnicos ou de segurança; colaboração ou cumprimento de
+            ordem judicial, de autoridade competente ou de órgão fiscalizador;
+            cumprimento de obrigação legal ou regulatória eventualmente impostas à
+            SELVIA ou a parceiros bancários utilizados por nós, incluindo normas
+            de Conheça seu Cliente (KYC), Prevenção à Lavagem de Dinheiro e
+            Financiamento ao Terrorismo e outras.
+          </p>
+
+          <h3>Outros</h3>
+          <p>
+            Todos os Dados acima citados e aqueles resultantes do uso da Plataforma
+            (eventos cadastrados, respostas dos participantes, correções e
+            respectivas notas).
+          </p>
+          <p>
+            <strong>Finalidade</strong>: para fins internos, tais como auditoria,
+            análise de dados e pesquisas para aprimorar os produtos, serviços,
+            comunicações com os Usuários e anúncios personalizados dos nossos
+            produtos/serviços ou de parceiros.
+          </p>
+
+          <h3>Cookies</h3>
+          <p>
+            Poderemos ainda, durante o acesso ao site, fazer uso de tecnologias
+            que coletam outros dados considerados pessoais, como os cookies.
+          </p>
+          <p>
+            Alguns Cookies, denominados necessários, essenciais ao funcionamento
+            do website, não podem ser desativados, seja para garantir o
+            funcionamento da página web, seja por exigências legais decorrentes do
+            Marco Civil da Internet (Lei 12.965/2014). São eles:
+          </p>
+          <ul>
+            <li>Dados de sessões, navegação e páginas acessadas;</li>
+            <li>Domínio, registro de data e hora inicial (primeira visita), último registro de data e hora (última visita), registro de data e hora atual (visita atual) e número de sessões;</li>
+            <li>Comportamento de navegação;</li>
+            <li>Histórico de navegação;</li>
+            <li>Distinção de Usuários;</li>
+            <li>Primeira navegação;</li>
+            <li>Dados de cadastro e navegação;</li>
+            <li>Dados de cadastro através do endereço IP;</li>
+            <li>Dados para ajuste e otimização de navegabilidade.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>4. Com quem compartilhamos os seus dados pessoais</h2>
+          <p>
+            Para realizarmos nossas atividades da melhor maneira possível, operamos
+            em parceria com outras organizações. Atuamos em parceria com essas
+            empresas, pois elas são especializadas em determinados serviços (como
+            de Tecnologia da Informação e Armazenamento em Nuvem, dentre outros),
+            o que melhora a qualidade do serviço prestado.
+          </p>
+
+          <h3>Parceiros</h3>
+          <p>
+            Compartilhamos dados pessoais com os nossos Parceiros, prestadores de
+            serviços como empresas de tecnologia da informação, instituições
+            financeiras, empresas de análise de crédito, empresas de análise de
+            dados, empresas de monitoramento de fraude, empresas de pesquisa de
+            mercado, dentre outras. Esses prestadores de serviço têm acesso aos
+            seus dados pessoais apenas para a execução de suas atividades, apenas
+            os dados necessários para a execução de tais atividades e sempre
+            trabalhamos com empresas que possuem políticas de privacidade alinhadas
+            às nossas.
+          </p>
+
+          <h3>Autoridades públicas</h3>
+          <p>
+            Compartilhamos dados pessoais com autoridades públicas como bancos e
+            outros, quando a lei nos obrigar, ou em casos de suspeita de atividades
+            ilícitas, fraude ou violação de direitos de terceiros.
+          </p>
+
+          <h3>Demais destinatários</h3>
+          <p>
+            Compartilhamos dados pessoais com demais destinatários, desde que
+            tenhamos obtido o seu consentimento específico ou quando a divulgação
+            for necessária para cumprimento de obrigação legal ou regulatória.
+          </p>
+
+          <p>
+            Os dados coletados e armazenados pela SELVIA são mantidos junto à
+            <strong>Amazon Web Services (AWS)</strong>, plataforma de computação
+            na nuvem oferecida pela Amazon.com, e estão localizados na AWS Região
+            US-East-1.
+          </p>
+        </section>
+
+        <section>
+          <h2>5. Seus direitos em relação aos seus dados pessoais</h2>
+          <p>
+            A Lei Geral de Proteção de Dados (LGPD) garante a você diversos
+            direitos, pois os dados pessoais são seus. Nós nos comprometemos e nos
+            preocupamos com sua privacidade e proteção de dados pessoais e, por
+            essa razão, listamos abaixo os seus direitos, conforme assegurado pela
+            Lei.
+          </p>
+
+          <h3>1. Confirmação e Acesso</h3>
+          <p>
+            Você pode nos solicitar a confirmação sobre a existência de tratamento
+            dos seus Dados Pessoais para que, em caso positivo, você possa
+            acessá-los, inclusive por meio de solicitação de cópias dos registros
+            que temos sobre você.
+          </p>
+
+          <h3>2. Correção</h3>
+          <p>
+            Você pode solicitar a correção dos seus Dados Pessoais, caso estes
+            estejam incompletos, inexatos ou desatualizados.
+          </p>
+
+          <h3>3. Anonimização, bloqueio ou eliminação</h3>
+          <p>
+            Você pode solicitar, por meio de nossos canais de atendimento indicados
+            no item 8:
+          </p>
+          <ul>
+            <li>
+              a anonimização dos seus Dados Pessoais, de forma que eles não possam
+              mais ser relacionados a você e, portanto, deixem de ser Dados Pessoais;
+            </li>
+            <li>
+              o bloqueio dos seus Dados Pessoais, suspendendo temporariamente a
+              possibilidade de os tratarmos para certas finalidades;
+            </li>
+            <li>
+              a eliminação dos seus Dados Pessoais, caso em que devemos apagar
+              todos os seus Dados Pessoais sem possibilidade de reversão.
+            </li>
+          </ul>
+
+          <h3>4. Informação sobre o compartilhamento</h3>
+          <p>
+            Você tem o direito de saber quais são as entidades públicas e privadas
+            com as quais a Empresa realiza uso compartilhado dos seus Dados
+            Pessoais. Acima, no tópico 4 deste Aviso, há uma indicação das nossas
+            relações com terceiros que podem envolver o compartilhamento de Dados
+            Pessoais. Em todo caso, se você tiver dúvidas ou quiser mais detalhes,
+            você tem o direito de nos solicitar essas informações.
+          </p>
+
+          <h3>5. Informação sobre a possibilidade de não consentir</h3>
+          <p>
+            Você tem o direito de receber informações claras e completas sobre a
+            possibilidade e as consequências de não fornecer consentimento, quando
+            ele for solicitado pelo Controlador de Dados. O seu consentimento,
+            quando necessário, deve ser livre e informado.
+          </p>
+
+          <h3>6. Revogação do consentimento</h3>
+          <p>
+            Caso você tenha consentido com alguma finalidade de tratamento dos
+            seus Dados Pessoais, você pode sempre optar por retirar o seu
+            consentimento. No entanto, isso não afetará a legalidade de qualquer
+            Tratamento realizado anteriormente à revogação. Se você retirar o seu
+            consentimento, é possível que fiquemos impossibilitados de lhe prestar
+            certos serviços.
+          </p>
+
+          <h3>7. Oposição</h3>
+          <p>
+            A lei autoriza o tratamento de Dados Pessoais mesmo sem o seu
+            consentimento ou um contrato. Nessas situações, somente trataremos
+            seus Dados Pessoais se tivermos motivos legítimos para tanto, como,
+            por exemplo, quando for necessário para garantir a segurança da nossa
+            aplicação. Caso você não concorde com alguma finalidade de tratamento
+            dos seus Dados Pessoais, você poderá apresentar oposição, solicitando
+            a interrupção.
+          </p>
+        </section>
+
+        <section>
+          <h2>6. Período de retenção dos dados pessoais</h2>
+          <p>
+            Nós mantemos seus dados pessoais somente durante o tempo necessário
+            para cumprir com as finalidades para as quais foram coletados, exceto
+            se houver qualquer outra razão para sua manutenção como cumprimento
+            de obrigações legais, regulatórias, contratuais, entre outras
+            permitidas pela lei. Quando não houver mais uma finalidade para a
+            manutenção dos dados, eles serão eliminados ou anonimizados.
+          </p>
+          <p>
+            Sempre fazemos uma análise técnica para determinar o período de
+            retenção adequado para cada tipo de Dado Pessoal coletado, considerando
+            a sua natureza, necessidade de coleta e finalidade para a qual ele
+            será tratado, bem como eventuais necessidades de retenção para o
+            cumprimento de obrigações ou o resguardo de direitos.
+          </p>
+
+          <h3>Avisos importantes</h3>
+          <p>
+            Para sua segurança, sempre que você apresentar uma requisição para
+            exercer seus direitos, podemos solicitar algumas informações e/ou
+            documentos complementares para que possamos comprovar a sua
+            identidade, buscando impedir fraudes. Esses dados serão utilizados
+            apenas para a finalidade de confirmar a identidade do titular.
+          </p>
+          <p>
+            Em alguns casos, nós podemos ter motivos legítimos para deixar de
+            atender a uma solicitação de exercício de direitos. Essas situações
+            incluem, por exemplo, casos em que uma revelação de informações
+            específicas poderia violar direitos de propriedade intelectual ou
+            segredos de negócio da Empresa ou de terceiros.
+          </p>
+        </section>
+
+        <section>
+          <h2>7. Como protegemos seus dados pessoais</h2>
+          <p>
+            Nossa responsabilidade é cuidar dos seus Dados Pessoais e utilizá-los
+            somente para as finalidades descritas neste Aviso. Para garantir a sua
+            privacidade e a proteção dos seus Dados Pessoais, adotamos os recursos
+            tecnológicos e medidas administrativas necessárias para garantir a
+            segurança de todos os dados tratados por nós.
+          </p>
+          <p>
+            Nós utilizamos os melhores padrões do mercado com relação a segurança.
+            As chaves privadas de acesso às contas bancárias utilizadas em nossas
+            plataformas são guardadas criptografadas e a chave mestra é armazenada
+            em <strong>AWS KMS</strong>, um serviço de alta qualidade para
+            criptografar e gerenciar informações.
+          </p>
+          <p>
+            Adotamos cláusulas e termos relacionados à Proteção de Dados Pessoais
+            com nossos parceiros e clientes, a fim de garantir que eles tenham,
+            pelo menos, as mesmas preocupações e cuidados com a privacidade e
+            proteção dos dados pessoais dos clientes.
+          </p>
+          <p>
+            Além disso, adotamos internamente Políticas de Privacidade, Termos de
+            Confidencialidade com nossos colaboradores que interagem com dados
+            pessoais, bem como Políticas de Segurança da Informação e de Respostas
+            a Incidentes, conforme as orientações da Autoridade Nacional de
+            Proteção de Dados Pessoais.
+          </p>
+          <p class="legal-emphasis">
+            <strong>
+              SOB HIPÓTESE NENHUMA VENDEMOS, ALUGAMOS OU COMPARTILHAMOS
+              INDEVIDAMENTE OS DADOS PESSOAIS QUE TRATAMOS.
+            </strong>
+          </p>
+          <p>
+            Nós nos esforçamos para proteger seus Dados Pessoais, mas infelizmente
+            não podemos garantir total segurança. Entradas e usos não autorizados
+            de terceiros com informações suas, falhas de hardware ou software que
+            não estejam sob nosso controle completo e outros fatores externos
+            podem comprometer a segurança dos seus Dados Pessoais.
+          </p>
+        </section>
+
+        <section>
+          <h2>8. Canais de contato</h2>
+          <p>
+            Se você acredita que seus Dados Pessoais foram tratados de maneira
+            incompatível com este Aviso ou com as suas escolhas enquanto Titular
+            dos seus Dados Pessoais, ou, ainda, se você tiver dúvidas, comentários
+            ou sugestões relacionadas a este documento e à forma como tratamos
+            seus Dados Pessoais, entre em contato conosco.
+          </p>
+          <p>
+            E-mail para contato:
+            <a href="mailto:privacidade@drcont.ai">privacidade@drcont.ai</a><br />
+            Telefone para contato: +55 12 99624-8346
+          </p>
+        </section>
+
+        <section>
+          <h2>9. Alterações neste Aviso de Privacidade</h2>
+          <p>
+            Como estamos sempre buscando melhorar os nossos serviços e a forma
+            como operamos, este Aviso de Privacidade pode passar por determinadas
+            atualizações, de modo a refletir as melhorias realizadas e eventuais
+            incrementos aos nossos serviços.
+          </p>
+          <p>
+            Não obstante a SELVIA não necessite de anuência do Usuário para
+            realizar tais alterações, garantirá sempre o tempo razoável e
+            suficiente para sua vigência, além de informar e submeter tais
+            previsões à reanálise do Usuário que, não aceitando-os, perderá o
+            acesso à Aplicação.
+          </p>
+        </section>
+      </article>
+    </div>
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<style>
+  .legal {
+    padding: 56px 0 80px;
+    background: #FFFFFF;
+  }
+
+  .legal-header {
+    margin-bottom: 40px;
+    max-width: 720px;
+  }
+  .legal-header h1 {
+    font-size: clamp(28px, 4.5vw, 40px);
+    font-weight: 500;
+    color: var(--c-green-dark);
+    line-height: 1.15;
+    letter-spacing: -1px;
+    margin: 16px 0 12px;
+  }
+  .legal-updated {
+    font-size: 13px;
+    color: var(--c-text-muted);
+    margin: 0;
+  }
+
+  .legal-content {
+    max-width: 760px;
+    color: var(--c-text-muted-strong);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+  .legal-content > p {
+    margin: 0 0 14px;
+  }
+  .legal-content section {
+    margin-bottom: 36px;
+    padding-top: 12px;
+    border-top: 1px solid rgba(13,66,63,0.06);
+  }
+  .legal-content h2 {
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--c-green-dark);
+    margin: 16px 0 16px;
+    letter-spacing: -0.3px;
+  }
+  .legal-content h3 {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--c-green-dark);
+    margin: 20px 0 8px;
+    letter-spacing: -0.2px;
+  }
+  .legal-content p {
+    margin: 0 0 12px;
+  }
+  .legal-content ul {
+    padding-left: 24px;
+    margin: 8px 0 16px;
+  }
+  .legal-content li {
+    margin-bottom: 6px;
+  }
+  .legal-content li::marker {
+    color: var(--c-green-light);
+  }
+  .legal-content a {
+    color: var(--c-green-dark);
+    text-decoration: underline;
+    text-decoration-color: var(--c-green-light);
+    text-underline-offset: 3px;
+  }
+  .legal-content strong {
+    color: var(--c-green-dark);
+    font-weight: 500;
+  }
+  .legal-emphasis {
+    background: rgba(105,228,112,0.08);
+    border-left: 3px solid var(--c-green-light);
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    margin: 16px 0 !important;
+  }
+
+  /* Definições em <dl>/<dt>/<dd> */
+  .legal-definitions {
+    margin: 16px 0 0;
+  }
+  .legal-definitions dt {
+    font-weight: 500;
+    color: var(--c-green-dark);
+    margin: 16px 0 6px;
+    font-size: 14px;
+  }
+  .legal-definitions dt:first-child {
+    margin-top: 0;
+  }
+  .legal-definitions dd {
+    margin: 0 0 12px;
+    padding-left: 0;
+    font-size: 14px;
+    line-height: 1.65;
+  }
+
+  @media (max-width: 700px) {
+    .legal {
+      padding: 32px 0 56px;
+    }
+    .legal-content {
+      font-size: 14px;
+    }
+    .legal-content h2 {
+      font-size: 18px;
+    }
+  }
+</style>

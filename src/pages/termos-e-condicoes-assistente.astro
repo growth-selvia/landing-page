@@ -1,0 +1,619 @@
+---
+/**
+ * /termos-e-condicoes-assistente
+ *
+ * Termos e Condições específicos da Assistente Financeira da Selvia.
+ * Baseado no documento oficial em
+ * https://www.selvia.com.br/termos-e-condicoes-assistente
+ *
+ * Mantém o conteúdo legal idêntico ao oficial pra preservar validade jurídica.
+ * Marca como noindex (mesmo padrão da página original).
+ */
+
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Announcement from '../components/layout/Announcement.astro';
+import Header from '../components/layout/Header.astro';
+import Footer from '../components/layout/Footer.astro';
+
+const organizationSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'Selvia',
+  url: Astro.site?.href,
+  logo: new URL('/logo.png', Astro.site).href,
+};
+---
+
+<BaseLayout
+  title="Termos e Condições da Assistente Financeira | Selvia"
+  description="Termos e Condições específicos da tecnologia de Assistente Financeira da Selvia. Regras de uso, assinaturas, cancelamento e responsabilidades."
+  noindex={true}
+  jsonLd={[organizationSchema]}
+>
+  <Announcement />
+  <Header />
+
+  <main class="legal">
+    <div class="container">
+      <header class="legal-header">
+        <span class="pill pill-dark">Legal</span>
+        <h1>Termos e Condições da Assistente Financeira</h1>
+        <p class="legal-updated">Termos específicos para utilização da tecnologia de Assistente Financeira</p>
+      </header>
+
+      <article class="legal-content">
+        <p>
+          A Assistente Financeira da <strong>SELVIA TECNOLOGIA LTDA</strong>,
+          sociedade limitada inscrita no CNPJ sob o nº 55.044.108/0001-78, aqui
+          identificada como "Assistente Financeira" ou "Selvia", apresenta aos
+          seus Usuários os Termos e Condições de Uso da Plataforma
+          <a href="/assistente-financeira">/assistente-financeira</a>
+          (Plataforma) e sua tecnologia ("Tecnologia"), com o objetivo de
+          instruir sobre a sua utilização.
+        </p>
+
+        <section>
+          <h2>Definições</h2>
+
+          <dl class="legal-definitions">
+            <dt>Tecnologia</dt>
+            <dd>
+              É a solução Web "Assistente Financeira", fornecida pela Selvia e
+              acessada por meio de comandos e de um link privativo enviado ao
+              Usuário por meio do WhatsApp. Estes Termos de Uso não alcançam
+              outros programas e/ou aplicativos da Empresa, licenciados por meio
+              de contratos e documentos específicos.
+            </dd>
+
+            <dt>Dados Pessoais</dt>
+            <dd>
+              Qualquer dado que se refira a uma pessoa física identificada ou
+              que possa ser identificada. Em outras palavras, trata-se das
+              informações que coletamos para preenchimento de cadastros e que
+              possibilitam a identificação direta ou indireta de indivíduos.
+              Além disso, também são considerados Dados Pessoais aqueles que não
+              fornecemos ativamente, como localização via GPS, endereço de IP,
+              hábitos de consumo, entre outros.
+            </dd>
+
+            <dt>Selvia</dt>
+            <dd>
+              SELVIA TECNOLOGIA LTDA, sociedade limitada inscrita no CNPJ sob o
+              nº 55.044.108/0001-78, legítima, responsável e exclusiva
+              proprietária da Plataforma e da Tecnologia.
+            </dd>
+
+            <dt>Integração Automatizada</dt>
+            <dd>
+              Trata-se da integração entre a Tecnologia e as Instituições
+              Depositárias autorizadas pelo Usuário, por meio de interfaces de
+              programação de aplicativos (APIs). Essa conexão possibilita a
+              captura automática de informações financeiras, como transações e
+              saldos das contas vinculadas.
+            </dd>
+
+            <dt>Open Finance</dt>
+            <dd>
+              Também chamada de "integração com conta(s) bancária(s)", essa
+              funcionalidade ocorre quando o Usuário autoriza a captura de suas
+              informações financeiras, como transações, depósitos, retiradas e
+              demais movimentações bancárias.
+            </dd>
+
+            <dt>Parceiros</dt>
+            <dd>
+              Quaisquer pessoas físicas ou jurídicas que firmam contrato com a
+              Selvia para oferecer produtos, serviços ou conteúdos aos Usuários
+              através da Tecnologia.
+            </dd>
+
+            <dt>Plataforma</dt>
+            <dd>
+              É a unificação dos serviços e de Conteúdos disponibilizados pela
+              Assistente Financeira, nos mais diversos canais.
+            </dd>
+
+            <dt>Usuário</dt>
+            <dd>
+              Pessoa física, maior de 18 (dezoito) anos e que acessa a
+              Plataforma e utiliza a Tecnologia, via Web e/ou WhatsApp, em nome
+              próprio.
+            </dd>
+
+            <dt>Web</dt>
+            <dd>
+              Termo técnico que se refere ao sistema de acesso a informações na
+              Internet, composto por páginas desenvolvidas em HTML ou linguagens
+              semelhantes, além de utilizar mecanismos de programação como Java,
+              JavaScript, PHP, entre outros.
+            </dd>
+          </dl>
+        </section>
+
+        <section>
+          <h2>1. Aceitação</h2>
+          <p>
+            <strong>1.1.</strong> Para que o Usuário possa ter acesso à
+            Tecnologia, deverá ler os presentes Termos e o Aviso de Privacidade.
+          </p>
+          <p>
+            <strong>1.2.</strong> Este é um Contrato firmado entre o "Usuário" e
+            a Selvia e, ao aceitar os Termos, o Usuário declara que é plenamente
+            capaz civilmente, nos termos do Código Civil.
+          </p>
+          <p>
+            <strong>1.3.</strong> Ao acessar a nossa ferramenta no WhatsApp,
+            Você receberá o link para consulta destes Termos e do Aviso de
+            Privacidade, sendo orientado a prosseguir apenas caso concorde
+            integralmente com o conteúdo dos referidos Documentos. Caso não
+            concorde, Você não deverá utilizar esta Plataforma nem a Tecnologia
+            da Selvia.
+          </p>
+        </section>
+
+        <section>
+          <h2>2. Serviços e cadastro</h2>
+          <p>
+            <strong>2.1.</strong> Com o objetivo de promover uma organização e
+            controle dos dados sobre finanças do Usuário em um só lugar, a
+            solução Web foi criada para conectar as contas bancárias do Usuário,
+            reunir todos os gastos feitos em todos os cartões conectados, bem
+            como os investimentos e outros ativos patrimoniais, planejar
+            objetivos financeiros e receber alertas e recomendações.
+          </p>
+          <p>
+            <strong>2.2.</strong> Para simplificar o controle das suas finanças
+            com a Assistente Financeira, o Usuário deve seguir os seguintes
+            passos de cadastro:
+          </p>
+          <ul>
+            <li>Acessar o site <a href="/assistente-financeira">/assistente-financeira</a> e clicar no botão "Quero Experimentar". O Usuário será direcionado para um formulário de cadastro;</li>
+            <li>Cadastrar-se na Plataforma por meio da inserção de dados como nome, e-mail e telefone;</li>
+            <li>Receber a mensagem da Selvia no WhatsApp: após o cadastro, a Selvia enviará automaticamente uma mensagem para o Usuário no WhatsApp, que será o canal principal para interações com a sua Assistente Financeira;</li>
+            <li>Ler os nossos Termos e Condições de Uso, e o nosso Aviso de Privacidade, antes de seguir com qualquer ação;</li>
+            <li>Conectar suas contas bancárias: o Usuário escolherá quais contas bancárias deseja sincronizar com a Selvia;</li>
+            <li>Começar a gerenciar suas finanças: o Usuário poderá acompanhar os seus gastos em tempo real, definir metas financeiras e receber alertas personalizados.</li>
+          </ul>
+          <p>
+            <strong>2.3.</strong> Ao sincronizar suas contas bancárias com a
+            Assistente Financeira, as informações financeiras do Usuário serão
+            gerenciadas por meio de uma Integração Automatizada. Essa
+            funcionalidade permite que o Usuário acesse e capture dados sobre
+            transações e movimentações de suas contas e cartões diretamente da
+            instituição bancária na qual possui vínculo.
+          </p>
+          <p>
+            <strong>2.4.</strong> Para viabilizar a Integração Automatizada, o
+            Usuário deverá compartilhar sua senha e demais dados de acesso,
+            autorizando o acesso às suas informações financeiras. Esses dados
+            serão tratados de acordo com as diretrizes estabelecidas nestes
+            Termos de Uso e no Aviso de Privacidade, garantindo a proteção e
+            segurança do Usuário.
+          </p>
+          <p>
+            <strong>2.5.</strong> Destacamos que a Integração Automatizada pode
+            ser realizada exclusivamente pela Selvia, por empresas do mesmo
+            grupo econômico ou por meio de Parceiros.
+          </p>
+          <p>
+            <strong>2.6.</strong> Na Integração Automatizada, a atualização da
+            Tecnologia depende da disponibilidade de informações fornecidas
+            pelas Instituições Depositárias. Por isso, a Selvia não se
+            responsabiliza pelo tempo de atualização, disponibilidade ou
+            precisão desses dados.
+          </p>
+          <p>
+            <strong>2.7.</strong> O processo é seguro e segue todos os
+            protocolos do Open Finance do Banco Central, garantindo proteção
+            total dos seus dados.
+          </p>
+          <p>
+            <strong>2.8.</strong> A Assistente Financeira é uma ferramenta
+            complementar para auxiliar na organização das finanças pessoais. As
+            informações disponíveis na Tecnologia não devem ser interpretadas
+            como garantia ou declaração de que o Usuário possui ou terá recursos
+            para qualquer tipo de gasto ou investimento. O monitoramento do
+            vencimento de suas obrigações financeiras é de responsabilidade
+            exclusiva do Usuário.
+          </p>
+        </section>
+
+        <section>
+          <h2>3. Assinaturas e Planos</h2>
+          <p>
+            <strong>3.1.</strong> A assinatura da Assistente Financeira será
+            cobrada ao Usuário de acordo com os termos, prazos e valores
+            previstos na Plataforma no momento do cadastro do Usuário. O Usuário
+            concorda que o valor da assinatura paga será cobrado em seu cartão
+            de crédito. Além disso, reconhece que as assinaturas e planos
+            funcionam sob um modelo de <strong>renovação automática</strong>,
+            ou seja, ao optar pelo pagamento via cartão de crédito, autoriza a
+            cobrança recorrente ao final de cada período contratado.
+          </p>
+          <p>
+            <strong>3.1.1.</strong> A renovação da assinatura poderá incluir
+            ajustes ou correções de preço, especialmente para contratos firmados
+            durante períodos promocionais.
+          </p>
+          <p>
+            <strong>3.2.</strong> A Selvia poderá disponibilizar modalidades
+            pagas, incluindo assinaturas e planos com duração determinada, e se
+            reserva o direito de criar novas opções ou oferecer funcionalidades
+            adicionais mediante um custo extra para o período contratado.
+          </p>
+          <p>
+            <strong>3.3.</strong> A Selvia poderá, a qualquer momento e sem
+            aviso prévio, alterar ou descontinuar quaisquer funcionalidades
+            disponíveis na Plataforma.
+          </p>
+          <p>
+            <strong>3.4.</strong> A Selvia não tem a obrigação de oferecer
+            suporte para a utilização da Plataforma pelo Usuário.
+          </p>
+        </section>
+
+        <section>
+          <h2>4. Reembolsos e Cancelamento</h2>
+          <p>
+            <strong>4.1.</strong> O cancelamento de assinaturas e planos pode
+            ser solicitado pelos seguintes canais:
+          </p>
+          <ul>
+            <li>E-mail: <a href="mailto:financeiro@selvia.com.br">financeiro@selvia.com.br</a></li>
+            <li>WhatsApp: +55 12 99624-8346</li>
+          </ul>
+          <p>
+            <strong>4.2.</strong> O reembolso será disponibilizado para
+            cancelamentos solicitados em até <strong>7 (sete) dias</strong>
+            após o primeiro acesso ao conteúdo exclusivo de determinada
+            assinatura ou plano. Nesse caso, o cancelamento resultará na
+            desativação imediata e total das funcionalidades contratadas.
+          </p>
+          <p>
+            <strong>4.3.</strong> A Selvia realizará o estorno do valor integral
+            no mesmo cartão de crédito utilizado para o pagamento. O prazo para
+            o reembolso dependerá dos tempos processuais das intermediárias
+            financeiras.
+          </p>
+          <p>
+            <strong>4.4.</strong> Caso o cancelamento seja solicitado após o
+            período inicial de 7 (sete) dias, não haverá reembolso. O Usuário
+            manterá acesso às funcionalidades do plano ou combo até o final do
+            período contratado, sem direito à devolução dos valores pagos.
+          </p>
+          <p>
+            <strong>4.5.</strong> Para cancelar a renovação automática, o
+            Usuário deverá solicitar o cancelamento do plano ou combo até o dia
+            anterior ao início do novo período de renovação.
+          </p>
+          <p>
+            <strong>4.6.</strong> Após o cancelamento, a não renovação da
+            assinatura implicará na desativação das funcionalidades contratadas,
+            podendo resultar na perda de informações armazenadas, que não
+            poderão ser recuperadas caso o Usuário opte por renovar a assinatura
+            posteriormente.
+          </p>
+          <p>
+            <strong>4.7.</strong> Caso deseje excluir imediatamente e
+            definitivamente a sua conta, o Usuário deverá comunicar
+            expressamente essa vontade por meio dos canais de comunicação
+            informados no item 4.1 acima.
+          </p>
+        </section>
+
+        <section>
+          <h2>5. Obrigações do Usuário</h2>
+          <p>
+            <strong>5.1.</strong> Além do previsto nas demais previsões destes
+            termos, o Usuário se compromete a:
+          </p>
+          <ul>
+            <li>Colocar à disposição da Selvia todas as informações que esta necessite, para consecução do objetivo do presente Contrato;</li>
+            <li>Não utilizar os serviços da Selvia para fins ilícitos ou para remunerar atividades ilegais.</li>
+          </ul>
+          <p>
+            <strong>5.2.</strong> O Usuário concorda que todas as ações e
+            comandos relacionados aos Serviços destes Termos serão concedidas
+            por meio do aplicativo WhatsApp, na conta oficial da Selvia
+            (+55 11 93502-6188) e, quando permitido, por meio da página Web.
+          </p>
+        </section>
+
+        <section>
+          <h2>6. Responsabilidades</h2>
+          <p>
+            <strong>6.1.</strong> A Selvia não se responsabilizará, em nenhuma
+            hipótese, por quaisquer danos decorrentes de:
+          </p>
+          <ul>
+            <li>Mau uso da Plataforma e da Tecnologia por parte do Usuário;</li>
+            <li>Má conexão com a internet;</li>
+            <li>Interrupção da transmissão, difusão, disponibilização, recepção, obtenção e acesso à informação;</li>
+            <li>Problemas técnicos e/ou operacionais, incluindo, mas não se limitando a, falhas, perda de informações, transmissão de vírus, entre outros;</li>
+            <li>Prejuízos resultantes de furtos, roubos ou outros incidentes semelhantes não comunicados de forma imediata à Contratada;</li>
+            <li>Atos causados por eventos de caso fortuito ou força maior;</li>
+            <li>Decisões do Usuário sobre as movimentações dos seus cartões e patrimônios, decisão sobre planejamento e investimentos, alocação de recursos etc.</li>
+          </ul>
+          <p class="legal-emphasis">
+            <strong>6.2.</strong> O USUÁRIO ASSUME A RESPONSABILIDADE DE
+            COMUNICAR IMEDIATAMENTE À CONTRATADA, EXCLUSIVAMENTE POR MEIO DO
+            E-MAIL <a href="mailto:contato@selvia.com.br">contato@selvia.com.br</a>
+            ou por meio do WhatsApp de suporte (+55 12 99624-8346), QUALQUER
+            ALTERAÇÃO DO NÚMERO DE TELEFONE CADASTRADO, BEM COMO A OCORRÊNCIA
+            DE EVENTOS COMO PERDA, ROUBO, ENTRE OUTROS.
+          </p>
+          <p>
+            <strong>6.3.</strong> A Selvia se exime e se desobriga de qualquer
+            responsabilidade por perdas e danos de qualquer natureza, lucros
+            cessantes e danos emergentes, que possam decorrer das ações de
+            Usuários que violem os seus Termos.
+          </p>
+          <p>
+            <strong>6.4.</strong> A Selvia se resguarda no direito de, a
+            qualquer momento, suspender ou cancelar a prestação dos Serviços
+            prevista neste Contrato, em caso de descumprimento dos deveres pelo
+            Usuário.
+          </p>
+          <p>
+            <strong>6.5.</strong> Em qualquer hipótese, a responsabilidade
+            máxima da Selvia decorrente deste Contrato será limitada ao valor
+            total do Contrato e se limita aos danos diretos comprovadamente
+            sofridos pelo Usuário em razão de qualquer descumprimento das
+            obrigações da Contratada.
+          </p>
+        </section>
+
+        <section>
+          <h2>7. Da observância à LGPD</h2>
+          <p class="legal-emphasis">
+            <strong>7.1.</strong> O USUÁRIO DECLARA EXPRESSO E ESPECÍFICO
+            CONSENTIMENTO QUE A SELVIA IRÁ COLETAR, TRATAR E COMPARTILHAR TODOS
+            OS DADOS PESSOAIS, INCLUSIVE OS SENSÍVEIS, NECESSÁRIOS À EXECUÇÃO
+            DOS PRESENTES SERVIÇOS.
+          </p>
+          <p>
+            <strong>7.2.</strong> A Selvia adotará medidas técnicas e
+            administrativas aptas a proteger os dados pessoais de acessos não
+            autorizados e de situações acidentais ou ilícitas de destruição,
+            perda, alteração, comunicação ou difusão. Apesar das medidas de
+            segurança adotadas, a Selvia não pode garantir que jamais aconteçam
+            falhas ou situações ilícitas causadas por terceiros.
+          </p>
+          <p>
+            <strong>7.3.</strong> Os dados pessoais dos Usuários utilizados para
+            tais esforços também serão tratados com segurança. Caso haja dúvidas,
+            o Usuário poderá consultar o
+            <a href="/politica-de-privacidade">Aviso de Privacidade</a> da
+            Contratada.
+          </p>
+        </section>
+
+        <section>
+          <h2>8. Da propriedade intelectual</h2>
+          <p>
+            <strong>8.1.</strong> Todos os direitos de propriedade intelectual
+            e industrial relacionados à Plataforma e aos serviços da Contratada,
+            tais como operações, vídeos, marcas, logotipos, emblemas, design de
+            páginas e peças publicitárias, estrutura, conteúdos e informações,
+            ferramentas, símbolos e expressões que caracterizem os Serviços da
+            Selvia são de inteira propriedade desta.
+          </p>
+          <p>
+            <strong>8.2.</strong> Ao aceitar estes Termos de Uso, o Usuário
+            recebe uma licença limitada, não transferível, não exclusiva, livre
+            de royalties e revogável para executar e utilizar esta Plataforma e
+            a Tecnologia em seu dispositivo. É vedado ao Usuário, em qualquer
+            tempo, modificar, copiar, distribuir, vender, transmitir, exibir,
+            realizar, reproduzir, publicar, disponibilizar, licenciar ou criar
+            obras derivadas a partir dos direitos de propriedade intelectual
+            dos Serviços.
+          </p>
+        </section>
+
+        <section>
+          <h2>9. Links externos</h2>
+          <p>
+            <strong>9.1.</strong> A Plataforma poderá conter links para outros
+            sites, incluindo sites mantidos por outras empresas que não são
+            regidas por estes Termos. Por isso, recomendamos que o Usuário
+            analise os termos de serviços e o aviso/política de privacidade de
+            cada site visitado, antes de disponibilizar quaisquer informações
+            pessoais.
+          </p>
+        </section>
+
+        <section>
+          <h2>10. Modificação nos Termos</h2>
+          <p>
+            <strong>10.1.</strong> A Selvia poderá modificar os presentes Termos
+            a qualquer momento, sem necessidade de anuência do Usuário, o qual
+            será notificado das alterações por meio da Plataforma, WhatsApp e/ou
+            por e-mail. Ao continuar utilizando a Plataforma após as
+            modificações, o Usuário declara estar ciente e concordar com os
+            novos Termos de Uso.
+          </p>
+        </section>
+
+        <section>
+          <h2>11. Disposições gerais</h2>
+          <p>
+            <strong>11.1.</strong> Caso alguma ou algumas das cláusulas ou
+            disposições do presente termo seja considerada inválida, a referida
+            não será utilizada, mas tal invalidade não prejudica a validade e a
+            aplicação do restante das disposições.
+          </p>
+          <p>
+            <strong>11.2.</strong> O Usuário declara e garante possuir plena
+            capacidade jurídica para a celebração do presente Contrato, bem como
+            que todos os dados eventualmente fornecidos são verdadeiros, sob as
+            penas da lei.
+          </p>
+          <p>
+            <strong>11.3.</strong> A tolerância de uma Parte para com a outra,
+            relativa o descumprimento de qualquer das obrigações ora assumidas,
+            não será considerada novação ou renúncia a qualquer direito.
+          </p>
+        </section>
+
+        <section>
+          <h2>12. Comunicação</h2>
+          <p>
+            <strong>12.1.</strong> Os meios oficiais de comunicação com a
+            Selvia são os informados abaixo, sendo de inteira responsabilidade
+            do Usuário as informações neles inseridas ou por meio deles
+            solicitadas:
+          </p>
+
+          <h3>Comandos e ações da Assistente Financeira</h3>
+          <p>WhatsApp: +55 11 93502-6188</p>
+
+          <h3>Solicitação de cancelamento de plano</h3>
+          <p>
+            E-mail: <a href="mailto:financeiro@selvia.com.br">financeiro@selvia.com.br</a><br />
+            WhatsApp: +55 12 99624-8346
+          </p>
+
+          <h3>Solicitação de cancelamento de conta, comunicação de roubo/furto, alteração de dados</h3>
+          <p>
+            E-mail: <a href="mailto:contato@selvia.com.br">contato@selvia.com.br</a><br />
+            WhatsApp: +55 12 99624-8346
+          </p>
+
+          <h3>Informações e direitos relacionados à privacidade (LGPD)</h3>
+          <p>
+            E-mail: <a href="mailto:privacidade@selvia.com.br">privacidade@selvia.com.br</a>
+          </p>
+        </section>
+
+        <section>
+          <h2>13. Do foro</h2>
+          <p>
+            <strong>13.1.</strong> O presente documento possui vigência em total
+            consonância com a legislação brasileira ao tempo da adesão do
+            Usuário, elegendo-se o foro da
+            <strong>Comarca de Barueri/SP</strong>, Brasil, para dirimir
+            quaisquer dúvidas ou litígios decorrentes.
+          </p>
+        </section>
+      </article>
+    </div>
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<style>
+  .legal {
+    padding: 56px 0 80px;
+    background: #FFFFFF;
+  }
+
+  .legal-header {
+    margin-bottom: 40px;
+    max-width: 720px;
+  }
+  .legal-header h1 {
+    font-size: clamp(28px, 4.5vw, 40px);
+    font-weight: 500;
+    color: var(--c-green-dark);
+    line-height: 1.15;
+    letter-spacing: -1px;
+    margin: 16px 0 12px;
+  }
+  .legal-updated {
+    font-size: 13px;
+    color: var(--c-text-muted);
+    margin: 0;
+  }
+
+  .legal-content {
+    max-width: 760px;
+    color: var(--c-text-muted-strong);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+  .legal-content > p {
+    margin: 0 0 14px;
+  }
+  .legal-content section {
+    margin-bottom: 36px;
+    padding-top: 12px;
+    border-top: 1px solid rgba(13,66,63,0.06);
+  }
+  .legal-content h2 {
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--c-green-dark);
+    margin: 16px 0 16px;
+    letter-spacing: -0.3px;
+  }
+  .legal-content h3 {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--c-green-dark);
+    margin: 20px 0 8px;
+    letter-spacing: -0.2px;
+  }
+  .legal-content p {
+    margin: 0 0 12px;
+  }
+  .legal-content ul {
+    padding-left: 24px;
+    margin: 8px 0 16px;
+  }
+  .legal-content li {
+    margin-bottom: 6px;
+  }
+  .legal-content li::marker {
+    color: var(--c-green-light);
+  }
+  .legal-content a {
+    color: var(--c-green-dark);
+    text-decoration: underline;
+    text-decoration-color: var(--c-green-light);
+    text-underline-offset: 3px;
+  }
+  .legal-content strong {
+    color: var(--c-green-dark);
+    font-weight: 500;
+  }
+  .legal-emphasis {
+    background: rgba(105,228,112,0.08);
+    border-left: 3px solid var(--c-green-light);
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    margin: 16px 0 !important;
+    font-size: 14px;
+  }
+
+  .legal-definitions {
+    margin: 16px 0 0;
+  }
+  .legal-definitions dt {
+    font-weight: 500;
+    color: var(--c-green-dark);
+    margin: 16px 0 6px;
+    font-size: 14px;
+  }
+  .legal-definitions dt:first-child {
+    margin-top: 0;
+  }
+  .legal-definitions dd {
+    margin: 0 0 12px;
+    padding-left: 0;
+    font-size: 14px;
+    line-height: 1.65;
+  }
+
+  @media (max-width: 700px) {
+    .legal {
+      padding: 32px 0 56px;
+    }
+    .legal-content {
+      font-size: 14px;
+    }
+    .legal-content h2 {
+      font-size: 18px;
+    }
+  }
+</style>

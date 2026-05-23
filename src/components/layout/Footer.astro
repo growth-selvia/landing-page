@@ -1,12 +1,10 @@
 ---
 // Footer com colunas de navegação + dados legais (CNPJs Selvia)
 //
-// MUDANÇAS (sub-etapa E):
-//   - "Para quem": links de âncora viraram rotas reais (/medicos, /devs, etc.)
-//     Médicos vai pra home (vertical principal, não tem LP separada).
-//   - "Conteúdo": Blog vira rota /blog. Calculadora/Preços continuam como âncora,
-//     mas com prefixo / pra funcionar de qualquer página.
-//   - Adicionei "Criadores" e "Saúde" (verticais que faltavam no footer antigo).
+// MUDANÇAS (sub-etapa F):
+//   - Nova coluna "Produtos" com Assistente Financeira e Agendamento de Plantão
+//   - Grid agora tem 5 colunas em desktop (era 4)
+//   - Mantém Para quem, Conteúdo, Empresa
 ---
 
 <footer>
@@ -50,6 +48,12 @@
       </div>
 
       <div class="footer-col">
+        <h4>Produtos</h4>
+        <a href="/assistente-financeira">Assistente Financeira</a>
+        <a href="/agendamento-de-plantao">Agendamento de Plantão</a>
+      </div>
+
+      <div class="footer-col">
         <h4>Conteúdo</h4>
         <a href="/blog">Blog</a>
         <a href="/#calculadora">Calculadora</a>
@@ -61,6 +65,7 @@
         <a href="#">Sobre</a>
         <a href="#">Imprensa</a>
         <a href="#">Contato</a>
+        <a href="/politica-de-privacidade">Política de Privacidade</a>
       </div>
     </div>
 
@@ -87,7 +92,7 @@
   }
   .footer-grid {
     display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1fr;
+    grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
     gap: 32px;
     margin-bottom: 40px;
   }
@@ -156,10 +161,15 @@
   .footer-legal strong { color: var(--c-green-dark); font-weight: 500; }
   .footer-copy { margin-top: 16px; opacity: 0.7; }
 
-  @media (max-width: 900px) {
+  @media (max-width: 1000px) {
+    .footer-grid {
+      grid-template-columns: 2fr 1fr 1fr;
+    }
+  }
+  @media (max-width: 700px) {
     .footer-grid { grid-template-columns: 1fr 1fr; }
   }
-  @media (max-width: 560px) {
+  @media (max-width: 480px) {
     .footer-grid { grid-template-columns: 1fr; }
   }
 </style>
